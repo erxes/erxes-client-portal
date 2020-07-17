@@ -4,38 +4,38 @@ import Logo from '../../../assets/images/logos/erxes-logo.svg';
 function Header() {
   return (
     <Container fluid>
-      <div className="header">
+      <div className='header'>
         <Row>
           <Col>
-            <div className="logo">
-              <img src={Logo} alt="logo" />
+            <div className='logo'>
+              <img src={Logo} alt='logo' />
             </div>
           </Col>
           <Col>
-            <Nav className="justify-content-center" activeKey="/forums">
+            <Nav className='justify-content-center' activeKey='/forums'>
               <Nav.Item>
-                <Nav.Link href="/forums">Forum</Nav.Link>
+                <Nav.Link href='/forums'>Forum</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/knowledge-base">Knowledge base</Nav.Link>
+                <Nav.Link href='/knowledge-base'>Knowledge base</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/ticket">Ticket</Nav.Link>
+                <Nav.Link href='/ticket'>Ticket</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/blog">Blog</Nav.Link>
+                <Nav.Link href='/blog'>Blog</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
           <Col>
-            <Nav className="justify-content-end">
+            <Nav className='justify-content-end'>
               <Nav.Item>
-                <Nav.Link href="/home" className="sign-up">
+                <Nav.Link href='/sign-up' className='sign-up'>
                   Sign up
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="link-1" className="log-in">
+                <Nav.Link href='/log-in' className='log-in'>
                   Log in
                 </Nav.Link>
               </Nav.Item>
