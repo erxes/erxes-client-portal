@@ -1,43 +1,46 @@
-import React from 'react';
-import { Row, Col, Nav, Container } from 'react-bootstrap';
-import Logo from '../../../assets/images/logos/erxes-logo.svg';
+import React from "react";
+import { Row, Col, Nav, Container } from "react-bootstrap";
+import Logo from "../../../assets/images/logos/erxes-logo.svg";
+import { NavLink, Link } from "react-router-dom";
 function Header() {
   return (
     <Container fluid>
-      <div className='header'>
+      <div className="header">
         <Row>
           <Col>
-            <div className='logo'>
-              <img src={Logo} alt='logo' />
+            <div className="logo">
+              <Link to="/">
+                <img src={Logo} alt="logo" />
+              </Link>
             </div>
           </Col>
           <Col>
-            <Nav className='justify-content-center' activeKey='/forums'>
+            <Nav className="justify-content-center" activeKey="/forums">
               <Nav.Item>
-                <Nav.Link href='/forums'>Forum</Nav.Link>
+                <NavLink to="/forums">Forum</NavLink>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='/knowledge-base'>Knowledge base</Nav.Link>
+                <NavLink to="/knowledge-base">Knowledge base</NavLink>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='/ticket'>Ticket</Nav.Link>
+                <NavLink to="/ticket">Ticket</NavLink>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='/blog'>Blog</Nav.Link>
+                <NavLink to="/blog">Blog</NavLink>
               </Nav.Item>
             </Nav>
           </Col>
           <Col>
-            <Nav className='justify-content-end'>
+            <Nav className="justify-content-end">
               <Nav.Item>
-                <Nav.Link href='/sign-up' className='sign-up'>
-                  Sign up
-                </Nav.Link>
+                <Link to="/register" className="sign-up">
+                  Register
+                </Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='/log-in' className='log-in'>
+                <Link to="/log-in" className="log-in">
                   Log in
-                </Nav.Link>
+                </Link>
               </Nav.Item>
             </Nav>
           </Col>

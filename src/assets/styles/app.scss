@@ -1,16 +1,26 @@
-@import 'colors'; 
-@import 'layouts'; 
-@import 'common';
+@import "library";
+@import "layouts";
+@import "common";
+@import "erxes";
 
-@import 'forum';
-body{
-  background: #fff;
-  p{
-    color: #fff
+@import "forum";
+@import "knowledgeBase";
+@import "auth";
+body {
+  background: #f5f8fb;
+}
+a {
+  &:hover {
+    text-decoration: none;
   }
 }
-a{
-  &:hover{
-    text-decoration: none
-  }
+@font-face {
+  font-family: "erxes";
+  src: url("../font/erxes.eot?864608");
+  src: url("../font/erxes.eot?864608#iefix") format("embedded-opentype"),
+    url("../font/erxes.woff?864608") format("woff"),
+    url("../font/erxes.ttf?864608") format("truetype"),
+    url("../font/erxes.svg?864608#erxes") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }

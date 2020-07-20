@@ -1,0 +1,56 @@
+.knowledge-base {
+  .nav-pills {
+    .nav-item {
+      margin-bottom: 1rem;
+      .nav-link {
+        padding: 1rem;
+        color: $darkColor;
+        outline: none;
+        border-radius: 5px;
+        &.active {
+          border-radius: $radius;
+          background: $white;
+          box-shadow: $shadow;
+        }
+        i {
+          position: absolute;
+          margin-top: 2px;
+        }
+        .tab-content {
+          margin-left: 30px;
+          p {
+            font-size: 12px;
+            margin-bottom: 0;
+            color: #6c718b;
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    .tab-pane {
+      padding: 0 1rem;
+      min-height: 500px;
+      border-radius: $radius;
+      .content-header {
+        i {
+          position: absolute;
+          margin-top: 2px;
+          font-size: 1.5rem;
+        }
+        .tab-content {
+          margin-left: 50px;
+          h5 {
+            font-size: 2rem;
+          }
+          p {
+            font-size: 16px;
+            margin-bottom: 0;
+            color: #6c718b;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
+import SectionHeader from "../../common/components/SectionHeader";
 class ForumList extends React.Component {
   renderItem(title) {
     return (
@@ -32,10 +33,11 @@ class ForumList extends React.Component {
   render() {
     return (
       <div className="forum-page">
+        <SectionHeader icon="speech-bubble-2" title="Forum" />
         <ul className="forum-list">
-          {this.renderItem('Reasonable Visual Designer and Inventor')}
-          {this.renderItem('Former Planner of AR Massacres')}
-          {this.renderItem('Idiot of Design Reclusivity')}
+          {this.renderItem("Reasonable Visual Designer and Inventor")}
+          {this.renderItem("Former Planner of AR Massacres")}
+          {this.renderItem("Idiot of Design Reclusivity")}
         </ul>
       </div>
     );

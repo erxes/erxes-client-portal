@@ -1,44 +1,47 @@
-.main-body{
-  margin-top:50px;
-  margin-bottom:50px;
+.main-body {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
-.header{
+.header {
   padding: 10px 30px;
-  .row{
-    align-items: center
+  .row {
+    align-items: center;
   }
-  a{
+  a {
     font-size: 18px;
     font-weight: 500;
     color: $darkColor;
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 5px;
     margin: 0 1rem;
-    &:hover{
-          background: $softYellow;
-          transition: .4s
+    padding: 0.5rem 1rem;
+    &:hover {
+      background: $softYellow;
+      transition: 0.4s;
     }
-    &.active{
+    &.active {
       background: $softYellow;
     }
-    
   }
-  .log-in{
+  .log-in {
     background: $mainColor;
     color: $white;
-    margin:0;
-    padding:.5rem 2rem;
-    border:1px solid $mainColor;
-    &:hover{
+    margin: 0;
+    padding: 0.5rem 2rem;
+    border: 1px solid $mainColor;
+    &:hover {
       color: $mainColor;
-      background: transparent
+      background: transparent;
     }
   }
-  .sign-up{
-    padding:.5rem 2rem
+  .sign-up {
+    padding: 0.5rem 2rem;
   }
 }
-.logo{
+.logo {
   max-width: 100px;
+  a:hover {
+    background: none;
+  }
 }
