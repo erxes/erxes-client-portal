@@ -37,3 +37,20 @@
     border-color: $darkOrange;
   }
 }
+.create-bar {
+  text-align: right;
+  margin-bottom: 2rem;
+  .btn-create {
+    max-width: 200px;
+    background: $mainColor;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: $shadow;
+    padding: 10px;
+    border: 1px solid $mainColor;
+    &:hover {
+      background: $white;
+      color: $mainColor;
+    }
+  }
+}

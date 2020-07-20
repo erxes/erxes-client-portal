@@ -2,7 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import SectionHeader from "../../common/components/SectionHeader";
+import CreateButton from "../../common/components/CreateButton";
+
 class ForumList extends React.Component {
+  handleClick = () => {
+    console.log("forum");
+  };
   renderItem(title) {
     return (
       <li className="forum-item">
@@ -34,6 +39,7 @@ class ForumList extends React.Component {
     return (
       <div className="forum-page">
         <SectionHeader icon="speech-bubble-2" title="Forum" />
+        <CreateButton value="Create forum" onClick={this.handleClick} />
         <ul className="forum-list">
           {this.renderItem("Reasonable Visual Designer and Inventor")}
           {this.renderItem("Former Planner of AR Massacres")}

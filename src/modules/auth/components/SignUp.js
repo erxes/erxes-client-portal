@@ -33,9 +33,6 @@ class SignUp extends React.Component {
                   <Form.Label>Confirm Password</Form.Label>
                   <Form.Control type="password" />
                 </Form.Group>
-                <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Remember me" />
-                </Form.Group>
                 <Button
                   className="btn btn-orange"
                   variant="primary"

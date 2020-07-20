@@ -6,7 +6,7 @@ function Header() {
   return (
     <Container fluid>
       <div className="header">
-        <Row>
+        <Row className="justify-content-md-center">
           <Col>
             <div className="logo">
               <Link to="/">
@@ -14,7 +14,7 @@ function Header() {
               </Link>
             </div>
           </Col>
-          <Col>
+          <Col md={6}>
             <Nav className="justify-content-center" activeKey="/forums">
               <Nav.Item>
                 <NavLink to="/forums">Forum</NavLink>
