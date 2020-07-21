@@ -1,73 +1,65 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SectionHeader from "../../common/components/SectionHeader";
-import CreateButton from "../../common/components/CreateButton";
+import ActionRow from "../../common/components/ActionRow";
 class Lists extends React.Component {
   handleClick = () => {
     console.log("faq");
   };
   render() {
     return (
-      <Container className="knowledge-base">
-        <SectionHeader icon="book" title="Knowledge Base" />
-        <CreateButton value="Create FAQ" onClick={this.handleClick} />
-        <Row>
-          <Col md={4} sm={6}>
-            <Card className="category-item">
-              <Link to="/">
-                <i className="icon-flag"></i>
-                <div className="tab-content">
-                  <h5>Features</h5>
-                  <p>
-                    Explore the power of erxes features through different use
-                    cases
-                  </p>
-                </div>
+      <Container style={{ maxWidth: "800px" }} className="knowledge-base">
+        <SectionHeader icon="flag" title="Feature" />
+        <ActionRow value="Create FAQ" onClick={this.handleClick} />
+        <div className="kbase-lists">
+          <h4>What is erxes ?</h4>
+          <ul>
+            <li>
+              <Link to="/knowledge-base-detail">
+                Creating your First Workspace
               </Link>
-            </Card>
-          </Col>
-          <Col md={4} sm={6}>
-            <Card className="category-item">
-              <Link to="/">
-                <i className="icon-diamond"></i>
-                <div className="tab-content">
-                  <h5>Milestones</h5>
-                  <p>
-                    Learn about the terms and conditions of the rewards program.
-                  </p>
-                </div>
+            </li>
+            <li>
+              <Link to="/knowledge-base-detail">
+                Creating your First Workspace
               </Link>
-            </Card>
-          </Col>
-          <Col md={4} sm={6}>
-            <Card className="category-item">
-              <Link to="/">
-                <i className="icon-book"></i>
-                <div className="tab-content">
-                  <h5>User Guide</h5>
-                  <p>
-                    Read how-to guides and articles on how to use each erxes
-                    feature
-                  </p>
-                </div>
+            </li>
+            <li>
+              <Link to="/knowledge-base-detail">
+                Creating your First Workspace
               </Link>
-            </Card>
-          </Col>
-          <Col md={4} sm={6}>
-            <Card className="category-item">
-              <Link to="/">
-                <i className="icon-diamond"></i>
-                <div className="tab-content">
-                  <h5>Milestones</h5>
-                  <p>
-                    Learn about the terms and conditions of the rewards program.
-                  </p>
-                </div>
+            </li>
+            <li>
+              <Link to="/knowledge-base-detail">
+                Creating your First Workspace
               </Link>
-            </Card>
-          </Col>
-        </Row>
+            </li>
+          </ul>
+          <h4>What is erxes ?</h4>
+          <ul>
+            <li>
+              <Link to="/knowledge-base-detail">
+                Creating your First Workspace
+              </Link>
+            </li>
+            <li>
+              <Link to="/knowledge-base-detail">
+                Creating your First Workspace
+              </Link>
+            </li>
+            <li>
+              <Link to="/knowledge-base-detail">
+                Creating your First Workspace
+              </Link>
+            </li>
+            <li>
+              <Link to="/knowledge-base-detail">
+                Creating your First Workspace
+              </Link>
+            </li>
+          </ul>
+        </div>
       </Container>
     );
   }
