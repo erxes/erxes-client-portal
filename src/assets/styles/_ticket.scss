@@ -1,0 +1,15 @@
+.ticket-lists {
+  .card {
+    margin-bottom: 30px;
+  }
+  .ticket-card {
+    min-height: 250px;
+    h5 {
+      color: $darkColor;
+      font-weight: 600;
+    }
+    p {
+      color: $silverGrey;
+    }
+  }
+}

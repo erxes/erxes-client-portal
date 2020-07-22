@@ -5,9 +5,11 @@
 
 @import "forum";
 @import "knowledgeBase";
+@import "ticket";
 @import "auth";
 body {
   background: #f5f8fb;
+  overflow-x: hidden;
 }
 a {
   &:hover {

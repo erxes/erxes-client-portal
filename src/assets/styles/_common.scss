@@ -114,3 +114,13 @@
     }
   }
 }
+
+.empty-state {
+  text-align: center;
+  h3 {
+    color: $darkColor;
+  }
+  p {
+    color: $grey;
+  }
+}
