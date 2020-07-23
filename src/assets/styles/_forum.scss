@@ -89,3 +89,25 @@
   text-align: right;
   color: $lightGrey;
 }
+.reply-menu {
+  margin-left: 60px;
+  margin-top: 20px;
+}
+.show-reply {
+  width: auto;
+  background: transparent;
+  border: none;
+  color: $grey;
+  padding: 5px 10px;
+  border-radius: 5px;
+  &:hover,
+  &:focus,
+  &.active {
+    background: $softYellow;
+    outline: none;
+    color: $darkColor;
+  }
+}
+.replies {
+  margin-top: 1rem;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Nav, Container, Dropdown } from "react-bootstrap";
+import { Row, Col, Nav, Container } from "react-bootstrap";
 import Logo from "../../../assets/images/logos/erxes-logo.svg";
 import { NavLink, Link } from "react-router-dom";
 const renderMenu = () => {
@@ -84,7 +84,7 @@ function Header() {
           </Col>
           <div
             className={`mobile-menu ${showMenu ? "slide-in" : "slide-out"}`}
-            style={showMenu ? { right: "0" } : { right: "-300px" }}
+            style={showMenu ? { marginRight: "0" } : { marginRight: "-300px" }}
           >
             <i className="icon-cancel-1" onClick={() => setShowMenu(false)}></i>
             <div className="user-menu">{renderUserMenu()}</div>
