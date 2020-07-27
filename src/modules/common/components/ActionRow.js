@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import Alert from "./Alert";
 
 const ActionRow = props => {
+  const [showAlert, setShowAlert] = useState(false);
   return (
     <div className="action-bar">
       <button onClick={props.onClick} className="btn btn-create">
@@ -9,9 +11,10 @@ const ActionRow = props => {
       <button onClick={props.onClick} className="btn btn-edit">
         <i className="icon-edit"></i>
       </button>
-      <button onClick={props.onClick} className="btn btn-delete">
+      <button onClick={() => setShowAlert(true)} className="btn btn-delete">
         <i className="icon-trash"></i>
       </button>
+      <Alert showAlert={showAlert} hideAlert={() => setShowAlert(false)} />
     </div>
   );
 };

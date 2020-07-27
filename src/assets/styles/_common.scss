@@ -18,15 +18,35 @@
   background: $white;
   box-shadow: $shadow;
   border-radius: $radius;
+  transition: 0.4s;
   .card-title {
     text-align: center;
     color: $darkColor;
   }
+  &:hover {
+    box-shadow: $shadowHover;
+    transition: 0.4s;
+  }
 }
 .btn {
   width: 100%;
+  .badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 10px;
+    padding: 2px 2px 1px 2px;
+  }
 }
-
+.btn-primary {
+  background-color: $mainColor;
+  border-color: $mainColor;
+  &:hover {
+    background: $white;
+    color: $mainColor;
+    border-color: $mainColor;
+  }
+}
 .btn-orange {
   background: $orange;
   border-color: $orange;
@@ -122,5 +142,69 @@
   }
   p {
     color: $grey;
+  }
+}
+
+.modal-content {
+  border: 0;
+  button {
+    width: auto;
+  }
+  .modal-body {
+    padding: 2rem 2rem;
+  }
+
+  .modal-header {
+    padding: 1rem 2rem;
+    .modal-title {
+      color: $darkColor;
+      font-weight: bolder;
+    }
+  }
+  .modal-footer {
+    padding: 1rem 2rem;
+  }
+}
+
+.alert-modal {
+  text-align: center;
+  i {
+    font-size: 2rem;
+    color: $mainColor;
+  }
+  h5 {
+    margin: 10px 0 20px;
+  }
+  button {
+    margin: 0 10px;
+  }
+}
+
+.popover {
+  .popover-header {
+    text-align: center;
+    font-weight: bolder;
+    color: $darkColor;
+  }
+  .popover-body {
+    padding: 0.75rem 0;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0;
+      li {
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid $lightGrey;
+        a {
+          color: $darkColor;
+        }
+        &:last-child {
+          border: 0;
+        }
+        &:hover {
+          background: #eee;
+        }
+      }
+    }
   }
 }

@@ -56,9 +56,15 @@ class Lists extends React.Component {
           onHide={this.handleClose}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Ticket title</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>
+            Гэрээний дугаар 28/19 Ажил эхлэх хугацаа 2020/03/23 2 сарын 3-ны
+            байдлаар: 2 сарын 5-ны байдлаар дизайнаа батлана. 2 сарын 7-нд явцын
+            мөнгөө төлчихвөл 2 сарын 8-наас хөгжүүлэлтийн ажлыг эхлүүлэх
+            шаардлагатай: - Хөгжүүлэлт 18 өдөр - Агуулга 2 өдөр - Алдаагаа засах
+            - 7 өдөр - Сургах, хүлээлцэх - 1 өдөр Ууганаа хийнэ
+          </Modal.Body>
           <Modal.Footer></Modal.Footer>
         </Modal>
       </Container>
