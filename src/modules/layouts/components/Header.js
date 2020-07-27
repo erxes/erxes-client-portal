@@ -1,17 +1,7 @@
-import React, { useState } from "react";
-import {
-  Row,
-  Col,
-  Nav,
-  Container,
-  Dropdown,
-  Button,
-  Popover,
-  OverlayTrigger,
-  Badge
-} from "react-bootstrap";
-import Logo from "../../../assets/images/logos/erxes-logo.svg";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Row, Col, Nav, Container, Dropdown, Button, Popover, OverlayTrigger, Badge } from 'react-bootstrap';
+import Logo from '../../../assets/images/logos/erxes-logo.svg';
+import { NavLink, Link } from 'react-router-dom';
 const renderMenu = () => {
   return (
     <Nav className="justify-content-center" activeKey="/forums">
@@ -79,10 +69,7 @@ const renderUserMenu = (position, user) => {
             </Popover>
           }
         >
-          <Button
-            className="notification-button justify-content-end"
-            variant="secondary"
-          >
+          <Button className="notification-button justify-content-end" variant="secondary">
             <i className="icon-bell"></i>
             <Badge variant="danger">12</Badge>
           </Button>
@@ -124,24 +111,19 @@ function Header() {
           <Col className="small-hidden" md="auto">
             {renderMenu()}
           </Col>
-          <Col className="small-hidden">
-            {renderUserMenu("justify-content-end", user)}
-          </Col>
-          <Col className="desktop-hidden" style={{ textAlign: "right" }}>
-            <button
-              className="mobile-menu-button"
-              onClick={() => setShowMenu(!showMenu)}
-            >
+          <Col className="small-hidden">{renderUserMenu('justify-content-end', user)}</Col>
+          <Col className="desktop-hidden" style={{ textAlign: 'right' }}>
+            <button className="mobile-menu-button" onClick={() => setShowMenu(!showMenu)}>
               <i className="icon-menu-2"></i>
             </button>
           </Col>
           {/* Mobile menu */}
           <div
-            className={`mobile-menu ${showMenu ? "slide-in" : "slide-out"}`}
-            style={showMenu ? { marginRight: "0" } : { marginRight: "-300px" }}
+            className={`mobile-menu ${showMenu ? 'slide-in' : 'slide-out'}`}
+            style={showMenu ? { marginRight: '0' } : { marginRight: '-300px' }}
           >
             <i className="icon-cancel-1" onClick={() => setShowMenu(false)}></i>
-            <div className="user-menu">{renderUserMenu("", user)}</div>
+            <div className="user-menu">{renderUserMenu('', user)}</div>
             <div className="menu">{renderMenu()}</div>
           </div>
         </Row>
