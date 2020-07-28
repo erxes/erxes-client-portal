@@ -5,6 +5,11 @@
   }
   .ticket-card {
     min-height: 250px;
+    time {
+      position: absolute;
+      bottom: 10px;
+      font-size: 12px;
+    }
     h5 {
       color: $darkColor;
       font-weight: 600;
