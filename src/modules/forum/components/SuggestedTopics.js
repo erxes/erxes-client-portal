@@ -1,14 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
-import SectionHeader from "../../common/components/SectionHeader";
-import ActionRow from "../../common/components/ActionRow";
-import Form from "./Form";
-class ForumList extends React.Component {
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap';
+import Form from './Form';
+class SuggestedTopics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
     };
   }
 
@@ -21,7 +19,7 @@ class ForumList extends React.Component {
   };
 
   handleClick = () => {
-    console.log("forum");
+    console.log('forum');
   };
   renderItem(title) {
     return (
@@ -54,12 +52,10 @@ class ForumList extends React.Component {
     const { showModal } = this.state;
     return (
       <div className="forum-page">
-        <SectionHeader icon="speech-bubble-2" title="Forum" />
-        <ActionRow value="Create forum" onClick={this.showModal} />
         <ul className="forum-list">
-          {this.renderItem("Reasonable Visual Designer and Inventor")}
-          {this.renderItem("Former Planner of AR Massacres")}
-          {this.renderItem("Idiot of Design Reclusivity")}
+          {this.renderItem('Reasonable Visual Designer and Inventor')}
+          {this.renderItem('Former Planner of AR Massacres')}
+          {this.renderItem('Idiot of Design Reclusivity')}
         </ul>
         <Form showModal={showModal} hideModal={this.hideModal} />
       </div>
@@ -67,4 +63,4 @@ class ForumList extends React.Component {
   }
 }
 
-export default ForumList;
+export default SuggestedTopics;

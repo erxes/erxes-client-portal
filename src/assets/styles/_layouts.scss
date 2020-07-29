@@ -131,6 +131,18 @@
     }
   }
 }
+.notification-button.btn {
+  width: auto;
+  margin-right: 1rem;
+  background: #fff;
+  color: $mainColor;
+  border: $mainColor;
+  position: relative;
+}
+.logged-in-user {
+  display: flex;
+  justify-content: flex-end;
+}
 @media only screen and (min-width: 1250px) {
   .desktop-hidden {
     display: none;
@@ -148,5 +160,8 @@
   }
   .small-hidden {
     display: none;
+  }
+  .logged-in-user {
+    padding: 0 20px;
   }
 }

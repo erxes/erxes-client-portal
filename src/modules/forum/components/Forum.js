@@ -1,17 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
-import TimeLine from "../../common/components/TimeLine";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap';
+import TimeLine from '../../common/components/TimeLine';
+import SuggestedTopics from './SuggestedTopics';
 class Forum extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showReplies: false
+      showReplies: false,
     };
   }
   handleReply = () => {
     this.setState({
-      showReplies: !this.state.showReplies
+      showReplies: !this.state.showReplies,
     });
   };
   renderReply() {
@@ -19,10 +20,7 @@ class Forum extends React.Component {
     return (
       <div className="topic-post topic-reply">
         <div className="author-avatar">
-          <img
-            alt="avatar"
-            src="https://avatars.discourse.org/v4/letter/j/d9b06d/45.png"
-          />
+          <img alt="avatar" src="https://avatars.discourse.org/v4/letter/j/d9b06d/45.png" />
         </div>
         <div className="topic-content">
           <Row>
@@ -35,25 +33,29 @@ class Forum extends React.Component {
           </Row>
 
           <div className="content">
-            In the topic list, I see a list of anywhere from one to five avatar
-            images next to each topic. Why are these 5 folks selected to appear
-            here? Is it just the avatars of the last 5 people to post in the
-            topic?
+            In the topic list, I see a list of anywhere from one to five avatar images next to each topic. Why are these
+            5 folks selected to appear here? Is it just the avatars of the last 5 people to post in the topic?
+          </div>
+          <div className="actions">
+            <button className="like">
+              {' '}
+              <span>4</span>
+              <i className="icon-heart-1"></i>
+            </button>
+            <button>
+              <i className="icon-share-alt"></i>
+            </button>
+            <button className="reply">
+              <i className="icon-reply"></i>
+              Reply
+            </button>
           </div>
         </div>
         <div className="reply-menu">
           <Row>
             <Col>
-              <button
-                className="show-reply"
-                onClick={this.handleReply.bind(this)}
-              >
-                1 Reply{" "}
-                <i
-                  className={`${
-                    showReplies ? "icon-uparrow" : "icon-downarrow-2"
-                  }`}
-                ></i>
+              <button className="show-reply" onClick={this.handleReply.bind(this)}>
+                1 Reply <i className={`${showReplies ? 'icon-uparrow' : 'icon-downarrow-2'}`}></i>
               </button>
             </Col>
             <Col>
@@ -63,10 +65,7 @@ class Forum extends React.Component {
           {showReplies && (
             <div className="replies">
               <div className="author-avatar">
-                <img
-                  alt="avatar"
-                  src="https://avatars.discourse.org/v4/letter/j/d9b06d/45.png"
-                />
+                <img alt="avatar" src="https://avatars.discourse.org/v4/letter/j/d9b06d/45.png" />
               </div>
               <div className="topic-content">
                 <Row>
@@ -79,10 +78,23 @@ class Forum extends React.Component {
                 </Row>
 
                 <div className="content">
-                  In the topic list, I see a list of anywhere from one to five
-                  avatar images next to each topic. Why are these 5 folks
-                  selected to appear here? Is it just the avatars of the last 5
-                  people to post in the topic?
+                  In the topic list, I see a list of anywhere from one to five avatar images next to each topic. Why are
+                  these 5 folks selected to appear here? Is it just the avatars of the last 5 people to post in the
+                  topic?
+                </div>
+                <div className="actions">
+                  <button className="like">
+                    {' '}
+                    <span>4</span>
+                    <i className="icon-heart-1"></i>
+                  </button>
+                  <button>
+                    <i className="icon-share-alt"></i>
+                  </button>
+                  <button className="reply">
+                    <i className="icon-reply"></i>
+                    Reply
+                  </button>
                 </div>
               </div>
             </div>
@@ -112,10 +124,7 @@ class Forum extends React.Component {
             </div>
             <div className="topic-post">
               <div className="author-avatar">
-                <img
-                  alt="avatar"
-                  src="https://avatars.discourse.org/v4/letter/j/d9b06d/45.png"
-                />
+                <img alt="avatar" src="https://avatars.discourse.org/v4/letter/j/d9b06d/45.png" />
               </div>
               <div className="topic-content">
                 <Row>
@@ -128,10 +137,23 @@ class Forum extends React.Component {
                 </Row>
 
                 <div className="content">
-                  In the topic list, I see a list of anywhere from one to five
-                  avatar images next to each topic. Why are these 5 folks
-                  selected to appear here? Is it just the avatars of the last 5
-                  people to post in the topic?
+                  In the topic list, I see a list of anywhere from one to five avatar images next to each topic. Why are
+                  these 5 folks selected to appear here? Is it just the avatars of the last 5 people to post in the
+                  topic?
+                </div>
+                <div className="actions">
+                  <button className="like">
+                    {' '}
+                    <span>4</span>
+                    <i className="icon-heart-1"></i>
+                  </button>
+                  <button>
+                    <i className="icon-share-alt"></i>
+                  </button>
+                  <button className="reply">
+                    <i className="icon-reply"></i>
+                    Reply
+                  </button>
                 </div>
                 <div className="topic-details">
                   <Row>
@@ -155,6 +177,10 @@ class Forum extends React.Component {
                       <h6>users</h6>
                       <span>3</span>
                     </Col>
+                    <Col md="auto" xs={4} className="detail-item">
+                      <h6>likes</h6>
+                      <span>24</span>
+                    </Col>
                   </Row>
                 </div>
               </div>
@@ -167,6 +193,11 @@ class Forum extends React.Component {
             <TimeLine />
           </Col>
         </Row>
+
+        <div className="suggested-topics">
+          <h4 className="page-title">Suggested Topics</h4>
+          <SuggestedTopics />
+        </div>
       </div>
     );
   }
