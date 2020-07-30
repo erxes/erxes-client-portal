@@ -8,12 +8,12 @@ const ActionRow = props => {
       <button onClick={props.onClick} className="btn btn-create">
         <i className="icon-plus-1"></i> {props.value}
       </button>
-      <button onClick={props.onClick} className="btn btn-edit">
+      {/* <button onClick={props.onClick} className="btn btn-edit">
         <i className="icon-edit"></i>
       </button>
       <button onClick={() => setShowAlert(true)} className="btn btn-delete">
         <i className="icon-trash"></i>
-      </button>
+      </button> */}
       <Alert showAlert={showAlert} hideAlert={() => setShowAlert(false)} />
     </div>
   );

@@ -64,10 +64,9 @@
     }
   }
   button {
-    font-weight: 600;
-    background: $mainColor;
-    color: $white;
-
+    font-weight: 500;
+    color: $darkColor;
+    font-size: 14px;
     &:hover {
       background: $mainColor;
       color: $white;
@@ -82,6 +81,9 @@
   }
 }
 .dropdown-menu {
+  a {
+    font-size: 16px;
+  }
   &.show {
     display: inline-grid;
     width: 100%;
@@ -134,10 +136,23 @@
 .notification-button.btn {
   width: auto;
   margin-right: 1rem;
-  background: #fff;
-  color: $mainColor;
-  border: $mainColor;
+  color: #5629b6;
+  background: none;
   position: relative;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+  border: 0;
+  padding: 0;
+  i {
+    font-size: 24px;
+  }
+  &:focus,
+  &:hover {
+    background: #fff;
+    box-shadow: $shadow;
+  }
 }
 .logged-in-user {
   display: flex;

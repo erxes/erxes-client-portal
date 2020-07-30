@@ -1,16 +1,16 @@
-import React from 'react';
-import { Container, Row, Col, Card, Modal } from 'react-bootstrap';
-import SectionHeader from '../../common/components/SectionHeader';
-import ActionRow from '../../common/components/ActionRow';
-import Search from '../../common/components/Search';
+import React from "react";
+import { Container, Row, Col, Card, Modal } from "react-bootstrap";
+import SectionHeader from "../../common/components/SectionHeader";
+import ActionRow from "../../common/components/ActionRow";
+import Search from "../../common/components/Search";
 // import EmptyState from "../../common/components/EmptyState";
-import Form from '../../forum/components/Form';
+import Form from "../../forum/components/Form";
 class Lists extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      updateTicket: false,
+      updateTicket: false
     };
   }
 
@@ -34,14 +34,17 @@ class Lists extends React.Component {
     return (
       <Col md={4}>
         <Card onClick={this.handleShow}>
-          <div className='ticket-card'>
+          <div className="ticket-card-sidebar">
+            <i className="icon-like"></i>
+          </div>
+          <div className="ticket-card">
             <h5>Your ticket</h5>
-            <p>
-              In the topic list, I see a list of anywhere from one to five
-              avatar images next to each topic. Why are these 5 folks selected
-              to appear here? Is it just the avatars of the last 5 people to
-              post in the topic?
-            </p>
+            {/* <p>
+                  In the topic list, I see a list of anywhere from one to five
+                  avatar images next to each topic. Why are these 5 folks
+                  selected to appear here? Is it just the avatars of the last 5
+                  people to post in the topic?
+                </p> */}
             <time>2020.07.27</time>
           </div>
         </Card>
@@ -51,15 +54,15 @@ class Lists extends React.Component {
   render() {
     const { showModal, updateTicket } = this.state;
     return (
-      <Container className='knowledge-base'>
-        <SectionHeader icon='copy' title='Ticket' />
-        <ActionRow value='Create Ticket' onClick={this.formShow} />
+      <Container className="knowledge-base">
+        <SectionHeader icon="copy" title="Ticket" />
+        {/* <ActionRow value='Create Ticket' onClick={this.formShow} /> */}
         <Search />
         {/* <EmptyState
           title="No tickets assigned to you"
           description="There are no tickets "
         /> */}
-        <div className='ticket-lists'>
+        <div className="ticket-lists">
           <Row>
             {this.renderCard()}
             {this.renderCard()}
@@ -68,10 +71,11 @@ class Lists extends React.Component {
           </Row>
         </div>
         <Modal
-          aria-labelledby='contained-modal-title-vcenter'
+          aria-labelledby="contained-modal-title-vcenter"
           centered
           show={showModal}
           onHide={this.handleClose}
+          size="lg"
         >
           <Modal.Header closeButton>
             <Modal.Title>Ticket title</Modal.Title>

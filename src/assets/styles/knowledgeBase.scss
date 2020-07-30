@@ -28,20 +28,35 @@
 }
 
 .kbase-lists {
+  background: $white;
+  padding: 1.5rem;
+  border-radius: $radius;
+  box-shadow: $shadow;
   h4 {
     color: $darkColor;
-    font-size: 36px;
-    font-weight: 500;
+    font-size: 30px;
+    font-weight: 400;
   }
   ul {
     list-style: disc;
     list-style-type: circle;
-    margin-top: 2rem;
+    margin: 1rem 0 2rem;
     li {
       font-size: 20px;
       margin-bottom: 1.5rem;
       a {
         color: $mainColor;
+        h6 {
+          font-size: 18px;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        p {
+          color: $silverGrey;
+          font-size: 14px;
+        }
       }
     }
   }
@@ -49,5 +64,10 @@
 .kbase-detail {
   font-size: 16px;
   line-height: 1.8;
-  color: $darkColor;
+  color: $silverGrey;
+  .content {
+    img {
+      max-width: 100%;
+    }
+  }
 }
