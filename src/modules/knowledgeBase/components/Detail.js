@@ -3,7 +3,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import SectionHeader from "../../common/components/SectionHeader";
 import ActionRow from "../../common/components/ActionRow";
 import Vote from "../../common/components/Vote";
-import Related from "../../common/components/Related";
 import Share from "../../common/components/Share";
 class Detail extends React.Component {
   handleClick = () => {

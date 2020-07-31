@@ -6,7 +6,10 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
-
+.head {
+  background: #fff;
+  box-shadow: $shadow;
+}
 .header {
   padding: 10px 30px;
   .row {
@@ -44,7 +47,7 @@
   }
 }
 .logo {
-  max-width: 100px;
+  max-width: 80px;
   a:hover {
     background: none;
   }

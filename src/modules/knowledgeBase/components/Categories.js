@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SectionHeader from "../../common/components/SectionHeader";
-import ActionRow from "../../common/components/ActionRow";
 import Search from "../../common/components/Search";
 class Categories extends React.Component {
   handleClick = () => {
@@ -62,6 +61,32 @@ class Categories extends React.Component {
                 <i className="icon-diamond"></i>
                 <div className="tab-content">
                   <h5>Milestones</h5>
+                  <p>
+                    Learn about the terms and conditions of the rewards program.
+                  </p>
+                </div>
+              </Link>
+            </Card>
+          </Col>
+          <Col md={4} sm={6}>
+            <Card className="category-item">
+              <Link to="/knowledge-base-lists">
+                <i className="icon-diamond"></i>
+                <div className="tab-content">
+                  <h5>User Guide</h5>
+                  <p>
+                    Learn about the terms and conditions of the rewards program.
+                  </p>
+                </div>
+              </Link>
+            </Card>
+          </Col>
+          <Col md={4} sm={6}>
+            <Card className="category-item">
+              <Link to="/knowledge-base-lists">
+                <i className="icon-diamond"></i>
+                <div className="tab-content">
+                  <h5>Features</h5>
                   <p>
                     Learn about the terms and conditions of the rewards program.
                   </p>

@@ -69,7 +69,6 @@ class ForumList extends React.Component {
       <div className="forum-page">
         <SectionHeader icon="speech-bubble-2" title="Forum" />
 
-        <Search />
         <Row>
           <Col md={9}>
             <ul className="forum-list">
@@ -113,6 +112,7 @@ class ForumList extends React.Component {
           </Col>
           <Col md={3}>
             <ActionRow value="Create thread" onClick={this.showModal} />
+            <Search sidebar={true} />
             <div className="tags sidebar-list">
               <h6>Tags</h6>
               <ul>

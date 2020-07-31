@@ -234,7 +234,7 @@ time {
       border: 0;
       background: none;
       border-bottom: 2px solid $darkColor;
-      padding: 0.5rem;
+      padding: 0.5rem 0;
       width: 100%;
       font-size: 1.25rem;
       color: $darkColor;
@@ -250,6 +250,12 @@ time {
       color: $darkColor;
       top: 8px;
       font-size: 1.25rem;
+    }
+    &.sidebar-search {
+      margin-bottom: 1rem;
+      input {
+        font-size: 1rem;
+      }
     }
   }
 }
@@ -269,6 +275,7 @@ time {
       color: $silverGrey;
       margin: 2px 0;
       cursor: pointer;
+      font-size: 14px;
       transition: 0.4s;
       &.active,
       &:hover {

@@ -5,7 +5,6 @@ import {
   Nav,
   Container,
   Dropdown,
-  Button,
   Popover,
   OverlayTrigger,
   Badge
@@ -111,7 +110,7 @@ function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const [user] = useState(true);
   return (
-    <Container fluid>
+    <Container fluid className="head">
       <div className="header">
         <Row className="justify-content-md-center">
           <Col>
