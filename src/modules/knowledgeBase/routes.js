@@ -1,9 +1,9 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import Categories from "./components/Categories";
-import queryString from "query-string";
-import Lists from "./components/Lists";
-import Detail from "./components/Detail";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import Categories from './containers/Categories';
+import queryString from 'query-string';
+import Lists from './components/Lists';
+import Detail from './components/Detail';
 const routes = () => [
   <Route
     path="/knowledge-base"
@@ -31,7 +31,7 @@ const routes = () => [
       const queryParams = queryString.parse(location.search);
       return <Detail queryParams={queryParams} history={history} />;
     }}
-  />
+  />,
 ];
 
 export default routes;
