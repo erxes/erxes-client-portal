@@ -28,6 +28,7 @@
 }
 
 .kbase-lists {
+  color: #686868;
   background: $white;
   padding: 1.5rem;
   border-radius: $radius;
@@ -70,4 +71,25 @@
       max-width: 100%;
     }
   }
+}
+
+.avatars {
+  display: flex;
+  align-items: center;
+
+  > div {
+    color: #5c5c5c;
+    font-size: 13px;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+}
+
+.round-img {
+  border-radius: 50%;
+}
+
+.reaction {
+  position: absolute;
+  left: 45%;
 }

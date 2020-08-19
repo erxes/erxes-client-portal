@@ -1,14 +1,28 @@
-import React from "react";
+import React from 'react';
 
-const Search = props => {
-  return (
-    <div className="search-container">
-      <div className={`search ${props.sidebar && `sidebar-search`}`}>
-        <input placeholder="Search" />
-        <i className="icon-search"></i>
+export default class Search extends React.Component {
+  constructor() {
+    super();
+
+    this.search = this.search.bind(this);
+  }
+
+  search(e) {
+    const { articlesQuery } = this.props;
+    const value = e.target.value;
+
+    console.log(Object.getOwnPropertyNames(articlesQuery, 'articlesQuery'));
+    articlesQuery.refetch({ searchString: value });
+  }
+
+  render() {
+    return (
+      <div className='search-container'>
+        <div className={`search`}>
+          <input onChange={this.search} placeholder='Search' />
+          <i className='icon-search'></i>
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default Search;
+    );
+  }
+}

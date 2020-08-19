@@ -1,138 +1,76 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import SectionHeader from "../../common/components/SectionHeader";
-import ActionRow from "../../common/components/ActionRow";
+import React from 'react';
+import * as dayjs from 'dayjs';
+import PropTypes from 'prop-types';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import SectionHeader from '../../common/components/SectionHeader';
+import ActionRow from '../../common/components/ActionRow';
 class Lists extends React.Component {
   handleClick = () => {
-    console.log("faq");
+    console.log('faq');
   };
+
   render() {
     return (
-      <Container className="knowledge-base">
+      <Container className='knowledge-base'>
         <SectionHeader
-          icon="flag"
-          title="Feature"
-          description="Explore the power of erxes features through different use cases"
+          icon={this.props.categoriesDetail.icon}
+          title={this.props.categoriesDetail.title}
+          description={this.props.categoriesDetail.description}
         />
-
         <Row>
           <Col md={9}>
-            <div className="kbase-lists">
-              <h4>What is erxes ?</h4>
-              <hr />
-              <ul>
-                <li>
-                  <Link to="/knowledge-base-detail">
-                    <h6>How do I connect my Gmail account to Team Inbox?</h6>
-                    <p>
-                      You will be able to connect them in your Integrations
-                      Settings.
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/knowledge-base-detail">
-                    <h6>How do I send emails from erxes?</h6>
-                    <p>
-                      You can send emails from our Engage feature. Make sure you
-                      follow these steps to properly start your engagement
-                      through emails.
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/knowledge-base-detail">
-                    <h6>How do I show FAQ (Knowledgebase) in the Messenger?</h6>
-                    <p>
-                      The individual categories of the knowledgebase are
-                      designed for companies to manage knowledgebases for
-                      different brands/websites. You can only add one
-                      knowledgebase category to the Messenger at this time. Read
-                      on for the detailed guide.
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/knowledge-base-detail">
-                    Creating your First Workspace
-                  </Link>
-                </li>
-              </ul>
-              <h4>Creating your first messenger</h4>
-              <hr />
-              <ul>
-                <li>
-                  <Link to="/knowledge-base-detail">
-                    <h6>How do I connect my Gmail account to Team Inbox?</h6>
-                    <p>
-                      You will be able to connect them in your Integrations
-                      Settings.
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/knowledge-base-detail">
-                    <h6>How do I send emails from erxes?</h6>
-                    <p>
-                      You can send emails from our Engage feature. Make sure you
-                      follow these steps to properly start your engagement
-                      through emails.
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/knowledge-base-detail">
-                    <h6>How do I show FAQ (Knowledgebase) in the Messenger?</h6>
-                    <p>
-                      The individual categories of the knowledgebase are
-                      designed for companies to manage knowledgebases for
-                      different brands/websites. You can only add one
-                      knowledgebase category to the Messenger at this time. Read
-                      on for the detailed guide.
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/knowledge-base-detail">
-                    Creating your First Workspace
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {this.props.articles.map((article) => (
+              <Link
+                to={`knowledge-base-detail?_id=${article._id}`}
+                key={article._id}
+              >
+                <div className='kbase-lists'>
+                  <h3>{article.title}</h3>
+                  <p>{article.summary}</p>
+                  <div className='avatars'>
+                    <img
+                      className='round-img'
+                      alt={article.createdUser.details.fullName}
+                      src={article.createdUser.details.avatar}
+                      width='34'
+                      height='34'
+                    />
+                    <div>
+                      <div>
+                        Written by: {article.createdUser.details.fullName}
+                      </div>
+                      <div>
+                        Modified:{' '}
+                        <span>
+                          {dayjs(article.modifiedDate).format(
+                            'D MMM, YYYY h:mm A'
+                          )}
+                        </span>{' '}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </Col>
+
           <Col md={3}>
-            <ActionRow value="Create FAQ" onClick={this.handleClick} />
-            <div className="tags sidebar-list">
-              <h6>Topics</h6>
-              <ul>
-                <li className="active">
-                  <h6>
-                    <i className="icon-flag"></i>Features
-                  </h6>
-                  <p>
-                    Explore the power of erxes features through different use
-                    cases
-                  </p>
-                </li>
-                <li>
-                  <h6>
-                    <i className="icon-diamond"></i>Milestones
-                  </h6>
-                  <p>
-                    Learn about the terms and conditions of the rewards program.
-                  </p>
-                </li>
-                <li>
-                  <h6>
-                    <i className="icon-book"></i>User guides
-                  </h6>
-                  <p>
-                    Read how-to guides and articles on how to use each erxes
-                    feature
-                  </p>
-                </li>
-              </ul>
+            <ActionRow value='Create FAQ' onClick={this.handleClick} />
+            <div className='tags sidebar-list'>
+              {this.props.categories.map((cat) => (
+                <div key={cat._id}>
+                  <Col md={4} sm={6}>
+                    <Link to={`knowledge-base-lists?_id=${cat._id}`}>
+                      <i className={`icon-${cat.icon}`}></i>
+                      <div className='tab-content'>
+                        <h5>{cat.title}</h5>
+                        <p>{cat.content}</p>
+                      </div>
+                    </Link>
+                  </Col>
+                </div>
+              ))}
             </div>
           </Col>
         </Row>
@@ -140,5 +78,9 @@ class Lists extends React.Component {
     );
   }
 }
+
+Lists.propTypes = {
+  kbTopic: PropTypes.object
+};
 
 export default Lists;
