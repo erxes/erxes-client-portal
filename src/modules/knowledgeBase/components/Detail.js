@@ -38,6 +38,7 @@ class Detail extends React.Component {
             src={this.props.articleDetail.reactionChoices}
             width='34px'
             height='34px'
+            alt='a'
           />
         </span>
       );
