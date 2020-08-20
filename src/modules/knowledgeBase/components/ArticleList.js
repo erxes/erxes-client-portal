@@ -5,6 +5,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SectionHeader from '../../common/components/SectionHeader';
 import ActionRow from '../../common/components/ActionRow';
+import Search from '../../common/components/Search';
+
 class Lists extends React.Component {
   handleClick = () => {
     console.log('faq');
@@ -12,29 +14,28 @@ class Lists extends React.Component {
 
   render() {
     return (
-      <Container className='knowledge-base'>
-        <SectionHeader
-          icon={this.props.categoriesDetail.icon}
-          title={this.props.categoriesDetail.title}
-          description={this.props.categoriesDetail.description}
+      <Container className="knowledge-base">
+        <Search
+          history={this.props.history}
+          searchValue={this.props.searchValue}
         />
         <Row>
-          <Col md={9}>
+          <Col>
             {this.props.articles.map((article) => (
               <Link
                 to={`knowledge-base-detail?_id=${article._id}`}
                 key={article._id}
               >
-                <div className='kbase-lists'>
+                <div className="kbase-lists">
                   <h3>{article.title}</h3>
                   <p>{article.summary}</p>
-                  <div className='avatars'>
+                  <div className="avatars">
                     <img
-                      className='round-img'
+                      className="round-img"
                       alt={article.createdUser.details.fullName}
                       src={article.createdUser.details.avatar}
-                      width='34'
-                      height='34'
+                      width="34"
+                      height="34"
                     />
                     <div>
                       <div>
@@ -54,25 +55,6 @@ class Lists extends React.Component {
               </Link>
             ))}
           </Col>
-
-          <Col md={3}>
-            <ActionRow value='Create FAQ' onClick={this.handleClick} />
-            <div className='tags sidebar-list'>
-              {this.props.categories.map((cat) => (
-                <div key={cat._id}>
-                  <Col md={4} sm={6}>
-                    <Link to={`knowledge-base-lists?_id=${cat._id}`}>
-                      <i className={`icon-${cat.icon}`}></i>
-                      <div className='tab-content'>
-                        <h5>{cat.title}</h5>
-                        <p>{cat.content}</p>
-                      </div>
-                    </Link>
-                  </Col>
-                </div>
-              ))}
-            </div>
-          </Col>
         </Row>
       </Container>
     );
@@ -80,7 +62,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
-  kbTopic: PropTypes.object
+  articles: PropTypes.object,
 };
 
 export default Lists;

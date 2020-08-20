@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import * as compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Categories from '../components/Categories';
+import Categories from '../components/CategoryList';
 import { queries } from '../graphql/index';
 
 class CategoriesContainer extends React.Component {
   render() {
-    const { getKbTopicQuery, widgetsKnowledgeBaseArticles } = this.props;
+    const {
+      getKbTopicQuery,
+      widgetsKnowledgeBaseArticles,
+      history,
+    } = this.props;
 
     if (getKbTopicQuery.loading) {
       return <div>loading</div>;
@@ -19,6 +23,7 @@ class CategoriesContainer extends React.Component {
     return (
       <Categories
         kbTopic={kbTopic}
+        history={history}
         articlesQuery={widgetsKnowledgeBaseArticles}
       />
     );
@@ -27,28 +32,29 @@ class CategoriesContainer extends React.Component {
 
 CategoriesContainer.propTypes = {
   getKbTopicQuery: PropTypes.object,
-  queryParams: PropTypes.object
+  history: PropTypes.object,
+  queryParams: PropTypes.object,
+  topicId: PropTypes.string,
 };
 
 export default compose(
   graphql(gql(queries.getKbTopicQuery), {
     name: 'getKbTopicQuery',
-    options: () => ({
-      variables: { _id: '7ivEFncj85EhWKpxR' }
-    })
+    options: ({ topicId }) => ({
+      variables: { _id: topicId },
+    }),
   }),
+
   graphql(gql(queries.widgetsKnowledgeBaseArticles), {
     name: 'widgetsKnowledgeBaseArticles',
-    options: (props) => {
-      console.log(props, 'ppppppp');
-
+    options: ({ searchString, topicId }) => {
       return {
         fetchPolicy: 'network-only',
         variables: {
-          topicId: '7ivEFncj85EhWKpxR',
-          searchString: props.searchString || ''
-        }
+          topicId,
+          searchString: searchString || '',
+        },
       };
-    }
+    },
   })
 )(CategoriesContainer);

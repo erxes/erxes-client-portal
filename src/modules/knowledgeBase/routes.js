@@ -1,9 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import Categories from './containers/Categories';
+import { Redirect, Route } from 'react-router-dom';
+import Categories from './containers/CategoryList';
 import queryString from 'query-string';
-import Lists from './containers/Lists';
-import Details from './containers/Details';
+import Details from './containers/ArticleDetail';
+import ArticleList from './containers/ArticleList';
+import CategoryDetail from './containers/CategoryDetail';
+
+const { REACT_APP_TOPIC_ID } = process.env;
 
 const articleDetails = ({ history, location }) => {
   const queryParams = queryString.parse(location.search);
@@ -13,32 +16,73 @@ const articleDetails = ({ history, location }) => {
 
 const categories = ({ history, location }) => {
   const queryParams = queryString.parse(location.search);
+  const { searchValue } = queryParams;
 
-  return <Categories queryParams={queryParams} history={history} />;
+  if (searchValue) {
+    return (
+      <ArticleList
+        topicId={REACT_APP_TOPIC_ID}
+        history={history}
+        searchValue={searchValue}
+      />
+    );
+  }
+  return (
+    <Categories
+      queryParams={queryParams}
+      history={history}
+      topicId={REACT_APP_TOPIC_ID}
+    />
+  );
+};
+
+const categoryDetail = ({ location, history, match }) => {
+  const queryParams = queryString.parse(location.search);
+  const { searchValue } = queryParams;
+  const categoryId = match.params.id;
+
+  if (searchValue) {
+    return (
+      <ArticleList
+        topicId={REACT_APP_TOPIC_ID}
+        history={history}
+        searchValue={searchValue}
+      />
+    );
+  }
+  return (
+    <CategoryDetail
+      queryParams={queryParams}
+      history={history}
+      categoryId={categoryId}
+    />
+  );
+};
+
+const index = () => {
+  return <Redirect to={`/knowledge-base`} />;
 };
 
 const routes = () => [
+  <Route exact={true} path="/" key="root" render={index} />,
   <Route
-    path='/knowledge-base'
+    path="/knowledge-base"
     exact
-    key='knowledge-base'
-    component={categories}
+    key="knowledge-base"
+    render={categories}
   />,
   <Route
-    path='/knowledge-base-lists'
+    path="/knowledge-base/category/details/:id"
     exact
-    key='knowledge-base-lists'
-    component={({ location, history }) => {
-      const queryParams = queryString.parse(location.search);
-      return <Lists queryParams={queryParams} history={history} />;
-    }}
+    key="knowledge-base-category-details/:id"
+    render={categoryDetail}
   />,
   <Route
-    path='/knowledge-base-detail'
+    path="/knowledge-base-detail"
     exact
-    key='knowledge-base-detail'
-    component={articleDetails}
-  />
+    key="knowledge-base-detail"
+    render={articleDetails}
+  />,
 ];
 
 export default routes;

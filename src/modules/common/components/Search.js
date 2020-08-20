@@ -1,4 +1,5 @@
 import React from 'react';
+import router from '../utils/router';
 
 export default class Search extends React.Component {
   constructor() {
@@ -8,19 +9,25 @@ export default class Search extends React.Component {
   }
 
   search(e) {
-    const { articlesQuery } = this.props;
+    const { history } = this.props;
     const value = e.target.value;
 
-    console.log(Object.getOwnPropertyNames(articlesQuery, 'articlesQuery'));
-    articlesQuery.refetch({ searchString: value });
+    router.setParams(history, { searchValue: value });
   }
 
   render() {
+    const { searchValue } = this.props;
+
     return (
-      <div className='search-container'>
+      <div className="search-container">
         <div className={`search`}>
-          <input onChange={this.search} placeholder='Search' />
-          <i className='icon-search'></i>
+          <input
+            autoFocus={true}
+            onChange={this.search}
+            placeholder="Search"
+            value={searchValue}
+          />
+          <i className="icon-search"></i>
         </div>
       </div>
     );

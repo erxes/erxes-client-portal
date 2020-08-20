@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Details from '../components/Detail';
+import Details from '../components/ArticleDetail';
 import { queries } from '../graphql/index';
 
 class DetailContainer extends React.Component {

@@ -17,14 +17,14 @@ class Categories extends React.Component {
       return categories.map((cat) => {
         return (
           <Col md={4} sm={6} key={cat._id}>
-            <Card className='category-item'>
-              <Link to={`knowledge-base-lists?_id=${cat._id}`}>
+            <Card className="category-item">
+              <Link to={`/knowledge-base/category/details/${cat._id}`}>
                 <i className={`icon-${cat.icon}`}></i>
-                <div className='tab-content'>
+                <div className="tab-content">
                   <h5>{cat.title}</h5>
                   <p>{cat.description}</p>
                   <p>
-                    There are{' '}
+                    There are
                     <span>{cat.numOfArticles} articles in this category</span>
                   </p>
                 </div>
@@ -39,10 +39,9 @@ class Categories extends React.Component {
 
   render() {
     return (
-      <Container className='knowledge-base'>
-        <SectionHeader icon='book' title='Knowledge Base' />
-        {/* <ActionRow value='Create FAQ' onClick={this.handleClick} /> */}
-        <Search articlesQuery={this.props.articlesQuery} />
+      <Container className="knowledge-base">
+        <SectionHeader icon="book" title="Knowledge Base" />
+        <Search history={this.props.history} />
         <Row>{this.renderCategories()}</Row>
       </Container>
     );
@@ -51,7 +50,7 @@ class Categories extends React.Component {
 
 Categories.propTypes = {
   kbTopic: PropTypes.object,
-  articlesQuery: PropTypes.object
+  articlesQuery: PropTypes.object,
 };
 
 export default Categories;
