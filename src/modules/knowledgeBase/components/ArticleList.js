@@ -14,7 +14,7 @@ class Lists extends React.Component {
 
   render() {
     return (
-      <Container className="knowledge-base">
+      <Container className='knowledge-base'>
         <Search
           history={this.props.history}
           searchValue={this.props.searchValue}
@@ -26,16 +26,16 @@ class Lists extends React.Component {
                 to={`knowledge-base-detail?_id=${article._id}`}
                 key={article._id}
               >
-                <div className="kbase-lists">
+                <div className='kbase-lists'>
                   <h3>{article.title}</h3>
                   <p>{article.summary}</p>
-                  <div className="avatars">
+                  <div className='avatars'>
                     <img
-                      className="round-img"
+                      className='round-img'
                       alt={article.createdUser.details.fullName}
                       src={article.createdUser.details.avatar}
-                      width="34"
-                      height="34"
+                      width='34'
+                      height='34'
                     />
                     <div>
                       <div>
@@ -62,7 +62,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
-  articles: PropTypes.object,
+  articles: PropTypes.object
 };
 
 export default Lists;

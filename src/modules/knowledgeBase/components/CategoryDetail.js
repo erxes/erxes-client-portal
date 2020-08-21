@@ -1,7 +1,7 @@
 import React from 'react';
 import * as dayjs from 'dayjs';
 import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SectionHeader from '../../common/components/SectionHeader';
 import ActionRow from '../../common/components/ActionRow';
@@ -13,9 +13,47 @@ class CategoryDetail extends React.Component {
     console.log('faq');
   };
 
+  isActive = (categoryId) => {
+    if (categoryId === this.props.category._id) {
+      return 'active';
+    }
+
+    return;
+  };
+
+  renderCategories = () => {
+    const { kbTopic } = this.props;
+    const { categories } = kbTopic;
+
+    if (categories) {
+      return categories.map((cat) => {
+        return (
+          <Link to={`/knowledge-base/category/details/${cat._id}`}>
+            <div className='tags sidebar-list'>
+              <ul>
+                <li className={this.isActive(cat._id)}>
+                  <h6>
+                    <i className={`icon-${cat.icon}`}></i>
+                    {cat.title}
+                  </h6>
+                  <p>{cat.description}</p>
+                  <p>
+                    There are
+                    <span> {cat.numOfArticles} articles in this category</span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </Link>
+        );
+      });
+    }
+    return;
+  };
+
   render() {
     return (
-      <Container className="knowledge-base">
+      <Container className='knowledge-base'>
         <SectionHeader
           icon={this.props.category.icon}
           title={this.props.category.title}
@@ -30,37 +68,8 @@ class CategoryDetail extends React.Component {
             ></ArticleList>
           </Col>
           <Col md={3}>
-            <div className="tags sidebar-list">
-              <h6>Categoryies</h6>
-              <ul>
-                <li className="active">
-                  <h6>
-                    <i className="icon-flag"></i>Features
-                  </h6>
-                  <p>
-                    Explore the power of erxes features through different use
-                    cases
-                  </p>
-                </li>
-                <li>
-                  <h6>
-                    <i className="icon-diamond"></i>Milestones
-                  </h6>
-                  <p>
-                    Learn about the terms and conditions of the rewards program.
-                  </p>
-                </li>
-                <li>
-                  <h6>
-                    <i className="icon-book"></i>User guides
-                  </h6>
-                  <p>
-                    Read how-to guides and articles on how to use each erxes
-                    feature
-                  </p>
-                </li>
-              </ul>
-            </div>
+            <h6>Categories</h6>
+            {this.renderCategories()}
           </Col>
         </Row>
       </Container>
@@ -69,7 +78,7 @@ class CategoryDetail extends React.Component {
 }
 
 CategoryDetail.propTypes = {
-  kbTopic: PropTypes.object,
+  kbTopic: PropTypes.object
 };
 
 export default CategoryDetail;

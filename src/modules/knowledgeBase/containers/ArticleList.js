@@ -12,7 +12,7 @@ class ListContainer extends React.Component {
       getKbTopicQuery,
       getArticlesQuery,
       history,
-      searchValue,
+      searchValue
     } = this.props;
 
     if (getKbTopicQuery.loading || getArticlesQuery.loading) {
@@ -21,6 +21,8 @@ class ListContainer extends React.Component {
 
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
     const articles = getArticlesQuery.widgetsKnowledgeBaseArticles || [];
+
+    console.log(articles);
 
     const categories = kbTopic.categories ? kbTopic.categories : [];
     return (
@@ -37,15 +39,15 @@ class ListContainer extends React.Component {
 ListContainer.propTypes = {
   getKbTopicQuery: PropTypes.object,
   getArticlesQuery: PropTypes.object,
-  history: PropTypes.object,
+  history: PropTypes.object
 };
 
 export default compose(
   graphql(gql(queries.getKbTopicQuery), {
     name: 'getKbTopicQuery',
     options: ({ topicId }) => ({
-      variables: { _id: topicId },
-    }),
+      variables: { _id: topicId }
+    })
   }),
   graphql(gql(queries.widgetsKnowledgeBaseArticles), {
     name: 'getArticlesQuery',
@@ -54,9 +56,9 @@ export default compose(
         fetchPolicy: 'network-only',
         variables: {
           topicId,
-          searchString: searchValue || '',
-        },
+          searchString: searchValue || ''
+        }
       };
-    },
+    }
   })
 )(ListContainer);
