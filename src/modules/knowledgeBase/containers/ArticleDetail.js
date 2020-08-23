@@ -8,20 +8,11 @@ import { queries } from '../graphql/index';
 
 class DetailContainer extends React.Component {
   render() {
-    const {
-      getArticleDetailQuery,
-      getKbTopicQuery,
-      getKbCategoryQuery
-    } = this.props;
+    const { getArticleDetailQuery, getKbTopicQuery } = this.props;
 
-    if (
-      getKbTopicQuery.loading ||
-      getArticleDetailQuery.loading ||
-      getKbCategoryQuery.loading
-    ) {
+    if (getKbTopicQuery.loading || getArticleDetailQuery.loading) {
       return <div>loading</div>;
     }
-    const categoryDetail = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};
 
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
     const categories = kbTopic.categories ? kbTopic.categories : [];
@@ -29,29 +20,16 @@ class DetailContainer extends React.Component {
     const articleDetail =
       getArticleDetailQuery.knowledgeBaseArticleDetail || {};
 
-    return (
-      <Details
-        articleDetail={articleDetail}
-        categories={categories}
-        categoriesDetail={categoryDetail}
-      />
-    );
+    return <Details articleDetail={articleDetail} categories={categories} />;
   }
 }
 
 DetailContainer.propTypes = {
   getArticleDetailQuery: PropTypes.object,
-  getKbCategoryQuery: PropTypes.object,
   queryParams: PropTypes.object
 };
 
 export default compose(
-  graphql(gql(queries.getKbCategoryQuery), {
-    name: 'getKbCategoryQuery',
-    options: ({ queryParams }) => ({
-      variables: { _id: queryParams._id }
-    })
-  }),
   graphql(gql(queries.getArticleDetailQuery), {
     name: 'getArticleDetailQuery',
     options: ({ queryParams }) => ({

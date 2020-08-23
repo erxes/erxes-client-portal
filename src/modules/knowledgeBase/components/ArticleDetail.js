@@ -3,13 +3,44 @@ import * as dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import SectionHeader from '../../common/components/SectionHeader';
-import ActionRow from '../../common/components/ActionRow';
 import Vote from '../../common/components/Vote';
 import Share from '../../common/components/Share';
 import { Link } from 'react-router-dom';
 class Detail extends React.Component {
   handleClick = () => {
     console.log('faq');
+  };
+
+  renderCategories = () => {
+    const { categories } = this.props;
+
+    if (categories) {
+      return categories.map((cat) => {
+        return (
+          <Link
+            key={cat._id}
+            to={`/knowledge-base/category/details/${cat._id}`}
+          >
+            <div className='tags sidebar-list'>
+              <ul>
+                <li className='active'>
+                  <h6>
+                    <i className={`icon-${cat.icon}`}></i>
+                    {cat.title}
+                  </h6>
+                  <p>{cat.description}</p>
+                  <p>
+                    There are
+                    <span> {cat.numOfArticles} articles in this category</span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </Link>
+        );
+      });
+    }
+    return;
   };
 
   getUserDetails = () => {
@@ -34,11 +65,11 @@ class Detail extends React.Component {
         <span>
           {' '}
           <img
-            className="reaction"
+            className='reaction'
             src={this.props.articleDetail.reactionChoices}
-            width="34px"
-            height="34px"
-            alt="a"
+            width='34px'
+            height='34px'
+            alt='a'
           />
         </span>
       );
@@ -46,15 +77,15 @@ class Detail extends React.Component {
   leftSide = () => {
     return (
       <Col md={2}>
-        <div className="post-details">
+        <div className='post-details'>
           <div>
             <div>
               <img
-                className="round-img"
+                className='round-img'
                 alt={this.getUserDetails().fullName}
                 src={this.getUserDetails().avatar}
-                width="40"
-                height="40"
+                width='40'
+                height='40'
               />
             </div>
             authored by <p>{this.getUserDetails().fullName}</p>
@@ -77,14 +108,14 @@ class Detail extends React.Component {
               </time>
             </p>
           </div>
-          <div className="vote-bar">
+          <div className='vote-bar'>
             votes
             <p>
               <span>
-                <i className="icon-like"></i>16
+                <i className='icon-like'></i>16
               </span>
               <span>
-                <i className="icon-dislike"></i>2
+                <i className='icon-dislike'></i>2
               </span>
             </p>
           </div>
@@ -99,35 +130,35 @@ class Detail extends React.Component {
 
   render() {
     return (
-      <Container className="knowledge-base">
-        <SectionHeader icon="flag" title="Creating your first workspace" />
+      <Container className='knowledge-base'>
+        <SectionHeader icon='flag' title='Creating your first workspace' />
 
         <Row>
           {this.leftSide()}
           <Col md={7}>
-            <div className="kbase-detail kbase-lists">
+            <div className='kbase-detail kbase-lists'>
               <Row>
-                <Col md="9">
+                <Col md='9'>
                   <h4>{this.props.articleDetail.title}</h4>
                 </Col>
-                <Col md="3" className="justify-content-end">
-                  <div className="edit-section justify-content-end">
-                    <button className="btn">
-                      <i className="icon-edit"></i>
+                <Col md='3' className='justify-content-end'>
+                  <div className='edit-section justify-content-end'>
+                    <button className='btn'>
+                      <i className='icon-edit'></i>
                     </button>
-                    <button className="btn">
-                      <i className="icon-trash"></i>
+                    <button className='btn'>
+                      <i className='icon-trash'></i>
                     </button>
                   </div>
                 </Col>
               </Row>
 
               <hr />
-              <div className="content">
+              <div className='content'>
                 <p>{this.props.articleDetail.summary}</p>
                 <p
                   dangerouslySetInnerHTML={{
-                    __html: this.props.articleDetail.content,
+                    __html: this.props.articleDetail.content
                   }}
                 />
                 <span>{this.renderReaction()}</span>
@@ -136,40 +167,9 @@ class Detail extends React.Component {
             <Vote />
           </Col>
           <Col md={3}>
-            <div className="tags sidebar-list">
-              <h6>Related Articles</h6>
-              <ul>
-                <li className="active">
-                  <h6>Creating your First Workspace</h6>
-                  <p></p>
-                </li>
-                <li>
-                  <h6>Initial Setup</h6>
-                  <p></p>
-                </li>
-                <li>
-                  <h6>Creating Knowledge base</h6>
-                  <p></p>
-                </li>
-              </ul>
-            </div>
-            <div className="tags sidebar-list">
-              <h6>Topics</h6>
-              {this.props.categories.map((cat) => (
-                <div key={cat._id}>
-                  <Col md={4} sm={6}>
-                    <Link to={`knowledge-base-lists?_id=${cat._id}`}>
-                      <i className={`icon-${cat.icon}`}></i>
-                      <div className="tab-content">
-                        <h5>{cat.title}</h5>
-                        <div>
-                          <p>{cat.content}</p>
-                        </div>
-                      </div>
-                    </Link>
-                  </Col>
-                </div>
-              ))}
+            <div className='tags sidebar-list'>
+              <h6>Categories</h6>
+              {this.renderCategories()}
             </div>
           </Col>
         </Row>
@@ -179,7 +179,7 @@ class Detail extends React.Component {
 }
 
 Detail.propTypes = {
-  kbTopic: PropTypes.object,
+  kbTopic: PropTypes.object
 };
 
 export default Detail;

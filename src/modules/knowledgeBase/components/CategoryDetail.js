@@ -1,11 +1,8 @@
 import React from 'react';
-import * as dayjs from 'dayjs';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SectionHeader from '../../common/components/SectionHeader';
-import ActionRow from '../../common/components/ActionRow';
-import Search from '../../common/components/Search';
 import ArticleList from './ArticleList';
 
 class CategoryDetail extends React.Component {
@@ -28,7 +25,10 @@ class CategoryDetail extends React.Component {
     if (categories) {
       return categories.map((cat) => {
         return (
-          <Link to={`/knowledge-base/category/details/${cat._id}`}>
+          <Link
+            key={cat._id}
+            to={`/knowledge-base/category/details/${cat._id}`}
+          >
             <div className='tags sidebar-list'>
               <ul>
                 <li className={this.isActive(cat._id)}>

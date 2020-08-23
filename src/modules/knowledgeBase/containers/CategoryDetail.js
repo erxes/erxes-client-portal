@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import * as compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Categories from '../components/CategoryList';
 import { queries } from '../graphql/index';
 import CategoryDetail from '../components/CategoryDetail';
 

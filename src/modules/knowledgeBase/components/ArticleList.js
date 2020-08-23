@@ -3,8 +3,6 @@ import * as dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import SectionHeader from '../../common/components/SectionHeader';
-import ActionRow from '../../common/components/ActionRow';
 import Search from '../../common/components/Search';
 
 class Lists extends React.Component {
@@ -23,7 +21,7 @@ class Lists extends React.Component {
           <Col>
             {this.props.articles.map((article) => (
               <Link
-                to={`knowledge-base-detail?_id=${article._id}`}
+                to={`/knowledge-base-detail?_id=${article._id}`}
                 key={article._id}
               >
                 <div className='kbase-lists'>
@@ -62,7 +60,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
-  articles: PropTypes.object
+  articles: PropTypes.array
 };
 
 export default Lists;
