@@ -11,38 +11,6 @@ class Detail extends React.Component {
     console.log('faq');
   };
 
-  renderArticle = () => {
-    const { articleDetail } = this.props;
-
-    if (articleDetail) {
-      return (
-        <Link
-          key={articleDetail._id}
-          to={`/knowledge-base-detail${articleDetail._id}`}
-        >
-          <div className='tags sidebar-list'>
-            <ul>
-              <li className='s'>
-                <h6>
-                  <p className={articleDetail.title}></p>
-                </h6>
-                <p>{articleDetail.summary}</p>
-                <p>
-                  There are
-                  <span>
-                    {' '}
-                    {articleDetail.summary} articles in this category
-                  </span>
-                </p>
-              </li>
-            </ul>
-          </div>
-        </Link>
-      );
-    }
-    return;
-  };
-
   renderCategories = () => {
     const { categories } = this.props;
 
@@ -60,11 +28,16 @@ class Detail extends React.Component {
                     <i className={`icon-${cat.icon}`}></i>
                     {cat.title}
                   </h6>
-                  <p>{cat.description}</p>
-                  <p>
-                    There are
-                    <span> {cat.numOfArticles} articles in this category</span>
-                  </p>
+                  <div className='category-description'>
+                    <p>{cat.description}</p>
+                    <p>
+                      There are
+                      <span>
+                        {' '}
+                        {cat.numOfArticles} articles in this category
+                      </span>
+                    </p>
+                  </div>
                 </li>
               </ul>
             </div>
