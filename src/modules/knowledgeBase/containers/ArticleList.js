@@ -21,8 +21,8 @@ class ListContainer extends React.Component {
 
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
     const articles = getArticlesQuery.widgetsKnowledgeBaseArticles || [];
-
     const categories = kbTopic.categories ? kbTopic.categories : [];
+
     return (
       <Lists
         articles={articles}

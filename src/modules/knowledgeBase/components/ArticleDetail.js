@@ -28,7 +28,7 @@ class Detail extends React.Component {
                     <i className={`icon-${cat.icon}`}></i>
                     {cat.title}
                   </h6>
-                  <div className='category-description'>
+                  <div className='cat-description'>
                     <p>{cat.description}</p>
                     <p>
                       There are
@@ -72,8 +72,6 @@ class Detail extends React.Component {
           <img
             className='reaction'
             src={this.props.articleDetail.reactionChoices}
-            width='34px'
-            height='34px'
             alt='a'
           />
         </span>
@@ -145,16 +143,6 @@ class Detail extends React.Component {
               <Row>
                 <Col md='9'>
                   <h4>{this.props.articleDetail.title}</h4>
-                </Col>
-                <Col md='3' className='justify-content-end'>
-                  <div className='edit-section justify-content-end'>
-                    <button className='btn'>
-                      <i className='icon-edit'></i>
-                    </button>
-                    <button className='btn'>
-                      <i className='icon-trash'></i>
-                    </button>
-                  </div>
                 </Col>
               </Row>
 

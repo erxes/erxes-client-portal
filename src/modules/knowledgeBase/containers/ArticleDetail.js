@@ -16,7 +16,6 @@ class DetailContainer extends React.Component {
 
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
     const categories = kbTopic.categories ? kbTopic.categories : [];
-
     const articleDetail =
       getArticleDetailQuery.knowledgeBaseArticleDetail || {};
 

@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SectionHeader from '../../common/components/SectionHeader';
 import ArticleList from './ArticleList';
-
+import Search from '../../common/components/Search';
 class CategoryDetail extends React.Component {
   handleClick = () => {
     console.log('faq');
@@ -36,11 +36,16 @@ class CategoryDetail extends React.Component {
                     <i className={`icon-${cat.icon}`}></i>
                     {cat.title}
                   </h6>
-                  <p>{cat.description}</p>
-                  <p>
-                    There are
-                    <span> {cat.numOfArticles} articles in this category</span>
-                  </p>
+                  <div className='cat-description'>
+                    <p>{cat.description}</p>
+                    <p>
+                      There are
+                      <span>
+                        {' '}
+                        {cat.numOfArticles} articles in this category
+                      </span>
+                    </p>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -68,8 +73,15 @@ class CategoryDetail extends React.Component {
             ></ArticleList>
           </Col>
           <Col md={3}>
-            <h6>Categories</h6>
-            {this.renderCategories()}
+            <div className='tags sidebar-list'>
+              <Search
+                history={this.props.history}
+                searchValue={this.props.searchValue}
+              />
+
+              <h6>Categories</h6>
+              {this.renderCategories()}
+            </div>
           </Col>
         </Row>
       </Container>
