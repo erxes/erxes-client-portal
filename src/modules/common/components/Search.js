@@ -24,7 +24,7 @@ export default class Search extends React.Component {
           <input
             autoFocus={true}
             onChange={this.search}
-            placeholder="Search"
+            placeholder="Search for articles"
             value={searchValue}
           />
           <i className="icon-search"></i>

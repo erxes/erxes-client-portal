@@ -11,7 +11,7 @@ class DetailContainer extends React.Component {
     const { getArticleDetailQuery, getKbTopicQuery } = this.props;
 
     if (getKbTopicQuery.loading || getArticleDetailQuery.loading) {
-      return <div>loading</div>;
+      return <div></div>;
     }
 
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
@@ -25,20 +25,20 @@ class DetailContainer extends React.Component {
 
 DetailContainer.propTypes = {
   getArticleDetailQuery: PropTypes.object,
-  queryParams: PropTypes.object
+  queryParams: PropTypes.object,
 };
 
 export default compose(
   graphql(gql(queries.getArticleDetailQuery), {
     name: 'getArticleDetailQuery',
     options: ({ queryParams }) => ({
-      variables: { _id: queryParams._id }
-    })
+      variables: { _id: queryParams._id },
+    }),
   }),
   graphql(gql(queries.getKbTopicQuery), {
     name: 'getKbTopicQuery',
     options: () => ({
-      variables: { _id: '7ivEFncj85EhWKpxR' }
-    })
+      variables: { _id: '7ivEFncj85EhWKpxR' },
+    }),
   })
 )(DetailContainer);

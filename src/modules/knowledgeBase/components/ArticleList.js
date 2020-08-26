@@ -3,20 +3,15 @@ import * as dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Search from '../../common/components/Search';
 
 class Lists extends React.Component {
-  handleClick = () => {
-    console.log('faq');
-  };
-
   render() {
     return (
-      <Container className='knowledge-base'>
-        <Search
+      <Container className="knowledge-base">
+        {/* <Search
           history={this.props.history}
           searchValue={this.props.searchValue}
-        />
+        /> */}
         <Row>
           <Col>
             {this.props.articles.map((article) => (
@@ -24,28 +19,26 @@ class Lists extends React.Component {
                 to={`/knowledge-base-detail?_id=${article._id}`}
                 key={article._id}
               >
-                <div className='kbase-lists'>
+                <div className="kbase-lists">
                   <h3>{article.title}</h3>
                   <p>{article.summary}</p>
-                  <div className='avatars'>
+                  <div className="avatars">
                     <img
-                      className='round-img'
+                      className="round-img"
                       alt={article.createdUser.details.fullName}
                       src={article.createdUser.details.avatar}
-                      width='34'
-                      height='34'
+                      width="34"
+                      height="34"
                     />
                     <div>
                       <div>
                         Written by: {article.createdUser.details.fullName}
                       </div>
                       <div>
-                        Modified:{' '}
+                        Modified:
                         <span>
-                          {dayjs(article.modifiedDate).format(
-                            'D MMM, YYYY h:mm A'
-                          )}
-                        </span>{' '}
+                          {dayjs(article.modifiedDate).format('MMM D YYYY')}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -60,7 +53,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
-  articles: PropTypes.array
+  articles: PropTypes.array,
 };
 
 export default Lists;
