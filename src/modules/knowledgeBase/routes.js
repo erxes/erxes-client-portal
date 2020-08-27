@@ -10,6 +10,16 @@ const { REACT_APP_TOPIC_ID } = process.env;
 
 const articleDetails = ({ history, location }) => {
   const queryParams = queryString.parse(location.search);
+  const { searchValue } = queryParams;
+  if (searchValue) {
+    return (
+      <ArticleList
+        topicId={REACT_APP_TOPIC_ID}
+        history={history}
+        searchValue={searchValue}
+      />
+    );
+  }
 
   return <Details queryParams={queryParams} history={history} />;
 };
@@ -66,25 +76,25 @@ const index = () => {
 };
 
 const routes = () => [
-  <Route exact={true} path="/" key="root" render={index} />,
+  <Route exact={true} path='/' key='root' render={index} />,
   <Route
-    path="/knowledge-base"
+    path='/knowledge-base'
     exact
-    key="knowledge-base"
+    key='knowledge-base'
     render={categories}
   />,
   <Route
-    path="/knowledge-base/category/details/:id"
+    path='/knowledge-base/category/details/:id'
     exact
-    key="knowledge-base-category-details/:id"
+    key='knowledge-base-category-details/:id'
     render={categoryDetail}
   />,
   <Route
-    path="/knowledge-base-detail"
+    path='/knowledge-base-detail'
     exact
-    key="knowledge-base-detail"
+    key='knowledge-base-detail'
     render={articleDetails}
-  />,
+  />
 ];
 
 export default routes;

@@ -172,22 +172,29 @@
     }
   }
 }
-.post-details {
-  text-align: right;
-  div {
-    color: $silverGrey;
+
+.avatarDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > div {
+    color: #5c5c5c;
     font-size: 15px;
-    font-weight: 300;
-    p {
-      font-weight: 500;
-    }
+    margin-left: 10px;
+    margin-top: 5px;
   }
-  .vote-bar {
-    span {
-      margin-left: 12px;
-      i {
-        margin-right: 4px;
-      }
+  .detail {
+    display: flex;
+    align-items: center;
+  }
+}
+.vote-bar {
+  text-align: center;
+  span {
+    margin-left: 12px;
+    i {
+      margin-right: 4px;
     }
   }
 }
