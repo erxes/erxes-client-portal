@@ -234,8 +234,8 @@ time {
       border: 0;
       background: none;
       border-bottom: 2px solid $darkColor;
-      padding: 0.5rem 0;
-      width: 100%;
+      padding: 0.5rem;
+      width: 90%;
       font-size: 1.25rem;
       color: $darkColor;
 
@@ -245,10 +245,11 @@ time {
       }
     }
     i {
+      font-style: inherit;
       position: absolute;
-      right: 0;
+      left: 0;
       color: $darkColor;
-      top: 8px;
+      top: 10px;
       font-size: 1.25rem;
     }
     &.sidebar-search {
@@ -330,7 +331,7 @@ time {
 
 .clear-icon {
   position: absolute;
-  right: 18px;
+  right: 20px;
   font-size: 16px;
   top: 50%;
   width: 18px;
@@ -338,12 +339,4 @@ time {
   color: #999;
   line-height: 24px;
   margin-top: -14px;
-
-  &:hover {
-    color: #ea475d;
-    cursor: pointer;
-  }
-  i {
-    font-size: inherit;
-  }
 }
