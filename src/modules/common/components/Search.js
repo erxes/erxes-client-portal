@@ -5,9 +5,19 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props);
 
+    const { searchValue } = props;
+
     this.state = {
-      searchValue: props.searchValue || '',
+      searchValue: searchValue || '',
     };
+  }
+
+  componentWillReceiveProps(props) {
+    const { searchValue } = props;
+
+    this.setState({
+      searchValue: searchValue || '',
+    });
   }
 
   onChange = (e) => {

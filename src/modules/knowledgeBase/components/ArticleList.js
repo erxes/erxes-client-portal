@@ -5,30 +5,49 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 class Lists extends React.Component {
+  renderSearchResult = () => {
+    const { searchValue, articles } = this.props;
+
+    if (!searchValue) {
+      return null;
+    }
+
+    if (articles.length === 0) {
+      return (
+        <span className="search-reuslt">
+          We couldn't find any articles for: <b>{searchValue}</b>
+        </span>
+      );
+    }
+
+    return (
+      <span className="search-reuslt">
+        Search result for: <b>{searchValue}</b>
+      </span>
+    );
+  };
+
   render() {
     return (
-      <Container className='knowledge-base'>
-        {/* <Search
-          history={this.props.history}
-          searchValue={this.props.searchValue}
-        /> */}
+      <Container className="knowledge-base">
         <Row>
           <Col>
+            {this.renderSearchResult()}
             {this.props.articles.map((article) => (
               <Link
                 to={`/knowledge-base-detail?_id=${article._id}`}
                 key={article._id}
               >
-                <div className='kbase-lists card'>
+                <div className="kbase-lists card">
                   <h3>{article.title}</h3>
                   <p>{article.summary}</p>
-                  <div className='avatars'>
+                  <div className="avatars">
                     <img
-                      className='round-img'
+                      className="round-img"
                       alt={article.createdUser.details.fullName}
                       src={article.createdUser.details.avatar}
-                      width='34'
-                      height='34'
+                      width="34"
+                      height="34"
                     />
                     <div>
                       <div>
@@ -53,7 +72,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
-  articles: PropTypes.array
+  articles: PropTypes.array,
 };
 
 export default Lists;
