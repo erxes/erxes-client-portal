@@ -6,7 +6,7 @@ export default class Search extends React.Component {
     super(props);
 
     this.state = {
-      searchValue: props.searchValue || '',
+      searchValue: props.searchValue || ''
     };
   }
 
@@ -14,7 +14,7 @@ export default class Search extends React.Component {
     const value = e.target.value;
 
     this.setState({
-      searchValue: value,
+      searchValue: value
     });
   };
 
@@ -38,7 +38,7 @@ export default class Search extends React.Component {
     const { history } = this.props;
 
     this.setState({
-      searchValue: '',
+      searchValue: ''
     });
 
     router.setParams(history, { searchValue: '' });
@@ -49,8 +49,10 @@ export default class Search extends React.Component {
 
     if (searchValue) {
       return (
-        <div className="clear-icon">
-          <i onClick={this.clearSearch}>x</i>
+        <div className='clear-icon'>
+          <i type='button' className='close' onClick={this.clearSearch}>
+            &times;
+          </i>
         </div>
       );
     }
@@ -62,15 +64,15 @@ export default class Search extends React.Component {
     const { searchValue } = this.state;
 
     return (
-      <div className="search-container">
+      <div className='search-container'>
         <div className={`search`}>
-          <i className="icon-search" onClick={this.onSearch}></i>
-          <i className="icon-search" onClick={this.onSearch}></i>
+          <i type='button' className='icon-search' onClick={this.onSearch}></i>
+          <i type='button' className='icon-search' onClick={this.onSearch}></i>
 
           <input
             autoFocus={true}
             onChange={this.onChange}
-            placeholder="Search for articles"
+            placeholder='Search for articles'
             value={searchValue}
             onKeyDown={this.onKeyDown}
           />
