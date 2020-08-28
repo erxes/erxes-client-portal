@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom';
 import SectionHeader from '../../common/components/SectionHeader';
 import ArticleList from './ArticleList';
 class CategoryDetail extends React.Component {
-  handleClick = () => {
-    console.log('faq');
-  };
-
   isActive = (categoryId) => {
     if (categoryId === this.props.category._id) {
       return 'active';

@@ -35,7 +35,7 @@ class Lists extends React.Component {
             {this.renderSearchResult()}
             {this.props.articles.map((article) => (
               <Link
-                to={`/knowledge-base-detail?_id=${article._id}`}
+                to={`/knowledge-base/article/detail?_id=${article._id}`}
                 key={article._id}
               >
                 <div className="kbase-lists card">

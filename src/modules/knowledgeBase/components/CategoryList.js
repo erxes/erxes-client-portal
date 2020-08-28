@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom';
 import SectionHeader from '../../common/components/SectionHeader';
 
 class Categories extends React.Component {
-  handleClick = () => {
-    console.log('faq');
-  };
-
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { categories } = kbTopic;

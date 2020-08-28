@@ -60,7 +60,7 @@ export default class Search extends React.Component {
     if (searchValue) {
       return (
         <div className="clear-icon">
-          <i type="button" className="close" onClick={this.clearSearch}>
+          <i className="close" onClick={this.clearSearch}>
             &times;
           </i>
         </div>
@@ -76,8 +76,7 @@ export default class Search extends React.Component {
     return (
       <div className="search-container">
         <div className={`search`}>
-          <i type="button" className="icon-search" onClick={this.onSearch}></i>
-          <i type="button" className="icon-search" onClick={this.onSearch}></i>
+          <i className="icon-search" onClick={this.onSearch}></i>
 
           <input
             autoFocus={true}

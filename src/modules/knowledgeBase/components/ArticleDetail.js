@@ -1,13 +1,21 @@
 import React from 'react';
+import classNames from 'classnames';
 import * as dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import SectionHeader from '../../common/components/SectionHeader';
-import Vote from '../../common/components/Vote';
 
 class Detail extends React.Component {
-  handleClick = () => {
-    console.log('faq');
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeReaction: '',
+    };
+  }
+
+  onReactionClick = (reactionChoice) => {
+    this.setState({ activeReaction: reactionChoice });
   };
 
   getUserDetails = () => {
@@ -18,16 +26,54 @@ class Detail extends React.Component {
     return authorDetails;
   };
 
+  renderReactions() {
+    const { articleDetail } = this.props;
+
+    if (
+      !articleDetail ||
+      (articleDetail.reactionChoices &&
+        articleDetail.reactionChoices.length === 0)
+    ) {
+      return null;
+    }
+
+    const reactionClassess = classNames('reactions', {
+      clicked: this.state.activeReaction,
+    });
+
+    return (
+      <div className="feedback">
+        <div className={reactionClassess}>
+          {(articleDetail.reactionChoices || []).map(
+            (reactionChoice, index) => (
+              <span
+                key={index}
+                className={
+                  reactionChoice === this.state.activeReaction
+                    ? 'active'
+                    : undefined
+                }
+                onClick={this.onReactionClick.bind(this, reactionChoice)}
+              >
+                <img alt={index} src={reactionChoice} />
+              </span>
+            )
+          )}
+        </div>
+      </div>
+    );
+  }
+
   leftSide = () => {
     return (
-      <div className='avatarDetails'>
-        <div className='detail'>
+      <div className="avatarDetails">
+        <div className="detail">
           <img
-            className='round-img'
+            className="round-img"
             alt={this.getUserDetails().fullName}
             src={this.getUserDetails().avatar}
-            width='42px'
-            height='42px'
+            width="42px"
+            height="42px"
           />
 
           <Col>
@@ -43,47 +89,36 @@ class Detail extends React.Component {
             </div>
           </Col>
         </div>
-        <div className='vote-bar'>
-          votes
-          <p>
-            <span>
-              <i className='icon-like'></i>16
-            </span>
-            <span>
-              <i className='icon-dislike'></i>2
-            </span>
-          </p>
-        </div>
       </div>
     );
   };
 
   render() {
     return (
-      <Container className='knowledge-base'>
-        <SectionHeader icon='flag' title='Creating your first workspace' />
+      <Container className="knowledge-base">
+        <SectionHeader icon="flag" title="Creating your first workspace" />
 
         <Row>
           <Col md={12}>
-            <div className='kbase-detail kbase-lists'>
+            <div className="kbase-detail kbase-lists">
               <Row>
-                <Col md='9'>
+                <Col md="9">
                   <h4>{this.props.articleDetail.title}</h4>
                 </Col>
               </Row>
               {this.leftSide()}
 
               <hr />
-              <div className='content'>
+              <div className="content">
                 <p>{this.props.articleDetail.summary}</p>
                 <p
                   dangerouslySetInnerHTML={{
-                    __html: this.props.articleDetail.content
+                    __html: this.props.articleDetail.content,
                   }}
                 />
               </div>
             </div>
-            <Vote />
+            {this.renderReactions()}
           </Col>
         </Row>
       </Container>
@@ -92,7 +127,7 @@ class Detail extends React.Component {
 }
 
 Detail.propTypes = {
-  kbTopic: PropTypes.object
+  kbTopic: PropTypes.object,
 };
 
 export default Detail;
