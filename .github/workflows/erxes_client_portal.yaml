@@ -49,9 +49,10 @@ jobs:
         BASE_IMAGE: erxes/erxes:base-1.18-alpine
       run: |
         TAG_NAME="$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
-      # IMAGE_NAME="docker.pkg.github.com/${GITHUB_REPOSITORY}/erxes-client-portal:$TAG_NAME"
         IMAGE_NAME="${GITHUB_REPOSITORY}:$TAG_NAME"
-      # echo ${{ secrets.GITHUB_TOKEN }} | docker login https://docker.pkg.github.com -u ${GITHUB_ACTOR} --password-stdin
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         docker build --build-arg BASE_IMAGE=$BASE_IMAGE -t $IMAGE_NAME .
         docker push $IMAGE_NAME
+
+      # echo ${{ secrets.GITHUB_TOKEN }} | docker login https://docker.pkg.github.com -u ${GITHUB_ACTOR} --password-stdin
+      # IMAGE_NAME="docker.pkg.github.com/${GITHUB_REPOSITORY}/erxes-client-portal:$TAG_NAME"
