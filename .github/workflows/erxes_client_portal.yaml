@@ -2,8 +2,9 @@ name: Client Portal CI
 
 on:
   push:
-    # branches:
-    #   - 'develop'
+    branches:
+      # - 'develop'
+      - '**'
     paths:
       - '!**.md'
     tags:
