@@ -5,7 +5,19 @@ import { setContext } from 'apollo-link-context';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 
-const { REACT_APP_API_URL } = process.env;
+export const getEnv = () => {
+  const envs = {};
+
+  for (const envMap of window.envMaps) {
+    envs[envMap.name] = localStorage.getItem(
+      `erxes_client_portal_env_${envMap.name}`
+    );
+  }
+
+  return envs;
+};
+
+const { REACT_APP_API_URL } = getEnv();
 
 // Create an http link:
 const httpLink = createHttpLink({

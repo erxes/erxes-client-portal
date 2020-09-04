@@ -6,7 +6,7 @@ import KnowledgeBaseLayout from './modules/knowledgeBase/layout/KnowledgeBaseLay
 
 const Routes = () => {
   return (
-    <Router>
+    <Router basename="/help">
       <Layout>
         <KnowledgeBaseLayout>
           <KnowledgeBaseRouter />
