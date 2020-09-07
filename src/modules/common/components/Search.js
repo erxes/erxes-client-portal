@@ -60,6 +60,19 @@ export default class Search extends React.Component {
     return null;
   };
 
+  renderText = () => {
+    const { location } = this.props;
+
+    switch (location.pathname) {
+      case '/tickets':
+        return 'Search for tickets';
+      case '/knowledge-base':
+        return 'Search for articles';
+      default:
+        return;
+    }
+  };
+
   render() {
     const { searchValue } = this.state;
 
@@ -72,7 +85,7 @@ export default class Search extends React.Component {
           <input
             autoFocus={true}
             onChange={this.onChange}
-            placeholder='Search for articles'
+            placeholder={this.renderText()}
             value={searchValue}
             onKeyDown={this.onKeyDown}
           />

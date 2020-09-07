@@ -1,0 +1,102 @@
+import React from 'react';
+import { Container, Row, Col, Card, Modal, Form } from 'react-bootstrap';
+import * as dayjs from 'dayjs';
+import SectionHeader from '../../common/components/SectionHeader';
+import { Link } from 'react-router-dom';
+// import EmptyState from "../../common/components/EmptyState";
+// import { Form as FormModal } from "../../forum/components/Form";
+class Lists extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false,
+      updateTicket: false
+    };
+  }
+
+  handleShow = () => {
+    this.setState({ showModal: true });
+  };
+
+  closeModal = () => {
+    this.setState({ showModal: false });
+  };
+
+  formShow = () => {
+    this.setState({ updateTicket: true });
+  };
+
+  formClose = () => {
+    this.setState({ updateTicket: false });
+  };
+
+  isActive = (labelId) => {
+    if (labelId === this.props.labelId) {
+      return 'active';
+    }
+
+    if (!this.props.labelId && !labelId) {
+      return 'active';
+    }
+
+    return;
+  };
+
+  render() {
+    const { updateTicket } = this.state;
+
+    const { ticketDetail } = this.props;
+
+    return (
+      <Container className='knowledge-base'>
+        <Row>
+          <Col md={8}>
+            <div className='due-date'>
+              <span>Aug 20</span>
+            </div>
+            <div className='label ticket-items'>
+              <label>
+                <i className='icon-label-alt'></i> Labels
+              </label>
+              <Col className='categories'>
+                <Link to='/#'>General</Link>
+                <Link to='/#'>Jquery</Link>
+                <Link to='/#'>PHP</Link>
+              </Col>
+            </div>
+            <div className='attachments ticket-items'>
+              <label>
+                <i className='icon-paperclip'></i> Attachments
+              </label>
+            </div>
+            <div className='description ticket-items'>
+              <label>
+                <i className='icon-align-left-justify'></i> Description
+              </label>
+              <p>{ticketDetail.description}</p>
+            </div>
+            <div className='activity ticket-items'>
+              <label>
+                <i className='icon-align-left-justify'></i> Activity
+              </label>
+              <div className='create-activity'>
+                <img
+                  src={ticketDetail.createdUser.details.avatar}
+                  alt={ticketDetail.createdUser.details.fullName}
+                />
+                <Form.Group>
+                  <Form.Control type='text' placeholder='Leave comment...' />
+                </Form.Group>
+              </div>
+            </div>
+          </Col>
+          <Col md={4}></Col>
+        </Row>
+
+        <Form showModal={updateTicket} hideModal={this.formClose} />
+      </Container>
+    );
+  }
+}
+
+export default Lists;

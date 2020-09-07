@@ -1,15 +1,27 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import queryString from "query-string";
-import List from "./containers/List";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import queryString from 'query-string';
+import TicketList from './containers/TicketList';
 const routes = () => [
   <Route
-    path="/tickets"
+    path='/tickets'
     exact
-    key="tickets"
+    key='tickets'
     component={({ location, history }) => {
       const queryParams = queryString.parse(location.search);
-      return <List queryParams={queryParams} history={history} />;
+      const { labelId } = queryParams;
+
+      const { searchValue } = queryParams;
+
+      console.log(searchValue);
+      return (
+        <TicketList
+          queryParams={queryParams}
+          history={history}
+          labelId={labelId}
+          searchValue={searchValue}
+        />
+      );
     }}
   />
 ];

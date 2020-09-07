@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 
 function Layout(props) {
   return (
-    <Container className="knowledge-base">
-      <Search history={props.history}></Search>
+    <Container className='knowledge-base'>
+      <Search history={props.history} location={props.location}></Search>
       {props.children}
     </Container>
   );

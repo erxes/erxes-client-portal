@@ -8,6 +8,9 @@ const renderMenu = () => {
       <Nav.Item>
         <NavLink to='/knowledge-base'>Knowledge base</NavLink>
       </Nav.Item>
+      <Nav.Item>
+        <NavLink to='/tickets'>Ticket</NavLink>
+      </Nav.Item>
     </Nav>
   );
 };
