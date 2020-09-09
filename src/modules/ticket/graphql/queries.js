@@ -37,6 +37,14 @@ query widgetsTicketDetails($_id: String) {
         shortName
       }
     }
+    labels{
+      _id
+      name
+      colorCode
+      pipelineId
+      createdBy
+      createdAt 
+    }
   }
 }`;
 

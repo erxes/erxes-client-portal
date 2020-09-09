@@ -16,8 +16,6 @@ class DetailContainer extends React.Component {
 
     const labels = getLabelsQuery.widgetsPipelineLabels || {};
     const ticketDetail = getTicketDetailQuery.widgetsTicketDetails || {};
-    console.log(labels, 'ticket detaillllllllll');
-
     return <Details ticketDetail={ticketDetail} labels={labels} />;
   }
 }

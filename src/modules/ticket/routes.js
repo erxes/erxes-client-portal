@@ -10,10 +10,8 @@ const routes = () => [
     component={({ location, history }) => {
       const queryParams = queryString.parse(location.search);
       const { labelId } = queryParams;
-
       const { searchValue } = queryParams;
 
-      console.log(searchValue);
       return (
         <TicketList
           queryParams={queryParams}

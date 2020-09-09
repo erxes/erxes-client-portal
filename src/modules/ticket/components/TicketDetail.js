@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Row, Col, Card, Modal, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import * as dayjs from 'dayjs';
-import SectionHeader from '../../common/components/SectionHeader';
 import { Link } from 'react-router-dom';
+import { Label } from '../styles';
 // import EmptyState from "../../common/components/EmptyState";
 // import { Form as FormModal } from "../../forum/components/Form";
 class Lists extends React.Component {
@@ -30,39 +30,35 @@ class Lists extends React.Component {
     this.setState({ updateTicket: false });
   };
 
-  isActive = (labelId) => {
-    if (labelId === this.props.labelId) {
-      return 'active';
-    }
-
-    if (!this.props.labelId && !labelId) {
-      return 'active';
-    }
-
-    return;
-  };
-
   render() {
     const { updateTicket } = this.state;
 
     const { ticketDetail } = this.props;
+
+    const { labels } = ticketDetail;
 
     return (
       <Container className='knowledge-base'>
         <Row>
           <Col md={8}>
             <div className='due-date'>
-              <span>Aug 20</span>
+              <span>{dayjs(ticketDetail.closeDate).format('MMM DD')}</span>
             </div>
             <div className='label ticket-items'>
               <label>
                 <i className='icon-label-alt'></i> Labels
               </label>
-              <Col className='categories'>
-                <Link to='/#'>General</Link>
-                <Link to='/#'>Jquery</Link>
-                <Link to='/#'>PHP</Link>
-              </Col>
+
+              {labels.map((label) => {
+                return (
+                  <Col className='categories'>
+                    <Label color={label.colorCode}>
+                      {' '}
+                      <Link>{label.name}</Link>
+                    </Label>
+                  </Col>
+                );
+              })}
             </div>
             <div className='attachments ticket-items'>
               <label>
@@ -90,7 +86,6 @@ class Lists extends React.Component {
               </div>
             </div>
           </Col>
-          <Col md={4}></Col>
         </Row>
 
         <Form showModal={updateTicket} hideModal={this.formClose} />
