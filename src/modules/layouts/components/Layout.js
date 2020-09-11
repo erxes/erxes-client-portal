@@ -4,10 +4,10 @@ import { Container } from 'react-bootstrap';
 
 function Layout(props) {
   return (
-    <div className="layout">
+    <div className='layout'>
       <Header />
 
-      <Container className="main-body">{props.children}</Container>
+      <Container className='main-body'>{props.children}</Container>
     </div>
   );
 }

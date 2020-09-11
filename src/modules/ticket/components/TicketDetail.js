@@ -61,17 +61,17 @@ class Lists extends React.Component {
                 <i className='icon-label-alt'></i> Labels
               </label>
 
-              {labels.map((label) => {
-                return (
-                  <Col className='categories' key={label._id}>
-                    <Label color={label.colorCode}>
-                      <Link to='' type='button'>
-                        {label.name}
-                      </Link>
-                    </Label>
-                  </Col>
-                );
-              })}
+              <div className='flex'>
+                {labels.map((label) => {
+                  return (
+                    <div className='categories' key={label._id}>
+                      <Label color={label.colorCode}>
+                        <Link to='aaa'>{label.name}</Link>
+                      </Label>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
             <div className='attachments ticket-items'>
               <div>
@@ -83,7 +83,7 @@ class Lists extends React.Component {
               {attachments.map((el) => (
                 <div key={el.size} className='attachment'>
                   <div className='attachment-pic'>
-                    <img alt='picture' src={this.readFile(el.url)}></img>
+                    <img alt='a' src={this.readFile(el.url)}></img>
                   </div>
                   <div className='attachment-text'>
                     <h5>
@@ -110,10 +110,7 @@ class Lists extends React.Component {
                 <i className='icon-align-left-justify'></i> Activity
               </label>
               <div className='create-activity'>
-                <img
-                  src={createdUser.details.avatar}
-                  alt={createdUser.details.fullName}
-                />
+                <img src={createdUser.details.avatar} alt='avatar' />
                 <Form.Group>
                   <Form.Control
                     type='textcol-md-9'

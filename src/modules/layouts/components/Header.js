@@ -83,7 +83,7 @@ const renderUserMenu = (position, user) => {
             variant='secondary'
           >
             <i className='icon-bell'></i>
-            <Badge variant='danger'>12</Badge>
+            <Badge variant='danger'></Badge>
           </button>
         </OverlayTrigger>
 

@@ -11,11 +11,10 @@ class ListContainer extends React.Component {
     const { getTicketQuery, getLabelsQuery, labelId, searchValue } = this.props;
 
     if (getTicketQuery.loading || getLabelsQuery.loading) {
-      return <div>loading</div>;
+      return <div></div>;
     }
 
     const tickets = getTicketQuery.widgetsTickets || [];
-
     const labels = getLabelsQuery.widgetsPipelineLabels || [];
 
     return (

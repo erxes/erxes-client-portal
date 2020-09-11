@@ -11,7 +11,7 @@ const DueDate = styled.span`
   font-size: 12px;
   color: #fff;
   background: #aaaeb3;
-  padding: 3px 5px;
+  padding: 3px 3px;
   position: absolute;
   left: 0;
   bottom: 15px;
