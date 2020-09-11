@@ -16,6 +16,7 @@ query widgetsTickets($labelId: String, $searchString: String!) {
         shortName
       }
     }
+    isComplete
   }
 }`;
 
@@ -37,6 +38,12 @@ query widgetsTicketDetails($_id: String) {
         shortName
       }
     }
+    attachments{
+      url
+      name
+      type
+      size
+    }
     labels{
       _id
       name
@@ -45,6 +52,7 @@ query widgetsTicketDetails($_id: String) {
       createdBy
       createdAt 
     }
+    isComplete
   }
 }`;
 

@@ -67,6 +67,7 @@ class ModalTrigger extends React.Component {
           onExit={onExit}
           animation={false}
           centered={centered}
+          className={'ticket-modal'}
         >
           {this.renderHeader()}
           <Modal.Body className={paddingContent}>
