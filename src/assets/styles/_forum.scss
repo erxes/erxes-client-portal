@@ -41,58 +41,61 @@
   }
 }
 
-.attachment {
-  margin: 10px 0;
-  display: flex;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  color: #444;
-  position: relative;
+.attachment-wrapper {
   :hover {
     background: rgba(10, 30, 65, 0.08);
   }
 
-  .attachment-description {
-    position: relative;
-    font-weight: 500;
-    color: #888;
-    font-size: 13px;
-  }
-  .attachment-pic {
-    height: 80px;
-    width: 110px;
+  .attachment {
+    margin: 10px 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 10px;
     border-radius: 4px;
-    overflow: hidden;
-    align-self: center;
-    cursor: -webkit-zoom-in;
-    cursor: -moz-zoom-in;
-    cursor: zoom-in;
-    transition: all 0.3s;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    color: #444;
+    position: relative;
 
-    :hover {
-      opacity: 0.8;
+    .attachment-description {
+      position: relative;
+      font-weight: 500;
+      color: #888;
+      font-size: 13px;
     }
-  }
-  img {
-    max-width: 100%;
-  }
+    .attachment-pic {
+      height: 80px;
+      width: 110px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      overflow: hidden;
+      align-self: center;
+      cursor: -webkit-zoom-in;
+      cursor: -moz-zoom-in;
+      cursor: zoom-in;
+      transition: all 0.3s;
 
-  .attachment-text {
-    flex: 1;
-    padding: 10px 15px;
-    h5 {
-      margin: 0px 0 5px;
-      font-weight: bold;
-      font-size: 14px;
+      :hover {
+        opacity: 0.8;
+      }
+    }
+    img {
+      max-width: 100%;
+    }
+
+    .attachment-text {
+      flex: 1;
+      padding: 10px 15px;
+      h5 {
+        margin: 0px 0 5px;
+        font-weight: bold;
+        font-size: 14px;
+      }
     }
   }
 }

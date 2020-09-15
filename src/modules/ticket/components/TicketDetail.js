@@ -79,31 +79,35 @@ class Lists extends React.Component {
                   <i className='icon-paperclip'></i> Attachments
                 </label>
               </div>
-
-              {attachments.map((el) => (
-                <div key={el.size} className='attachment'>
-                  <div className='attachment-pic'>
-                    <img alt='a' src={this.readFile(el.url)}></img>
-                  </div>
-                  <div className='attachment-text'>
-                    <h5>
-                      <span>{el.name}</span>
-                    </h5>
-                    <div>
-                      <span className='attachment-description'>
-                        {' '}
-                        size: {Math.floor(el.size / 1000)}kB
-                      </span>
+              <div className='attachment-wrapper'>
+                {attachments.map((el) => (
+                  <div key={el.size} className='attachment'>
+                    <div className='attachment-pic'>
+                      <img alt='a' src={this.readFile(el.url)}></img>
+                    </div>
+                    <div className='attachment-text'>
+                      <h5>
+                        <span>{el.name}</span>
+                      </h5>
+                      <div>
+                        <span className='attachment-description'>
+                          size: {Math.floor(el.size / 1000)}kB
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
             <div className='description ticket-items'>
               <label>
                 <i className='icon-align-left-justify'></i> Description
               </label>
-              <p>{ticketDetail.description}</p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: ticketDetail.description
+                }}
+              />
             </div>
             <div className='activity ticket-items'>
               <label>

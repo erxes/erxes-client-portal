@@ -81,7 +81,11 @@ class Lists extends React.Component {
                   </div>
                   <div className='ticket-card'>
                     <h5>{ticket.name}</h5>
-                    <p>{ticket.description}</p>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: ticket.description
+                      }}
+                    />
                     <time>
                       Last updated:
                       {dayjs(ticket.modifiedAt).format(' MMM D YYYY')}
