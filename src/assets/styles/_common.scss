@@ -222,42 +222,57 @@ time {
     }
   }
 }
-.search-container {
-  display: flex;
-  justify-content: center;
-  .search {
-    text-align: center;
-    margin-bottom: 4rem;
-    position: relative;
-    width: 500px;
-    input {
-      border: 0;
-      background: none;
-      border-bottom: 2px solid $darkColor;
-      padding: 0.5rem;
-      width: 90%;
-      font-size: 1.25rem;
-      color: $darkColor;
 
-      &::placeholder {
-        color: $lightGrey;
-        font-weight: 300;
-      }
+.search-container {
+  position: relative;
+
+  i {
+    font-size: 22px;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    top: 18px;
+  }
+
+  .icon-search {        
+    color: $white;
+  }
+
+  input {
+    border: 0;
+    background: none;
+    width: 100%;
+    color: $white;
+    background: rgba(255,255,255,0.2);
+    font-size: 18px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px 32px 21px 59px;
+
+    &::placeholder {
+      color: rgba(255,255,255,.6);
+      font-weight: 400;
     }
-    i {
-      font-style: inherit;
-      position: absolute;
-      left: 0;
-      color: $darkColor;
-      top: 10px;
-      font-size: 1.25rem;
-      cursor: pointer;
+
+    &:focus, &:active {
+      background: $white;
+      color: #666;
     }
-    &.sidebar-search {
-      margin-bottom: 1rem;
-      input {
-        font-size: 1rem;
-      }
+  }
+
+  input:focus::-webkit-input-placeholder {
+    color: rgba(0,0,0,.5);
+    font-weight: 400;
+  }
+
+  input:focus + .icon-search {
+    color: $silverGrey;
+  }
+
+  &.sidebar-search {
+    margin-bottom: 1rem;
+    input {
+      font-size: 1rem;
     }
   }
 }
@@ -330,14 +345,25 @@ time {
   }
 }
 
+.header-links {
+  a {
+    font-size: 14px;
+    color: $white;
+  }
+}
+
 .clear-icon {
   position: absolute;
-  right: 20px;
-  font-size: 16px;
-  top: 50%;
-  width: 18px;
-  z-index: 2;
-  color: #999;
-  line-height: 24px;
-  margin-top: -14px;
+  right: 35px;
+  top: 6px;
+  width: 20px;
+
+  i {
+    text-shadow: none;
+    color: #333;
+
+    &:hover {
+      color: #555;
+    }
+  }
 }
