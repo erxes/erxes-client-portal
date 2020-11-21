@@ -1,26 +1,38 @@
 .knowledge-base {
   .category-item {
     margin-bottom: 30px;
+
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      
+      i {
+        font-size: 48px;
+        color: $silverGrey;
+      }
+    }
+
     a {
       padding: 0.5rem;
       color: $darkColor;
       outline: none;
       border-radius: 5px;
+
       &.active {
         border-radius: $radius;
         background: $white;
         box-shadow: $shadow;
       }
-      i {
-        position: absolute;
-        margin-top: 2px;
-      }
+
       .tab-content {
-        margin-left: 30px;
+        h5 {
+          color: #6569DF;
+        }
         p {
-          font-size: 14px;
           margin-bottom: 0;
-          color: #6c718b;
+          color: $silverGrey;
         }
       }
     }
@@ -77,12 +89,29 @@
 .avatars {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 
-  > div {
-    color: #5c5c5c;
-    font-size: 13px;
+  > img {
+    background: rgb(240, 240, 240);
+    border: 2px solid rgb(255, 255, 255);
+    margin-left: -12px;
+    font-size: 10px;
+  }
+
+  &:first-child {
+    > img {
+      margin-left: 0;
+    }
+  }
+
+  .avatar-info {
+    color: #888;
     margin-left: 10px;
-    margin-top: 5px;
+    font-size: 13px;
+
+    .darker {
+      display: inline;
+    }
   }
 }
 

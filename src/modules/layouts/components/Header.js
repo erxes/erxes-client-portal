@@ -6,7 +6,7 @@ import { NavLink, Link } from "react-router-dom";
 
 function Header(props) {
   const [user] = useState(true);
-  console.log(props);
+
   return (
     <div className="head">
       <div className="header">
