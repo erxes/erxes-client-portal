@@ -1,16 +1,16 @@
-import React from 'react';
-import classNames from 'classnames';
-import * as dayjs from 'dayjs';
-import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'react-bootstrap';
-import SectionHeader from '../../common/components/SectionHeader';
+import React from "react";
+import classNames from "classnames";
+import * as dayjs from "dayjs";
+import PropTypes from "prop-types";
+import { Container, Row, Col } from "react-bootstrap";
+import SectionHeader from "../../common/components/SectionHeader";
 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeReaction: '',
+      activeReaction: "",
     };
   }
 
@@ -37,7 +37,7 @@ class Detail extends React.Component {
       return null;
     }
 
-    const reactionClassess = classNames('reactions', {
+    const reactionClassess = classNames("reactions", {
       clicked: this.state.activeReaction,
     });
 
@@ -50,7 +50,7 @@ class Detail extends React.Component {
                 key={index}
                 className={
                   reactionChoice === this.state.activeReaction
-                    ? 'active'
+                    ? "active"
                     : undefined
                 }
                 onClick={this.onReactionClick.bind(this, reactionChoice)}
@@ -64,10 +64,10 @@ class Detail extends React.Component {
     );
   }
 
-  leftSide = () => {
+  avatarDetail = () => {
     return (
-      <div className="avatarDetails">
-        <div className="detail">
+      <div className="avatarDetails avatars">
+        <div className="detail avatar-info">
           <img
             className="round-img"
             alt={this.getUserDetails().fullName}
@@ -83,7 +83,7 @@ class Detail extends React.Component {
               Modified:
               <span>
                 {dayjs(this.props.articleDetail.modifiedDate).format(
-                  ' MMM D YYYY'
+                  " MMM D YYYY"
                 )}
               </span>
             </div>
@@ -94,33 +94,41 @@ class Detail extends React.Component {
   };
 
   render() {
+    const { articleDetail, category } = this.props;
+
     return (
-      <Container className="knowledge-base">
-        <SectionHeader icon="flag" title="Creating your first workspace" />
+      <Container className="knowledge-base" fluid="sm">
+        <SectionHeader
+          title={articleDetail.title}
+          catTitle={category.title}
+          catId={category._id}
+        />
 
-        <Row>
-          <Col md={12}>
-            <div className="kbase-detail kbase-lists">
-              <Row>
-                <Col md="9">
-                  <h4>{this.props.articleDetail.title}</h4>
-                </Col>
-              </Row>
-              {this.leftSide()}
+        <div className="card article-detail">
+          <Row>
+            <Col md={12}>
+              <div className="kbase-detail kbase-lists">
+                <Row>
+                  <Col md="9">
+                    <h4>{articleDetail.title}</h4>
+                  </Col>
+                </Row>
+                {this.avatarDetail()}
 
-              <hr />
-              <div className="content">
-                <p>{this.props.articleDetail.summary}</p>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: this.props.articleDetail.content,
-                  }}
-                />
+                <hr />
+                <div className="content">
+                  <p>{articleDetail.summary}</p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: articleDetail.content,
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-            {this.renderReactions()}
-          </Col>
-        </Row>
+              {this.renderReactions()}
+            </Col>
+          </Row>
+        </div>
       </Container>
     );
   }

@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import * as compose from 'lodash.flowright';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import Lists from '../components/ArticleList';
-import { queries } from '../graphql/index';
+import React from "react";
+import PropTypes from "prop-types";
+import * as compose from "lodash.flowright";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
+import Lists from "../components/ArticleList";
+import { queries } from "../graphql/index";
 
 class ListContainer extends React.Component {
   render() {
@@ -42,19 +42,19 @@ ListContainer.propTypes = {
 
 export default compose(
   graphql(gql(queries.getKbTopicQuery), {
-    name: 'getKbTopicQuery',
+    name: "getKbTopicQuery",
     options: ({ topicId }) => ({
       variables: { _id: topicId },
     }),
   }),
   graphql(gql(queries.widgetsKnowledgeBaseArticles), {
-    name: 'getArticlesQuery',
+    name: "getArticlesQuery",
     options: ({ searchValue, topicId }) => {
       return {
-        fetchPolicy: 'network-only',
+        fetchPolicy: "network-only",
         variables: {
           topicId,
-          searchString: searchValue || '',
+          searchString: searchValue || "",
         },
       };
     },

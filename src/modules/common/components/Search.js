@@ -1,5 +1,5 @@
-import React from 'react';
-import router from '../utils/router';
+import React from "react";
+import router from "../utils/router";
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class Search extends React.Component {
     const { searchValue } = props;
 
     this.state = {
-      searchValue: searchValue || '',
+      searchValue: searchValue || "",
     };
   }
 
@@ -16,7 +16,7 @@ export default class Search extends React.Component {
     const { searchValue } = props;
 
     this.setState({
-      searchValue: searchValue || '',
+      searchValue: searchValue || "",
     });
   }
 
@@ -39,7 +39,7 @@ export default class Search extends React.Component {
     const { history } = this.props;
     const { searchValue } = this.state;
 
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       router.setParams(history, { searchValue });
     }
   };
@@ -48,10 +48,10 @@ export default class Search extends React.Component {
     const { history } = this.props;
 
     this.setState({
-      searchValue: '',
+      searchValue: "",
     });
 
-    router.setParams(history, { searchValue: '' });
+    router.setParams(history, { searchValue: "" });
   };
 
   renderClearButton = () => {
@@ -75,18 +75,15 @@ export default class Search extends React.Component {
 
     return (
       <div className="search-container">
-        <div className={`search`}>
-          <i className="icon-search" onClick={this.onSearch}></i>
+        <input
+          onChange={this.onChange}
+          placeholder="Search for articles..."
+          value={searchValue}
+          onKeyDown={this.onKeyDown}
+        />
+        <i className="icon-search" onClick={this.onSearch}></i>
 
-          <input
-            autoFocus={true}
-            onChange={this.onChange}
-            placeholder="Search for articles"
-            value={searchValue}
-            onKeyDown={this.onKeyDown}
-          />
-          {this.renderClearButton()}
-        </div>
+        {this.renderClearButton()}
       </div>
     );
   }

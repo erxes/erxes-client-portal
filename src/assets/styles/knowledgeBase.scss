@@ -1,39 +1,49 @@
 .knowledge-base {
   .category-item {
     margin-bottom: 30px;
+
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      
+      i {
+        font-size: 48px;
+        color: $silverGrey;
+      }
+    }
+
     a {
       padding: 0.5rem;
       color: $darkColor;
       outline: none;
       border-radius: 5px;
+
       &.active {
         border-radius: $radius;
         background: $white;
         box-shadow: $shadow;
       }
-      i {
-        position: absolute;
-        margin-top: 2px;
-      }
-      .tab-content {
-        margin-left: 30px;
-        p {
-          font-size: 14px;
-          margin-bottom: 0;
-          color: #6c718b;
-        }
-      }
     }
   }
 }
 
+.tab-content {
+  h5 {
+    color: #6569DF;
+  }
+  p {
+    margin-bottom: 0;
+    color: $silverGrey;
+  }
+}
+
 .kbase-lists {
-  color: #036;
-  background: $white;
-  padding: 1.5rem;
-  border-radius: $radius;
-  box-shadow: $shadow;
-  margin: 10px;
+  color: $silverGrey;
+  border-bottom: 1px solid #eee;
+  border-radius: 1px;
+
   h4 {
     color: $darkColor;
     font-size: 30px;
@@ -43,9 +53,11 @@
     list-style: disc;
     list-style-type: circle;
     margin: 1rem 0 2rem;
+
     li {
       font-size: 20px;
       margin-bottom: 1.5rem;
+
       a {
         color: $mainColor;
         h6 {
@@ -77,12 +89,38 @@
 .avatars {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 
-  > div {
-    color: #5c5c5c;
-    font-size: 13px;
+  img {
+    background: rgb(240, 240, 240);
+    border: 2px solid rgb(255, 255, 255);
+    margin-left: -12px;
+    font-size: 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  &:first-child {
+    > img {
+      margin-left: 0;
+    }
+  }
+
+  .avatar-info {
+    color: #888;
     margin-left: 10px;
-    margin-top: 5px;
+    font-size: 13px;
+
+    .darker {
+      display: inline;
+    }
+
+    span {
+      color: $silverGrey;
+      width: auto;
+    }
   }
 }
 
@@ -97,32 +135,23 @@
 }
 
 .feedback {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  padding: 20px 20px 0;
 }
 
-.search-reuslt {
-  margin: 10px;
+.search-result {
+  margin-bottom: 20px;
   font-weight: 500;
-  color: #036;
+  color: $silverGrey;
   letter-spacing: 0.02em;
   font-size: 18px;
+  display: block;
+  width: 100%;
+  text-align: left;
 }
 
 .reactions {
-  position: absolute;
-  left: 45%;
-  top: 39%;
   display: flex;
   justify-content: center;
-  margin-bottom: -23px;
-  height: 46px;
-  height: 34px;
-  width: 34px;
-  padding: 2px;
-  opacity: 0.9;
 }
 
 span {
@@ -154,4 +183,8 @@ span {
       width: 38px;
     }
   }
+}
+
+.category-detail .container-sm {
+  padding: 0;
 }
