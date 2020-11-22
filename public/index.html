@@ -38,7 +38,39 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      // get env config from process.env or window.env
+      const getEnv = (name, defaultValue) => {
+        if (window.env && window.env[name]) {
+          return window.env[name];
+        }
+
+        if (defaultValue.includes('REACT_APP')) {
+          return;
+        }
+
+        return defaultValue;
+      };
+
+      window.envMaps = [
+        { name: 'REACT_APP_API_URL', processValue: '%REACT_APP_API_URL%' },
+        {
+          name: 'REACT_APP_TOPIC_ID',
+          processValue: '%REACT_APP_TOPIC_ID%'
+        }
+      ];
+
+      for (var i = 0; i < window.envMaps.length; i++) {
+        var envMap = window.envMaps[i];
+
+        localStorage.setItem(
+          `erxes_client_portal_env_${envMap.name}`,
+          getEnv(envMap.name, envMap.processValue)
+        );
+      }
+    </script>
     <div id="root"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

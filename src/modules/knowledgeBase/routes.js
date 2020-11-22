@@ -1,12 +1,13 @@
-import React from "react";
-import { Redirect, Route } from "react-router-dom";
-import Categories from "./containers/CategoryList";
-import queryString from "query-string";
-import Details from "./containers/ArticleDetail";
-import ArticleList from "./containers/ArticleList";
-import CategoryDetail from "./containers/CategoryDetail";
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import Categories from './containers/CategoryList';
+import queryString from 'query-string';
+import Details from './containers/ArticleDetail';
+import ArticleList from './containers/ArticleList';
+import CategoryDetail from './containers/CategoryDetail';
+import { getEnv } from '../../apolloClient';
 
-const { REACT_APP_TOPIC_ID } = process.env;
+const { REACT_APP_TOPIC_ID } = getEnv();
 
 const articleDetails = ({ history, location }) => {
   const queryParams = queryString.parse(location.search);
@@ -95,7 +96,7 @@ const routes = () => [
     exact
     key="knowledge-base/article/detail"
     render={articleDetails}
-  />,
+  />
 ];
 
 export default routes;

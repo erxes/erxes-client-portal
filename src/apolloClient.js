@@ -5,26 +5,38 @@ import { setContext } from 'apollo-link-context';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 
-const { REACT_APP_API_URL } = process.env;
+export const getEnv = () => {
+  const envs = {};
+
+  for (const envMap of window.envMaps) {
+    envs[envMap.name] = localStorage.getItem(
+      `erxes_client_portal_env_${envMap.name}`
+    );
+  }
+
+  return envs;
+};
+
+const { REACT_APP_API_URL } = getEnv();
 
 // Create an http link:
 const httpLink = createHttpLink({
-  uri: `${REACT_APP_API_URL}/graphql`,
+  uri: `${REACT_APP_API_URL}/graphql`
 });
 
 // Attach user credentials
 const middlewareLink = setContext(() => ({
   headers: {
     'x-token': localStorage.getItem('hotelLoginToken'),
-    'x-refresh-token': localStorage.getItem('hotelLoginRefreshToken'),
-  },
+    'x-refresh-token': localStorage.getItem('hotelLoginRefreshToken')
+  }
 }));
 
 const afterwareLink = new ApolloLink((operation, forward) => {
-  return forward(operation).map((response) => {
+  return forward(operation).map(response => {
     const context = operation.getContext();
     const {
-      response: { headers },
+      response: { headers }
     } = context;
 
     if (headers) {
@@ -64,7 +76,7 @@ const httpLinkWithMiddleware = errorLink.concat(
 // Creating Apollo-client
 const client = new ApolloClient({
   link: httpLinkWithMiddleware,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache()
 });
 
 export default client;
