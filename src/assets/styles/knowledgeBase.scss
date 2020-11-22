@@ -138,12 +138,15 @@
   padding: 20px 20px 0;
 }
 
-.search-reuslt {
-  margin: 10px;
+.search-result {
+  margin-bottom: 20px;
   font-weight: 500;
-  color: #036;
+  color: $silverGrey;
   letter-spacing: 0.02em;
   font-size: 18px;
+  display: block;
+  width: 100%;
+  text-align: left;
 }
 
 .reactions {
@@ -180,4 +183,8 @@ span {
       width: 38px;
     }
   }
+}
+
+.category-detail .container-sm {
+  padding: 0;
 }

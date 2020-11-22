@@ -58,7 +58,7 @@ class CategoryDetail extends React.Component {
       <Container className="knowledge-base" fluid="sm">
         <SectionHeader title={category.title} />
 
-        <Row>
+        <Row className="category-detail">
           <Col md={9}>
             <ArticleList
               articles={category.articles}

@@ -14,14 +14,14 @@ class Lists extends React.Component {
 
     if (articles.length === 0) {
       return (
-        <span className="search-reuslt">
+        <span className="search-result">
           We couldn't find any articles for: <b>{searchValue}</b>
         </span>
       );
     }
 
     return (
-      <span className="search-reuslt">
+      <span className="search-result">
         Search result for: <b>{searchValue}</b>
       </span>
     );
@@ -31,7 +31,7 @@ class Lists extends React.Component {
     const { articles, catId } = this.props;
 
     return (
-      <div className="knowledge-base">
+      <Container className="knowledge-base" fluid="sm">
         <Row>
           <Col>
             {this.renderSearchResult()}
@@ -69,7 +69,7 @@ class Lists extends React.Component {
             ))}
           </Col>
         </Row>
-      </div>
+      </Container>
     );
   }
 }
