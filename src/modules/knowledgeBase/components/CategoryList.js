@@ -102,6 +102,7 @@ class Categories extends React.Component {
               <a
                 href="https://www.youtube.com/watch?v=sDzPEEBSp44&feature=youtu.be&list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz&ab_channel=erxesInc"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 &nbsp;full playlist&nbsp;
               </a>
@@ -111,6 +112,7 @@ class Categories extends React.Component {
             <iframe
               width="80%"
               height="450"
+              title="erxes-list"
               src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

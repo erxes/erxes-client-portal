@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 function Footer(props) {
   const { color } = props.kbTopic || {};
@@ -18,7 +18,7 @@ function Footer(props) {
               <a
                 href="https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <img
                   src="https://erxes.io/static/images/logo/rocketchat-icon.png"
@@ -27,7 +27,11 @@ function Footer(props) {
               </a>
             </li>
             <li>
-              <a href="https://fb.erxes.io/" target="_blank" rel="noreferrer">
+              <a
+                href="https://fb.erxes.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   src="https://erxes.io/static/images/logo/fb-icon.png"
                   alt="facebook"
@@ -38,7 +42,7 @@ function Footer(props) {
               <a
                 href="https://github.com/erxes"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <img
                   src="https://erxes.io/static/images/logo/github.png"
@@ -50,7 +54,7 @@ function Footer(props) {
               <a
                 href="https://twitter.com/erxeshq"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <img
                   src="https://erxes.io/static/images/logo/tw-icon.svg"
