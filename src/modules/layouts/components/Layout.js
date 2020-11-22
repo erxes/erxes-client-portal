@@ -16,7 +16,7 @@ function Layout(props) {
 
   const queryParams = queryString.parse(location.search);
   const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
-  console.log(kbTopic);
+
   return (
     <div className="layout">
       <Header

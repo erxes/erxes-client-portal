@@ -28,14 +28,16 @@ class Lists extends React.Component {
   };
 
   render() {
+    const { articles, catId } = this.props;
+
     return (
       <div className="knowledge-base">
         <Row>
           <Col>
             {this.renderSearchResult()}
-            {this.props.articles.map((article) => (
+            {articles.map((article) => (
               <Link
-                to={`/knowledge-base/article/detail?_id=${article._id}`}
+                to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
                 key={article._id}
               >
                 <div className="kbase-lists card tab-content">
