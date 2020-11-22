@@ -11,24 +11,43 @@ import { queries } from "../../knowledgeBase/graphql";
 
 const { REACT_APP_TOPIC_ID } = process.env;
 
-function Layout(props) {
-  const { location, getKbTopicQuery } = props;
+class Layout extends React.Component {
+  componentDidMount() {
+    window.erxesSettings = {
+      messenger: {
+        brand_id: "5fkS4v",
+      },
+    };
 
-  const queryParams = queryString.parse(location.search);
-  const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
+    (() => {
+      const script = document.createElement("script");
+      script.src = "https://w.office.erxes.io/build/messengerWidget.bundle.js";
+      script.async = true;
 
-  return (
-    <div className="layout">
-      <Header
-        history={props.history}
-        searchValue={queryParams.searchValue}
-        kbTopic={kbTopic}
-      />
+      const entry = document.getElementsByTagName("script")[0];
+      entry.parentNode.insertBefore(script, entry);
+    })();
+  }
 
-      <Container className="main-body">{props.children}</Container>
-      <Footer kbTopic={kbTopic} />
-    </div>
-  );
+  render() {
+    const { location, getKbTopicQuery, history, children } = this.props;
+
+    const queryParams = queryString.parse(location.search);
+    const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
+
+    return (
+      <div className="layout">
+        <Header
+          history={history}
+          searchValue={queryParams.searchValue}
+          kbTopic={kbTopic}
+        />
+
+        <Container className="main-body">{children}</Container>
+        <Footer kbTopic={kbTopic} />
+      </div>
+    );
+  }
 }
 
 export default withRouter(
