@@ -1,0 +1,9 @@
+.git*
+node_modules
+public
+src
+.env*
+*.md
+Dockerfile*
+*.json
+yarn.lock

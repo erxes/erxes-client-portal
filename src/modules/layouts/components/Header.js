@@ -28,7 +28,11 @@ function Header(props) {
               </div>
             </Col>
             <Col md="auto" className="header-links">
-              <a href="https://erxes.io/" target="_blank">
+              <a
+                href="https://erxes.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className=" icon-arrow-up-right"></i> Go to erxes
               </a>
             </Col>
