@@ -93,6 +93,31 @@ class Categories extends React.Component {
     return (
       <Container className="knowledge-base" fluid="sm">
         <Row>{this.renderCategories()}</Row>
+        <Container fluid="sm">
+          <section className="video align-center">
+            <h4>Video tutorials</h4>
+            <p className="desc">
+              For those visual learners, we have a full playlist of video
+              tutorials to help you onboard. Make sure you check out the
+              <a
+                href="https://www.youtube.com/watch?v=sDzPEEBSp44&feature=youtu.be&list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz&ab_channel=erxesInc"
+                target="_blank"
+              >
+                &nbsp;full playlist&nbsp;
+              </a>
+              on our Youtube channel or click the button on the top left corner
+              of this video.
+            </p>
+            <iframe
+              width="80%"
+              height="450"
+              src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen="allowfullscreen"
+            ></iframe>
+          </section>
+        </Container>
       </Container>
     );
   }

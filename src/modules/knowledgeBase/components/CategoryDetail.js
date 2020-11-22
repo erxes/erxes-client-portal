@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import SectionHeader from '../../common/components/SectionHeader';
-import ArticleList from './ArticleList';
+import React from "react";
+import PropTypes from "prop-types";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import SectionHeader from "../../common/components/SectionHeader";
+import ArticleList from "./ArticleList";
 class CategoryDetail extends React.Component {
   isActive = (categoryId) => {
     if (categoryId === this.props.category._id) {
-      return 'active';
+      return "active";
     }
 
     return;
@@ -45,12 +45,8 @@ class CategoryDetail extends React.Component {
 
   render() {
     return (
-      <Container className="knowledge-base">
-        <SectionHeader
-          icon={this.props.category.icon}
-          title={this.props.category.title}
-          description={this.props.category.description}
-        />
+      <Container className="knowledge-base" fluid="sm">
+        <SectionHeader title={this.props.category.title} />
 
         <Row>
           <Col md={9}>
