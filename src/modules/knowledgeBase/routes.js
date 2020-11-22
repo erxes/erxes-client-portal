@@ -6,7 +6,7 @@ import Details from './containers/ArticleDetail';
 import ArticleList from './containers/ArticleList';
 import CategoryDetail from './containers/CategoryDetail';
 
-const { REACT_APP_TOPIC_ID } = getEnv();
+const { REACT_APP_TOPIC_ID } = process.env;
 
 const articleDetails = ({ history, location }) => {
   const queryParams = queryString.parse(location.search);
