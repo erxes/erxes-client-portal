@@ -1,53 +1,65 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 
-function Footer() {
+function Footer(props) {
+  const { color } = props.kbTopic || {};
+
   return (
-    <section className="footer align-center">
+    <section className="footer align-center" style={{ background: color }}>
       <Container fluid="sm">
         <h4>Community</h4>
         <p className="desc">
           Still have questions? Start a discussion, browse solutions, and get
           tips from erxes experts.
         </p>
-        <Row>
-          <Col md={4}>
-            <a
-              href="https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq"
-              target="_blank"
-            >
-              <div className="card">
+        <div className="align-center">
+          <ul className="socials">
+            <li>
+              <a
+                href="https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
-                  src="https://erxes.io/static/images/logo/rocketchat-logo.png"
+                  src="https://erxes.io/static/images/logo/rocketchat-icon.png"
                   alt="rocketchat"
                 />
-                <h3 className="uk-heading-primary">RocketChat </h3>
-                <div className="el-meta">
-                  Technical challenges involving code, bugs, enhancement
-                  requests
-                </div>
-                <i className="icon-chevron"></i>
-              </div>
-            </a>
-          </Col>
-          <Col md={4}>
-            <a href="https://fb.erxes.io" target="_blank">
-              <div class="card">
+              </a>
+            </li>
+            <li>
+              <a href="https://fb.erxes.io/" target="_blank" rel="noreferrer">
                 <img
-                  src="https://erxes.io/static/images/community/facebook.svg"
-                  alt="comm facebook"
+                  src="https://erxes.io/static/images/logo/fb-icon.png"
+                  alt="facebook"
                 />
-                <h3 class="uk-heading-primary">Facebook </h3>
-                <div class="el-meta">
-                  Discussing use cases, set up configuration, etc. No coding
-                  required
-                </div>
-                <i class="icon-chevron"> </i>
-              </div>
-            </a>
-          </Col>
-        </Row>
-        <div className="footer-text">erxes Inc</div>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/erxes"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="https://erxes.io/static/images/logo/github.png"
+                  alt="github"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://twitter.com/erxeshq"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="https://erxes.io/static/images/logo/tw-icon.svg"
+                  alt="twitter"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
       </Container>
     </section>
   );

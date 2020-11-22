@@ -26,7 +26,7 @@ function Layout(props) {
       />
 
       <Container className="main-body">{props.children}</Container>
-      <Footer />
+      <Footer kbTopic={kbTopic} />
     </div>
   );
 }
