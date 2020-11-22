@@ -1,8 +1,8 @@
-import React from 'react';
-import * as dayjs from 'dayjs';
-import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import * as dayjs from "dayjs";
+import PropTypes from "prop-types";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Lists extends React.Component {
   renderSearchResult = () => {
@@ -14,32 +14,34 @@ class Lists extends React.Component {
 
     if (articles.length === 0) {
       return (
-        <span className="search-reuslt">
+        <span className="search-result">
           We couldn't find any articles for: <b>{searchValue}</b>
         </span>
       );
     }
 
     return (
-      <span className="search-reuslt">
+      <span className="search-result">
         Search result for: <b>{searchValue}</b>
       </span>
     );
   };
 
   render() {
+    const { articles, catId } = this.props;
+
     return (
-      <Container className="knowledge-base">
+      <Container className="knowledge-base" fluid="sm">
         <Row>
           <Col>
             {this.renderSearchResult()}
-            {this.props.articles.map((article) => (
+            {articles.map((article) => (
               <Link
-                to={`/knowledge-base/article/detail?_id=${article._id}`}
+                to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
                 key={article._id}
               >
-                <div className="kbase-lists card">
-                  <h3>{article.title}</h3>
+                <div className="kbase-lists card tab-content">
+                  <h5>{article.title}</h5>
                   <p>{article.summary}</p>
                   <div className="avatars">
                     <img
@@ -49,14 +51,15 @@ class Lists extends React.Component {
                       width="34"
                       height="34"
                     />
-                    <div>
+                    <div className="avatar-info">
                       <div>
-                        Written by: {article.createdUser.details.fullName}
+                        Written by{" "}
+                        <span>{article.createdUser.details.fullName}</span>
                       </div>
                       <div>
-                        Modified:
+                        Modified{" "}
                         <span>
-                          {dayjs(article.modifiedDate).format('MMM D YYYY')}
+                          {dayjs(article.modifiedDate).format("MMM D YYYY")}
                         </span>
                       </div>
                     </div>

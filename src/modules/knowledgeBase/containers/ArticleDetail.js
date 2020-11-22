@@ -1,44 +1,45 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import * as compose from 'lodash.flowright';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import Details from '../components/ArticleDetail';
-import { queries } from '../graphql/index';
+import React from "react";
+import PropTypes from "prop-types";
+import * as compose from "lodash.flowright";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
+import Details from "../components/ArticleDetail";
+import { queries } from "../graphql/index";
 
 class DetailContainer extends React.Component {
   render() {
-    const { getArticleDetailQuery, getKbTopicQuery } = this.props;
+    const { getArticleDetailQuery, getKbCategoryQuery } = this.props;
 
-    if (getKbTopicQuery.loading || getArticleDetailQuery.loading) {
+    if (getKbCategoryQuery.loading || getArticleDetailQuery.loading) {
       return <div></div>;
     }
 
-    const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
-    const categories = kbTopic.categories ? kbTopic.categories : [];
+    const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};
+
     const articleDetail =
       getArticleDetailQuery.knowledgeBaseArticleDetail || {};
 
-    return <Details articleDetail={articleDetail} categories={categories} />;
+    return <Details articleDetail={articleDetail} category={category} />;
   }
 }
 
 DetailContainer.propTypes = {
   getArticleDetailQuery: PropTypes.object,
+  getKbCategoryQuery: PropTypes.object,
   queryParams: PropTypes.object,
 };
 
 export default compose(
   graphql(gql(queries.getArticleDetailQuery), {
-    name: 'getArticleDetailQuery',
+    name: "getArticleDetailQuery",
     options: ({ queryParams }) => ({
       variables: { _id: queryParams._id },
     }),
   }),
-  graphql(gql(queries.getKbTopicQuery), {
-    name: 'getKbTopicQuery',
-    options: () => ({
-      variables: { _id: '7ivEFncj85EhWKpxR' },
+  graphql(gql(queries.getKbCategoryQuery), {
+    name: "getKbCategoryQuery",
+    options: ({ queryParams }) => ({
+      variables: { _id: queryParams.catId },
     }),
   })
 )(DetailContainer);

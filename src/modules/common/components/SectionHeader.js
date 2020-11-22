@@ -1,11 +1,24 @@
 import React from "react";
-const SectionHeader = props => {
+import { Link } from "react-router-dom";
+
+const SectionHeader = (props) => {
+  const { title, catTitle, catId } = props;
+
   return (
     <div className="section-header">
-      <h2 className="section-title">
-        <i className={`icon-${props.icon}`}></i> {props.title}
-      </h2>
-      {props.description && <p>{props.description}</p>}
+      <Link to={`/knowledge-base`}>
+        <div className="item">All categories</div>
+      </Link>
+      {catId && (
+        <>
+          <i class="icon-chevron"> </i>
+          <Link to={`/knowledge-base/category/details/${catId}`}>
+            <div className="item">{catTitle}</div>
+          </Link>
+        </>
+      )}
+      <i class="icon-chevron"> </i>
+      <div className="item">{title}</div>
     </div>
   );
 };

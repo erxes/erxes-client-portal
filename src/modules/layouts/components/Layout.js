@@ -1,15 +1,62 @@
-import React from 'react';
-import Header from './Header';
-import { Container } from 'react-bootstrap';
+import React from "react";
+import * as compose from "lodash.flowright";
+import Header from "./Header";
+import Footer from "./Footer";
+import { Container } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
+import queryString from "query-string";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import { queries } from "../../knowledgeBase/graphql";
 
-function Layout(props) {
-  return (
-    <div className="layout">
-      <Header />
+const { REACT_APP_TOPIC_ID } = process.env;
 
-      <Container className="main-body">{props.children}</Container>
-    </div>
-  );
+class Layout extends React.Component {
+  componentDidMount() {
+    window.erxesSettings = {
+      messenger: {
+        brand_id: "5fkS4v",
+      },
+    };
+
+    (() => {
+      const script = document.createElement("script");
+      script.src = "https://w.office.erxes.io/build/messengerWidget.bundle.js";
+      script.async = true;
+
+      const entry = document.getElementsByTagName("script")[0];
+      entry.parentNode.insertBefore(script, entry);
+    })();
+  }
+
+  render() {
+    const { location, getKbTopicQuery, history, children } = this.props;
+
+    const queryParams = queryString.parse(location.search);
+    const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
+
+    return (
+      <div className="layout">
+        <Header
+          history={history}
+          searchValue={queryParams.searchValue}
+          kbTopic={kbTopic}
+        />
+
+        <Container className="main-body">{children}</Container>
+        <Footer kbTopic={kbTopic} />
+      </div>
+    );
+  }
 }
 
-export default Layout;
+export default withRouter(
+  compose(
+    graphql(gql(queries.getKbTopicQuery), {
+      name: "getKbTopicQuery",
+      options: () => ({
+        variables: { _id: REACT_APP_TOPIC_ID },
+      }),
+    })
+  )(Layout)
+);
