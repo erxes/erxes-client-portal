@@ -1,6 +1,7 @@
 import React from "react";
 import * as compose from "lodash.flowright";
 import Header from "./Header";
+import Footer from "./Footer";
 import { Container } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import queryString from "query-string";
@@ -15,7 +16,7 @@ function Layout(props) {
 
   const queryParams = queryString.parse(location.search);
   const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
-
+  console.log(kbTopic);
   return (
     <div className="layout">
       <Header
@@ -25,6 +26,7 @@ function Layout(props) {
       />
 
       <Container className="main-body">{props.children}</Container>
+      <Footer />
     </div>
   );
 }

@@ -91,7 +91,7 @@ class Categories extends React.Component {
 
   render() {
     return (
-      <Container className="knowledge-base">
+      <Container className="knowledge-base" fluid="sm">
         <Row>{this.renderCategories()}</Row>
       </Container>
     );
