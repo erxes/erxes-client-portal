@@ -6,9 +6,13 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
 .head {
-  background: $mainColor;
   box-shadow: $shadow;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: $mainColor;
 }
 
 .header {
