@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Avatar from "../../../assets/images/avatar-colored.svg";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Avatar from '../../../assets/images/avatar-colored.svg';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class Categories extends React.Component {
-  renderAuthors = (authors) => {
+  renderAuthors = authors => {
     if (authors.length > 3) {
       return (
         <>
@@ -20,12 +20,12 @@ class Categories extends React.Component {
     return authors.map((author, index) => (
       <o key={index}>
         {author.details.fullName}
-        {authors.length > 1 && ", "}
+        {authors.length > 1 && ', '}
       </o>
     ));
   };
 
-  renderAvatars = (cat) => {
+  renderAvatars = cat => {
     return (
       <div className="avatars">
         {cat.authors.map((author, index) => (
@@ -61,7 +61,7 @@ class Categories extends React.Component {
     const { categories } = kbTopic;
 
     if (categories) {
-      return categories.map((cat) => {
+      return categories.map(cat => {
         return (
           <Col md={12} key={cat._id}>
             <Card className="category-item">
@@ -114,7 +114,7 @@ class Categories extends React.Component {
               height="450"
               title="erxes-list"
               src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen="allowfullscreen"
             ></iframe>
@@ -127,7 +127,7 @@ class Categories extends React.Component {
 
 Categories.propTypes = {
   kbTopic: PropTypes.object,
-  articlesQuery: PropTypes.object,
+  articlesQuery: PropTypes.object
 };
 
 export default Categories;
