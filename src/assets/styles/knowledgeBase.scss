@@ -55,13 +55,10 @@
     margin: 1rem 0 2rem;
 
     li {
-      font-size: 20px;
-      margin-bottom: 1.5rem;
-
       a {
         color: $mainColor;
         h6 {
-          font-size: 18px;
+          font-size: 15px;
           &:hover {
             text-decoration: underline;
           }
@@ -69,7 +66,6 @@
 
         p {
           color: $silverGrey;
-          font-size: 14px;
         }
       }
     }
