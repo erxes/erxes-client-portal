@@ -58,8 +58,24 @@ time {
 
   &.article-detail {
     padding: 50px 80px;
+
+    .content {
+      h1 {
+        font-size: 25px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
   }
 }
+
+h1 strong, h2 strong, h3 strong {
+  font-weight: 500;
+}
+
+
 .btn {
   width: 100%;
   &:focus {
