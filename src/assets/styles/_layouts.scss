@@ -304,12 +304,6 @@
 @media only screen and (max-width: 1249px) {
   .header {
     padding: 10px 0;
-    .logo {
-      a {
-        margin: 0;
-        padding: 0;
-      }
-    }
   }
   .small-hidden {
     display: none;
@@ -317,4 +311,9 @@
   .logged-in-user {
     padding: 0 20px;
   }
+}
+@media only screen and (max-width: 600px) {
+  .card.article-detail {
+    padding: 30px;
+}
 }
