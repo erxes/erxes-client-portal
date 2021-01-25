@@ -13,7 +13,7 @@ export const sendGraphQLRequest = ({
 }: {
   name: string;
   query: string;
-  variables: { [key: string]: string };
+  variables?: { [key: string]: string };
 }) => {
   return new Promise((resolve, reject) => {
     request(
