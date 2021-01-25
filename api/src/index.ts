@@ -22,7 +22,6 @@ if (!JWT_TOKEN_SECRET) {
 const PORT = getEnv({ name: 'PORT' });
 const CLIENT_PORTAL_DOMAIN = getEnv({ name: 'CLIENT_PORTAL_DOMAIN' });
 const MONGO_URL = getEnv({ name: 'MONGO_URL' });
-const TEST_MONGO_URL = getEnv({ name: 'TEST_MONGO_URL' }); 
 
 export const app = express();
 
@@ -57,13 +56,7 @@ app.use((error, _req, res, _next) => {
 const httpServer = createServer(app);
 
 httpServer.listen(PORT, () => {
-  let mongoUrl = MONGO_URL;
-
-  if (NODE_ENV === 'test') {
-    mongoUrl = TEST_MONGO_URL;
-  }
-
-  connect(mongoUrl).then(async () => {
+  connect(MONGO_URL).then(async () => {
     debugDb('Succefully connected to MongoDB');
   });
 

@@ -33,11 +33,7 @@ class Categories extends React.Component {
             key={index}
             className="round-img"
             alt={author.details.fullName}
-            src={
-              author.details.avatar.length === 0
-                ? Avatar
-                : author.details.avatar
-            }
+            src={Avatar}
             width="34"
             height="34"
           />
