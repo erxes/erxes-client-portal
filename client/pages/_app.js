@@ -1,5 +1,6 @@
-import '../styles/globals.css'
-import '../styles/app.scss'
+import '../styles/globals.css';
+import '../styles/app.scss';
+
 import { ApolloProvider } from '@apollo/client';
 import apolloClient from '../components/apolloClient';
 
@@ -11,4 +12,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp
+export default MyApp;

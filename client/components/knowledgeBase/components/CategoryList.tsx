@@ -5,26 +5,27 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 
 type Props = {
   kbTopic: any;
+  articles: any[];
 };
 
-class CategoryList extends React.Component {
+class CategoryList extends React.Component<Props> {
   renderAuthors = authors => {
     if (authors.length > 3) {
       return (
         <>
           {authors.slice(0, 3).map((user, index) => (
-            <o key={index}>{user.details.fullName},</o>
+            <span key={index}>{user.details.fullName},</span>
           ))}
-          <o> and {authors.length - 3} other </o>
+          <span> and {authors.length - 3} other </span>
         </>
       );
     }
 
     return authors.map((author, index) => (
-      <o key={index}>
+      <span key={index}>
         {author.details.fullName}
         {authors.length > 1 && ', '}
-      </o>
+      </span>
     ));
   };
 
@@ -114,7 +115,7 @@ class CategoryList extends React.Component {
               src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
               frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen="allowfullscreen"
+              allowFullScreen={true}
             ></iframe>
           </section>
         </Container>

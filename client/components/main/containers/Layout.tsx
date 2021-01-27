@@ -1,26 +1,26 @@
-import React, { useEffect } from "react";
-import { gql, useQuery } from "@apollo/client";
+import React, { useEffect } from 'react';
+import { gql, useQuery } from '@apollo/client';
 import DumbLayout from '../components/Layout';
-import { getKbTopicQuery } from "../../../knowledgeBase/graphql/queries";
+import { getKbTopicQuery } from '../../knowledgeBase/graphql/queries';
 
 function Layout(props) {
   const { loading, data } = useQuery(gql(getKbTopicQuery), {
-    variables: { _id: "pmDpoLdnMCBtxY5NC" },
+    variables: { _id: 'mWukjjfBpPZFxDmFr' }
   });
 
   useEffect(() => {
     (window as any).erxesSettings = {
       messenger: {
-        brand_id: "5fkS4v",
-      },
+        brand_id: '5fkS4v'
+      }
     };
 
     (() => {
-      const script = document.createElement("script");
-      script.src = "https://w.office.erxes.io/build/messengerWidget.bundle.js";
+      const script = document.createElement('script');
+      script.src = 'https://w.office.erxes.io/build/messengerWidget.bundle.js';
       script.async = true;
 
-      const entry = document.getElementsByTagName("script")[0];
+      const entry = document.getElementsByTagName('script')[0];
       entry.parentNode.insertBefore(script, entry);
     })();
   }, []);

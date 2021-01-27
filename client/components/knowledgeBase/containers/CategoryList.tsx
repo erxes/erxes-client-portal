@@ -1,17 +1,18 @@
-import React from "react";
-import { gql, useQuery } from "@apollo/client";
-import * as queries from "../graphql/queries";
-import CategoryList from "../components/CategoryList";
+import React from 'react';
+import { gql, useQuery } from '@apollo/client';
+import * as queries from '../graphql/queries';
+import CategoryList from '../components/CategoryList';
 
 type Props = {};
 
 function CategoriesContainer(props: Props) {
   const kbTopicResponse = useQuery<any>(gql(queries.getKbTopicQuery), {
-    variables: { _id: "pmDpoLdnMCBtxY5NC" },
+    variables: { _id: 'mWukjjfBpPZFxDmFr' }
   });
+
   const articlesResponse = useQuery<any>(
     gql(queries.widgetsKnowledgeBaseArticles),
-    { variables: { _id: "pmDpoLdnMCBtxY5NC", searchString: "" } }
+    { variables: { _id: 'mWukjjfBpPZFxDmFr', searchString: '' } }
   );
 
   if (kbTopicResponse.loading || articlesResponse.loading) {
