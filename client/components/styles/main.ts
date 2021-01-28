@@ -8,7 +8,7 @@ const Header = styledTS<{ color?: string; backgroundImage?: string }>(
 )`
   padding: 30px;
   color: ${colors.colorWhite};
-  font-size: ${typography.fontSizeBody};
+  font-size: ${typography.fontSizeBody}px;
 
   background-color: ${props => (props.color ? props.color : colors.colorWhite)};
   background-image: ${props =>
