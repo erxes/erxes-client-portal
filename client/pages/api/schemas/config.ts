@@ -5,6 +5,7 @@ export const types = `
     description: String
     logo: String
     icon: String
+    url: String
     knowledgeBaseLabel: String
     knowledgeBaseTopicId: String
     taskLabel: String
@@ -16,4 +17,6 @@ export const types = `
 
 export const queries = `
   getConfig: Config
+  getTaskStages: JSON
+  getStageTasks(stageId: String!): JSON
 `;

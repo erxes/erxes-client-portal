@@ -1,20 +1,23 @@
-import React from 'react';
+import React from "react";
+import Link from "next/link";
 import {
   Header as Head,
   HeaderTop,
   HeaderLogo,
   HeaderLinks,
   Container,
-  HeaderTitle
-} from '../../styles/main';
-import Search from './Search';
-import Icon from '../../common/Icon';
+  HeaderTitle,
+} from "../../styles/main";
+import Search from "./Search";
+import Icon from "../../common/Icon";
+import { Config, Topic } from "../../types";
 
 type Props = {
-  topic: any;
+  config: Config;
+  topic: Topic;
 };
 
-function Header({ topic }: Props) {
+function Header({ config, topic }: Props) {
   const { backgroundImage, color } = topic || {};
 
   return (
@@ -22,26 +25,34 @@ function Header({ topic }: Props) {
       <Container transparent={true}>
         <HeaderTop>
           <HeaderLogo>
-            <img src="/static/logos/erxes-logo.svg" />
-            <HeaderTitle>Community Help Center</HeaderTitle>
+            <img src={config.logo} />
+            <HeaderTitle>{config.name}</HeaderTitle>
           </HeaderLogo>
 
           <HeaderLinks>
-            <a
-              href="https://erxes.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon icon="arrow-up-right" /> Go to erxes
+            <a href={config.url} target="_blank" rel="noopener noreferrer">
+              <Icon icon="arrow-up-right" /> {config.name}
             </a>
+            <ul>
+              <li>
+                <Link href="/">
+                  <a>{config.knowledgeBaseLabel || "Knowledge Base"}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/tasks">
+                  <a>{config.taskLabel || "Task"}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/tickets">
+                  <a>{config.ticketLabel || "Ticket"}</a>
+                </Link>
+              </li>
+            </ul>
           </HeaderLinks>
         </HeaderTop>
-
-        <h3>
-          A knowledge-sharing help center designed specially for the erxes
-          community
-        </h3>
-
+        <h3>{config.description}</h3>
         <Search />
       </Container>
     </Head>

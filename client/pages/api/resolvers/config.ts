@@ -8,6 +8,7 @@ export const configClientPortal = `
       description
       logo
       icon
+      url
       knowledgeBaseLabel
       knowledgeBaseTopicId
       taskLabel
@@ -18,11 +19,26 @@ export const configClientPortal = `
   }
 `;
 
+export const getTaskStages = `
+  query getTaskStages {
+    getTaskStages
+  }
+`;
+
 const configQueries = {
   async getConfig(_root) {
     const response = await sendGraphQLRequest({
       query: configClientPortal,
       name: 'configClientPortal'
+    });
+
+    return response;
+  },
+
+  async getTaskStages() {
+    const response = await sendGraphQLRequest({
+      query: getTaskStages,
+      name: 'getTaskStages'
     });
 
     return response;

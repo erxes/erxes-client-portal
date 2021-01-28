@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
+import Head from 'next/head';
 import DumbLayout from '../components/Layout';
 import { AppConsumer } from '../../appContext';
-import { Config } from '../../types';
+import { Config, Topic } from '../../types';
 
 type Props = {
   children: React.ReactNode;
-  topic?: any;
+  config: Config;
+  topic: Topic;
 };
 
-function Layout({ topic, ...props }: Props) {
+function Layout({ topic, config, ...props }: Props) {
   useEffect(() => {
     (window as any).erxesSettings = {
       messenger: {
@@ -26,7 +28,14 @@ function Layout({ topic, ...props }: Props) {
     })();
   }, []);
 
-  return <DumbLayout {...props} topic={topic} />;
+  return (
+    <>
+      <Head>
+        <link rel="shortcut icon" href={config.icon || ''} type="image/x-icon" />
+      </Head>
+      <DumbLayout {...props} config={config} topic={topic} />
+    </>
+  )
 }
 
 const WithConsumer = props => {

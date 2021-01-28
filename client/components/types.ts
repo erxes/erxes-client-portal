@@ -3,6 +3,7 @@ export type Config = {
   description?: string;
   logo?: string;
   icon?: string;
+  url?: string;
   knowledgeBaseLabel?: string;
   knowledgeBaseTopicId?: string;
   ticketLabel?: string;
