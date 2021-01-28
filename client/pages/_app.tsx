@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import '../styles/app.scss';
+import 'erxes-icon/css/erxes.min.css';
 
 import { ApolloProvider } from '@apollo/client';
 import apolloClient from '../components/apolloClient';

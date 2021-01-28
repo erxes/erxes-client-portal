@@ -1,7 +1,14 @@
-import React from "react";
-import { Row, Col, Container } from "react-bootstrap";
-import Search from "./Search";
-// import Logo from '../../../images/logos/erxes-logo.svg';
+import React from 'react';
+import {
+  Header as Head,
+  HeaderTop,
+  HeaderLogo,
+  HeaderLinks,
+  Container,
+  HeaderTitle
+} from '../../styles/main';
+import Search from './Search';
+import Icon from '../../common/Icon';
 
 type Props = {
   kbTopic: any;
@@ -10,42 +17,34 @@ type Props = {
 function Header({ kbTopic }: Props) {
   const { backgroundImage, color } = kbTopic || {};
 
-  const backImg = backgroundImage && `url(${backgroundImage})`;
-  const backColor = color && color;
-
   return (
-    <div
-      className="head"
-      style={{ backgroundImage: backImg, backgroundColor: backColor }}
-    >
-      <div className="header">
-        <Container fluid="sm">
-          <Row className="justify-content-md-center">
-            <Col>
-              <div className="logo">
-                {/* <Logo /> */}
-                <div className="line">|</div>
-                <div className="text">Community Help Center</div>
-              </div>
-            </Col>
-            <Col md="auto" className="header-links">
-              <a
-                href="https://erxes.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className=" icon-arrow-up-right"></i> Go to erxes
-              </a>
-            </Col>
-          </Row>
-          <h3>
-            A knowledge-sharing help center designed specially for the erxes
-            community
-          </h3>
-          <Search kbTopic={kbTopic} />
-        </Container>
-      </div>
-    </div>
+    <Head backgroundImage={backgroundImage} color={color}>
+      <Container transparent={true}>
+        <HeaderTop>
+          <HeaderLogo>
+            <img src="/static/logos/erxes-logo.svg" />
+            <HeaderTitle>Community Help Center</HeaderTitle>
+          </HeaderLogo>
+
+          <HeaderLinks>
+            <a
+              href="https://erxes.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon icon="arrow-up-right" /> Go to erxes
+            </a>
+          </HeaderLinks>
+        </HeaderTop>
+
+        <h3>
+          A knowledge-sharing help center designed specially for the erxes
+          community
+        </h3>
+
+        <Search />
+      </Container>
+    </Head>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from './Footer';
-import { Container } from 'react-bootstrap';
+import { Container } from '../../styles/main';
 import Header from './Header';
 
 type Props = {
@@ -12,9 +12,9 @@ function Layout({ kbTopic, children }: Props) {
   return (
     <div className="layout">
       <Header kbTopic={kbTopic} />
-      <Container className="main-body">
-        {children}
-      </Container>
+
+      <Container className="main-body">{children}</Container>
+
       <Footer kbTopic={kbTopic} />
     </div>
   );

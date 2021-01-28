@@ -1,5 +1,9 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import React from 'react';
+import {
+  Container,
+  Footer as StyledFooter,
+  FooterLink
+} from '../../styles/main';
 
 type Props = {
   kbTopic: any;
@@ -8,68 +12,38 @@ type Props = {
 function Footer(props: Props) {
   const { color } = props.kbTopic || {};
 
+  const renderLink = (url: string, imgSrc: string, iconName: string) => {
+    return (
+      <FooterLink href={url} target="_blank" rel="noopener noreferrer">
+        <img
+          src={`https://erxes.io/static/images/logo/${imgSrc}`}
+          alt={iconName}
+        />
+      </FooterLink>
+    );
+  };
+
   return (
-    <section className="footer align-center" style={{ background: color }}>
-      <Container fluid="sm">
+    <StyledFooter color={color}>
+      <Container transparent={true}>
         <h4>Community</h4>
         <p className="desc">
           Still have questions? Start a discussion, browse solutions, and get
           tips from erxes experts.
         </p>
-        <div className="align-center">
-          <ul className="socials">
-            <li>
-              <a
-                href="https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://erxes.io/static/images/logo/rocketchat-icon.png"
-                  alt="rocketchat"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://fb.erxes.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://erxes.io/static/images/logo/fb-icon.png"
-                  alt="facebook"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/erxes"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://erxes.io/static/images/logo/github.png"
-                  alt="github"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://twitter.com/erxeshq"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://erxes.io/static/images/logo/tw-icon.svg"
-                  alt="twitter"
-                />
-              </a>
-            </li>
-          </ul>
+
+        <div>
+          {renderLink(
+            'https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq',
+            'rocketchat-icon.png',
+            'rocketchat'
+          )}
+          {renderLink('https://fb.erxes.io', 'fb-icon.png', 'facebook')}
+          {renderLink('https://github.com/erxes', 'github.png', 'github')}
+          {renderLink('https://twitter.com/erxeshq', 'tw-icon.svg', 'twitter')}
         </div>
       </Container>
-    </section>
+    </StyledFooter>
   );
 }
 

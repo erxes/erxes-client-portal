@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 // import Avatar from '../../../assets/images/avatar-colored.svg';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container } from '../../styles/main';
 
 type Props = {
   kbTopic: any;
@@ -62,26 +62,26 @@ class CategoryList extends React.Component<Props> {
     if (categories) {
       return categories.map(cat => {
         return (
-          <Col md={12} key={cat._id}>
-            <Card className="category-item">
-              <Link href={`/knowledge-base/category/details/${cat._id}`}>
-                <Row>
-                  <Col md={2} key={cat._id}>
+          <div key={cat._id}>
+            <div className="category-item">
+              <Link href={`knowledge-base/category?_id=${cat._id}`}>
+                <div>
+                  <div key={cat._id}>
                     <div className="icon-wrapper">
                       <i className={`icon-${cat.icon}`}></i>
                     </div>
-                  </Col>
-                  <Col md={10} key={cat._id}>
+                  </div>
+                  <div key={cat._id}>
                     <div className="tab-content">
-                      <h5>{cat.title}</h5>
+                      <h5>{cat.title} </h5>
                       <p>{cat.description}</p>
                       {this.renderAvatars(cat)}
                     </div>
-                  </Col>
-                </Row>
+                  </div>
+                </div>
               </Link>
-            </Card>
-          </Col>
+            </div>
+          </div>
         );
       });
     }
@@ -91,7 +91,7 @@ class CategoryList extends React.Component<Props> {
   render() {
     return (
       <Container className="knowledge-base" fluid="sm">
-        <Row>{this.renderCategories()}</Row>
+        <div>{this.renderCategories()}</div>
         <Container fluid="sm">
           <section className="video align-center">
             <h4>Video tutorials</h4>

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
+import { SearchContainer } from '../../styles/main';
+import Icon from '../../common/Icon';
 
-type Props = {
-  kbTopic: any;
-};
+type Props = {};
 
 type State = {
   searchValue: string;
@@ -15,7 +15,7 @@ export default class Search extends React.Component<Props, State> {
     const { searchValue } = props;
 
     this.state = {
-      searchValue: searchValue || "",
+      searchValue: searchValue || ''
     };
   }
 
@@ -23,26 +23,23 @@ export default class Search extends React.Component<Props, State> {
     const { searchValue } = props;
 
     this.setState({
-      searchValue: searchValue || "",
+      searchValue: searchValue || ''
     });
   }
 
-  onChange = (e) => {
+  onChange = e => {
     const value = e.target.value;
 
     this.setState({
-      searchValue: value,
+      searchValue: value
     });
   };
 
-  onSearch = () => {
-  };
+  onSearch = () => {};
 
-  onKeyDown = (e) => {
-  };
+  onKeyDown = e => {};
 
-  clearSearch = () => {
-  };
+  clearSearch = () => {};
 
   renderClearButton = () => {
     const { searchValue } = this.state;
@@ -64,17 +61,18 @@ export default class Search extends React.Component<Props, State> {
     const { searchValue } = this.state;
 
     return (
-      <div className="search-container">
+      <SearchContainer>
         <input
           onChange={this.onChange}
           placeholder="Search for articles..."
           value={searchValue}
           onKeyDown={this.onKeyDown}
         />
-        <i className="icon-search" onClick={this.onSearch}></i>
+
+        <Icon icon="search" onClick={this.onSearch} />
 
         {this.renderClearButton()}
-      </div>
+      </SearchContainer>
     );
   }
 }
