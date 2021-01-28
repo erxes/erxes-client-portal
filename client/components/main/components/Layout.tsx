@@ -4,20 +4,20 @@ import { Container, MainContent } from '../../styles/main';
 import Header from './Header';
 
 type Props = {
-  kbTopic: any;
+  topic: any;
   children: any;
 };
 
-function Layout({ kbTopic, children }: Props) {
+function Layout({ topic, children }: Props) {
   return (
     <div className="layout">
-      <Header kbTopic={kbTopic} />
+      <Header topic={topic} />
 
       <MainContent>
         <Container className="main-body">{children}</Container>
       </MainContent>
 
-      <Footer kbTopic={kbTopic} />
+      <Footer topic={topic} />
     </div>
   );
 }

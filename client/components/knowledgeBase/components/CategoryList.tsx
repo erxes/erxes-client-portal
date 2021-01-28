@@ -8,9 +8,10 @@ import {
   VideoTutorial
 } from '../styles';
 import Icon from '../../common/Icon';
+import { Topic } from '../../types';
 
 type Props = {
-  kbTopic: any;
+  topic: Topic;
   articles: any[];
 };
 
@@ -62,8 +63,8 @@ class CategoryList extends React.Component<Props> {
   };
 
   renderCategories = () => {
-    const { kbTopic } = this.props;
-    const { categories } = kbTopic;
+    const { topic } = this.props;
+    const { categories } = topic;
 
     if (categories) {
       return categories.map(cat => {

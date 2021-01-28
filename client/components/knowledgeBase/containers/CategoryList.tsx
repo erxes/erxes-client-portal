@@ -1,31 +1,49 @@
-import React from 'react';
-import { gql, useQuery } from '@apollo/client';
-import * as queries from '../graphql/queries';
-import CategoryList from '../components/CategoryList';
+import React from "react";
+import { gql, useLazyQuery } from "@apollo/client";
+import * as queries from "../graphql/queries";
+import CategoryList from "../components/CategoryList";
+import { AppConsumer } from "../../appContext";
+import { Topic } from "../../types";
+import { useEffect } from "react";
 
-type Props = {};
+type Props = {
+  topic: Topic;
+};
 
-function CategoriesContainer(props: Props) {
-  const kbTopicResponse = useQuery<any>(gql(queries.getKbTopicQuery), {
-    variables: { _id: 'mWukjjfBpPZFxDmFr' }
-  });
-
-  const articlesResponse = useQuery<any>(
-    gql(queries.widgetsKnowledgeBaseArticles),
-    { variables: { _id: 'mWukjjfBpPZFxDmFr', searchString: '' } }
+function CategoriesContainer({ topic }: Props) {
+  const [fetchArticles, { loading, data = {} }] = useLazyQuery(
+    gql(queries.widgetsKnowledgeBaseArticles)
   );
 
-  if (kbTopicResponse.loading || articlesResponse.loading) {
+  useEffect(() => {
+    if (topic) {
+      fetchArticles({
+        variables: {
+          _id: topic._id,
+          searchString: "",
+        },
+      });
+    }
+  }, [topic]);
+
+  if (loading) {
     return <div>Loading...</div>;
   }
 
-  const { widgetsKnowledgeBaseTopicDetail } = kbTopicResponse.data || {};
-  const { widgetsKnowledgeBaseArticles } = articlesResponse.data || {};
-
-  const kbTopic = widgetsKnowledgeBaseTopicDetail || {};
+  const { widgetsKnowledgeBaseArticles = {} } = data;
   const articles = widgetsKnowledgeBaseArticles || [];
 
-  return <CategoryList kbTopic={kbTopic} articles={articles} />;
+  return <CategoryList topic={topic} articles={articles} />;
 }
 
-export default CategoriesContainer;
+const WithConsumer = (props) => {
+  return (
+    <AppConsumer>
+      {({ topic }: { topic: Topic }) => {
+        return <CategoriesContainer {...props} topic={topic} />;
+      }}
+    </AppConsumer>
+  );
+};
+
+export default WithConsumer;

@@ -12,7 +12,12 @@ export const getKbTopicQuery = `
         description
         icon
         numOfArticles
-        authors
+        authors {
+          details {
+            fullName
+            avatar
+          }
+        }
       }
     }
   }

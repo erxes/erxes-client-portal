@@ -11,11 +11,11 @@ import Search from './Search';
 import Icon from '../../common/Icon';
 
 type Props = {
-  kbTopic: any;
+  topic: any;
 };
 
-function Header({ kbTopic }: Props) {
-  const { backgroundImage, color } = kbTopic || {};
+function Header({ topic }: Props) {
+  const { backgroundImage, color } = topic || {};
 
   return (
     <Head backgroundImage={backgroundImage} color={color}>

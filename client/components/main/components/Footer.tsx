@@ -6,11 +6,11 @@ import {
 } from '../../styles/main';
 
 type Props = {
-  kbTopic: any;
+  topic: any;
 };
 
 function Footer(props: Props) {
-  const { color } = props.kbTopic || {};
+  const { color } = props.topic || {};
 
   const renderLink = (url: string, imgSrc: string, iconName: string) => {
     return (

@@ -1,11 +1,14 @@
 import React from 'react';
+import AppProvider from '../components/appContext';
 import CategoriesContainer from '../components/knowledgeBase/containers/CategoryList';
 import Layout from '../components/main/containers/Layout';
 
 export default function Home() {
   return (
-    <Layout>
-      <CategoriesContainer />
-    </Layout>
+    <AppProvider>
+      <Layout>
+        <CategoriesContainer />
+      </Layout>
+    </AppProvider>
   );
 }

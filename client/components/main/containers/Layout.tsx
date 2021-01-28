@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
 import DumbLayout from '../components/Layout';
 import { getKbTopicQuery } from '../../knowledgeBase/graphql/queries';
+import { AppConsumer } from '../../appContext';
+import { Config } from '../../types';
 
-function Layout(props) {
-  const { loading, data } = useQuery(gql(getKbTopicQuery), {
-    variables: { _id: 'mWukjjfBpPZFxDmFr' }
-  });
+type Props = {
+  children: React.ReactNode;
+  topic?: any;
+};
 
+function Layout({ topic, ...props }: Props) {
   useEffect(() => {
     (window as any).erxesSettings = {
       messenger: {
@@ -25,13 +28,17 @@ function Layout(props) {
     })();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  const kbTopic = data.widgetsKnowledgeBaseTopicDetail || {};
-
-  return <DumbLayout {...props} kbTopic={kbTopic} />;
+  return <DumbLayout {...props} topic={topic} />;
 }
 
-export default Layout;
+const WithConsumer = props => {
+  return (
+    <AppConsumer>
+      {({ config, topic }: { config?: Config, topic: any }) => {
+        return <Layout {...props} config={config} topic={topic} />
+      }}
+    </AppConsumer>
+  );
+}
+
+export default WithConsumer;
