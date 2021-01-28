@@ -25,6 +25,12 @@ export const getTaskStages = `
   }
 `;
 
+export const getTasks = `
+  query getTasks($stageId: String!) {
+    getTasks(stageId: $stageId)
+  }
+`;
+
 const configQueries = {
   async getConfig(_root) {
     const response = await sendGraphQLRequest({
@@ -39,6 +45,16 @@ const configQueries = {
     const response = await sendGraphQLRequest({
       query: getTaskStages,
       name: 'getTaskStages'
+    });
+
+    return response;
+  },
+
+  async getTasks(_root, { stageId }: { stageId: string }) {
+    const response = await sendGraphQLRequest({
+      query: getTasks,
+      name: 'getTasks',
+      variables: { stageId }
     });
 
     return response;
