@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { gql, useLazyQuery } from '@apollo/client';
 import DumbLayout from '../components/Layout';
-import { getKbTopicQuery } from '../../knowledgeBase/graphql/queries';
 import { AppConsumer } from '../../appContext';
 import { Config } from '../../types';
 

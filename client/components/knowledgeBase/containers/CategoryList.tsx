@@ -15,11 +15,12 @@ function CategoriesContainer({ topic }: Props) {
     gql(queries.widgetsKnowledgeBaseArticles)
   );
 
+
   useEffect(() => {
-    if (topic) {
+    if (topic._id) {
       fetchArticles({
         variables: {
-          _id: topic._id,
+          topicId: topic._id,
           searchString: "",
         },
       });

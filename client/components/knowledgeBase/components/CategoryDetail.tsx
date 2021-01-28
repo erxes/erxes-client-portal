@@ -1,14 +1,21 @@
 import React from 'react';
-import { Container } from '../../styles/main';
+import { Container, Header } from '../../styles/main';
+import { Topic } from '../../types';
 
 type Props = {
-  categoryId: string;
+  category: any;
+  loading: boolean;
+  topic: Topic;
 };
 
-class CategoryDetail extends React.Component<Props> {
-  render() {
-    return <Container>{this.props.categoryId}</Container>;
-  }
+function CategoryDetail({ topic, category }: Props) {
+  return (
+    <Container>
+      <Header>
+        {category.title || ''}
+      </Header>
+    </Container>
+  );
 }
 
 export default CategoryDetail;
