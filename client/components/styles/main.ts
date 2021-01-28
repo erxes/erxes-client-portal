@@ -53,12 +53,16 @@ const HeaderLinks = styled.div`
   max-width: 100%;
 `;
 
+const MainContent = styled.div`
+  background-color: #f5f8fb;
+  padding: ${dimensions.headerSpacing}px 0;
+`;
+
 const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(
   styled.div
 )`
   width: 900px;
 
-  background: ${props => !props.transparent && colors.colorWhite};
   margin: 0 auto;
 
   ${props =>
@@ -171,7 +175,7 @@ const SearchContainer = styled.div`
   }
 
   input:focus + .icon-search {
-    color: $silverGrey;
+    color: ${colors.textSecondary};
   }
 
   &.sidebar-search {
@@ -231,6 +235,7 @@ export {
   HeaderLogo,
   HeaderTitle,
   HeaderLinks,
+  MainContent,
   Container,
   BoxRoot,
   SearchContainer,

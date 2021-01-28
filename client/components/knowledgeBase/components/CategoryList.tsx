@@ -1,7 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-// import Avatar from '../../../assets/images/avatar-colored.svg';
 import { Container } from '../../styles/main';
+import {
+  CategoryItem,
+  CategoryIcon,
+  CategoryContent,
+  VideoTutorial
+} from '../styles';
+import Icon from '../../common/Icon';
 
 type Props = {
   kbTopic: any;
@@ -62,26 +68,18 @@ class CategoryList extends React.Component<Props> {
     if (categories) {
       return categories.map(cat => {
         return (
-          <div key={cat._id}>
-            <div className="category-item">
-              <Link href={`knowledge-base/category?_id=${cat._id}`}>
-                <div>
-                  <div key={cat._id}>
-                    <div className="icon-wrapper">
-                      <i className={`icon-${cat.icon}`}></i>
-                    </div>
-                  </div>
-                  <div key={cat._id}>
-                    <div className="tab-content">
-                      <h5>{cat.title} </h5>
-                      <p>{cat.description}</p>
-                      {this.renderAvatars(cat)}
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </div>
+          <Link href={`knowledge-base/category?id=${cat._id}`} key={cat._id}>
+            <CategoryItem>
+              <CategoryIcon>
+                <Icon icon={cat.icon || 'book'} />
+              </CategoryIcon>
+              <CategoryContent>
+                <h5>{cat.title} </h5>
+                <p>{cat.description}</p>
+                {this.renderAvatars(cat)}
+              </CategoryContent>
+            </CategoryItem>
+          </Link>
         );
       });
     }
@@ -90,35 +88,34 @@ class CategoryList extends React.Component<Props> {
 
   render() {
     return (
-      <Container className="knowledge-base" fluid="sm">
+      <Container>
         <div>{this.renderCategories()}</div>
-        <Container fluid="sm">
-          <section className="video align-center">
-            <h4>Video tutorials</h4>
-            <p className="desc">
-              For those visual learners, we have a full playlist of video
-              tutorials to help you onboard. Make sure you check out the
-              <a
-                href="https://www.youtube.com/watch?v=sDzPEEBSp44&feature=youtu.be&list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz&ab_channel=erxesInc"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                &nbsp;full playlist&nbsp;
-              </a>
-              on our Youtube channel or click the button on the top left corner
-              of this video.
-            </p>
-            <iframe
-              width="80%"
-              height="450"
-              title="erxes-list"
-              src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen={true}
-            ></iframe>
-          </section>
-        </Container>
+
+        <VideoTutorial>
+          <h4>Video tutorials</h4>
+          <p className="desc">
+            For those visual learners, we have a full playlist of video
+            tutorials to help you onboard. Make sure you check out the
+            <a
+              href="https://www.youtube.com/watch?v=sDzPEEBSp44&feature=youtu.be&list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz&ab_channel=erxesInc"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              &nbsp;full playlist&nbsp;
+            </a>
+            on our Youtube channel or click the button on the top left corner of
+            this video.
+          </p>
+          <iframe
+            width="80%"
+            height="450"
+            title="erxes-list"
+            src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
+            frameBorder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen={true}
+          ></iframe>
+        </VideoTutorial>
       </Container>
     );
   }

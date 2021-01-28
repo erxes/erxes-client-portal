@@ -1,28 +1,15 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import React from 'react';
+import CategoryDetail from '../../../components/knowledgeBase/components/CategoryDetail';
+import Layout from '../../../components/main/containers/Layout';
 
-const Post = () => {
+export default function Category() {
   const router = useRouter();
-  console.log(router);
   const { id } = router.query;
 
   return (
-    <>
-      <h1>Post: {id}</h1>
-      <ul>
-        <li>
-          <Link href="/post/[id]/[comment]" as={`/post/${id}/first-comment`}>
-            <a>First comment</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/post/[id]/[comment]" as={`/post/${id}/second-comment`}>
-            <a>Second comment</a>
-          </Link>
-        </li>
-      </ul>
-    </>
+    <Layout>
+      <CategoryDetail categoryId={id.toString()} />
+    </Layout>
   );
-};
-
-export default Post;
+}

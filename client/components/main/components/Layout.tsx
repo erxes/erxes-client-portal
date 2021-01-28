@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from './Footer';
-import { Container } from '../../styles/main';
+import { Container, MainContent } from '../../styles/main';
 import Header from './Header';
 
 type Props = {
@@ -13,7 +13,9 @@ function Layout({ kbTopic, children }: Props) {
     <div className="layout">
       <Header kbTopic={kbTopic} />
 
-      <Container className="main-body">{children}</Container>
+      <MainContent>
+        <Container className="main-body">{children}</Container>
+      </MainContent>
 
       <Footer kbTopic={kbTopic} />
     </div>
