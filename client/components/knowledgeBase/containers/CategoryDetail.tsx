@@ -6,14 +6,18 @@ import CategoryDetail from '../components/CategoryDetail';
 import { categoryDetailQuery } from '../graphql/queries';
 
 type Props = {
-  categoryId: string;
+  queryParams: any;
   topic: Topic;
 };
 
-function CategoryDetailContainer({ categoryId, ...props }: Props) {
-  const { loading, data = {} } = useQuery(gql(categoryDetailQuery), {
-    variables: { _id: categoryId }
-  });
+function CategoryDetailContainer({ queryParams, ...props }: Props) {
+  const { id } = queryParams;
+
+  const { loading, data = {} } = id
+    ? useQuery(gql(categoryDetailQuery), {
+        variables: { _id: id }
+      })
+    : { loading: true };
 
   const category = data.knowledgeBaseCategoryDetail || {};
 
@@ -30,10 +34,10 @@ const WithConsumer = props => {
   return (
     <AppConsumer>
       {({ topic }: { topic: Topic }) => {
-        return <CategoryDetailContainer {...props} topic={topic} />
+        return <CategoryDetailContainer {...props} topic={topic} />;
       }}
     </AppConsumer>
   );
-}
+};
 
 export default WithConsumer;

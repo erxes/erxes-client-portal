@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Header } from '../../styles/main';
 import { Topic } from '../../types';
+import Layout from 'modules/main/containers/Layout';
 
 type Props = {
   category: any;
@@ -9,13 +9,7 @@ type Props = {
 };
 
 function CategoryDetail({ topic, category }: Props) {
-  return (
-    <Container>
-      <Header>
-        {category.title || ''}
-      </Header>
-    </Container>
-  );
+  return <Layout>{category.title || ''}</Layout>;
 }
 
 export default CategoryDetail;

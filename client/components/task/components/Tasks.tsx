@@ -1,4 +1,5 @@
 import React from 'react';
+import Layout from 'modules/main/containers/Layout';
 
 type Props = {
   loading: boolean;
@@ -6,15 +7,16 @@ type Props = {
 };
 
 function TasksContainer({ loading, stages }: Props) {
-  console.log(stages)
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      {stages.map(stage => <p>{stage.name}</p>)}
-    </div>
+    <Layout>
+      {stages.map(stage => (
+        <p>{stage.name}</p>
+      ))}
+    </Layout>
   );
 }
 

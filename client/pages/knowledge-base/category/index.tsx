@@ -4,7 +4,6 @@ import CategoryDetail from '../../../components/knowledgeBase/containers/Categor
 
 export default function Category() {
   const router = useRouter();
-  const { id } = router.query;
 
-  return <CategoryDetail categoryId={id.toString()} />;
+  return <CategoryDetail queryParams={router.query} />;
 }

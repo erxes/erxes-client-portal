@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import DumbLayout from '../components/Layout';
-import { AppConsumer } from '../../appContext';
+import AppProvider, { AppConsumer } from '../../appContext';
 import { Config, Topic } from '../../types';
 
 type Props = {
@@ -31,21 +31,27 @@ function Layout({ topic, config, ...props }: Props) {
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href={config.icon || ''} type="image/x-icon" />
+        <link
+          rel="shortcut icon"
+          href={config.icon || ''}
+          type="image/x-icon"
+        />
       </Head>
       <DumbLayout {...props} config={config} topic={topic} />
     </>
-  )
+  );
 }
 
 const WithConsumer = props => {
   return (
-    <AppConsumer>
-      {({ config, topic }: { config?: Config, topic: any }) => {
-        return <Layout {...props} config={config} topic={topic} />
-      }}
-    </AppConsumer>
+    <AppProvider>
+      <AppConsumer>
+        {({ config, topic }: { config?: Config; topic: any }) => {
+          return <Layout {...props} config={config} topic={topic} />;
+        }}
+      </AppConsumer>
+    </AppProvider>
   );
-}
+};
 
 export default WithConsumer;

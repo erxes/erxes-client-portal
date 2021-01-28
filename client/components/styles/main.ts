@@ -23,7 +23,7 @@ const Header = styledTS<{ color?: string; backgroundImage?: string }>(
 
 const HeaderTop = styled.div`
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: ${dimensions.coreSpacing}px;
 `;
 
 const HeaderLogo = styled.div`
@@ -46,11 +46,39 @@ const HeaderTitle = styled.span`
   border-left: 2px solid ${colors.colorWhite};
 `;
 
-const HeaderLinks = styled.div`
+const WebLink = styled.a`
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   width: auto;
   max-width: 100%;
+`;
+
+const HeaderLinks = styled.div`
+  text-align: right;
+  margin-bottom: ${dimensions.coreSpacing}px;
+`;
+
+const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
+  display: inline-block;
+  padding: 4px 0;
+  margin: 0 12px;
+  text-transform: uppercase;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  border-bottom: 2px solid transparent;
+
+  ${props =>
+    props.active &&
+    `
+    border-bottom-color:${colors.colorWhite};
+  `}
+
+  &:hover {
+    border-bottom-color:${colors.colorWhite};
+  }
 `;
 
 const MainContent = styled.div`
@@ -234,11 +262,13 @@ export {
   HeaderTop,
   HeaderLogo,
   HeaderTitle,
+  WebLink,
   HeaderLinks,
   MainContent,
   Container,
   BoxRoot,
   SearchContainer,
   Footer,
-  FooterLink
+  FooterLink,
+  LinkItem
 };
