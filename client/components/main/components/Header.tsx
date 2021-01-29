@@ -36,7 +36,7 @@ function Header({ config, topic }: Props) {
         <HeaderTop>
           <HeaderLogo>
             <Link href="/">
-              <img src={config.logo || '/static/logos/erxes-logo.svg'} />
+              <img src={`http://localhost:3300/read-file?key=${config.logo}`} />
             </Link>
             <HeaderTitle>{config.name}</HeaderTitle>
           </HeaderLogo>

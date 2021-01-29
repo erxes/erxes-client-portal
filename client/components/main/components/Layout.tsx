@@ -12,15 +12,15 @@ type Props = {
 
 function Layout({ config, topic, children }: Props) {
   return (
-    <div className="layout">
+    <>
       <Header topic={topic} config={config} />
 
       <MainContent>
-        <Container className="main-body">{children}</Container>
+        <Container>{children}</Container>
       </MainContent>
 
       <Footer topic={topic} />
-    </div>
+    </>
   );
 }
 

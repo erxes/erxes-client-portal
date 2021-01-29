@@ -27,7 +27,7 @@ function Footer(props: Props) {
     <StyledFooter color={color}>
       <Container transparent={true}>
         <h4>Community</h4>
-        <p className="desc">
+        <p>
           Still have questions? Start a discussion, browse solutions, and get
           tips from erxes experts.
         </p>
