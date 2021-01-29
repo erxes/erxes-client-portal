@@ -223,14 +223,13 @@ const Footer = styledTS<{ color?: string; backgroundImage?: string }>(
 
   text-align: center;
 
-  .desc {
+  p {
     color: rgba(255,255,255,.7);
     font-size: 14px;
     width: 500px;
     margin: 0 auto;
     margin-bottom: 20px;
   }
-
 `;
 
 const FooterLink = styled.a`
