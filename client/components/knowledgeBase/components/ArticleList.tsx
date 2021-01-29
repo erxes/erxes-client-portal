@@ -11,10 +11,6 @@ class Lists extends React.Component<Props> {
   render() {
     const { articles } = this.props;
 
-    if (!articles) {
-      return <>Empty</>;
-    }
-
     return articles.map(article => {
       return (
         <ArticleItem>

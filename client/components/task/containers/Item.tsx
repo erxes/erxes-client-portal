@@ -14,6 +14,7 @@ function ItemContainer({ stageId, ...props }: Props) {
   });
 
   const tasks = data.getTasks || [];
+  console.log(tasks);
 
   const updatedProps = {
     ...props,
@@ -21,9 +22,7 @@ function ItemContainer({ stageId, ...props }: Props) {
     loading
   };
 
-  return (
-    <Item {...updatedProps} />
-  );
+  return <Item {...updatedProps} />;
 }
 
 export default ItemContainer;

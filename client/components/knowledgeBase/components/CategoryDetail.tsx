@@ -20,7 +20,7 @@ type Props = {
   topic: Topic;
 };
 
-function CategoryDetail({ topic, category }: Props) {
+function CategoryDetail({ loading, topic, category }: Props) {
   const renderCategories = () => {
     const categories = topic && topic.categories;
 
@@ -51,7 +51,7 @@ function CategoryDetail({ topic, category }: Props) {
       <Breadcrumb title={category.title} />
       <Container>
         <CategoryLeft>
-          <Articles articles={category.articles} />
+          {loading ? ' Loading ...' : <Articles articles={category.articles} />}
         </CategoryLeft>
 
         <Sidebar>
