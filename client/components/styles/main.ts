@@ -162,23 +162,10 @@ const BoxRoot = styledTS<{ selected?: boolean }>(styled.div)`
 const SearchContainer = styled.div`
   position: relative;
 
-  i {
-    font-size: 22px;
-    cursor: pointer;
-    position: absolute;
-    left: 20px;
-    top: 18px;
-  }
-
-  .icon-search {
-    color: $white;
-  }
-
   input {
     border: 0;
     background: none;
     width: 100%;
-    color: $white;
     background: rgba(255, 255, 255, 0.2);
     font-size: 18px;
     border-radius: 5px;
@@ -202,15 +189,23 @@ const SearchContainer = styled.div`
     font-weight: 400;
   }
 
-  input:focus + .icon-search {
-    color: ${colors.textSecondary};
+  i {
+    font-size: 22px;
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
   }
 
-  &.sidebar-search {
-    margin-bottom: 1rem;
-    input {
-      font-size: 1rem;
-    }
+  i:nth-child(1) {
+    left: 20px;
+  }
+
+  i:nth-child(2) {
+    right: 20px;
+  }
+
+  input:focus + i {
+    color: ${colors.textSecondary};
   }
 `;
 

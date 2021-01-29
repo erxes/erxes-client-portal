@@ -41,37 +41,21 @@ export default class Search extends React.Component<Props, State> {
 
   clearSearch = () => {};
 
-  renderClearButton = () => {
-    const { searchValue } = this.state;
-
-    if (searchValue) {
-      return (
-        <div className="clear-icon">
-          <i className="close" onClick={this.clearSearch}>
-            &times;
-          </i>
-        </div>
-      );
-    }
-
-    return null;
-  };
-
   render() {
     const { searchValue } = this.state;
 
     return (
       <SearchContainer>
+        <Icon icon="search" onClick={this.onSearch} />
+
+        {searchValue && <Icon icon="times-circle" onClick={this.clearSearch} />}
+
         <input
           onChange={this.onChange}
           placeholder="Search for articles..."
           value={searchValue}
           onKeyDown={this.onKeyDown}
         />
-
-        <Icon icon="search" onClick={this.onSearch} />
-
-        {this.renderClearButton()}
       </SearchContainer>
     );
   }
