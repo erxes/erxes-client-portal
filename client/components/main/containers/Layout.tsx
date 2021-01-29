@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import DumbLayout from '../components/Layout';
 import AppProvider, { AppConsumer } from '../../appContext';
@@ -10,24 +10,7 @@ type Props = {
   topic: Topic;
 };
 
-function Layout({ topic, config, ...props }: Props) {
-  useEffect(() => {
-    (window as any).erxesSettings = {
-      messenger: {
-        brand_id: '5fkS4v'
-      }
-    };
-
-    (() => {
-      const script = document.createElement('script');
-      script.src = 'https://w.office.erxes.io/build/messengerWidget.bundle.js';
-      script.async = true;
-
-      const entry = document.getElementsByTagName('script')[0];
-      entry.parentNode.insertBefore(script, entry);
-    })();
-  }, []);
-
+function Layout({ topic, config = {}, ...props }: Props) {
   return (
     <>
       <Head>
