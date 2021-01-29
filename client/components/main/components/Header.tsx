@@ -38,7 +38,7 @@ function Header({ config, topic }: Props) {
         <HeaderTop>
           <HeaderLogo>
             <Link href="/">
-              <img src={`http://localhost:3300/read-file?key=${config.logo}`} />
+              <img src={config.logo} />
             </Link>
             <HeaderTitle>{config.name}</HeaderTitle>
           </HeaderLogo>

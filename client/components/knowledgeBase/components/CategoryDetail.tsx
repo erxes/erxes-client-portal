@@ -12,6 +12,7 @@ import {
 } from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Articles from './ArticleList';
 
 type Props = {
   category: any;
@@ -49,7 +50,9 @@ function CategoryDetail({ topic, category }: Props) {
     <>
       <Breadcrumb title={category.title} />
       <Container>
-        <CategoryLeft>Content</CategoryLeft>
+        <CategoryLeft>
+          <Articles articles={category.articles} />
+        </CategoryLeft>
 
         <Sidebar>
           <h6>Categories</h6>

@@ -1,6 +1,7 @@
 import { colors, typography } from '../../styles';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
+import { type } from 'os';
 
 const silverGrey = '#6c718b';
 
@@ -212,6 +213,23 @@ const SidebarItem = styledTS<{ active?: boolean }>(styled.div)`
   }
 `;
 
+const ArticleItem = styled.div`
+  color: ${silverGrey};
+  border-bottom: 1px solid #eee;
+  border-radius: 1px;
+  padding: 1.5rem;
+  background: ${colors.colorWhite};
+  box-shadow: 0 0 15px -10px rgb(0 0 0 / 25%);
+  transition: 0.4s;
+
+  h5 {
+    color: #6569df;
+    font-size: ${typography.fontSizeHeading6}px;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+`;
+
 export {
   Header,
   CategoryItem,
@@ -224,5 +242,6 @@ export {
   Container,
   SidebarItem,
   SidebarIcon,
-  SidebarContent
+  SidebarContent,
+  ArticleItem
 };

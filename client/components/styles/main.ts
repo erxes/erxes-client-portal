@@ -37,6 +37,7 @@ const HeaderLogo = styled.div`
     width: 80px;
     -webkit-filter: brightness(0) invert(1);
     filter: brightness(0) invert(1);
+    cursor: pointer;
   }
 `;
 

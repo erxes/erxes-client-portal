@@ -13,7 +13,6 @@ import { Topic } from '../../types';
 
 type Props = {
   topic: Topic;
-  articles: any[];
 };
 
 class CategoryList extends React.Component<Props> {
@@ -50,7 +49,7 @@ class CategoryList extends React.Component<Props> {
           <img
             key={index}
             alt={author.details.fullName}
-            src={`http://localhost:3300/read-file?key=${author.details.avatar}`}
+            src={author.details.avatar}
           />
         ))}
         <div className="avatar-info">
