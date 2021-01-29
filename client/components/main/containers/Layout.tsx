@@ -30,7 +30,6 @@ const WithConsumer = props => {
     <AppProvider>
       <AppConsumer>
         {({ config, topic }: { config?: Config; topic: any }) => {
-          console.log(topic);
           return <Layout {...props} config={config} topic={topic} />;
         }}
       </AppConsumer>
