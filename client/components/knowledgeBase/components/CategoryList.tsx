@@ -5,18 +5,18 @@ import {
   CategoryItem,
   CategoryIcon,
   CategoryContent,
-  VideoTutorial
-} from '../styles';
+  VideoTutorial,
+  Avatars
+} from './styles';
 import Icon from '../../common/Icon';
 import { Topic } from '../../types';
 
 type Props = {
   topic: Topic;
-  articles: any[];
 };
 
 class CategoryList extends React.Component<Props> {
-  renderAuthors = authors => {
+  renderNames = authors => {
     if (authors.length > 3) {
       return (
         <>
@@ -36,16 +36,20 @@ class CategoryList extends React.Component<Props> {
     ));
   };
 
-  renderAvatars = cat => {
+  renderAuthors = cat => {
+    const { authors } = cat;
+
+    if (authors.length === 0) {
+      return;
+    }
+
     return (
-      <div className="avatars">
+      <Avatars>
         {cat.authors.map((author, index) => (
           <img
             key={index}
-            className="round-img"
             alt={author.details.fullName}
-            width="34"
-            height="34"
+            src={author.details.avatar}
           />
         ))}
         <div className="avatar-info">
@@ -55,10 +59,10 @@ class CategoryList extends React.Component<Props> {
           </div>
           <div>
             <div className="darker">Written by: </div>
-            {this.renderAuthors(cat.authors)}
+            {this.renderNames(cat.authors)}
           </div>
         </div>
-      </div>
+      </Avatars>
     );
   };
 
@@ -77,7 +81,8 @@ class CategoryList extends React.Component<Props> {
               <CategoryContent>
                 <h5>{cat.title} </h5>
                 <p>{cat.description}</p>
-                {this.renderAvatars(cat)}
+
+                {this.renderAuthors(cat)}
               </CategoryContent>
             </CategoryItem>
           </Link>
@@ -94,7 +99,8 @@ class CategoryList extends React.Component<Props> {
 
         <VideoTutorial>
           <h4>Video tutorials</h4>
-          <p className="desc">
+
+          <p>
             For those visual learners, we have a full playlist of video
             tutorials to help you onboard. Make sure you check out the
             <a
@@ -107,6 +113,7 @@ class CategoryList extends React.Component<Props> {
             on our Youtube channel or click the button on the top left corner of
             this video.
           </p>
+
           <iframe
             width="80%"
             height="450"

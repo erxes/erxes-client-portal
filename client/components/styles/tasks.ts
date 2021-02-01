@@ -1,5 +1,5 @@
 import { colors, dimensions, typography } from '../styles';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import styledTS from 'styled-components-ts';
 
 const hoverColor = 'rgba(10,45,65,.13)';
@@ -29,6 +29,7 @@ const Wrapper = styledTS<{ transparent?: boolean }>(styled.div)`
 const ItemWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(${itemWidth}, 1fr));
+
   margin-right: 8px;
   &:nth-child(3n) {
     margin-right: 0;
@@ -53,4 +54,42 @@ const ItemWrapper = styled.div`
   cursor: pointer;
 `;
 
-export { Wrapper, StageTitle, ItemWrapper };
+const Content = styledTS<{ type?: string }>(styled.div)`
+  h5 {
+    margin-bottom: 8px;
+    word-break: break-word;
+    line-height: 18px;
+    font-size: 14px;
+  }
+  
+  position: relative;
+  padding-bottom: 32px;
+`;
+
+const Right = styled.div`
+  float: right;
+`;
+
+const Footer = styled.div`
+  padding-top: 8px;
+  border-top: 1px dotted ${colors.borderPrimary};
+  font-size: 11px;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+
+  ul {
+    float: left;
+  }
+
+  > i {
+    padding: 3px;
+  }
+`;
+
+const ItemDate = styled.span`
+  font-size: 11px;
+  color: rgb(136, 136, 136);
+`;
+
+export { Wrapper, StageTitle, ItemWrapper, Content, Footer, Right, ItemDate };

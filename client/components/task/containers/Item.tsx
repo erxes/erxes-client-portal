@@ -21,9 +21,7 @@ function ItemContainer({ stageId, ...props }: Props) {
     loading
   };
 
-  return (
-    <Item {...updatedProps} />
-  );
+  return <Item {...updatedProps} />;
 }
 
 export default ItemContainer;

@@ -1,5 +1,12 @@
 import React from 'react';
-import { ItemWrapper } from '../../styles/tasks';
+import dayjs from 'dayjs';
+import {
+  ItemWrapper,
+  Content,
+  Footer,
+  Right,
+  ItemDate
+} from '../../styles/tasks';
 
 type Props = {
   loading: boolean;
@@ -11,8 +18,26 @@ function ItemContainer({ loading, tasks }: Props) {
     return <div>Loading...</div>;
   }
 
+  const renderDate = date => {
+    if (!date) {
+      return null;
+    }
+
+    return <ItemDate>{dayjs(date).format('MMM D, YYYY')}</ItemDate>;
+  };
+
   return tasks.map(task => {
-    return <ItemWrapper>{task.name}</ItemWrapper>;
+    return (
+      <ItemWrapper>
+        <Content>
+          <h5>{task.name}</h5>
+          <Footer>
+            Last updated:
+            <Right>{renderDate(task.modifiedAt)}</Right>
+          </Footer>
+        </Content>
+      </ItemWrapper>
+    );
   });
 }
 

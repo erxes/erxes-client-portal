@@ -13,6 +13,7 @@ import {
 import Search from './Search';
 import Icon from '../../common/Icon';
 import { Config, Topic } from '../../types';
+import { useRouter } from 'next/router';
 
 type Props = {
   config: Config;
@@ -21,10 +22,11 @@ type Props = {
 
 function Header({ config, topic }: Props) {
   const { backgroundImage, color } = topic || {};
+  const router = useRouter();
 
   const renderLink = (url, label) => {
     return (
-      <LinkItem>
+      <LinkItem active={router.pathname === url}>
         <Link href={url}>{label}</Link>
       </LinkItem>
     );
@@ -36,7 +38,7 @@ function Header({ config, topic }: Props) {
         <HeaderTop>
           <HeaderLogo>
             <Link href="/">
-              <img src={`http://localhost:3300/read-file?key=${config.logo}`} />
+              <img src={config.logo} />
             </Link>
             <HeaderTitle>{config.name}</HeaderTitle>
           </HeaderLogo>

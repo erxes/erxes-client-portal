@@ -35,10 +35,10 @@ function AppProvider({ children }) {
         });
 
         setTopic(response);
-      }
+      };
 
       fetchTopic();
-    };
+    }
   }, [config]);
 
   return (
