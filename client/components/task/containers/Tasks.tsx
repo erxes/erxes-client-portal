@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
-import { getTaskStages } from '../../../pages/api/resolvers/config';
+import { getTaskStages } from '../../../pages/api/resolvers/queries/config';
 import Tasks from '../components/Tasks';
 
 type Props = {

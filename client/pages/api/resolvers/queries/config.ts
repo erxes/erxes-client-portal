@@ -1,4 +1,4 @@
-import { sendGraphQLRequest } from '../utils';
+import { sendGraphQLRequest } from '../../utils';
 
 export const configClientPortal = `
   query configClientPortal {

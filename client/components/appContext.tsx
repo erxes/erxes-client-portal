@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { configClientPortal } from '../pages/api/resolvers/config';
+import { configClientPortal } from '../pages/api/resolvers/queries/config';
 import { sendGraphQLRequest } from '../pages/api/utils';
 import * as queries from './knowledgeBase/graphql/queries';
 import { Config } from './types';

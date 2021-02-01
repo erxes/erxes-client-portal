@@ -1,11 +1,7 @@
-import config from './config';
-import knowledgeBase from './knowledgeBase';
+import Query from './queries';
 
 const resolvers = {
-  Query: {
-    ...knowledgeBase,
-    ...config
-  }
+  Query,
 };
 
 export default resolvers;

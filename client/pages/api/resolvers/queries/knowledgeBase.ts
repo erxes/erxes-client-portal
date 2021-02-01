@@ -1,4 +1,4 @@
-import { sendGraphQLRequest } from '../utils';
+import { sendGraphQLRequest } from '../../utils';
 
 export const widgetsKnowledgeBaseArticles = `
   query widgetsKnowledgeBaseArticles($topicId: String!, $searchString: String!) {

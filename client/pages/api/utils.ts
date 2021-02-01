@@ -12,7 +12,7 @@ export const sendGraphQLRequest = ({
   return new Promise((resolve, reject) => {
     request(
       {
-        url: `http://localhost:3300/graphql`,
+        url: `${process.env.NEXT_PUBLIC_MAIN_API_DOMAIN}/graphql`,
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query, variables }),
