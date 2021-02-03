@@ -1,104 +1,41 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
-import Icon from './Icon';
+import Modal, { closeStyle } from 'simple-react-modal';
 
-type Props = {
-  title: string;
-  trigger?: React.ReactNode;
-  autoOpenKey?: string;
-  content: ({ closeModal }: { closeModal: () => void }) => React.ReactNode;
-  size?: 'sm' | 'lg' | 'xl';
-  backDrop?: 'static' | boolean;
-  enforceFocus?: boolean;
-  hideHeader?: boolean;
-  isOpen?: boolean;
-  centered?: boolean;
-  onExit?: () => void;
-  isAnimate?: boolean;
-};
-
-type State = {
-  isOpen?: boolean;
-  autoOpenKey?: string;
-};
-
-class ModalTrigger extends React.Component<Props, State> {
+export default class App extends React.Component<{}, { show: boolean }> {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: props.isOpen || false,
-      autoOpenKey: ''
-    };
+    this.state = { show: false };
   }
 
-  openModal = () => {
-    this.setState({ isOpen: true });
-  };
+  show() {
+    this.setState({ show: true });
+  }
 
-  closeModal = () => {
-    this.setState({ isOpen: false });
-  };
-
-  renderHeader = () => {
-    if (this.props.hideHeader) {
-      return (
-        <div onClick={this.closeModal}>
-          <Icon icon="times" />
-        </div>
-      );
-    }
-
-    const { title } = this.props;
-
-    return (
-      <Modal.Header closeButton={true}>
-        <Modal.Title>{title}</Modal.Title>
-      </Modal.Header>
-    );
-  };
+  close() {
+    this.setState({ show: false });
+  }
 
   render() {
-    const {
-      trigger,
-      size,
-      content,
-      backDrop,
-      enforceFocus,
-      onExit,
-      centered,
-      isAnimate = false
-    } = this.props;
-
-    const { isOpen } = this.state;
-
-    // add onclick event to the trigger component
-    const triggerComponent = trigger
-      ? React.cloneElement(trigger as React.ReactElement<any>, {
-          onClick: this.openModal
-        })
-      : null;
-
     return (
-      <>
-        {triggerComponent}
+      <div>
+        <a onClick={this.show.bind(this)}>Open Modal</a>
 
         <Modal
-          size={size}
-          show={isOpen}
-          onHide={this.closeModal}
-          backdrop={backDrop}
-          enforceFocus={enforceFocus}
-          onExit={onExit}
-          animation={isAnimate}
-          centered={centered}
+          className="test-class" //this will completely overwrite the default css completely
+          style={{ background: 'red' }} //overwrites the default background
+          containerStyle={{ background: 'blue' }} //changes styling on the inner content area
+          containerClassName="test"
+          closeOnOuterClick={true}
+          show={this.state.show}
+          onClose={this.close.bind(this)}
         >
-          {this.renderHeader()}
-          <Modal.Body>{content({ closeModal: this.closeModal })}</Modal.Body>
+          <a style={closeStyle} onClick={this.close.bind(this)}>
+            X
+          </a>
+          <div>hey</div>
         </Modal>
-      </>
+      </div>
     );
   }
 }
-
-export default ModalTrigger;

@@ -1,5 +1,5 @@
 import { colors, dimensions, typography } from '../styles';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 
 const hoverColor = 'rgba(10,45,65,.13)';

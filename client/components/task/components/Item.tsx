@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import {
   ItemWrapper,
@@ -7,6 +7,7 @@ import {
   Right,
   ItemDate
 } from '../../styles/tasks';
+import Detail from './Detail';
 
 type Props = {
   loading: boolean;
@@ -14,6 +15,8 @@ type Props = {
 };
 
 function ItemContainer({ loading, tasks }: Props) {
+  const [item, setItem] = useState(null);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -26,19 +29,25 @@ function ItemContainer({ loading, tasks }: Props) {
     return <ItemDate>{dayjs(date).format('MMM D, YYYY')}</ItemDate>;
   };
 
-  return tasks.map(task => {
-    return (
-      <ItemWrapper>
-        <Content>
-          <h5>{task.name}</h5>
-          <Footer>
-            Last updated:
-            <Right>{renderDate(task.modifiedAt)}</Right>
-          </Footer>
-        </Content>
-      </ItemWrapper>
-    );
-  });
+  return (
+    <>
+      {tasks.map(task => {
+        return (
+          <ItemWrapper>
+            <Content onClick={() => setItem(task)}>
+              <h5>{task.name}</h5>
+              <Footer>
+                Last updated:
+                <Right>{renderDate(task.modifiedAt)}</Right>
+              </Footer>
+            </Content>
+          </ItemWrapper>
+        );
+      })}
+
+      <Detail item={item} onClose={() => setItem(null)} />
+    </>
+  );
 }
 
 export default ItemContainer;

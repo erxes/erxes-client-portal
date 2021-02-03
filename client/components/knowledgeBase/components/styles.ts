@@ -230,6 +230,27 @@ const ArticleItem = styled.div`
   }
 `;
 
+const ArticleWrapper = styled.div`
+  padding: 50px 80px;
+  border: 0;
+  padding: 1.5rem;
+  background: ${colors.colorWhite};
+  box-shadow: 0px 0 15px -10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  transition: 0.4s;
+  width: 100%;
+
+  .content {
+    h1 {
+      font-size: 25px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  }
+`;
+
 export {
   Header,
   CategoryItem,
@@ -243,5 +264,6 @@ export {
   SidebarItem,
   SidebarIcon,
   SidebarContent,
-  ArticleItem
+  ArticleItem,
+  ArticleWrapper
 };
