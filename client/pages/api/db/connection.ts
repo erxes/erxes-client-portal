@@ -12,7 +12,7 @@ export const connectionOptions = {
   useNewUrlParser: true,
   useCreateIndex: true,
   autoReconnect: true,
-  useFindAndModify: false,
+  useFindAndModify: false
 };
 
 (mongoose.Promise as any) = global.Promise;
@@ -33,7 +33,7 @@ mongoose.connection
 const connect = async (URL?: string, options?) => {
   client = mongoose.connect(URL || MONGO_URL, {
     ...connectionOptions,
-    ...(options || { poolSize: 100 }),
+    ...(options || { poolSize: 100 })
   });
 };
 

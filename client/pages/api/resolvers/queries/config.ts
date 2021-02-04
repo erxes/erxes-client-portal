@@ -41,10 +41,11 @@ const configQueries = {
     return response;
   },
 
-  async getTaskStages() {
+  async getTaskStages(_root, { stageId }: { stageId: string }) {
     const response = await sendGraphQLRequest({
       query: getTaskStages,
-      name: 'getTaskStages'
+      name: 'getTaskStages',
+      variables: { stageId }
     });
 
     return response;

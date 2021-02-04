@@ -1,7 +1,14 @@
-import { gql } from "apollo-server-micro";
-import { queries as ConfigQueries, types as ConfigTypes } from "./config";
-import { queries as KnowledgeBaseQueries, types as KnowledgeBaseTypes } from "./knowledgeBase";
-import { queries as UserQueries, types as UserTypes } from "./user";
+import { gql } from 'apollo-server-micro';
+import { queries as ConfigQueries, types as ConfigTypes } from './config';
+import {
+  queries as KnowledgeBaseQueries,
+  types as KnowledgeBaseTypes
+} from './knowledgeBase';
+import {
+  mutations as UserMutations,
+  queries as UserQueries,
+  types as UserTypes
+} from './user';
 
 const types = `
   scalar JSON
@@ -9,7 +16,7 @@ const types = `
   ${ConfigTypes}
   ${KnowledgeBaseTypes}
   ${UserTypes}
-`
+`;
 
 const queries = `
   type Query {
@@ -19,6 +26,12 @@ const queries = `
   }
 `;
 
-const typeDefs = gql(`${types} ${queries}`);
+const mutations = `
+  type Mutation {
+    ${UserMutations}
+  }
+`;
+
+const typeDefs = gql(`${types} ${queries} ${mutations}`);
 
 export default typeDefs;

@@ -1,7 +1,9 @@
 import Query from './queries';
+import Mutation from './mutations';
 
 const resolvers = {
-  Query,
+  Mutation,
+  Query
 };
 
 export default resolvers;

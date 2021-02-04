@@ -11,6 +11,9 @@ type Props = {
 class Lists extends React.Component<Props> {
   render() {
     const { articles } = this.props;
+    if (!articles) {
+      return <div>Empty</div>;
+    }
 
     return articles.map(article => {
       return (

@@ -20,11 +20,17 @@ export interface IUserModel extends Model<IUserDocument> {
   editProfile(_id: string, doc: IEditProfile): Promise<IUserDocument>;
   generatePassword(password: string): Promise<string>;
   comparePassword(password: string, userPassword: string): boolean;
-  resetPassword({ token, newPassword }: { token: string; newPassword: string }): Promise<IUserDocument>;
+  resetPassword({
+    token,
+    newPassword
+  }: {
+    token: string;
+    newPassword: string;
+  }): Promise<IUserDocument>;
   changePassword({
     _id,
     currentPassword,
-    newPassword,
+    newPassword
   }: {
     _id: string;
     currentPassword: string;
@@ -32,10 +38,12 @@ export interface IUserModel extends Model<IUserDocument> {
   }): Promise<IUserDocument>;
   forgotPassword(email: string): string;
   createTokens(_user: IUserDocument, secret: string): string[];
-  refreshTokens(refreshToken: string): { token: string; refreshToken: string; user: IUserDocument };
+  refreshTokens(
+    refreshToken: string
+  ): { token: string; refreshToken: string; user: IUserDocument };
   login({
     email,
-    password,
+    password
   }: {
     email: string;
     password?: string;
@@ -66,19 +74,24 @@ export const loadClass = () => {
 
       return {
         token,
-        expires: Date.now() + 86400000,
+        expires: Date.now() + 86400000
       };
     }
 
     public static checkPassword(password: string) {
       if (!password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/)) {
         throw new Error(
-          'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
+          'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'
         );
       }
     }
 
-    public static async createUser({ firstName, lastName, email, password }: IUser) {
+    public static async createUser({
+      firstName,
+      lastName,
+      email,
+      password
+    }: IUser) {
       // empty string password validation
       if (password === '') {
         throw new Error('Password can not be empty');
@@ -91,13 +104,16 @@ export const loadClass = () => {
         lastName,
         email,
         // hash password
-        password: await this.generatePassword(password),
+        password: await this.generatePassword(password)
       });
 
       return user._id;
     }
 
-    public static async editProfile(_id: string, { firstName, lastName, email }: IEditProfile) {
+    public static async editProfile(
+      _id: string,
+      { firstName, lastName, email }: IEditProfile
+    ) {
       // Checking duplicated email
       const exisitingUser = await Users.findOne({ email }).lean();
 
@@ -110,12 +126,18 @@ export const loadClass = () => {
       return Users.findOne({ _id });
     }
 
-    public static async resetPassword({ token, newPassword }: { token: string; newPassword: string }) {
+    public static async resetPassword({
+      token,
+      newPassword
+    }: {
+      token: string;
+      newPassword: string;
+    }) {
       const user = await Users.findOne({
         resetPasswordToken: token,
         resetPasswordExpires: {
-          $gt: Date.now(),
-        },
+          $gt: Date.now()
+        }
       });
 
       if (!user) {
@@ -134,8 +156,8 @@ export const loadClass = () => {
         {
           password: await this.generatePassword(newPassword),
           resetPasswordToken: undefined,
-          resetPasswordExpires: undefined,
-        },
+          resetPasswordExpires: undefined
+        }
       );
 
       return Users.findOne({ _id: user._id });
@@ -144,7 +166,7 @@ export const loadClass = () => {
     public static async changePassword({
       _id,
       currentPassword,
-      newPassword,
+      newPassword
     }: {
       _id: string;
       currentPassword: string;
@@ -174,8 +196,8 @@ export const loadClass = () => {
       await Users.findByIdAndUpdate(
         { _id: user._id },
         {
-          password: await this.generatePassword(newPassword),
-        },
+          password: await this.generatePassword(newPassword)
+        }
       );
 
       return Users.findOne({ _id: user._id });
@@ -197,8 +219,8 @@ export const loadClass = () => {
         { _id: user._id },
         {
           resetPasswordToken: token,
-          resetPasswordExpires: Date.now() + 86400000,
-        },
+          resetPasswordExpires: Date.now() + 86400000
+        }
       );
 
       return token;
@@ -209,13 +231,13 @@ export const loadClass = () => {
         _id: _user._id,
         email: _user.email,
         firstName: _user.firstName,
-        lastName: _user.lastName,
+        lastName: _user.lastName
       };
 
       const createToken = await jwt.sign({ user }, secret, { expiresIn: '1d' });
 
       const createRefreshToken = await jwt.sign({ user }, secret, {
-        expiresIn: '7d',
+        expiresIn: '7d'
       });
 
       return [createToken, createRefreshToken];
@@ -241,24 +263,27 @@ export const loadClass = () => {
       }
 
       // recreate tokens
-      const [newToken, newRefreshToken] = await this.createTokens(dbUsers, this.getSecret());
+      const [newToken, newRefreshToken] = await this.createTokens(
+        dbUsers,
+        this.getSecret()
+      );
 
       return {
         token: newToken,
         refreshToken: newRefreshToken,
-        user: dbUsers,
+        user: dbUsers
       };
     }
 
     public static async login({
       email,
-      password,
+      password
     }: {
       email: string;
       password: string;
     }) {
       const user = await Users.findOne({
-         email: { $regex: new RegExp(`^${email}$`, 'i') },
+        email: { $regex: new RegExp(`^${email}$`, 'i') }
       });
 
       if (!user || !user.password) {
@@ -273,11 +298,14 @@ export const loadClass = () => {
       }
 
       // create tokens
-      const [token, refreshToken] = await this.createTokens(user, this.getSecret());
+      const [token, refreshToken] = await this.createTokens(
+        user,
+        this.getSecret()
+      );
 
       return {
         token,
-        refreshToken,
+        refreshToken
       };
     }
   }
@@ -289,7 +317,9 @@ export const loadClass = () => {
 
 loadClass();
 
+delete mongoose.connection.models['users'];
+
 // tslint:disable-next-line
-const Users = mongoose.models.Users as IUserModel || model<IUserDocument, IUserModel>('users', userSchema);
+const Users = model<IUserDocument, IUserModel>('users', userSchema);
 
 export default Users;

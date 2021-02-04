@@ -16,7 +16,7 @@ export const types = `
 `;
 
 export const queries = `
-  getConfig: Config
-  getTaskStages: JSON
+  getConfig(_id: String!): Config
+  getTaskStages(stageId: String!): JSON
   getTasks(stageId: String!): JSON
 `;

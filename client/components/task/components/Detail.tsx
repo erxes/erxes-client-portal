@@ -1,32 +1,6 @@
 import React from 'react';
 import Modal, { closeStyle } from 'simple-react-modal';
-import styled from 'styled-components';
-import styledTS from 'styled-components-ts';
-
-const ModalWrapper = styledTS<{ show?: boolean }>(styled.div)`
-  position: fixed;
-  overflow: auto;
-  z-index: 9;
-  background: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  display: none;
-  ${props => props.show && 'display: block;'}
-
-  .client-modal {
-    position: absolute;
-    z-index: 99;
-    width: 60%;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    left: 20%;
-    top: 60px;
-    padding: 10px;
-  }
-`;
+import { ModalWrapper } from '../../styles/main';
 
 type Props = {
   item?: any;
