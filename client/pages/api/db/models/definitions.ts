@@ -19,10 +19,9 @@ export interface IUserDocument extends IUser, Document {
 }
 
 export const userSchema = new Schema<IUserDocument, IUserModel>({
-  _id: field({ pkey: true }),
   createdAt: field({
     type: Date,
-    default: Date.now,
+    default: Date.now
   }),
   firstName: field({ type: String }),
   lastName: field({ type: String }),
@@ -34,7 +33,10 @@ export const userSchema = new Schema<IUserDocument, IUserModel>({
   email: field({
     type: String,
     unique: true,
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/, 'Please fill a valid email address'],
-    label: 'Email',
-  }),
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/,
+      'Please fill a valid email address'
+    ],
+    label: 'Email'
+  })
 });

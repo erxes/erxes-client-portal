@@ -1,19 +1,12 @@
-import * as Random from 'meteor-random';
-
 /*
  * Mongoose field options wrapper
  */
 export const field = options => {
-  const { pkey, type, optional } = options;
+  const { optional } = options;
 
-  if (type === String && !pkey && !optional) {
+  if (!optional) {
+    options.required = true;
     options.validate = /\S+/;
-  }
-
-  // TODO: remove
-  if (pkey) {
-    options.type = String;
-    options.default = () => Random.id();
   }
 
   return options;

@@ -16,7 +16,8 @@ function AppProvider({ children }) {
     const fetchConfig = async () => {
       const response = await sendGraphQLRequest({
         query: configClientPortal,
-        name: 'configClientPortal'
+        name: 'getConfig',
+        variables: { _id: process.env.CLIENT_PORTAL_CONFIG_ID }
       });
 
       setConfig(response);
@@ -26,7 +27,7 @@ function AppProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (config.knowledgeBaseTopicId) {
+    if (config && config.knowledgeBaseTopicId) {
       const fetchTopic = async () => {
         const response = await sendGraphQLRequest({
           query: queries.getKbTopicQuery,

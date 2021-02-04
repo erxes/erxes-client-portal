@@ -1,3 +1,6 @@
+require('dotenv').config();
+const webpack = require('webpack');
+
 module.exports = {
   webpack(config, { isServer }) {
     // Fixes npm packages that depend on `fs` module
@@ -6,17 +9,18 @@ module.exports = {
         fs: 'empty',
         net: 'empty',
         tls: 'empty'
-      }
+      };
     }
 
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: {
-        test: /\.(js|ts)x?$/,
-      },
-      use: ['@svgr/webpack'],
-    });
+    config.plugins.push(new webpack.EnvironmentPlugin(process.env)),
+      config.module.rules.push({
+        test: /\.svg$/,
+        issuer: {
+          test: /\.(js|ts)x?$/
+        },
+        use: ['@svgr/webpack']
+      });
 
     return config;
-  },
+  }
 };

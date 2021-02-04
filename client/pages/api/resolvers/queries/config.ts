@@ -1,8 +1,8 @@
 import { sendGraphQLRequest } from '../../utils';
 
 export const configClientPortal = `
-  query configClientPortal {
-    configClientPortal {
+  query getConfig($_id: String!) {
+    getConfig(_id: $_id) {
       _id
       name
       description
@@ -20,8 +20,8 @@ export const configClientPortal = `
 `;
 
 export const getTaskStages = `
-  query getTaskStages {
-    getTaskStages
+  query getTaskStages($stageId: String!) {
+    getTaskStages(stageId: $stageId)
   }
 `;
 

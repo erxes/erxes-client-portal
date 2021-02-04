@@ -9,7 +9,7 @@ type Props = {
 
 function CategoryDetail({ loading, article }: Props) {
   if (loading) {
-    return 'loading ...';
+    return <div>'loading ...'</div>;
   }
 
   return (
