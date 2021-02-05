@@ -58,9 +58,8 @@ const userMutations = {
    * Logout
    */
   async logout(_root, _args, { res }: IContext) {
-    console.log(res.cookie, res.clearCookie);
-
     res.clearCookie('client-auth-token');
+
     return 'loggedout';
   }
 };

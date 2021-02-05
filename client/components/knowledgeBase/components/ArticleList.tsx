@@ -1,7 +1,7 @@
 import React from 'react';
-import dayjs from 'dayjs';
-import { ArticleItem, Avatars } from './styles';
+import { ArticleItem } from './styles';
 import Link from 'next/link';
+import Avatar from '../../common/Avatar';
 
 type Props = {
   articles: any[];
@@ -21,23 +21,8 @@ class Lists extends React.Component<Props> {
           <ArticleItem>
             <h5>{article.title}</h5>
             <p>{article.summary}</p>
-            <Avatars>
-              <img
-                alt={article.createdUser.details.fullName}
-                src={article.createdUser.details.avatar}
-              />
-              <div className="avatar-info">
-                <div>
-                  Written by <span>{article.createdUser.details.fullName}</span>
-                </div>
-                <div>
-                  Modified{' '}
-                  <span>
-                    {dayjs(article.modifiedDate).format('MMM D YYYY')}
-                  </span>
-                </div>
-              </div>
-            </Avatars>
+
+            <Avatar date={article.modifiedDate} user={article.createdUser} />
           </ArticleItem>
         </Link>
       );

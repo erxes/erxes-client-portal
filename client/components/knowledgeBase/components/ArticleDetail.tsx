@@ -1,5 +1,6 @@
 import React from 'react';
 import Breadcrumb from '../../common/Breadcrumb';
+import Avatar from '../../common/Avatar';
 import { Container, ArticleWrapper } from './styles';
 
 type Props = {
@@ -19,7 +20,11 @@ function CategoryDetail({ loading, article }: Props) {
       <Container>
         <ArticleWrapper>
           <h4> {article.title}</h4>
-          <div className="contet">
+          <Avatar date={article.modifiedDate} user={article.createdUser} />
+
+          <hr />
+
+          <div className="content">
             <p>{article.summary}</p>
             <p
               dangerouslySetInnerHTML={{

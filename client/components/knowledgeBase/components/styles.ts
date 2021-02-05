@@ -249,6 +249,18 @@ const ArticleWrapper = styled.div`
       font-size: 20px;
     }
   }
+
+  h4 {
+    color: #036;
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #6c718b;
+  }
 `;
 
 export {
