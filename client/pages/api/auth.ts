@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import Users from './db/models/Users';
 
-export const userMiddleware = async (req, res, next) => {
-  const token = req.cookies['auth-token'];
+export const userMiddleware = async (req, res) => {
+  const token = req.cookies['client-auth-token'];
 
   if (token) {
     try {
@@ -13,9 +13,7 @@ export const userMiddleware = async (req, res, next) => {
       req.user = user;
       req.user.loginToken = token;
     } catch (e) {
-      return next();
+      console.log(e.message);
     }
   }
-
-  next();
 };

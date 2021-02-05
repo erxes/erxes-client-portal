@@ -20,8 +20,8 @@ export const configClientPortal = `
 `;
 
 export const getTaskStages = `
-  query getTaskStages($stageId: String!) {
-    getTaskStages(stageId: $stageId)
+  query getTaskStages($configId: String!) {
+    getTaskStages(configId: $configId)
   }
 `;
 
@@ -41,11 +41,11 @@ const configQueries = {
     return response;
   },
 
-  async getTaskStages(_root, { stageId }: { stageId: string }) {
+  async getTaskStages(_root, { configId }: { configId: string }) {
     const response = await sendGraphQLRequest({
       query: getTaskStages,
       name: 'getTaskStages',
-      variables: { stageId }
+      variables: { configId }
     });
 
     return response;

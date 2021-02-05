@@ -7,7 +7,7 @@ type Props = {};
 
 function TasksContainer(props: Props) {
   const { loading, data = {} } = useQuery(gql(getTaskStages), {
-    variables: { stageId: process.env.CLIENT_PORTAL_CONFIG_ID }
+    variables: { configId: process.env.CLIENT_PORTAL_CONFIG_ID }
   });
 
   const stages = data.getTaskStages || [];

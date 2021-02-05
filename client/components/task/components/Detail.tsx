@@ -35,7 +35,7 @@ export default class App extends React.Component<Props, { show: boolean }> {
     const item = this.props.item || {};
 
     return (
-      <ModalWrapper show={this.state.show}>
+      <ModalWrapper show={this.state.show} onClick={this.close.bind(this)}>
         <Modal
           className="client-modal"
           closeOnOuterClick={true}

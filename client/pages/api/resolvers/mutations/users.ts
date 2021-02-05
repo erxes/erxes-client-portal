@@ -15,7 +15,7 @@ const login = async (args: ILogin, res: express.Response, secure: boolean) => {
 
   const { token } = response;
 
-  res.cookie('auth-token', token, authCookieOptions(secure));
+  res.cookie('client-auth-token', token, authCookieOptions(secure));
 
   return 'loggedIn';
 };
