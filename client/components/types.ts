@@ -44,6 +44,13 @@ export interface IUser {
   details?: IUserDetails;
 }
 
+export interface ICustomer {
+  _id: string;
+  firstName: string;
+  lastName?: string;
+  email: string;
+}
+
 export interface IKbArticle extends ICommonFields {
   _id: string;
   title: string;
@@ -54,7 +61,7 @@ export interface IKbArticle extends ICommonFields {
   createdUser: IUser;
 }
 
-export type Topic = { 
+export type Topic = {
   _id: string;
   title: string;
   description: string;
@@ -69,4 +76,4 @@ export type Topic = {
   createdDate: Date;
   modifiedBy: string;
   modifiedDate: Date;
-} 
+};

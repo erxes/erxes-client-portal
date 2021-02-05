@@ -52,6 +52,16 @@ const userMutations = {
    */
   async login(_root, args: ILogin, { res, requestInfo }: IContext) {
     return login(args, res, requestInfo.secure);
+  },
+
+  /*
+   * Logout
+   */
+  async logout(_root, _args, { res }: IContext) {
+    console.log(res.cookie, res.clearCookie);
+
+    res.clearCookie('client-auth-token');
+    return 'loggedout';
   }
 };
 

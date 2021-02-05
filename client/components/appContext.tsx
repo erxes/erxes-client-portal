@@ -2,13 +2,18 @@ import React, { useState, useEffect, createContext } from 'react';
 import { configClientPortal } from '../pages/api/resolvers/queries/config';
 import { sendGraphQLRequest } from '../pages/api/utils';
 import * as queries from './knowledgeBase/graphql/queries';
-import { Config } from './types';
+import { Config, ICustomer } from './types';
 
 const AppContext = createContext({});
 
 export const AppConsumer = AppContext.Consumer;
 
-function AppProvider({ children }) {
+type Props = {
+  children: any;
+  currentUser?: ICustomer;
+};
+
+function AppProvider({ children, currentUser }: Props) {
   const [config, setConfig] = useState<Config>({});
   const [topic, setTopic] = useState({});
 
@@ -43,7 +48,7 @@ function AppProvider({ children }) {
   }, [config]);
 
   return (
-    <AppContext.Provider value={{ config, topic }}>
+    <AppContext.Provider value={{ config, topic, currentUser }}>
       {children}
     </AppContext.Provider>
   );

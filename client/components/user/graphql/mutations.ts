@@ -10,7 +10,14 @@ const createUser = `
   }
 `;
 
+const logout = `
+  mutation {
+    logout
+  }
+`;
+
 export default {
   login,
+  logout,
   createUser
 };
