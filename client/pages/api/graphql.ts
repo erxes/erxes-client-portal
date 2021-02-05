@@ -1,6 +1,9 @@
-import { ApolloServer } from "apollo-server-micro";
-import resolvers from "./resolvers";
-import typeDefs from "./schemas";
+import { ApolloServer } from 'apollo-server-micro';
+import resolvers from './resolvers';
+import typeDefs from './schemas';
+import { init } from './db/connection';
+
+init();
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 
@@ -10,4 +13,4 @@ export const config = {
   }
 };
 
-export default apolloServer.createHandler({ path: "/api/graphql" });
+export default apolloServer.createHandler({ path: '/api/graphql' });

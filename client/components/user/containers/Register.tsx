@@ -5,11 +5,19 @@ import Register from '../components/Register';
 
 type Props = {};
 
-function TasksContainer(props: Props) {
-  const [addUser, { data }] = useMutation(gql(mutations.createUser));
+function RegisterContainer(props: Props) {
+  const [addUser, { data, error }] = useMutation(gql(mutations.createUser));
 
-  const create = doc => {
-    addUser({ variables: doc });
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  if (data) {
+    window.location.href = '/';
+  }
+
+  const create = values => {
+    addUser({ variables: values });
   };
 
   const updatedProps = {
@@ -20,4 +28,4 @@ function TasksContainer(props: Props) {
   return <Register {...updatedProps} />;
 }
 
-export default TasksContainer;
+export default RegisterContainer;

@@ -31,7 +31,7 @@ mongoose.connection
   });
 
 const connect = async (URL?: string, options?) => {
-  client = mongoose.connect(URL || MONGO_URL, {
+  client = await mongoose.connect(URL || MONGO_URL, {
     ...connectionOptions,
     ...(options || { poolSize: 100 })
   });
@@ -41,8 +41,8 @@ export function disconnect() {
   return mongoose.connection.close();
 }
 
-const init = async () => {
-  if (!client || !client.isConnected()) {
+export const init = async () => {
+  if (!client || (client && !client.isConnected())) {
     client = await connect();
   }
 };

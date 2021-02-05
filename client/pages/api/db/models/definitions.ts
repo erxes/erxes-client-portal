@@ -24,12 +24,12 @@ export const userSchema = new Schema<IUserDocument, IUserModel>({
     default: Date.now
   }),
   firstName: field({ type: String }),
-  lastName: field({ type: String }),
+  lastName: field({ type: String, optional: true }),
   password: field({ type: String }),
-  resetPasswordToken: field({ type: String }),
-  registrationToken: field({ type: String }),
-  registrationTokenExpires: field({ type: Date }),
-  resetPasswordExpires: field({ type: Date }),
+  resetPasswordToken: field({ type: String, optional: true }),
+  registrationToken: field({ type: String, optional: true }),
+  registrationTokenExpires: field({ type: Date, optional: true }),
+  resetPasswordExpires: field({ type: Date, optional: true }),
   email: field({
     type: String,
     unique: true,

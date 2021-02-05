@@ -44,8 +44,9 @@ function Header({ config, topic }: Props) {
           </HeaderLogo>
 
           <WebLink href={config.url} target="_blank" rel="noopener noreferrer">
-            <Icon icon="arrow-up-right" /> {config.name} &nbsp;
-            <Link href="/user/register">Sign up</Link>
+            <Icon icon="arrow-up-right" /> {config.name} &nbsp; | &nbsp;
+            <Link href="/user/register">Sign up</Link>&nbsp; | &nbsp;
+            <Link href="/user/login">Login</Link>
           </WebLink>
         </HeaderTop>
 

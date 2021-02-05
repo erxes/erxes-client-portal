@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { getValue } from '../../common/utils';
 
 type Props = {
-  create: (doc: any) => void;
+  login: (doc: any) => void;
 };
 
-function Register({ create }: Props) {
+function Login({ login }: Props) {
   const formItem = (name: string, label: string, type?: string) => {
     return (
       <>
@@ -25,24 +25,20 @@ function Register({ create }: Props) {
   const onSubmit = event => {
     event.preventDefault();
 
-    create({
+    login({
       email: getValue('email'),
-      password: getValue('password'),
-      firstName: getValue('firstName'),
-      lastName: getValue('lastName')
+      password: getValue('password')
     });
   };
 
   return (
-    <LoginFormWrapper onSubmit={onSubmit}>
-      {formItem('firstName', 'First name')}
-      {formItem('lastName', 'Last name')}
+    <LoginFormWrapper id="loginForm" onSubmit={onSubmit}>
       {formItem('email', 'Email', 'email')}
       {formItem('password', 'Password', 'password')}
       <Link href="/">Back</Link> &nbsp;
-      <button type="submit"> Register</button>
+      <button type="submit"> Login</button>
     </LoginFormWrapper>
   );
 }
 
-export default Register;
+export default Login;
