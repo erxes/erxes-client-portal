@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { ApolloClient, InMemoryCache } from '@apollo/client';\nconst client = new ApolloClient({\n  uri: 'http://localhost:2900/api/graphql',\n  cache: new InMemoryCache()\n});\nexport default client;","map":null,"metadata":{},"sourceType":"module"}

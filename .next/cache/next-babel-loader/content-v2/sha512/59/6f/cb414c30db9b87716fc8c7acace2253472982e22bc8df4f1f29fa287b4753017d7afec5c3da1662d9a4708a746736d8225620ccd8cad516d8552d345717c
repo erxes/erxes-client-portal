@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { default } from \"../../components/user/components/Register\";","map":{"version":3,"sources":["/home/erxes/work/erxes-client-portal/client/pages/user/register.tsx"],"names":["default"],"mappings":"AAAA,SAASA,OAAT","sourcesContent":["export { default } from '../../components/user/components/Register';\n"]},"metadata":{},"sourceType":"module"}

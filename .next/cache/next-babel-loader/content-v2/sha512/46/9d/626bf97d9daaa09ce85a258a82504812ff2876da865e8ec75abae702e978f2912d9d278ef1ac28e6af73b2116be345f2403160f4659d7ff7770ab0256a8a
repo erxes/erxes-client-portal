@@ -1,0 +1,1 @@
+{"ast":null,"code":"import colors from './colors';\nimport dimensions from './dimensions';\nimport typography from './typography';\nexport { colors, dimensions, typography };","map":null,"metadata":{},"sourceType":"module"}

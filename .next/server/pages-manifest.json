@@ -1,0 +1,11 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/tasks": "pages/tasks.js",
+  "/api/graphql": "pages/api/graphql.js",
+  "/": "pages/index.js",
+  "/knowledge-base/category": "pages/knowledge-base/category.js",
+  "/knowledge-base/article": "pages/knowledge-base/article.js",
+  "/tickets": "pages/tickets.js"
+}

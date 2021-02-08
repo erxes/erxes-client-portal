@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { default } from \"../../components/ticket/containers/Ticket\";","map":{"version":3,"sources":["/home/erxes/work/client/pages/tickets/index.tsx"],"names":["default"],"mappings":"AAAA,SAASA,OAAT","sourcesContent":["export { default } from '../../components/ticket/containers/Ticket';\n"]},"metadata":{},"sourceType":"module"}

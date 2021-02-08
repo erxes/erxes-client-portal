@@ -1,0 +1,1 @@
+{"ast":null,"code":"import mutations from \"./mutations\";\nexport { mutations };","map":{"version":3,"sources":["/home/erxes/work/erxes-client-portal/client/components/user/graphql/index.ts"],"names":["mutations"],"mappings":"AAAA,OAAOA,SAAP;AAEA,SAASA,SAAT","sourcesContent":["import mutations from './mutations';\n\nexport { mutations };\n"]},"metadata":{},"sourceType":"module"}
