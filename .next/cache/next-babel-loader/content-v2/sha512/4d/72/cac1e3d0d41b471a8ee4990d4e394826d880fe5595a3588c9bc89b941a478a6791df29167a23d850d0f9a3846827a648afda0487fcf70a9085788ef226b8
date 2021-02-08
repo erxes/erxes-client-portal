@@ -1,1 +1,0 @@
-{"ast":null,"code":"export { default } from \"../../components/task/containers/Tasks\";","map":{"version":3,"sources":["/home/erxes/work/erxes-client-portal/client/pages/tasks/index.tsx"],"names":["default"],"mappings":"AAAA,SAAUA,OAAV","sourcesContent":["export  { default } from '../../components/task/containers/Tasks';"]},"metadata":{},"sourceType":"module"}
