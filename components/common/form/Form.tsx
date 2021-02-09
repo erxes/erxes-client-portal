@@ -1,7 +1,8 @@
 import React from 'react';
 import validator from 'validator';
-import { generateRandomString, isValidUsername } from './utils';
-import { Error } from '../styles/form';
+import { generateRandomString, isValidUsername } from '../utils';
+import { Error } from './styles';
+import { IFormProps } from '../types';
 
 type Props = {
   renderContent: (props: IFormProps) => React.ReactNode;
@@ -12,15 +13,6 @@ type Props = {
 type State = {
   errors: any;
   values: any;
-  isSubmitted: boolean;
-};
-
-type IFormProps = {
-  errors: any;
-  values: any;
-  registerChild: (child: React.ReactNode) => void;
-  runValidations?: (callback: any) => void;
-  resetSubmit?: () => void;
   isSubmitted: boolean;
 };
 

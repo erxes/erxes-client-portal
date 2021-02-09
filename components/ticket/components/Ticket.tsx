@@ -5,6 +5,9 @@ import {
   CategoryItem,
   CategoryContent
 } from '../../knowledgeBase/components/styles';
+import Button from '../../common/Button';
+import Icon from '../../common/Icon';
+import Link from 'next/link';
 
 type Props = {
   loading: boolean;
@@ -14,6 +17,14 @@ type Props = {
 export default function Ticket({ loading, tickets }: Props) {
   return (
     <Layout>
+      <Link href="/tickets/form">
+        <Button btnStyle="success">
+          <Icon icon="plus" /> &nbsp; Submit new ticket
+        </Button>
+      </Link>
+      <br />
+      <br />
+
       <StageTitle>Tickets</StageTitle>
 
       {tickets.map(ticket => (

@@ -1,27 +1,25 @@
 import React from 'react';
-import { LoginFormWrapper } from '../../styles/form';
+import Layout from '../../main/containers/Layout';
 import FormControl from '../../common/form/Control';
 import Form from '../../common/form/Form';
 import FormGroup from '../../common/form/Group';
-import Button from '../../common/Button';
 import { IButtonMutateProps } from '../../common/types';
+import Button from '../../common/Button';
 
-type Props = {
-  renderButton: (props: IButtonMutateProps) => JSX.Element;
-};
+type Props = {};
 
-function Register({ renderButton }: Props) {
-  <button type="submit"> Register</button>;
+export default function TicketForm({}: Props) {
   const renderContent = formProps => {
     const { values, isSubmitted } = formProps;
+    console.log(values, isSubmitted);
 
     return (
       <>
         <FormGroup>
           <FormControl
             {...formProps}
-            name="firstName"
-            placeholder={'First name'}
+            name="ticketNumber"
+            placeholder="Ticket number"
             required={true}
           />
         </FormGroup>
@@ -29,8 +27,9 @@ function Register({ renderButton }: Props) {
         <FormGroup>
           <FormControl
             {...formProps}
-            name="lasstName"
-            placeholder={'Last name'}
+            name="requestor"
+            type="email"
+            placeholder="Requestor"
             required={true}
           />
         </FormGroup>
@@ -38,40 +37,49 @@ function Register({ renderButton }: Props) {
         <FormGroup>
           <FormControl
             {...formProps}
-            name="email"
-            placeholder={'registered@email.com'}
+            name="subject"
+            placeholder="Subject"
             required={true}
           />
         </FormGroup>
 
         <FormGroup>
           <FormControl
-            {...formProps}
-            name="password"
-            type="password"
-            placeholder={'password'}
+            type="select"
+            name="pirority"
+            placeholder="Pirority"
+            required={true}
+          >
+            <option value="normal">Normal</option>
+            <option value="critical">Critical</option>
+          </FormControl>
+        </FormGroup>
+
+        <FormGroup>
+          <FormControl
+            type="textarea"
+            name="description"
+            placeholder="Description"
             required={true}
           />
         </FormGroup>
 
         <FormGroup>
-          <Button href="/">Home</Button>
+          <Button href="/tickets">cancel</Button>
 
-          {renderButton({
+          {/* {renderButton({
             values,
             isSubmitted
-          })}
+          })} */}
         </FormGroup>
       </>
     );
   };
 
   return (
-    <LoginFormWrapper>
-      <h2>{'Register'}</h2>
+    <Layout>
+      <h2>New ticket</h2>
       <Form renderContent={renderContent} />
-    </LoginFormWrapper>
+    </Layout>
   );
 }
-
-export default Register;

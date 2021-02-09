@@ -1,28 +1,34 @@
-import { gql, useMutation } from '@apollo/client';
 import React from 'react';
 import { mutations } from '../graphql';
 import Login from '../components/Login';
+import { IButtonMutateProps } from '../../common/types';
+import ButtonMutate from '../../common/ButtonMutate';
 
 type Props = {};
 
 function LoginContainer(props: Props) {
-  const [loginUser, { data, error }] = useMutation(gql(mutations.login));
+  const renderButton = ({ values, isSubmitted }: IButtonMutateProps) => {
+    const callbackResponse = () => {
+      window.location.href = '/';
+    };
 
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-
-  if (data) {
-    window.location.href = '/';
-  }
-
-  const login = values => {
-    loginUser({ variables: values });
+    return (
+      <ButtonMutate
+        mutation={mutations.login}
+        variables={values}
+        callback={callbackResponse}
+        isSubmitted={isSubmitted}
+        type="submit"
+        icon="none"
+      >
+        Sign in
+      </ButtonMutate>
+    );
   };
 
   const updatedProps = {
     ...props,
-    login
+    renderButton
   };
 
   return <Login {...updatedProps} />;

@@ -1,42 +1,56 @@
 import React from 'react';
-import { LoginFormWrapper, Input } from '../../styles/form';
-import Link from 'next/link';
-import { getValue } from '../../common/utils';
+import { LoginFormWrapper } from '../../styles/form';
+import FormControl from '../../common/form/Control';
+import Form from '../../common/form/Form';
+import FormGroup from '../../common/form/Group';
+import { IButtonMutateProps } from '../../common/types';
+import Button from '../../common/Button';
 
 type Props = {
-  login: (doc: any) => void;
+  renderButton: (props: IButtonMutateProps) => JSX.Element;
 };
 
-function Login({ login }: Props) {
-  const formItem = (name: string, label: string, type?: string) => {
+function Login({ renderButton }: Props) {
+  const renderContent = formProps => {
+    const { values, isSubmitted } = formProps;
+
     return (
       <>
-        <h5>{label}</h5>
-        <Input
-          name={name}
-          type={type || 'text'}
-          placeholder={label}
-          required={true}
-        />
+        <FormGroup>
+          <FormControl
+            {...formProps}
+            name="email"
+            placeholder={'registered@email.com'}
+            required={true}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <FormControl
+            {...formProps}
+            name="password"
+            type="password"
+            placeholder={'password'}
+            required={true}
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Button href="/">Home</Button>
+
+          {renderButton({
+            values,
+            isSubmitted
+          })}
+        </FormGroup>
       </>
     );
   };
 
-  const onSubmit = event => {
-    event.preventDefault();
-
-    login({
-      email: getValue('email'),
-      password: getValue('password')
-    });
-  };
-
   return (
-    <LoginFormWrapper id="loginForm" onSubmit={onSubmit}>
-      {formItem('email', 'Email', 'email')}
-      {formItem('password', 'Password', 'password')}
-      <Link href="/">Back</Link> &nbsp;
-      <button type="submit"> Login</button>
+    <LoginFormWrapper>
+      <h2>{'Sign in'}</h2>
+      <Form renderContent={renderContent} />
     </LoginFormWrapper>
   );
 }

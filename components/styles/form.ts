@@ -9,7 +9,7 @@ const Input = styled.input`
   padding: 4px;
 `;
 
-const LoginFormWrapper = styled.form`
+const LoginFormWrapper = styled.div`
   width: 520px;
   margin: 50px auto 0;
 `;
