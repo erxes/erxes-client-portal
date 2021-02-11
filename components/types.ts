@@ -10,6 +10,30 @@ export type Config = {
   taskLabel?: string;
   taskStageId?: string;
   ticketStageId?: string;
+
+  styles?: {
+    bodyColor?: string;
+    headerColor?: string;
+    footerColor?: string;
+    helpColor?: string;
+    backgroundColor?: string;
+    activeTabColor?: string;
+    baseColor?: string;
+    headingColor?: string;
+    linkColor?: string;
+    linkHoverColor?: string;
+    baseFont?: string;
+    headingFont?: string;
+    dividerColor?: string;
+    primaryBtnColor?: string;
+    secondaryBtnColor?: string;
+  };
+
+  advanced?: {
+    authAllow?: string;
+    permission?: string;
+    viewTicket?: string;
+  };
 };
 
 interface ICommonFields {

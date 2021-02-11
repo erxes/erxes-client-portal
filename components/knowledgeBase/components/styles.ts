@@ -49,9 +49,9 @@ const CategoryIcon = styled.div`
   width: 120px;
 `;
 
-const CategoryContent = styled.div`
+const CategoryContent = styledTS<{ color?: string }>(styled.div)`
   h5 {
-    color: #6569df;
+    color: ${props => props.color || colors.colorSecondary};
     font-size: ${typography.fontSizeHeading6}px;
     font-weight: ${typography.fontWeightLight};
   }
@@ -223,7 +223,7 @@ const ArticleItem = styled.div`
   transition: 0.4s;
 
   h5 {
-    color: #6569df;
+    color: ${colors.colorSecondary};
     font-size: ${typography.fontSizeHeading6}px;
     margin-bottom: 8px;
     font-weight: 400;

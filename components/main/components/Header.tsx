@@ -12,21 +12,20 @@ import {
 } from '../../styles/main';
 import Search from './Search';
 import Icon from '../../common/Icon';
-import { Config, ICustomer, Topic } from '../../types';
+import { Config, ICustomer } from '../../types';
 import { useRouter } from 'next/router';
+import { getConfigColor } from '../../common/utils';
 
 type Props = {
   config: Config;
-  topic: Topic;
   currentUser?: ICustomer;
   logout: () => void;
 };
 
-function Header({ config, topic, currentUser, logout }: Props) {
-  const { backgroundImage, color } = topic || {};
+function Header({ config, currentUser, logout }: Props) {
   const router = useRouter();
 
-  const renderLink = (url, label) => {
+  const renderLink = (url: string, label: string) => {
     return (
       <LinkItem active={router.pathname === url}>
         <Link href={url}>{label}</Link>
@@ -35,7 +34,7 @@ function Header({ config, topic, currentUser, logout }: Props) {
   };
 
   return (
-    <Head backgroundImage={backgroundImage} color={color}>
+    <Head color={getConfigColor(config, 'headerColor')}>
       <Container transparent={true}>
         <HeaderTop>
           <HeaderLogo>

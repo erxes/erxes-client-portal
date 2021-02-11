@@ -5,6 +5,7 @@ import Item from '../components/Item';
 
 type Props = {
   stageId: string;
+  backgroundColor?: string;
 };
 
 function ItemContainer({ stageId, ...props }: Props) {

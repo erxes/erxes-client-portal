@@ -4,14 +4,14 @@ import {
   Footer as StyledFooter,
   FooterLink
 } from '../../styles/main';
+import { Config } from '../../types';
+import { getConfigColor } from '../../common/utils';
 
 type Props = {
-  topic: any;
+  config: Config;
 };
 
 function Footer(props: Props) {
-  const { color } = props.topic || {};
-
   const renderLink = (url: string, imgSrc: string, iconName: string) => {
     return (
       <FooterLink href={url} target="_blank" rel="noopener noreferrer">
@@ -24,7 +24,7 @@ function Footer(props: Props) {
   };
 
   return (
-    <StyledFooter color={color}>
+    <StyledFooter color={getConfigColor(props.config, 'footerColor')}>
       <Container transparent={true}>
         <h4>Community</h4>
         <p>

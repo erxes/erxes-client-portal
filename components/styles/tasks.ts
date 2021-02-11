@@ -2,10 +2,9 @@ import { colors, dimensions, typography } from '../styles';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
 
-const hoverColor = 'rgba(10,45,65,.13)';
 const stageGray = '#e5e8ec';
-const secondaryText = '#6a818c';
-const itemWidth = '272px';
+const pWitdh = 4;
+const itemWidth = (dimensions.wrapperWidth - pWitdh * 8) / 3;
 
 const StageTitle = styled.h3`
   color: ${colors.colorPrimary};
@@ -15,32 +14,28 @@ const StageTitle = styled.h3`
   font-weight: ${typography.fontWeightLight}px;
 `;
 
-const Wrapper = styledTS<{ transparent?: boolean }>(styled.div)`
+const Wrapper = styledTS<{ backgroundColor?: string }>(styled.div)`
   margin-bottom: ${dimensions.coreSpacing}px;
   border-radius: 3px;
-  padding: 8px;
+  padding: ${pWitdh * 2}px ${pWitdh}px 0;
   
-  ${props => !props.transparent && `background: ${stageGray};`}
+  ${props => `background: ${props.backgroundColor || stageGray};`}
   
   display: flex;
   flex-wrap: wrap;
+  min-height: 40vh;
 `;
 
 const ItemWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(${itemWidth}, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(${itemWidth - 16}px, 1fr));
+  margin: 0 ${pWitdh}px ${pWitdh * 2}px;
 
-  margin-right: 8px;
-  &:nth-child(3n) {
-    margin-right: 0;
-  }
-
-  max-width: 288px;
+  max-width: ${itemWidth}px;
   overflow: hidden;
   word-break: break-word;
 
   position: relative;
-  margin-bottom: 8px;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
   padding: 8px;
@@ -92,4 +87,34 @@ const ItemDate = styled.span`
   color: rgb(136, 136, 136);
 `;
 
-export { Wrapper, StageTitle, ItemWrapper, Content, Footer, Right, ItemDate };
+const TabContainers = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+`;
+
+const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
+  flex: 1 1 auto;
+  text-align: center;
+  padding: 5px 10px;
+
+  ${props =>
+    props.active &&
+    `
+    background: ${props.color || colors.colorPrimary};
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+    `}
+`;
+
+export {
+  Wrapper,
+  StageTitle,
+  ItemWrapper,
+  Content,
+  Footer,
+  Right,
+  ItemDate,
+  TabContainers,
+  TabTitle
+};

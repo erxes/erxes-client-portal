@@ -14,13 +14,13 @@ type Props = {
 function Layout({ config, topic, children, currentUser }: Props) {
   return (
     <>
-      <Header topic={topic} config={config} currentUser={currentUser} />
+      <Header config={config} currentUser={currentUser} />
 
       <MainContent>
         <Container>{children}</Container>
       </MainContent>
 
-      <Footer topic={topic} />
+      <Footer config={config} />
     </>
   );
 }

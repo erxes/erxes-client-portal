@@ -6,7 +6,6 @@ import { Config, ICustomer, Topic } from '../../types';
 
 type Props = {
   config: Config;
-  topic: Topic;
   currentUser?: ICustomer;
 };
 

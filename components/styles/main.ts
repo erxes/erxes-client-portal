@@ -10,7 +10,8 @@ const Header = styledTS<{ color?: string; backgroundImage?: string }>(
   color: ${colors.colorWhite};
   font-size: ${typography.fontSizeBody}px;
 
-  background-color: ${props => (props.color ? props.color : colors.colorWhite)};
+  background-color: ${props =>
+    props.color ? props.color : colors.colorPrimary};
   background-image: ${props =>
     props.backgroundImage && `url(${props.backgroundImage})`};
 
@@ -90,7 +91,7 @@ const MainContent = styled.div`
 const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(
   styled.div
 )`
-  width: 900px;
+  width: ${dimensions.wrapperWidth}px;
 
   margin: 0 auto;
 
@@ -101,7 +102,7 @@ const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(
       height: calc(100% - 20px);
     `};
 
-  @media (max-width: 900px) {
+  @media (max-width: ${dimensions.wrapperWidth}px) {
     width: 100%;
   }
 `;
@@ -213,7 +214,8 @@ const SearchContainer = styled.div`
 const Footer = styledTS<{ color?: string; backgroundImage?: string }>(
   styled.div
 )`
-  background-color: ${props => (props.color ? props.color : colors.colorWhite)};
+  background-color: ${props =>
+    props.color ? props.color : colors.colorPrimary};
   padding: 40px 0;
   color: ${colors.colorWhite};
 

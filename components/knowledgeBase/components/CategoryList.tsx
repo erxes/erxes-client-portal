@@ -9,10 +9,12 @@ import {
   Avatars
 } from './styles';
 import Icon from '../../common/Icon';
-import { Topic } from '../../types';
+import { Topic, Config } from '../../types';
+import { getConfigColor } from '../../common/utils';
 
 type Props = {
   topic: Topic;
+  config: Config;
 };
 
 class CategoryList extends React.Component<Props> {
@@ -67,7 +69,7 @@ class CategoryList extends React.Component<Props> {
   };
 
   renderCategories = () => {
-    const { topic } = this.props;
+    const { topic, config } = this.props;
     const { categories } = topic;
 
     if (categories) {
@@ -78,7 +80,7 @@ class CategoryList extends React.Component<Props> {
               <CategoryIcon>
                 <Icon icon={cat.icon || 'book'} />
               </CategoryIcon>
-              <CategoryContent>
+              <CategoryContent color={getConfigColor(config, 'baseColor')}>
                 <h5>{cat.title} </h5>
                 <p>{cat.description}</p>
 

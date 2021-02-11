@@ -1,3 +1,5 @@
+import { Config } from '../types';
+
 export const imgSrc = (src: string) => {
   if (src.indexOf('http') === 0) return src;
 
@@ -38,4 +40,12 @@ export const getValue = name => {
   }
 
   return '';
+};
+
+export const getConfigColor = (config: Config, key: string) => {
+  if (!config.styles) {
+    return null;
+  }
+
+  return config.styles[key];
 };

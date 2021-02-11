@@ -15,6 +15,30 @@ export const configClientPortal = `
       taskStageId
       ticketLabel
       ticketStageId
+
+      styles {
+        bodyColor
+        headerColor
+        footerColor
+        helpColor
+        backgroundColor
+        activeTabColor
+        baseColor
+        headingColor
+        linkColor
+        linkHoverColor
+        baseFont
+        headingFont
+        dividerColor
+        primaryBtnColor
+        secondaryBtnColor
+      }
+
+      advanced {
+        authAllow
+        permission
+        viewTicket
+      }
     }
   }
 `;

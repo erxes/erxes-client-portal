@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import {
+  Wrapper,
   ItemWrapper,
   Content,
   Footer,
@@ -12,9 +13,10 @@ import Detail from './Detail';
 type Props = {
   loading: boolean;
   tasks: any;
+  backgroundColor?: string;
 };
 
-function ItemContainer({ loading, tasks }: Props) {
+function ItemContainer({ loading, tasks, backgroundColor }: Props) {
   const [item, setItem] = useState(null);
 
   if (loading) {
@@ -30,7 +32,7 @@ function ItemContainer({ loading, tasks }: Props) {
   };
 
   return (
-    <>
+    <Wrapper backgroundColor={backgroundColor}>
       {tasks.map(task => {
         return (
           <ItemWrapper>
@@ -46,7 +48,7 @@ function ItemContainer({ loading, tasks }: Props) {
       })}
 
       <Detail item={item} onClose={() => setItem(null)} />
-    </>
+    </Wrapper>
   );
 }
 
