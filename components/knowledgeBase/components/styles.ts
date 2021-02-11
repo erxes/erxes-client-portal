@@ -1,7 +1,6 @@
 import { colors, typography } from '../../styles';
 import styled from 'styled-components';
 import styledTS from 'styled-components-ts';
-import { type } from 'os';
 
 const silverGrey = '#6c718b';
 

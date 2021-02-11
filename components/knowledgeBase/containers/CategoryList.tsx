@@ -1,22 +1,21 @@
 import React from 'react';
 import CategoryList from '../components/CategoryList';
 import { AppConsumer } from '../../appContext';
-import { Topic, Config } from '../../types';
+import { Topic } from '../../types';
 
 type Props = {
   topic: Topic;
-  config: Config;
 };
 
-function CategoriesContainer({ topic, config }: Props) {
-  return <CategoryList topic={topic} config={config} />;
+function CategoriesContainer({ topic }: Props) {
+  return <CategoryList topic={topic} />;
 }
 
 const WithConsumer = props => {
   return (
     <AppConsumer>
-      {({ topic, config }: { topic: Topic; config: Config }) => {
-        return <CategoriesContainer {...props} topic={topic} config={config} />;
+      {({ topic }: { topic: Topic }) => {
+        return <CategoriesContainer {...props} topic={topic} />;
       }}
     </AppConsumer>
   );

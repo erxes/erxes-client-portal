@@ -19,7 +19,7 @@ class Lists extends React.Component<Props> {
       return (
         <Link href={`/knowledge-base/article?id=${article._id}`}>
           <ArticleItem>
-            <h5>{article.title}</h5>
+            <h5 className="base-color">{article.title}</h5>
             <p>{article.summary}</p>
 
             <Avatar date={article.modifiedDate} user={article.createdUser} />

@@ -25,12 +25,12 @@ export default function Ticket({ loading, tickets }: Props) {
       <br />
       <br />
 
-      <StageTitle>Tickets</StageTitle>
+      <StageTitle className="base-color">Tickets</StageTitle>
 
       {tickets.map(ticket => (
         <CategoryItem>
           <CategoryContent>
-            <h5>{ticket.name} </h5>
+            <h5 className="base-color">{ticket.name}</h5>
             <p>{ticket.description}</p>
           </CategoryContent>
         </CategoryItem>

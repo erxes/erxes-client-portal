@@ -83,9 +83,17 @@ const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
   }
 `;
 
-const MainContent = styled.div`
+const MainContent = styledTS<{ baseColor?: string }>(styled.div)`
   background-color: #f5f8fb;
   padding: ${dimensions.headerSpacing}px 0;
+
+  ${props =>
+    props.baseColor &&
+    css`
+      .base-color {
+        color: ${props.baseColor} !important;
+      }
+    `};
 `;
 
 const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(

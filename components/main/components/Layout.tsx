@@ -3,6 +3,7 @@ import Footer from './Footer';
 import { Container, MainContent } from '../../styles/main';
 import Header from '../containers/Header';
 import { Config, ICustomer } from '../../types';
+import { getConfigColor } from '../../common/utils';
 
 type Props = {
   topic: any;
@@ -16,7 +17,7 @@ function Layout({ config, topic, children, currentUser }: Props) {
     <>
       <Header config={config} currentUser={currentUser} />
 
-      <MainContent>
+      <MainContent baseColor={getConfigColor(config, 'baseColor')}>
         <Container>{children}</Container>
       </MainContent>
 
