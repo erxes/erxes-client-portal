@@ -17,6 +17,6 @@ export const types = `
 
 export const queries = `
   getConfig(_id: String!): Config
-  getTaskStages(configId: String!): JSON
+  getTaskStages(taskPublicPipelineId: String!): JSON
   getTasks(stageId: String!): JSON
 `;

@@ -1,4 +1,5 @@
 export type Config = {
+  _id?: string;
   name?: string;
   description?: string;
   logo?: string;
@@ -6,6 +7,7 @@ export type Config = {
   url?: string;
   knowledgeBaseLabel?: string;
   knowledgeBaseTopicId?: string;
+  taskPublicPipelineId?: string;
   ticketLabel?: string;
   taskLabel?: string;
   taskStageId?: string;

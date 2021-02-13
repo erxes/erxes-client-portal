@@ -1,13 +1,18 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
 import { getTaskStages } from '../../../pages/api/resolvers/queries/config';
+import { AppConsumer } from '../../appContext';
+import { Config } from '../../types';
 import Tasks from '../components/Tasks';
 
-type Props = {};
+type Props = {
+  config: Config;
+};
 
-function TasksContainer(props: Props) {
+function TasksContainer({ config, ...props }: Props) {
   const { loading, data = {} } = useQuery(gql(getTaskStages), {
-    variables: { configId: process.env.CLIENT_PORTAL_CONFIG_ID }
+    variables: { taskPublicPipelineId: config.taskPublicPipelineId },
+    skip: !config.taskPublicPipelineId
   });
 
   const stages = data.getTaskStages || [];
@@ -21,4 +26,14 @@ function TasksContainer(props: Props) {
   return <Tasks {...updatedProps} />;
 }
 
-export default TasksContainer;
+const WithConsumer = (props) => {
+  return (
+    <AppConsumer>
+      {({ config }: { config: Config }) => {
+        return <TasksContainer {...props} config={config} />;
+      }}
+    </AppConsumer>
+  );
+};
+
+export default WithConsumer;

@@ -11,7 +11,6 @@ type Props = {
 };
 
 function Register({ renderButton }: Props) {
-  <button type="submit"> Register</button>;
   const renderContent = formProps => {
     const { values, isSubmitted } = formProps;
 
@@ -29,7 +28,7 @@ function Register({ renderButton }: Props) {
         <FormGroup>
           <FormControl
             {...formProps}
-            name="lasstName"
+            name="lastName"
             placeholder={'Last name'}
             required={true}
           />

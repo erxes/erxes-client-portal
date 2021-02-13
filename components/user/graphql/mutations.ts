@@ -5,8 +5,8 @@ const login = `
 `;
 
 const createUser = `
-  mutation userAdd($email: String!, $password: String!, $firstName: String!, $lastName: String) {
-    userAdd(email: $email, password: $password, firstName: $firstName, lastName: $lastName)
+  mutation userAdd($configId: String! $email: String!, $password: String!, $firstName: String!, $lastName: String) {
+    userAdd(configId: $configId, email: $email, password: $password, firstName: $firstName, lastName: $lastName)
   }
 `;
 

@@ -18,7 +18,7 @@ export const mutations = `
   logout: String
   forgotPassword(email: String!): String!
   resetPassword(token: String!, newPassword: String!): JSON
-  userAdd(email: String!, password: String!, firstName: String, lastName: String): String
+  userAdd(configId: String!, email: String!, password: String!, firstName: String!, lastName: String): String
   userEdit(
     firstName: String,
     lastName: String,

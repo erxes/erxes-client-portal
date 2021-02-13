@@ -1,14 +1,31 @@
-import Users from '../../db/models/Users';
-import { IUser } from '../../db/models/definitions';
 import * as express from 'express';
-import { authCookieOptions } from '../utils';
+import { IUser } from '../../db/models/definitions';
+import Users from '../../db/models/Users';
 import { IContext } from '../../types';
+import { sendGraphQLRequest } from '../../utils';
+import { authCookieOptions } from '../utils';
 
 interface ILogin {
   email: string;
   password: string;
   deviceToken?: string;
 }
+
+const createCustomerMutation = `
+  mutation createCustomer(
+    $configId: String!,
+    $firstName: String!,
+    $lastName: String
+    $email: String!
+  ) {
+    createCustomer(
+      configId: $configId,
+      firstName: $firstName,
+      lastName: $lastName
+      email: $email
+    )
+  }
+`;
 
 const login = async (args: ILogin, res: express.Response, secure: boolean) => {
   const response = await Users.login(args);
@@ -24,11 +41,13 @@ const userMutations = {
   async userAdd(
     _root,
     {
+      configId,
       email,
       password,
       firstName,
       lastName
     }: {
+      configId: string;
       email: string;
       password: string;
       firstName: string;
@@ -42,7 +61,18 @@ const userMutations = {
       lastName
     };
 
-    const user = await Users.createUser(doc);
+    await Users.createUser(doc);
+
+    await sendGraphQLRequest({
+      query: createCustomerMutation,
+      name: 'createCustomer',
+      variables: {
+        configId,
+        email,
+        firstName,
+        lastName
+      }
+    });
 
     return 'success';
   },

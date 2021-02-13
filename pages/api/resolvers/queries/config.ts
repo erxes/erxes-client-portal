@@ -12,6 +12,7 @@ export const configClientPortal = `
       knowledgeBaseLabel
       knowledgeBaseTopicId
       taskLabel
+      taskPublicPipelineId
       taskStageId
       ticketLabel
       ticketStageId
@@ -44,8 +45,8 @@ export const configClientPortal = `
 `;
 
 export const getTaskStages = `
-  query getTaskStages($configId: String!) {
-    getTaskStages(configId: $configId)
+  query getTaskStages($taskPublicPipelineId: String!) {
+    getTaskStages(taskPublicPipelineId: $taskPublicPipelineId)
   }
 `;
 
@@ -65,11 +66,11 @@ const configQueries = {
     return response;
   },
 
-  async getTaskStages(_root, { configId }: { configId: string }) {
+  async getTaskStages(_root, { taskPublicPipelineId }: { taskPublicPipelineId: string }) {
     const response = await sendGraphQLRequest({
       query: getTaskStages,
       name: 'getTaskStages',
-      variables: { configId }
+      variables: { taskPublicPipelineId }
     });
 
     return response;

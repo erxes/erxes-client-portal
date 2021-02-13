@@ -8,9 +8,9 @@ type Props = {};
 
 function RegisterContainer(props: Props) {
   const renderButton = ({ values, isSubmitted }: IButtonMutateProps) => {
-    const callbackResponse = () => {
-      window.location.href = '/';
-    };
+    const callbackResponse = () => window.location.href = '/';
+
+    values.configId = process.env.CLIENT_PORTAL_CONFIG_ID
 
     return (
       <ButtonMutate
@@ -25,6 +25,7 @@ function RegisterContainer(props: Props) {
       </ButtonMutate>
     );
   };
+
   const updatedProps = {
     ...props,
     renderButton
