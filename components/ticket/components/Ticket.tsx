@@ -1,5 +1,4 @@
 import React from 'react';
-import Layout from '../../main/containers/Layout';
 import { StageTitle } from '../../styles/tasks';
 import {
   CategoryItem,
@@ -14,9 +13,9 @@ type Props = {
   tickets: any;
 };
 
-export default function Ticket({ loading, tickets }: Props) {
+export default function Ticket({ tickets }: Props) {
   return (
-    <Layout>
+    <>
       <Link href="/tickets/form">
         <Button btnStyle="success">
           <Icon icon="plus" /> &nbsp; Submit new ticket
@@ -35,6 +34,6 @@ export default function Ticket({ loading, tickets }: Props) {
           </CategoryContent>
         </CategoryItem>
       ))}
-    </Layout>
+    </>
   );
 }

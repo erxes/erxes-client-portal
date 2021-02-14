@@ -1,85 +1,92 @@
-import React from 'react';
-import Layout from '../../main/containers/Layout';
+import React, { useState } from 'react';
+
+import Select from 'react-select-plus';
 import FormControl from '../../common/form/Control';
-import Form from '../../common/form/Form';
 import FormGroup from '../../common/form/Group';
-import { IButtonMutateProps } from '../../common/types';
 import Button from '../../common/Button';
+import { Ticket } from '../../types';
+import { ControlLabel } from '../../common/form';
 
-type Props = {};
+type Props = {
+  handleSubmit: (doc: Ticket) => void;
+};
 
-export default function TicketForm({}: Props) {
-  const renderContent = formProps => {
-    const { values, isSubmitted } = formProps;
-    console.log(values, isSubmitted);
+const PRIORITY_OPTIONS = [
+  {
+    label: 'Critical',
+    value: "critical"
+  },
+  {
+    label: 'Normal',
+    value: "normal"
+  },
+  {
+    label: 'Low',
+    value: "low"
+  },
+]
 
-    return (
-      <>
-        <FormGroup>
-          <FormControl
-            {...formProps}
-            name="ticketNumber"
-            placeholder="Ticket number"
-            required={true}
-          />
-        </FormGroup>
+export default function TicketForm({ handleSubmit }: Props) {
+  const [ticket, setTicket] = useState<Ticket>({} as Ticket);
 
-        <FormGroup>
-          <FormControl
-            {...formProps}
-            name="requestor"
-            type="email"
-            placeholder="Requestor"
-            required={true}
-          />
-        </FormGroup>
-
-        <FormGroup>
-          <FormControl
-            {...formProps}
-            name="subject"
-            placeholder="Subject"
-            required={true}
-          />
-        </FormGroup>
-
-        <FormGroup>
-          <FormControl
-            type="select"
-            name="pirority"
-            placeholder="Pirority"
-            required={true}
-          >
-            <option value="normal">Normal</option>
-            <option value="critical">Critical</option>
-          </FormControl>
-        </FormGroup>
-
-        <FormGroup>
-          <FormControl
-            type="textarea"
-            name="description"
-            placeholder="Description"
-            required={true}
-          />
-        </FormGroup>
-
-        <FormGroup>
-          <Button href="/tickets">cancel</Button>
-
-          {/* {renderButton({
-            values,
-            isSubmitted
-          })} */}
-        </FormGroup>
-      </>
-    );
+  const handleClick = () => {
+    handleSubmit(ticket);
   };
 
+  const handleSelect = option => {
+    setTicket(currentValues => ({
+      ...currentValues,
+      priority: option.value
+    }));
+  };
+
+  function renderControl({ label, name, placeholder, value = '' }) {
+    const handleChange = e => {
+      setTicket({
+        ...ticket,
+        [name]: e.target.value
+      });
+    }
+
+    return (
+      <FormGroup>
+        <ControlLabel>{label}</ControlLabel>
+        <FormControl
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          required={true}
+          onChange={handleChange}
+        />
+      </FormGroup>
+    );
+  }
+
   return (
-    <Layout>
+    <>
       <h2>New ticket</h2>
-      <Form renderContent={renderContent} />
-    </Layout>
+      {renderControl({
+        name: 'subject',
+        label: 'Subject',
+        value: ticket.subject,
+        placeholder: 'Enter a subject',
+      })}
+      {renderControl({
+        name: 'description',
+        label: 'Description',
+        value: ticket.description,
+        placeholder: 'Enter a description'
+      })}
+      {/* <Select
+        name="priority"
+        value={ticket.priority || ''}
+        options={PRIORITY_OPTIONS}
+        onChange={handleSelect}
+      /> */}
+      <FormGroup>
+        <Button href="/tickets">Cancel</Button>
+        <Button onClick={handleClick}>Submit</Button>
+      </FormGroup>
+    </>
   );
 }

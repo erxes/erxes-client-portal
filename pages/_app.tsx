@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import 'react-select-plus/dist/react-select-plus.css';
 import '../styles/globals.css';
 import 'erxes-icon/css/erxes.min.css';
 

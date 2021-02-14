@@ -1,3 +1,11 @@
+export type Ticket = {
+  stageId: string;
+  subject: string;
+  description?: string;
+  requestor: string;
+  priority: string;
+};
+
 export type Config = {
   _id?: string;
   name?: string;

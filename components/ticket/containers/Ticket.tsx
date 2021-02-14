@@ -1,18 +1,22 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
-import { getTasks } from '../../../pages/api/resolvers/queries/config';
+import { customerTickets } from '../../../pages/api/resolvers/queries/ticket';
+import { AppConsumer } from '../../appContext';
+import { ICustomer } from '../../types';
 import Ticket from '../components/Ticket';
 
 type Props = {
-  stageId?: string;
+  currentUser?: ICustomer;
 };
 
-function TicketContainer({ stageId, ...props }: Props) {
-  const { loading, data = {} } = useQuery(gql(getTasks), {
-    variables: { stageId: stageId || '3vKotSwXRQr84wwJT' }
+function TicketContainer({ currentUser, ...props }: Props) {
+  const { loading, data = {} } = useQuery(gql(customerTickets), {
+    variables: {
+      email: currentUser.email
+    }
   });
 
-  const tickets = data.getTasks || [];
+  const tickets = data.customerTickets || [];
 
   const updatedProps = {
     ...props,
@@ -23,4 +27,14 @@ function TicketContainer({ stageId, ...props }: Props) {
   return <Ticket {...updatedProps} />;
 }
 
-export default TicketContainer;
+const WithConsumer = props => {
+  return (
+    <AppConsumer>
+      {({ currentUser }: { currentUser }) => {
+        return <TicketContainer {...props} currentUser={currentUser} />;
+      }}
+    </AppConsumer>
+  );
+};
+
+export default WithConsumer;
