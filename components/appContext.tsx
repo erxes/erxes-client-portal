@@ -1,8 +1,8 @@
-import React, { useState, useEffect, createContext } from 'react';
-import { configClientPortal } from '../pages/api/resolvers/queries/config';
-import { sendGraphQLRequest } from '../pages/api/utils';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import React, { createContext, useEffect } from 'react';
+import { apiClient } from './apolloClient';
 import * as queries from './knowledgeBase/graphql/queries';
-import { Config, ICustomer } from './types';
+import { ICustomer } from './types';
 
 const AppContext = createContext({});
 
@@ -13,42 +13,77 @@ type Props = {
   currentUser?: ICustomer;
 };
 
-function AppProvider({ children, currentUser }: Props) {
-  const [config, setConfig] = useState<Config>({});
-  const [topic, setTopic] = useState({});
+const clientPortalGetConfig = `
+  query clientPortalGetConfig($_id: String!) {
+    clientPortalGetConfig(_id: $_id) {
+      _id
+      name
+      description
+      logo
+      icon
+      url
+      knowledgeBaseLabel
+      knowledgeBaseTopicId
+      taskLabel
+      taskPublicPipelineId
+      taskStageId
+      ticketLabel
+      ticketStageId
+
+      styles {
+        bodyColor
+        headerColor
+        footerColor
+        helpColor
+        backgroundColor
+        activeTabColor
+        baseColor
+        headingColor
+        linkColor
+        linkHoverColor
+        baseFont
+        headingFont
+        dividerColor
+        primaryBtnColor
+        secondaryBtnColor
+      }
+
+      advanced {
+        authAllow
+        permission
+        viewTicket
+      }
+    }
+  }
+`;
+
+function AppProvider({ children }: Props) {
+  const clientPortalConfigResponse = useQuery(gql(clientPortalGetConfig), {
+    variables: { _id: process.env.CLIENT_PORTAL_CONFIG_ID },
+    client: apiClient
+  });
+
+  const cpData = (clientPortalConfigResponse || {}).data || {};
+  const config = cpData.clientPortalGetConfig || {};
+
+  const [fetchTopicDetail, { data = {} }] = useLazyQuery(gql(queries.getKbTopicQuery), {
+    client: apiClient,
+  });
 
   useEffect(() => {
-    const fetchConfig = async () => {
-      const response = await sendGraphQLRequest({
-        query: configClientPortal,
-        name: 'getConfig',
-        variables: { _id: process.env.CLIENT_PORTAL_CONFIG_ID }
-      });
-
-      setConfig(response);
-    };
-
-    fetchConfig();
-  }, []);
-
-  useEffect(() => {
-    if (config && config.knowledgeBaseTopicId) {
-      const fetchTopic = async () => {
-        const response = await sendGraphQLRequest({
-          query: queries.getKbTopicQuery,
-          name: 'widgetsKnowledgeBaseTopicDetail',
-          variables: { _id: config.knowledgeBaseTopicId }
-        });
-
-        setTopic(response);
+    if (config) {
+      const fetch = () => {
+        fetchTopicDetail({ variables: { _id: config.knowledgeBaseTopicId } })
       };
 
-      fetchTopic();
+      fetch();
     }
   }, [config]);
 
+  const topic = data.knowledgeBaseTopicDetail || {};
+
   return (
-    <AppContext.Provider value={{ config, topic, currentUser }}>
+    <AppContext.Provider value={{ config, topic, currentUser: {} }}>
       {children}
     </AppContext.Provider>
   );

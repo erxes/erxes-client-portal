@@ -4,7 +4,9 @@ import TicketList from '../../components/ticket/containers/Ticket';
 function Ticket() {
   return (
     <Layout>
-      <TicketList />
+      {props => {
+        return <TicketList {...props} />;
+      }}
     </Layout>
   );
 }

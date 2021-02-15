@@ -1,22 +1,32 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
-import { customerTickets } from '../../../pages/api/resolvers/queries/ticket';
 import { AppConsumer } from '../../appContext';
-import { ICustomer } from '../../types';
+import { ICustomer, Store } from '../../types';
 import Ticket from '../components/Ticket';
 
 type Props = {
   currentUser?: ICustomer;
 };
 
-function TicketContainer({ currentUser, ...props }: Props) {
-  const { loading, data = {} } = useQuery(gql(customerTickets), {
-    variables: {
-      email: currentUser.email
+const clientPortalTickets = `
+  query clientPortalTickets($_id: String!) {
+    clientPortalTickets(_id: $_id) {
+      _id
+      name
+      description
+      status
+      priority
     }
+  }
+`;
+
+function TicketContainer({ currentUser, ...props }: Props) {
+  const { loading, data = {} } = useQuery(gql(clientPortalTickets), {
+    variables: { email: (currentUser || {}).email },
+    skip: !currentUser
   });
 
-  const tickets = data.customerTickets || [];
+  const tickets = data.clientPortalTickets || [];
 
   const updatedProps = {
     ...props,
@@ -30,7 +40,7 @@ function TicketContainer({ currentUser, ...props }: Props) {
 const WithConsumer = props => {
   return (
     <AppConsumer>
-      {({ currentUser }: { currentUser }) => {
+      {({ currentUser }: Store) => {
         return <TicketContainer {...props} currentUser={currentUser} />;
       }}
     </AppConsumer>

@@ -3,7 +3,6 @@ import Item from '../containers/Item';
 import { TabContainers, TabTitle } from '../../styles/tasks';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { AppConsumer } from '../../appContext';
 import { Config } from '../../types';
 import { getConfigColor } from '../../common/utils';
 
@@ -52,14 +51,4 @@ function Tasks({ loading, stages, config }: Props) {
   );
 }
 
-const WithConsumer = props => {
-  return (
-    <AppConsumer>
-      {({ config }: { config: Config }) => {
-        return <Tasks {...props} config={config} />;
-      }}
-    </AppConsumer>
-  );
-};
-
-export default WithConsumer;
+export default Tasks;

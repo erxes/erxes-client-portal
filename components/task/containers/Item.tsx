@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
-import { getTasks } from '../../../pages/api/resolvers/queries/config';
+import { apiClient } from '../../apolloClient';
 import Item from '../components/Item';
 
 type Props = {
@@ -8,13 +8,25 @@ type Props = {
   backgroundColor?: string;
 };
 
+const clientPortalGetTasks = `
+  query clientPortalGetTasks($stageId: String!) {
+    clientPortalGetTasks(stageId: $stageId) {
+      _id
+      name
+      description
+      modifiedAt
+    }
+  }
+`;
+
 function ItemContainer({ stageId, ...props }: Props) {
-  const { loading, data = {} } = useQuery(gql(getTasks), {
+  const { loading, data = {} } = useQuery(gql(clientPortalGetTasks), {
     variables: { stageId },
+    client: apiClient,
     skip: !stageId
   });
 
-  const tasks = data.getTasks || [];
+  const tasks = data.clientPortalGetTasks || [];
 
   const updatedProps = {
     ...props,

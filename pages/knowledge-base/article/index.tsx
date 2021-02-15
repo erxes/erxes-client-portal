@@ -8,7 +8,9 @@ export default function Category() {
 
   return (
     <Layout>
-      <ArticleDetail queryParams={router.query} />
+      {props => {
+        return <ArticleDetail {...props} queryParams={router.query} />;
+      }}
     </Layout>
   );
 }

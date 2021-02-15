@@ -16,11 +16,9 @@ function Layout({ config, topic, children, currentUser }: Props) {
   return (
     <>
       <Header config={config} currentUser={currentUser} />
-
       <MainContent baseColor={getConfigColor(config, 'baseColor')}>
-        <Container>{children}</Container>
+        <Container>{children({ config, topic })}</Container>
       </MainContent>
-
       <Footer config={config} />
     </>
   );

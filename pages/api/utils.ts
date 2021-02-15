@@ -1,14 +1,12 @@
 import * as request from "request";
 
-export const sendGraphQLRequest = ({
-  query,
-  variables,
-  name,
-}: {
+type Params = {
   name: string;
   query: string;
   variables?: { [key: string]: string };
-}) => {
+};
+
+export const sendGraphQLRequest = ({ query, variables, name }: Params) => {
   return new Promise((resolve, reject) => {
     request(
       {

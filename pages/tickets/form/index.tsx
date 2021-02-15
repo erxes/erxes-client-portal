@@ -4,7 +4,9 @@ import TicketForm from '../../../components/ticket/containers/Form';
 function Ticket() {
   return (
     <Layout>
-      <TicketForm />
+      {(props) => {
+        return <TicketForm {...props} />;
+      }}
     </Layout>
   );
 }

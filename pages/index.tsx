@@ -5,7 +5,9 @@ import Layout from '../components/main/containers/Layout';
 export default function Home() {
   return (
     <Layout>
-      <CategoriesContainer />
+      {({ config, topic }: any) => {
+        return <CategoriesContainer config={config} topic={topic} />;
+      }}
     </Layout>
   );
 }

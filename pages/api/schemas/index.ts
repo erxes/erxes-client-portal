@@ -1,14 +1,4 @@
 import { gql } from 'apollo-server-micro';
-import { queries as ConfigQueries, types as ConfigTypes } from './config';
-import {
-  queries as KnowledgeBaseQueries,
-  types as KnowledgeBaseTypes
-} from './knowledgeBase';
-import {
-  mutations as TicketMutations,
-  queries as TicketQueries,
-  types as TicketTypes
-} from './ticket';
 import {
   mutations as UserMutations,
   queries as UserQueries,
@@ -19,17 +9,11 @@ import {
 const types = `
   scalar JSON
   scalar Date
-  ${ConfigTypes}
-  ${TicketTypes}
-  ${KnowledgeBaseTypes}
   ${UserTypes}
 `;
 
 const queries = `
   type Query {
-    ${TicketQueries}
-    ${ConfigQueries}
-    ${KnowledgeBaseQueries}
     ${UserQueries}
   }
 `;
@@ -37,7 +21,6 @@ const queries = `
 const mutations = `
   type Mutation {
     ${UserMutations}
-    ${TicketMutations}
   }
 `;
 

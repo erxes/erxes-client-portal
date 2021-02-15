@@ -1,3 +1,9 @@
+export type Store = {
+  currentUser: ICustomer;
+  topic: Topic;
+  config: Config;
+};
+
 export type Ticket = {
   stageId: string;
   subject: string;

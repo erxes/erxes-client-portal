@@ -1,7 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
 import React from "react";
-import { createTicketMutation } from "../../../pages/api/resolvers/mutations/tickets";
-import { AppConsumer } from "../../appContext";
 import { Config, ICustomer, Ticket } from "../../types";
 import Form from "../components/Form";
 
@@ -10,8 +8,28 @@ type Props = {
   currentUser: ICustomer;
 };
 
+export const clientPortalCreateCustomer = `
+  mutation clientPortalCreateCustomer(
+    $stageId: String!
+    $subject: String!
+    $description: String
+    $email: String!
+    $priority: String
+  ) {
+    clientPortalCreateCustomer(
+      stageId: $stageId
+      subject: $subject
+      description: $description
+      email: $email
+      priority: $priority
+    ) {
+      _id
+    }
+  }
+`;
+
 function FormContainer({ config = {}, currentUser, ...props }: Props) {
-  const [createTicket] = useMutation(gql(createTicketMutation));
+  const [createTicket] = useMutation(gql(clientPortalCreateCustomer));
 
   const handleSubmit = (doc: Ticket) => {
     createTicket({
@@ -21,7 +39,10 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
         email: currentUser.email,
         priority: "Critical", // TODO: Add select in Form
       },
-    });
+    })
+      .then(() => {
+        window.location.href = '/tickets';
+      });
   };
 
   const updatedProps = {
@@ -32,22 +53,4 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
   return <Form {...updatedProps} />;
 }
 
-const WithConsumer = (props) => {
-  return (
-    <AppConsumer>
-      {({
-        config,
-        currentUser,
-      }: {
-        config: Config;
-        currentUser: ICustomer;
-      }) => {
-        return (
-          <FormContainer {...props} config={config} currentUser={currentUser} />
-        );
-      }}
-    </AppConsumer>
-  );
-};
-
-export default WithConsumer;
+export default FormContainer;

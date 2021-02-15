@@ -1,6 +1,6 @@
 export const getKbTopicQuery = `
-  query widgetsKnowledgeBaseTopicDetail($_id: String!) {
-    widgetsKnowledgeBaseTopicDetail(_id: $_id) {
+  query knowledgeBaseTopicDetail($_id: String!) {
+    knowledgeBaseTopicDetail(_id: $_id) {
       _id
       title
       description
@@ -24,22 +24,6 @@ export const getKbTopicQuery = `
   }
 `;
 
-export const widgetsKnowledgeBaseArticles = `
-  query widgetsKnowledgeBaseArticles($topicId: String!, $searchString: String!) {
-    widgetsKnowledgeBaseArticles(topicId: $topicId, searchString: $searchString) {
-      _id
-      title
-      summary
-      content
-      createdBy
-      createdDate
-      modifiedBy
-      modifiedDate
-      createdUser
-    }
-  }
-`;
-
 export const categoryDetailQuery = `
   query knowledgeBaseCategoryDetail($_id: String!) {
     knowledgeBaseCategoryDetail(_id: $_id) {
@@ -48,7 +32,12 @@ export const categoryDetailQuery = `
       description
       numOfArticles
       icon
-      authors
+      authors {
+        details {
+          fullName
+          avatar
+        }
+      }
       articles {
         _id
         title
@@ -59,7 +48,12 @@ export const categoryDetailQuery = `
         createdDate
         modifiedBy
         modifiedDate
-        createdUser
+        createdUser {
+          details {
+            fullName
+            avatar
+          }
+        }
       }
     }
   }
@@ -76,7 +70,12 @@ export const articleDetailQuery = `
       reactionChoices
       reactionCounts
       createdBy
-      createdUser
+      createdUser {
+        details {
+          fullName
+          avatar
+        }
+      }
       createdDate
       modifiedBy
       modifiedDate

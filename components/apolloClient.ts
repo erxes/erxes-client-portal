@@ -5,4 +5,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+export const apiClient = new ApolloClient({
+  uri: 'http://localhost:3300/graphql',
+  cache: new InMemoryCache()
+})
+
 export default client;

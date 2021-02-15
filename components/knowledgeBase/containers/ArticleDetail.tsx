@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import React from 'react';
+import { apiClient } from '../../apolloClient';
 import ArticleDetail from '../components/ArticleDetail';
 import { articleDetailQuery } from '../graphql/queries';
 
@@ -12,9 +13,12 @@ function ArticleDetailContainer({ queryParams, ...props }: Props) {
 
   const { loading, data = {} } = id
     ? useQuery(gql(articleDetailQuery), {
-        variables: { _id: id }
+        variables: { _id: id },
+        client: apiClient,
+        skip: !id
       })
     : { loading: true };
+
 
   const article = data.knowledgeBaseArticleDetail || {};
 
