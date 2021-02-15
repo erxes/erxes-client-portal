@@ -8,15 +8,15 @@ type Props = {
   currentUser: ICustomer;
 };
 
-export const clientPortalCreateCustomer = `
-  mutation clientPortalCreateCustomer(
+export const clientPortalCreateTicket = `
+  mutation clientPortalCreateTicket(
     $stageId: String!
     $subject: String!
     $description: String
     $email: String!
     $priority: String
   ) {
-    clientPortalCreateCustomer(
+    clientPortalCreateTicket(
       stageId: $stageId
       subject: $subject
       description: $description
@@ -29,7 +29,7 @@ export const clientPortalCreateCustomer = `
 `;
 
 function FormContainer({ config = {}, currentUser, ...props }: Props) {
-  const [createTicket] = useMutation(gql(clientPortalCreateCustomer));
+  const [createTicket] = useMutation(gql(clientPortalCreateTicket));
 
   const handleSubmit = (doc: Ticket) => {
     createTicket({

@@ -11,19 +11,21 @@ interface ILogin {
   deviceToken?: string;
 }
 
-const createCustomerMutation = `
+const clientPortalCreateCustomer = `
   mutation createCustomer(
     $configId: String!,
     $firstName: String!,
     $lastName: String
     $email: String!
   ) {
-    createCustomer(
+    clientPortalCreateCustomer(
       configId: $configId,
       firstName: $firstName,
       lastName: $lastName
       email: $email
-    )
+    ) {
+      _id
+    }
   }
 `;
 
@@ -64,7 +66,7 @@ const userMutations = {
     await Users.createUser(doc);
 
     await sendGraphQLRequest({
-      query: createCustomerMutation,
+      query: clientPortalCreateCustomer,
       name: 'createCustomer',
       variables: {
         configId,
