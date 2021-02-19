@@ -14,7 +14,6 @@ import { Topic } from '../../types';
 type Props = {
   topic: Topic;
 };
-
 class CategoryList extends React.Component<Props> {
   renderNames = authors => {
     if (authors.length > 3) {

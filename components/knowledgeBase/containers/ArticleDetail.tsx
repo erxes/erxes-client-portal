@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
-import React from 'react';
-import { apiClient } from '../../apolloClient';
+import React, { useContext } from 'react';
+import { ApiApolloClientContext } from '../../ApiContext';
 import ArticleDetail from '../components/ArticleDetail';
 import { articleDetailQuery } from '../graphql/queries';
 
@@ -8,8 +8,8 @@ type Props = {
   queryParams: any;
 };
 
-function ArticleDetailContainer({ queryParams, ...props }: Props) {
-  const { id } = queryParams;
+function ArticleDetailContainer({ queryParams: { id }, ...props }: Props) {
+  const apiClient = useContext(ApiApolloClientContext);
 
   const { loading, data = {} } = id
     ? useQuery(gql(articleDetailQuery), {

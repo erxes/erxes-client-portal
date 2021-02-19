@@ -1,12 +1,13 @@
 import React from 'react';
 import CategoriesContainer from '../components/knowledgeBase/containers/CategoryList';
 import Layout from '../components/main/containers/Layout';
+import { Store } from '../components/types';
 
 export default function Home() {
   return (
     <Layout>
-      {({ config, topic }: any) => {
-        return <CategoriesContainer config={config} topic={topic} />;
+      {(props: Store) => {
+        return <CategoriesContainer {...props} />;
       }}
     </Layout>
   );

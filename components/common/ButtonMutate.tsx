@@ -1,4 +1,3 @@
-import client from '../apolloClient';
 import gql from 'graphql-tag';
 import { colors } from '../styles';
 import Alert from '../utils/Alert';
@@ -7,6 +6,7 @@ import { rotate } from '../utils/animations';
 import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
+import withApolloClient from '../../pages/lib/withApolloClient';
 
 export const SmallLoader = styled.i`
   width: 13px;
@@ -41,6 +41,8 @@ type Props = {
   confirmationUpdate?: boolean;
   beforeSubmit?: () => void;
   resetSubmit?: () => void;
+} & {
+  apolloClient: any;
 };
 
 class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
@@ -67,6 +69,7 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
 
   invokeMutate = () => {
     const {
+      apolloClient,
       mutation,
       callback,
       variables,
@@ -74,7 +77,7 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
       refetchQueries,
       beforeSubmit,
       disableLoading,
-      resetSubmit
+      resetSubmit,
     } = this.props;
 
     if (beforeSubmit) {
@@ -85,7 +88,7 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
       this.setState({ isLoading: true });
     }
 
-    client
+    apolloClient
       .mutate({
         mutation: gql(mutation),
         variables,
@@ -174,4 +177,4 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
   }
 }
 
-export default ButtonMutate;
+export default withApolloClient(ButtonMutate);

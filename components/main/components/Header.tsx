@@ -12,13 +12,13 @@ import {
 } from '../../styles/main';
 import Search from './Search';
 import Icon from '../../common/Icon';
-import { Config, ICustomer } from '../../types';
+import { Config, IUser } from '../../types';
 import { useRouter } from 'next/router';
 import { getConfigColor } from '../../common/utils';
 
 type Props = {
   config: Config;
-  currentUser?: ICustomer;
+  currentUser: IUser;
   logout: () => void;
 };
 

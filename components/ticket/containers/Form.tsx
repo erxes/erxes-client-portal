@@ -1,11 +1,12 @@
 import { gql, useMutation } from "@apollo/client";
-import React from "react";
-import { Config, ICustomer, Ticket } from "../../types";
+import React, { useContext } from "react";
+import { ApiApolloClientContext } from "../../ApiContext";
+import { Config, IUser, Ticket } from "../../types";
 import Form from "../components/Form";
 
 type Props = {
   config: Config;
-  currentUser: ICustomer;
+  currentUser: IUser;
 };
 
 export const clientPortalCreateTicket = `
@@ -29,7 +30,11 @@ export const clientPortalCreateTicket = `
 `;
 
 function FormContainer({ config = {}, currentUser, ...props }: Props) {
-  const [createTicket] = useMutation(gql(clientPortalCreateTicket));
+  const apiClient = useContext(ApiApolloClientContext);
+
+  const [createTicket] = useMutation(gql(clientPortalCreateTicket), {
+    client: apiClient
+  });
 
   const handleSubmit = (doc: Ticket) => {
     createTicket({

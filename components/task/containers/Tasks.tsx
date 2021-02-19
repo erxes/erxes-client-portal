@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
-import React from 'react';
-import { apiClient } from '../../apolloClient';
+import React, { useContext } from 'react';
+import { ApiApolloClientContext } from '../../ApiContext';
 import { Config } from '../../types';
 import Tasks from '../components/Tasks';
 
@@ -18,6 +18,8 @@ const clientPortalGetTaskStages = `
 `;
 
 function TasksContainer({ config, ...props }: Props) {
+  const apiClient = useContext(ApiApolloClientContext);
+
   const { loading, data = {} } = useQuery(gql(clientPortalGetTaskStages), {
     variables: { taskPublicPipelineId: config.taskPublicPipelineId },
     client: apiClient,

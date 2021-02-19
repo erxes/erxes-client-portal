@@ -2,11 +2,11 @@ import { gql, useMutation } from '@apollo/client';
 import React from 'react';
 import { mutations } from '../../user/graphql';
 import Header from '../components/Header';
-import { Config, ICustomer, Topic } from '../../types';
+import { Config, IUser } from '../../types';
 
 type Props = {
   config: Config;
-  currentUser?: ICustomer;
+  currentUser: IUser;
 };
 
 function HeaderContainer(props: Props) {

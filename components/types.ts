@@ -1,5 +1,5 @@
 export type Store = {
-  currentUser: ICustomer;
+  currentUser: IUser;
   topic: Topic;
   config: Config;
 };
@@ -81,14 +81,10 @@ export interface IUserDetails {
 
 export interface IUser {
   _id: string;
-  details?: IUserDetails;
-}
-
-export interface ICustomer {
-  _id: string;
   firstName: string;
-  lastName?: string;
+  lastName: string;
   email: string;
+  details?: IUserDetails;
 }
 
 export interface IKbArticle extends ICommonFields {
@@ -116,4 +112,16 @@ export type Topic = {
   createdDate: Date;
   modifiedBy: string;
   modifiedDate: Date;
+};
+
+export type ConfigQueryResponse = {
+  clientPortalGetConfig: Config;
+};
+
+export type TopicQueryResponse = {
+  knowledgeBaseTopicDetail: Topic;
+};
+
+export type UserQueryResponse = {
+  currentUser: IUser;
 };

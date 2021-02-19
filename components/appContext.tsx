@@ -1,8 +1,16 @@
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
-import React, { createContext, useEffect } from 'react';
-import { apiClient } from './apolloClient';
-import * as queries from './knowledgeBase/graphql/queries';
-import { ICustomer } from './types';
+import { gql, useQuery } from "@apollo/client";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { ApiApolloClientContext } from "./ApiContext";
+import * as queries from "./knowledgeBase/graphql/queries";
+import {
+  Config,
+  ConfigQueryResponse,
+  IUser,
+  Topic,
+  TopicQueryResponse,
+  UserQueryResponse,
+} from "./types";
+import { currentUser } from "./user/graphql/queries";
 
 const AppContext = createContext({});
 
@@ -10,7 +18,6 @@ export const AppConsumer = AppContext.Consumer;
 
 type Props = {
   children: any;
-  currentUser?: ICustomer;
 };
 
 const clientPortalGetConfig = `
@@ -58,32 +65,54 @@ const clientPortalGetConfig = `
 `;
 
 function AppProvider({ children }: Props) {
-  const clientPortalConfigResponse = useQuery(gql(clientPortalGetConfig), {
-    variables: { _id: process.env.CLIENT_PORTAL_CONFIG_ID },
-    client: apiClient
-  });
+  const apiClient = useContext(ApiApolloClientContext);
 
-  const cpData = (clientPortalConfigResponse || {}).data || {};
-  const config = cpData.clientPortalGetConfig || {};
+  const [config, setConfig] = useState<Config>({});
+  const [topic, setTopic] = useState<Topic>({} as Topic);
 
-  const [fetchTopicDetail, { data = {} }] = useLazyQuery(gql(queries.getKbTopicQuery), {
-    client: apiClient,
-  });
+  const { data } = useQuery<UserQueryResponse>(gql(currentUser));
+
+  useEffect(() => {
+    const fetch = async () => {
+      const clientPortalConfigResponse = await apiClient.query<ConfigQueryResponse>(
+        {
+          query: gql(clientPortalGetConfig),
+          variables: { _id: process.env.CLIENT_PORTAL_CONFIG_ID },
+        }
+      );
+
+      const cpData =
+        (clientPortalConfigResponse || {}).data || ({} as ConfigQueryResponse);
+
+      setConfig(cpData.clientPortalGetConfig || {});
+    };
+
+    fetch();
+  }, []);
 
   useEffect(() => {
     if (config) {
-      const fetch = () => {
-        fetchTopicDetail({ variables: { _id: config.knowledgeBaseTopicId } })
+      const fetch = async () => {
+        if (config.knowledgeBaseTopicId) {
+          const topicResponse = await apiClient.query<TopicQueryResponse>({
+            query: gql(queries.getKbTopicQuery),
+            variables: { _id: config.knowledgeBaseTopicId },
+          });
+
+          const data = (topicResponse.data || {}) as any;
+
+          setTopic(data.knowledgeBaseTopicDetail || {});
+        }
       };
 
       fetch();
     }
   }, [config]);
 
-  const topic = data.knowledgeBaseTopicDetail || {};
-
   return (
-    <AppContext.Provider value={{ config, topic, currentUser: {} }}>
+    <AppContext.Provider
+      value={{ config, topic, currentUser: (data || {}).currentUser }}
+    >
       {children}
     </AppContext.Provider>
   );

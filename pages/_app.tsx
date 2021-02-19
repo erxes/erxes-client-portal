@@ -4,9 +4,17 @@ import '../styles/globals.css';
 import 'erxes-icon/css/erxes.min.css';
 
 import { ApolloProvider } from '@apollo/client';
-import apolloClient from '../components/apolloClient';
+import withApolloClient from './lib/withApolloClient';
+import { ApiApolloClientContext } from '../components/ApiContext';
 
-function MyApp({ Component, pageProps }) {
+type Props = {
+  apolloClient: any
+  apiClient: any;
+  pageProps: any;
+  Component: any;
+};
+
+function MyApp({ Component, pageProps, apolloClient, apiClient }: Props) {
   useEffect(() => {
     (window as any).erxesSettings = {
       messenger: {
@@ -25,10 +33,12 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <ApolloProvider client={apolloClient}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <ApiApolloClientContext.Provider value={apiClient}>
+      <ApolloProvider client={apolloClient}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </ApiApolloClientContext.Provider>
   );
 }
 
-export default MyApp;
+export default withApolloClient(MyApp);
