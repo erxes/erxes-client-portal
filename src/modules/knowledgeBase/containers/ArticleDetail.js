@@ -34,6 +34,7 @@ export default compose(
     name: "getArticleDetailQuery",
     options: ({ queryParams }) => ({
       variables: { _id: queryParams._id },
+      skip: !queryParams._id
     }),
   }),
   graphql(gql(queries.getKbCategoryQuery), {
