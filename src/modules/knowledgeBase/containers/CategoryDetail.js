@@ -46,6 +46,7 @@ export default compose(
     name: 'getKbCategoryQuery',
     options: ({ categoryId }) => ({
       variables: { _id: categoryId },
+      skip: !categoryId
     }),
   })
 )(CategoryDetailsContainer);
