@@ -40,6 +40,7 @@ export default compose(
     name: "getKbCategoryQuery",
     options: ({ queryParams }) => ({
       variables: { _id: queryParams.catId },
+      skip: !queryParams.catId
     }),
   })
 )(DetailContainer);
