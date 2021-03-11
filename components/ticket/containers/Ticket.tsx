@@ -35,7 +35,8 @@ function TicketContainer({ currentUser, ...props }: Props) {
   const updatedProps = {
     ...props,
     tickets,
-    loading
+    loading,
+    currentUser
   };
 
   return <Ticket {...updatedProps} />;

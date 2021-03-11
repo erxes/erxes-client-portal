@@ -7,7 +7,10 @@ type Props = {
   onClose: () => void;
 };
 
-export default class App extends React.Component<Props, { show: boolean }> {
+export default class TikcetDetail extends React.Component<
+  Props,
+  { show: boolean }
+> {
   constructor(props) {
     super(props);
 
