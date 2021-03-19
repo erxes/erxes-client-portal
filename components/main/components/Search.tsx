@@ -6,6 +6,7 @@ type Props = {};
 
 type State = {
   searchValue: string;
+  focused: boolean;
 };
 
 export default class Search extends React.Component<Props, State> {
@@ -15,7 +16,8 @@ export default class Search extends React.Component<Props, State> {
     const { searchValue } = props;
 
     this.state = {
-      searchValue: searchValue || ''
+      searchValue: searchValue || '',
+      focused: false,
     };
   }
 
@@ -39,14 +41,24 @@ export default class Search extends React.Component<Props, State> {
 
   onKeyDown = e => {};
 
-  clearSearch = () => {};
+  clearSearch = () => {
+    this.setState({ searchValue: '' });
+  };
+
+  onFocus = () => {
+    this.setState({ focused: true });
+  }
+
+  onBlur = () => {
+    this.setState({ focused: false });
+  }
 
   render() {
-    const { searchValue } = this.state;
+    const { searchValue, focused } = this.state;
 
     return (
-      <SearchContainer>
-        <Icon icon="search" onClick={this.onSearch} />
+      <SearchContainer focused={focused}>
+        <Icon icon="search-1" onClick={this.onSearch} />
 
         {searchValue && <Icon icon="times-circle" onClick={this.clearSearch} />}
 
@@ -55,6 +67,8 @@ export default class Search extends React.Component<Props, State> {
           placeholder="Search for articles..."
           value={searchValue}
           onKeyDown={this.onKeyDown}
+          onBlur={this.onBlur}
+          onFocus={this.onFocus}
         />
       </SearchContainer>
     );

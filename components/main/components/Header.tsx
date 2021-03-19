@@ -8,7 +8,10 @@ import {
   Container,
   HeaderTitle,
   WebLink,
-  LinkItem
+  LinkItem,
+  SupportMenus,
+  HeaderLeft,
+  HeaderRight
 } from '../../styles/main';
 import Search from './Search';
 import Icon from '../../common/Icon';
@@ -37,35 +40,38 @@ function Header({ config, currentUser, logout }: Props) {
     <Head color={getConfigColor(config, 'headerColor')}>
       <Container transparent={true}>
         <HeaderTop>
-          <HeaderLogo>
-            <Link href="/">
-              <img src={config.logo} />
-            </Link>
-            <HeaderTitle>{config.name}</HeaderTitle>
-          </HeaderLogo>
-          <WebLink href={config.url} target="_blank" rel="noopener noreferrer">
-            <Icon icon="arrow-up-right" /> {config.name}
-          </WebLink>
-          &nbsp; | &nbsp;
-          {currentUser ? (
-            <span title="Log out" onClick={() => logout()}>
-              <Icon icon="user" /> &nbsp;
-              {currentUser.firstName}
-            </span>
-          ) : (
-            <>
-              <Link href="/user/register">Sign up</Link>&nbsp; | &nbsp;
-              <Link href="/user/login">Login</Link>
-            </>
-          )}
+          <HeaderLeft>
+            <HeaderLogo>
+              <Link href="/">
+                <img src={config.logo || '/static/logos/erxes-logo-white.svg'} />
+              </Link>
+              <HeaderTitle>{config.name}</HeaderTitle>
+            </HeaderLogo>
+          </HeaderLeft>
+          <HeaderRight>
+            <SupportMenus>
+              <WebLink href={config.url} target="_blank" rel="noopener noreferrer">
+                <Icon icon="external-link-alt" /> {config.name}
+              </WebLink>
+              {currentUser ? (
+                <span title="Log out" onClick={() => logout()}>
+                  <Icon icon="user" /> &nbsp;
+                  {currentUser.firstName}
+                </span>
+              ) : (
+                <>
+                  <Link href="/user/register">Sign up</Link>
+                  <Link href="/user/login">Login</Link>
+                </>
+              )}
+            </SupportMenus>
+            <HeaderLinks>
+              {renderLink('/', config.knowledgeBaseLabel || 'Knowledge Base')}
+              {renderLink('/tasks', config.taskLabel || 'Task')}
+              {renderLink('/tickets', config.ticketLabel || 'Ticket')}
+            </HeaderLinks>
+          </HeaderRight>
         </HeaderTop>
-
-        <HeaderLinks>
-          {renderLink('/', config.knowledgeBaseLabel || 'Knowledge Base')}
-          {renderLink('/tasks', config.taskLabel || 'Task')}
-          {renderLink('/tickets', config.ticketLabel || 'Ticket')}
-        </HeaderLinks>
-
         <h3>{config.description}</h3>
         <Search />
       </Container>

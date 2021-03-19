@@ -9,8 +9,9 @@ type Props = {
 };
 
 const Wrapper = styled.div`
-  color: $grey;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 
   span {
     display: inline-block;
@@ -24,12 +25,7 @@ const Wrapper = styled.div`
   }
 
   i {
-    font-size: 10px;
     margin-right: 5px;
-
-    &:before {
-      font-weight: 600;
-    }
   }
 `;
 
@@ -44,14 +40,14 @@ const Breadcrumb = (props: Props) => {
 
       {category && (
         <>
-          <Icon icon="chevron" />
+          <Icon icon="angle-right" />
           <Link href={`/knowledge-base/category?id ${category._id}`}>
             <span className="link">{category.title}</span>
           </Link>
         </>
       )}
 
-      <Icon icon="chevron" />
+      <Icon icon="angle-right" />
       <span>{title}</span>
     </Wrapper>
   );

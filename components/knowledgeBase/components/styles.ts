@@ -25,10 +25,10 @@ const Header = styledTS<{ color?: string; backgroundImage?: string }>(
 const CategoryItem = styled.div`
   display: flex;
   background-color: ${colors.colorWhite};
-  margin-bottom: 30px;
-  padding: 25px;
+  margin-bottom: 16px;
+  padding: 24px;
   border: 0;
-  box-shadow: 0px 0 15px -10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0 15px -10px rgba(0, 0, 0, 0.35);
   border-radius: 5px;
   transition: 0.4s;
   cursor: pointer;
@@ -46,17 +46,24 @@ const CategoryIcon = styled.div`
   color: ${silverGrey};
   text-align: center;
   width: 120px;
+  margin-right: 10px;
 `;
 
 const CategoryContent = styledTS<{ color?: string }>(styled.div)`
   h5 {
     color: ${props => props.color || colors.colorSecondary};
-    font-size: ${typography.fontSizeHeading6}px;
-    font-weight: ${typography.fontWeightLight};
+    font-weight: ${typography.fontWeightMedium};
+    margin: 0 0 2px;
+    font-size: 18px;
   }
+
   p {
-    margin-bottom: 0;
     color: ${colors.colorCoreGray};
+    margin: 5px 0px 11px;
+    text-decoration: none;
+    display: block;
+    line-height: 1.4;
+    font-weight: 300;
   }
 `;
 
@@ -91,6 +98,7 @@ const Avatars = styled.div`
     width: 34px;
     height: 34px;
     border-radius: 50%;
+    overflow: hidden;
 
     &:first-child {
       margin-left: 0;
@@ -212,23 +220,6 @@ const SidebarItem = styledTS<{ active?: boolean }>(styled.div)`
   }
 `;
 
-const ArticleItem = styled.div`
-  color: ${silverGrey};
-  border-bottom: 1px solid #eee;
-  border-radius: 1px;
-  padding: 1.5rem;
-  background: ${colors.colorWhite};
-  box-shadow: 0 0 15px -10px rgb(0 0 0 / 25%);
-  transition: 0.4s;
-
-  h5 {
-    color: ${colors.colorSecondary};
-    font-size: ${typography.fontSizeHeading6}px;
-    margin-bottom: 8px;
-    font-weight: 400;
-  }
-`;
-
 const ArticleWrapper = styled.div`
   padding: 50px 80px;
   border: 0;
@@ -275,6 +266,5 @@ export {
   SidebarItem,
   SidebarIcon,
   SidebarContent,
-  ArticleItem,
   ArticleWrapper
 };
