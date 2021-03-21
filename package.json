@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@nateradebaugh/react-datetime": "^4.4.6",
     "@types/next": "^9.0.0",
     "@zeit/next-typescript": "^1.1.1",
     "apollo-cache-inmemory": "^1.6.6",
