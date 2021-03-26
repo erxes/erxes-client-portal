@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArticleItem } from './styles';
+import { CategoryContent, CategoryItem } from './styles';
 import Link from 'next/link';
 import Avatar from '../../common/Avatar';
 
@@ -18,12 +18,15 @@ class Lists extends React.Component<Props> {
     return articles.map(article => {
       return (
         <Link href={`/knowledge-base/article?id=${article._id}`}>
-          <ArticleItem>
-            <h5 className="base-color">{article.title}</h5>
-            <p>{article.summary}</p>
+          <CategoryItem>
+            <CategoryContent>
+              <h5 className="base-color">{article.title}</h5>
+              <p>{article.summary}</p>
 
-            <Avatar date={article.modifiedDate} user={article.createdUser} />
-          </ArticleItem>
+              <Avatar date={article.modifiedDate} user={article.createdUser} />
+            </CategoryContent>
+            
+          </CategoryItem>
         </Link>
       );
     });

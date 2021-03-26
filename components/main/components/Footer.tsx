@@ -16,7 +16,7 @@ function Footer(props: Props) {
     return (
       <FooterLink href={url} target="_blank" rel="noopener noreferrer">
         <img
-          src={`https://erxes.io/static/images/logo/${imgSrc}`}
+          src={`/static/logos/${imgSrc}`}
           alt={iconName}
         />
       </FooterLink>
@@ -35,12 +35,12 @@ function Footer(props: Props) {
         <div>
           {renderLink(
             'https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq',
-            'rocketchat-icon.png',
+            'rocketchat.svg',
             'rocketchat'
           )}
-          {renderLink('https://fb.erxes.io', 'fb-icon.png', 'facebook')}
-          {renderLink('https://github.com/erxes', 'github.png', 'github')}
-          {renderLink('https://twitter.com/erxeshq', 'tw-icon.svg', 'twitter')}
+          {renderLink('https://fb.erxes.io', 'facebook.svg', 'facebook')}
+          {renderLink('https://github.com/erxes', 'github.svg', 'github')}
+          {renderLink('https://twitter.com/erxeshq', 'twitter.svg', 'twitter')}
         </div>
       </Container>
     </StyledFooter>

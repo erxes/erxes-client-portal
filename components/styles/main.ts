@@ -18,24 +18,21 @@ const Header = styledTS<{ color?: string; backgroundImage?: string }>(
   h3 {
     font-size: 1.75rem;
     font-weight: ${typography.fontWeightLight};
-    padding: 20px 0;
+    margin: 20px 0;
   }
 `;
 
 const HeaderTop = styled.div`
   display: flex;
-  margin-bottom: ${dimensions.coreSpacing}px;
+  margin-bottom: ${dimensions.unitSpacing}px;
 `;
 
 const HeaderLogo = styled.div`
-  flex-basis: 0;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  min-width: 0;
-  max-width: 100%;
+  display: flex;
+  align-items: center;
 
   img {
-    width: 80px;
+    max-height: 40px;
     -webkit-filter: brightness(0) invert(1);
     filter: brightness(0) invert(1);
     cursor: pointer;
@@ -44,8 +41,40 @@ const HeaderLogo = styled.div`
 
 const HeaderTitle = styled.span`
   margin-left: 10px;
-  padding-left: 5px;
-  border-left: 2px solid ${colors.colorWhite};
+  padding-left: 10px;
+  border-left: 1px solid ${colors.colorWhite};
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+`;
+
+const HeaderRight = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const HeaderLeft = styled.div`
+  display: flex;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  min-width: 0;
+  max-width: 100%;
+  align-items: baseline;
+`;
+
+const SupportMenus = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+
+  a {
+    margin-left: 10px;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+  }
 `;
 
 const WebLink = styled.a`
@@ -57,14 +86,14 @@ const WebLink = styled.a`
 
 const HeaderLinks = styled.div`
   text-align: right;
-  margin-bottom: ${dimensions.coreSpacing}px;
 `;
 
 const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
   display: inline-block;
-  padding: 4px 0;
-  margin: 0 12px;
-  text-transform: uppercase;
+  padding-bottom: 4px;
+  margin: 0 10px;
+  font-size: 14px;
+  opacity: 0.9;
 
   &:last-child {
     margin-right: 0;
@@ -76,6 +105,7 @@ const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
     props.active &&
     `
     border-bottom-color:${colors.colorWhite};
+    opacity: 1;
   `}
 
   &:hover {
@@ -85,8 +115,8 @@ const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
 
 const MainContent = styledTS<{ baseColor?: string }>(styled.div)`
   background-color: #f5f8fb;
-  padding: ${dimensions.headerSpacing}px 0;
   min-height: 30vh;
+  padding: 32px 0;
 
   ${props =>
     props.baseColor &&
@@ -170,8 +200,15 @@ const BoxRoot = styledTS<{ selected?: boolean }>(styled.div)`
   }
 `;
 
-const SearchContainer = styled.div`
+const SearchContainer = styledTS<{ focused: boolean }>(styled.div)`
   position: relative;
+  ${props =>
+    props.focused &&
+    css`
+      i {
+        color: ${colors.colorCoreGray};
+      }
+    `};
 
   input {
     border: 0;
@@ -180,8 +217,9 @@ const SearchContainer = styled.div`
     background: rgba(255, 255, 255, 0.2);
     font-size: 18px;
     border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 20px 32px 21px 59px;
+    padding: 20px 32px 20px 60px;
+    color: ${rgba(colors.colorWhite, 0.8)};
+    transition: all 0.3s linear;
 
     &::placeholder {
       color: rgba(255, 255, 255, 0.6);
@@ -204,7 +242,7 @@ const SearchContainer = styled.div`
     font-size: 22px;
     cursor: pointer;
     position: absolute;
-    top: 18px;
+    top: 14px;
   }
 
   i:nth-child(1) {
@@ -215,9 +253,7 @@ const SearchContainer = styled.div`
     right: 20px;
   }
 
-  input:focus + i {
-    color: ${colors.textSecondary};
-  }
+  
 `;
 
 const Footer = styledTS<{ color?: string; backgroundImage?: string }>(
@@ -243,23 +279,18 @@ const FooterLink = styled.a`
   display: inline-block;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
   line-height: 32px;
   margin: 5px 5px 0px 5px;
-  border-radius: 16px;
   vertical-align: middle;
-  background: ${colors.colorWhite};
-  transition: background 0.3s ease;
+  transition: opacity 0.3s ease;
 
   img {
-    width: 70%;
-    filter: contrast(0) sepia(100%) hue-rotate(210deg) brightness(0.4)
-      saturate(40);
+    width: 32px;
+    height: 32px;
   }
 
   &:hover {
-    background: #eee;
+    opacity: 0.8;
   }
 `;
 
@@ -294,6 +325,9 @@ export {
   HeaderTop,
   HeaderLogo,
   HeaderTitle,
+  HeaderRight,
+  HeaderLeft,
+  SupportMenus,
   WebLink,
   HeaderLinks,
   MainContent,
