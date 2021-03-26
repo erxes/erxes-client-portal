@@ -90,7 +90,7 @@ const userMutations = {
    * Logout
    */
   async logout(_root, _args, { res }: IContext) {
-    res.clearCookie('client-auth-token');
+    res.cookie('client-auth-token', '1', { maxAge: 0 });
 
     return 'loggedout';
   }

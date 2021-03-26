@@ -86,6 +86,7 @@ const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
 const MainContent = styledTS<{ baseColor?: string }>(styled.div)`
   background-color: #f5f8fb;
   padding: ${dimensions.headerSpacing}px 0;
+  min-height: 30vh;
 
   ${props =>
     props.baseColor &&
@@ -263,27 +264,28 @@ const FooterLink = styled.a`
 `;
 
 const ModalWrapper = styledTS<{ show?: boolean }>(styled.div)`
-  position: fixed;
-  overflow: auto;
-  z-index: 9;
-  background: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  display: none;
-  ${props => props.show && 'display: block;'}
-
   .client-modal {
-    position: absolute;
-    z-index: 99;
-    width: 60%;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    left: 20%;
-    top: 60px;
-    padding: 10px;
+    position: fixed;
+    overflow: auto;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+
+    .modal-content {
+      position: relative;
+      z-index: 99;
+      width: 60%;
+      max-width: 800px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 50px auto;
+      top: 60px;
+      padding: 10px;
+    }
   }
 `;
 

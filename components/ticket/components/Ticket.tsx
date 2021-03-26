@@ -7,7 +7,7 @@ import {
 import Button from '../../common/Button';
 import Icon from '../../common/Icon';
 import Link from 'next/link';
-import Detail from './Detail';
+import Detail from '../containers/Detail';
 import { IUser } from '../../types';
 
 type Props = {
@@ -17,7 +17,17 @@ type Props = {
 };
 
 export default function Ticket({ tickets, currentUser }: Props) {
-  const [item, setItem] = useState(null);
+  const [ticketId, setId] = useState(null);
+
+  if (!currentUser) {
+    return (
+      <Link href="/user/login">
+        <Button>
+          <Icon icon="user" /> &nbsp; login
+        </Button>
+      </Link>
+    );
+  }
 
   return (
     <>
@@ -32,17 +42,19 @@ export default function Ticket({ tickets, currentUser }: Props) {
       <StageTitle className="base-color">Tickets</StageTitle>
 
       {tickets.map(ticket => (
-        <CategoryItem onClick={() => setItem(ticket)}>
+        <CategoryItem onClick={() => setId(ticket._id)} key={ticket._id}>
           <CategoryContent>
             <h5 className="base-color">{ticket.name}</h5>
             <p>{ticket.description}</p>
+            <p>{ticket.priority}</p>
+            <p>{ticket.status}</p>
           </CategoryContent>
         </CategoryItem>
       ))}
 
       <Detail
-        item={item}
-        onClose={() => setItem(null)}
+        _id={ticketId}
+        onClose={() => setId(null)}
         currentUser={currentUser}
       />
     </>

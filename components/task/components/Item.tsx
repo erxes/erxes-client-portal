@@ -8,7 +8,7 @@ import {
   Right,
   ItemDate
 } from '../../styles/tasks';
-import Detail from './Detail';
+import Detail from '../containers/Detail';
 
 type Props = {
   loading: boolean;
@@ -17,7 +17,7 @@ type Props = {
 };
 
 function ItemContainer({ loading, tasks, backgroundColor }: Props) {
-  const [item, setItem] = useState(null);
+  const [taskId, setId] = useState(null);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -36,7 +36,7 @@ function ItemContainer({ loading, tasks, backgroundColor }: Props) {
       {tasks.map(task => {
         return (
           <ItemWrapper>
-            <Content onClick={() => setItem(task)}>
+            <Content onClick={() => setId(task._id)}>
               <h5>{task.name}</h5>
               <Footer>
                 Last updated:
@@ -47,7 +47,7 @@ function ItemContainer({ loading, tasks, backgroundColor }: Props) {
         );
       })}
 
-      <Detail item={item} onClose={() => setItem(null)} />
+      <Detail _id={taskId} onClose={() => setId(null)} />
     </Wrapper>
   );
 }

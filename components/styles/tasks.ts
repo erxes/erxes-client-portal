@@ -23,7 +23,6 @@ const Wrapper = styledTS<{ backgroundColor?: string }>(styled.div)`
   
   display: flex;
   flex-wrap: wrap;
-  min-height: 40vh;
 `;
 
 const ItemWrapper = styled.div`
