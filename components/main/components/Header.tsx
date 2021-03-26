@@ -29,8 +29,10 @@ function Header({ config, currentUser, logout }: Props) {
   const router = useRouter();
 
   const renderLink = (url: string, label: string) => {
+    const isActive = router && router.pathname === url;
+
     return (
-      <LinkItem active={router.pathname === url}>
+      <LinkItem active={isActive}>
         <Link href={url}>{label}</Link>
       </LinkItem>
     );

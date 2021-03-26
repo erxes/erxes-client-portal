@@ -1,17 +1,19 @@
-import * as React from "react";
-import { getDataFromTree } from "@apollo/client/react/ssr";
-import initApollo from "./initApollo";
-import Head from "next/head";
+import * as React from 'react';
+import { getDataFromTree } from '@apollo/client/react/ssr';
+import initApollo from './initApollo';
+import Head from 'next/head';
 
 const SERVER_LINK_OPTIONS = {
-  uri: "http://localhost:4300/api/graphql",
+  uri: `${process.env.MAIN_API_DOMAIN}/graphql`
 };
 
-const API_LINK_OPIONS = { uri: "http://localhost:3300/graphql" };
+const API_LINK_OPIONS = {
+  uri: `${process.env.NEXT_PUBLIC_MAIN_API_DOMAIN}/graphql`
+};
 
 export default App => {
   return class Apollo extends React.Component<any> {
-    static displayName = "withApollo(App)";
+    static displayName = 'withApollo(App)';
 
     apolloClient: any;
     apiClient: any;
@@ -20,7 +22,7 @@ export default App => {
       const {
         Component,
         router,
-        ctx: { res },
+        ctx: { res }
       } = ctx;
 
       const apollo = initApollo(SERVER_LINK_OPTIONS, {});
@@ -60,7 +62,7 @@ export default App => {
           // Prevent Apollo Client GraphQL errors from crashing SSR.
           // Handle them in components via the data.error prop:
           // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error
-          console.error("Error while running `getDataFromTree`", error.message);
+          console.error('Error while running `getDataFromTree`', error.message);
         }
 
         // getDataFromTree does not call componentWillUnmount
@@ -75,7 +77,7 @@ export default App => {
       return {
         ...appProps,
         apolloState,
-        apiApolloState,
+        apiApolloState
       };
     }
 

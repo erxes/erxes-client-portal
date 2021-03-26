@@ -1,4 +1,4 @@
-import * as request from "request";
+import * as request from 'request';
 
 type Params = {
   name: string;
@@ -11,9 +11,9 @@ export const sendGraphQLRequest = ({ query, variables, name }: Params) => {
     request(
       {
         url: `${process.env.NEXT_PUBLIC_MAIN_API_DOMAIN}/graphql`,
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query, variables }),
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query, variables })
       },
       (error, _response, body) => {
         if (error) {
@@ -24,7 +24,7 @@ export const sendGraphQLRequest = ({ query, variables, name }: Params) => {
           return reject(`Could not fetch ${name}`);
         }
 
-        const response = JSON.parse(body || "{}");
+        const response = JSON.parse(body || '{}');
 
         const { data = {} } = response || {};
 
