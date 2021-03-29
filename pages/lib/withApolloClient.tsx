@@ -4,12 +4,10 @@ import initApollo from './initApollo';
 import Head from 'next/head';
 
 const SERVER_LINK_OPTIONS = {
-  uri: `${process.env.MAIN_API_DOMAIN}/graphql`
-};
-
-const API_LINK_OPIONS = {
   uri: `${process.env.NEXT_PUBLIC_MAIN_API_DOMAIN}/graphql`
 };
+
+const API_LINK_OPIONS = { uri: `${process.env.MAIN_API_DOMAIN}/graphql` };
 
 export default App => {
   return class Apollo extends React.Component<any> {

@@ -19,7 +19,6 @@ function ArticleDetailContainer({ queryParams: { id }, ...props }: Props) {
       })
     : { loading: true };
 
-
   const article = data.knowledgeBaseArticleDetail || {};
 
   const updatedProps = {
