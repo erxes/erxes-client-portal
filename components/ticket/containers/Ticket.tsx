@@ -17,6 +17,7 @@ const clientPortalTickets = `
       description
       status
       priority
+      createdAt
     }
   }
 `;

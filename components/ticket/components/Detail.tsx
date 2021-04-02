@@ -1,17 +1,35 @@
 import React from 'react';
 import { TextArea } from '../../common/form/styles';
-import { TicketRow, TicketLabel, TicketContent } from '../../styles/tickets';
+import {
+  TicketRow,
+  TicketLabel,
+  TicketContent,
+  TicketComment
+} from '../../styles/tickets';
 import { IUser } from '../../types';
 import Button from '../../common/Button';
 import Modal from '../../common/Modal';
+import dayjs from 'dayjs';
 
 type Props = {
   item?: any;
   currentUser: IUser;
   onClose: () => void;
+  handleSubmit: (content: string) => void;
 };
 
-export default class TicketDetail extends React.Component<Props> {
+export default class TicketDetail extends React.Component<
+  Props,
+  { content: string }
+> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      content: ''
+    };
+  }
+
   renderRow = (label: string, text: string) => {
     return (
       <TicketRow>
@@ -21,6 +39,16 @@ export default class TicketDetail extends React.Component<Props> {
     );
   };
 
+  handleChange = e => {
+    this.setState({ content: e.target.value });
+  };
+
+  createComment = () => {
+    this.props.handleSubmit(this.state.content);
+
+    this.setState({ content: '' });
+  };
+
   render() {
     const currentUser = this.props.currentUser || ({} as IUser);
     const { item, onClose } = this.props;
@@ -28,6 +56,8 @@ export default class TicketDetail extends React.Component<Props> {
     if (!item) {
       return null;
     }
+
+    const comments = item.comments || [];
 
     const content = () => (
       <>
@@ -40,13 +70,30 @@ export default class TicketDetail extends React.Component<Props> {
           <TicketLabel>Activity:</TicketLabel>
           <TicketContent>
             <TextArea
+              onChange={this.handleChange}
               placeholde="comment ..."
-              onEnter={e => console.log(e)}
-            ></TextArea>
-            <br />
-            <Button btnStyle="success" size="small">
+              value={this.state.content}
+            />
+
+            <Button
+              btnStyle="success"
+              size="small"
+              onClick={this.createComment}
+            >
               Reply
             </Button>
+
+            <br />
+            <br />
+
+            {comments.map(comment => (
+              <TicketComment key={comment._id}>
+                <span>
+                  {dayjs(comment.createdAt).format('YYYY-MM-DD HH:mm')}
+                </span>
+                {comment.content}
+              </TicketComment>
+            ))}
           </TicketContent>
         </TicketRow>
       </>

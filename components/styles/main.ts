@@ -320,6 +320,20 @@ const ModalWrapper = styledTS<{ show?: boolean }>(styled.div)`
   }
 `;
 
+const ModalClose = styled.div`
+  position: absolute;
+  right: -40px;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.3);
+  line-height: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+`;
+
 export {
   Header,
   HeaderTop,
@@ -337,5 +351,6 @@ export {
   Footer,
   FooterLink,
   LinkItem,
-  ModalWrapper
+  ModalWrapper,
+  ModalClose
 };

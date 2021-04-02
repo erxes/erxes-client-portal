@@ -2,6 +2,7 @@ export type Store = {
   currentUser: IUser;
   topic: Topic;
   config: Config;
+  router: any;
 };
 
 export type Ticket = {
