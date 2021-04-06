@@ -10,6 +10,7 @@ import {
   UserQueryResponse
 } from './types';
 import { currentUser } from './user/graphql/queries';
+import { getEnv } from '../utils/configs';
 
 const AppContext = createContext({});
 
@@ -70,13 +71,14 @@ function AppProvider({ children }: Props) {
   const [topic, setTopic] = useState<Topic>({} as Topic);
 
   const { data } = useQuery<UserQueryResponse>(gql(currentUser));
+  const { REACT_APP_CLIENT_PORTAL_CONFIG_ID } = getEnv();
 
   useEffect(() => {
     const fetch = async () => {
       const clientPortalConfigResponse = await apiClient.query<ConfigQueryResponse>(
         {
           query: gql(clientPortalGetConfig),
-          variables: { _id: process.env.REACT_APP_CLIENT_PORTAL_CONFIG_ID }
+          variables: { _id: REACT_APP_CLIENT_PORTAL_CONFIG_ID }
         }
       );
 

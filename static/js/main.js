@@ -12,7 +12,10 @@ const getEnv = (name, defaultValue) => {
 };
 
 window.envMaps = [
-  { name: 'REACT_APP_MAIN_API_URL', processValue: '%REACT_APP_MAIN_API_URL%' },
+  {
+    name: 'REACT_APP_MAIN_API_DOMAIN',
+    processValue: '%REACT_APP_MAIN_API_DOMAIN%'
+  },
   {
     name: 'REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN',
     processValue: '%REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN%'
