@@ -11,7 +11,7 @@ function RegisterContainer(props: Props) {
   const renderButton = ({ values, isSubmitted }: IButtonMutateProps) => {
     const callbackResponse = () => (window.location.href = '/');
 
-    values.configId = getEnv().CLIENT_PORTAL_CONFIG_ID;
+    values.configId = getEnv().REACT_APP_CLIENT_PORTAL_CONFIG_ID;
 
     return (
       <ButtonMutate
