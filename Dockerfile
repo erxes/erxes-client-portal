@@ -13,5 +13,5 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
     chmod +x /usr/local/bin/jo
 COPY . /client-portal
-# CMD ["yarn", "start"]
+CMD ["yarn", "start"]
 # ENTRYPOINT [ "sh", "/usr/local/bin/docker-entrypoint.sh" ]
