@@ -1,5 +1,4 @@
 import * as request from 'request';
-import { getEnv } from '../../utils/configs';
 
 type Params = {
   name: string;
@@ -8,12 +7,12 @@ type Params = {
 };
 
 export const sendGraphQLRequest = ({ query, variables, name }: Params) => {
-  const { REACT_APP_MAIN_API_DOMAIN } = getEnv();
+  const { MAIN_API_DOMAIN } = process.env;
 
   return new Promise((resolve, reject) => {
     request(
       {
-        url: `${REACT_APP_MAIN_API_DOMAIN}/graphql`,
+        url: `${MAIN_API_DOMAIN}/graphql`,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, variables })
