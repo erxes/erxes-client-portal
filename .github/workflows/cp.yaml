@@ -26,8 +26,6 @@ jobs:
           yarn build
 
       - name: Build docker image
-        env:
-          BASE_IMAGE: node:12.19.1-slim
         if: github.event_name == 'push' && ( github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/next' )
         run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
