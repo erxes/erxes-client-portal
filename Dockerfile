@@ -1,7 +1,14 @@
 FROM node:12.19-alpine
 WORKDIR /erxes-client-portal/
-RUN chown -R node:node /erxes-client-portal
-COPY --chown=node:node . /erxes-client-portal
+RUN apk add --no-cache alpine-sdk && \
+    cd /tmp && curl -s -LO https://github.com/jpmens/jo/releases/download/1.3/jo-1.3.tar.gz && \
+    tar xzf jo-1.3.tar.gz && \
+    cd jo-1.3 && \
+    ./configure && \
+    make check && \
+    make install
+COPY --from=0 /usr/local/bin/jo /usr/local/bin/jo
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
+    chmod +x /usr/local/bin/jo
 ENTRYPOINT [ "sh", "/usr/local/bin/docker-entrypoint.sh" ]
