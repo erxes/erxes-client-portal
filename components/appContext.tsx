@@ -1,16 +1,16 @@
-import { gql, useQuery } from "@apollo/client";
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { ApiApolloClientContext } from "./ApiContext";
-import * as queries from "./knowledgeBase/graphql/queries";
+import { gql, useQuery } from '@apollo/client';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { ApiApolloClientContext } from './ApiContext';
+import * as queries from './knowledgeBase/graphql/queries';
 import {
   Config,
   ConfigQueryResponse,
-  IUser,
   Topic,
   TopicQueryResponse,
-  UserQueryResponse,
-} from "./types";
-import { currentUser } from "./user/graphql/queries";
+  UserQueryResponse
+} from './types';
+import { currentUser } from './user/graphql/queries';
+import { getEnv } from '../utils/configs';
 
 const AppContext = createContext({});
 
@@ -71,13 +71,14 @@ function AppProvider({ children }: Props) {
   const [topic, setTopic] = useState<Topic>({} as Topic);
 
   const { data } = useQuery<UserQueryResponse>(gql(currentUser));
+  const { REACT_APP_CLIENT_PORTAL_CONFIG_ID } = getEnv();
 
   useEffect(() => {
     const fetch = async () => {
       const clientPortalConfigResponse = await apiClient.query<ConfigQueryResponse>(
         {
           query: gql(clientPortalGetConfig),
-          variables: { _id: process.env.CLIENT_PORTAL_CONFIG_ID },
+          variables: { _id: REACT_APP_CLIENT_PORTAL_CONFIG_ID }
         }
       );
 
@@ -96,7 +97,7 @@ function AppProvider({ children }: Props) {
         if (config.knowledgeBaseTopicId) {
           const topicResponse = await apiClient.query<TopicQueryResponse>({
             query: gql(queries.getKbTopicQuery),
-            variables: { _id: config.knowledgeBaseTopicId },
+            variables: { _id: config.knowledgeBaseTopicId }
           });
 
           const data = (topicResponse.data || {}) as any;

@@ -9,9 +9,13 @@ const itemWidth = (dimensions.wrapperWidth - pWitdh * 8) / 3;
 const StageTitle = styled.h3`
   color: ${colors.colorPrimary};
   text-transform: uppercase;
-  margin: 0 0 12px 0;
+  margin: 0 0 20px 0;
   font-size: ${typography.fontSizeHeading6}px;
   font-weight: ${typography.fontWeightLight}px;
+
+  button {
+    float: right;
+  }
 `;
 
 const Wrapper = styledTS<{ backgroundColor?: string }>(styled.div)`

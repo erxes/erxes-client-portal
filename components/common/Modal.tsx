@@ -1,6 +1,7 @@
 import React from 'react';
-import Modal, { closeStyle } from 'simple-react-modal';
-import { ModalWrapper } from '../styles/main';
+import Modal from 'simple-react-modal';
+import Icon from './Icon';
+import { ModalWrapper, ModalClose } from '../styles/main';
 
 type Props = {
   isOpen?: boolean;
@@ -42,6 +43,10 @@ export default class TikcetDetail extends React.Component<
           onClose={this.close.bind(this)}
         >
           <div className="modal-content">
+            <ModalClose onClick={this.close.bind(this)}>
+              <Icon icon="times" />
+            </ModalClose>
+
             {content({ closeModal: this.close })}
           </div>
         </Modal>

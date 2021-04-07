@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 import React, { useContext } from 'react';
 import { ApiApolloClientContext } from '../../ApiContext';
 import Detail from '../components/Detail';
@@ -17,6 +17,29 @@ const clientPortalGetTicket = `
       name
       description
       modifiedAt
+      status
+      priority
+      createdAt
+
+      comments {
+        _id
+        content
+        createdAt
+      }
+    }
+  }
+`;
+
+const createTicketComment = `
+  mutation createTicketComment(
+    $ticketId: String!
+    $content: String!
+  ) {
+    createTicketComment(
+      ticketId: $ticketId
+      content: $content
+    ) {
+      _id
     }
   }
 `;
@@ -30,11 +53,26 @@ function DetailContainer({ _id, ...props }: Props) {
     skip: !_id
   });
 
+  const [createComment] = useMutation(gql(createTicketComment), {
+    client: apiClient,
+    refetchQueries: [{ query: gql(clientPortalGetTicket), variables: { _id } }]
+  });
+
   const item = data.clientPortalTicket;
+
+  const handleSubmit = (content: string) => {
+    createComment({
+      variables: {
+        content,
+        ticketId: item._id
+      }
+    }).then(() => {});
+  };
 
   const updatedProps = {
     ...props,
-    item
+    item,
+    handleSubmit
   };
 
   return <Detail {...updatedProps} />;

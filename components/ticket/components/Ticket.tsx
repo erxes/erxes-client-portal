@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { StageTitle } from '../../styles/tasks';
-import {
-  CategoryItem,
-  CategoryContent
-} from '../../knowledgeBase/components/styles';
+import { TicketListRow } from '../../styles/tickets';
 import Button from '../../common/Button';
 import Icon from '../../common/Icon';
 import Link from 'next/link';
 import Detail from '../containers/Detail';
 import { IUser } from '../../types';
+import dayjs from 'dayjs';
 
 type Props = {
   loading: boolean;
@@ -31,25 +29,36 @@ export default function Ticket({ tickets, currentUser }: Props) {
 
   return (
     <>
-      <Link href="/tickets/form">
-        <Button btnStyle="success">
-          <Icon icon="plus" /> &nbsp; Submit new ticket
+      <StageTitle className="base-color">
+        Tickets
+        <Button
+          btnStyle="success"
+          uppercase={false}
+          icon="plus-circle"
+          size="medium"
+        >
+          <Link href="/tickets/form">Submit new ticket</Link>
         </Button>
-      </Link>
-      <br />
-      <br />
+      </StageTitle>
 
-      <StageTitle className="base-color">Tickets</StageTitle>
+      <TicketListRow className="head">
+        <div>Subject</div>
+        <div>Created date</div>
+        <div>Priority</div>
+        <div>Status</div>
+      </TicketListRow>
 
       {tickets.map(ticket => (
-        <CategoryItem onClick={() => setId(ticket._id)} key={ticket._id}>
-          <CategoryContent>
-            <h5 className="base-color">{ticket.name}</h5>
-            <p>{ticket.description}</p>
-            <p>{ticket.priority}</p>
-            <p>{ticket.status}</p>
-          </CategoryContent>
-        </CategoryItem>
+        <TicketListRow
+          onClick={() => setId(ticket._id)}
+          key={ticket._id}
+          className="item"
+        >
+          <div className="base-color">{ticket.name}</div>
+          <div>{dayjs(ticket.createdAt).format('MMM D YYYY')}</div>
+          <div>{ticket.priority}</div>
+          <div>{ticket.status}</div>
+        </TicketListRow>
       ))}
 
       <Detail

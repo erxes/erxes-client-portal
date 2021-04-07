@@ -49,7 +49,8 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script />
+          <script src="/static/js/env.js" />
+          <script src="/static/js/main.js" />
         </body>
       </Html>
     );

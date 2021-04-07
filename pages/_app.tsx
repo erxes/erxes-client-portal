@@ -8,13 +8,20 @@ import withApolloClient from './lib/withApolloClient';
 import { ApiApolloClientContext } from '../components/ApiContext';
 
 type Props = {
-  apolloClient: any
+  apolloClient: any;
   apiClient: any;
   pageProps: any;
   Component: any;
+  router: any;
 };
 
-function MyApp({ Component, pageProps, apolloClient, apiClient }: Props) {
+function MyApp({
+  Component,
+  pageProps,
+  apolloClient,
+  apiClient,
+  router
+}: Props) {
   useEffect(() => {
     (window as any).erxesSettings = {
       messenger: {
@@ -35,7 +42,7 @@ function MyApp({ Component, pageProps, apolloClient, apiClient }: Props) {
   return (
     <ApiApolloClientContext.Provider value={apiClient}>
       <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
+        <Component {...pageProps} router={router} />
       </ApolloProvider>
     </ApiApolloClientContext.Provider>
   );

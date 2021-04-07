@@ -16,23 +16,20 @@ import {
 import Search from './Search';
 import Icon from '../../common/Icon';
 import { Config, IUser } from '../../types';
-import { useRouter } from 'next/router';
+import { withRouter } from 'next/router';
 import { getConfigColor } from '../../common/utils';
 
 type Props = {
   config: Config;
   currentUser: IUser;
   logout: () => void;
+  router: any;
 };
 
-function Header({ config, currentUser, logout }: Props) {
-  const router = useRouter();
-
+function Header({ config, currentUser, logout, router }: Props) {
   const renderLink = (url: string, label: string) => {
-    const isActive = router && router.pathname === url;
-
     return (
-      <LinkItem active={isActive}>
+      <LinkItem active={router.pathname === url}>
         <Link href={url}>{label}</Link>
       </LinkItem>
     );
@@ -87,4 +84,4 @@ function Header({ config, currentUser, logout }: Props) {
   );
 }
 
-export default Header;
+export default withRouter(Header);

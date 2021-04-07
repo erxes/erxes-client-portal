@@ -3,11 +3,16 @@ import { getDataFromTree } from '@apollo/client/react/ssr';
 import initApollo from './initApollo';
 import Head from 'next/head';
 
+const {
+  REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN,
+  REACT_APP_MAIN_API_DOMAIN
+} = process.env;
+
 const SERVER_LINK_OPTIONS = {
-  uri: `${process.env.NEXT_PUBLIC_MAIN_API_DOMAIN}/graphql`
+  uri: `${REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN}/graphql`
 };
 
-const API_LINK_OPIONS = { uri: `${process.env.MAIN_API_DOMAIN}/graphql` };
+const API_LINK_OPIONS = { uri: `${REACT_APP_MAIN_API_DOMAIN}/graphql` };
 
 export default App => {
   return class Apollo extends React.Component<any> {
