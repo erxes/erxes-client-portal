@@ -1,4 +1,4 @@
-FROM node:12.16-slim
+FROM node:12.16
 RUN apk add --no-cache alpine-sdk && \
     cd /tmp && curl -s -LO https://github.com/jpmens/jo/releases/download/1.3/jo-1.3.tar.gz && \
     tar xzf jo-1.3.tar.gz && \
