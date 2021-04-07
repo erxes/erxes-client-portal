@@ -31,6 +31,8 @@ mongoose.connection
   });
 
 const connect = async (URL?: string, options?) => {
+  debugDb(`Trying to connect to ... : ${MONGO_URL}`);
+
   client = await mongoose.connect(URL || MONGO_URL, {
     ...connectionOptions,
     ...(options || { poolSize: 100 })
