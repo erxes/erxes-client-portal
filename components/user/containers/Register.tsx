@@ -3,14 +3,15 @@ import { mutations } from '../graphql';
 import Register from '../components/Register';
 import { IButtonMutateProps } from '../../common/types';
 import ButtonMutate from '../../common/ButtonMutate';
+import { getEnv } from '../../../utils/configs';
 
 type Props = {};
 
 function RegisterContainer(props: Props) {
   const renderButton = ({ values, isSubmitted }: IButtonMutateProps) => {
-    const callbackResponse = () => window.location.href = '/';
+    const callbackResponse = () => (window.location.href = '/');
 
-    values.configId = process.env.CLIENT_PORTAL_CONFIG_ID
+    values.configId = getEnv().CLIENT_PORTAL_CONFIG_ID;
 
     return (
       <ButtonMutate
