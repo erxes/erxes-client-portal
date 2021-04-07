@@ -2,11 +2,12 @@ import * as React from 'react';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import initApollo from './initApollo';
 import Head from 'next/head';
+import { getEnv } from '../../utils/configs';
 
 const {
   REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN,
   REACT_APP_MAIN_API_DOMAIN
-} = process.env;
+} = getEnv();
 
 const SERVER_LINK_OPTIONS = {
   uri: `${REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN}/graphql`

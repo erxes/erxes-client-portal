@@ -45,12 +45,12 @@ export default class MyDocument extends Document {
           />
 
           {this.props.styles}
+          <script src="/static/js/env.js" />
+          <script src="/static/js/main.js" />
         </Head>
         <body>
           <Main />
           <NextScript />
-          <script src="/static/js/env.js" />
-          <script src="/static/js/main.js" />
         </body>
       </Html>
     );
