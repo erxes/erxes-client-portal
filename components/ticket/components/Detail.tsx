@@ -15,7 +15,13 @@ type Props = {
   item?: any;
   currentUser: IUser;
   onClose: () => void;
-  handleSubmit: (content: string) => void;
+  handleSubmit: ({
+    content,
+    email
+  }: {
+    content: string;
+    email: string;
+  }) => void;
 };
 
 export default class TicketDetail extends React.Component<
@@ -43,8 +49,8 @@ export default class TicketDetail extends React.Component<
     this.setState({ content: e.target.value });
   };
 
-  createComment = () => {
-    this.props.handleSubmit(this.state.content);
+  createComment = (email: string) => {
+    this.props.handleSubmit({ content: this.state.content, email });
 
     this.setState({ content: '' });
   };
@@ -52,6 +58,7 @@ export default class TicketDetail extends React.Component<
   render() {
     const currentUser = this.props.currentUser || ({} as IUser);
     const { item, onClose } = this.props;
+    const email = currentUser.email;
 
     if (!item) {
       return null;
@@ -62,7 +69,7 @@ export default class TicketDetail extends React.Component<
     const content = () => (
       <>
         {this.renderRow('Ticket name:', item.name)}
-        {this.renderRow('Requestor:', currentUser.email)}
+        {this.renderRow('Requestor:', email)}
         {this.renderRow('Priority:', item.priority)}
         {this.renderRow('Description:', item.description)}
 
@@ -78,7 +85,7 @@ export default class TicketDetail extends React.Component<
             <Button
               btnStyle="success"
               size="small"
-              onClick={this.createComment}
+              onClick={this.createComment.bind(this, email)}
             >
               Reply
             </Button>
@@ -91,7 +98,7 @@ export default class TicketDetail extends React.Component<
                 <span>
                   {dayjs(comment.createdAt).format('YYYY-MM-DD HH:mm')}
                 </span>
-                {comment.content}
+                <div dangerouslySetInnerHTML={{ __html: comment.content }} />
               </TicketComment>
             ))}
           </TicketContent>

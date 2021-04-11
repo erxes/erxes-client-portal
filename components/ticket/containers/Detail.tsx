@@ -34,10 +34,12 @@ const createTicketComment = `
   mutation createTicketComment(
     $ticketId: String!
     $content: String!
+    $email: String
   ) {
     createTicketComment(
       ticketId: $ticketId
       content: $content
+      email: $email
     ) {
       _id
     }
@@ -60,10 +62,10 @@ function DetailContainer({ _id, ...props }: Props) {
 
   const item = data.clientPortalTicket;
 
-  const handleSubmit = (content: string) => {
+  const handleSubmit = (values: { content: string; email: string }) => {
     createComment({
       variables: {
-        content,
+        ...values,
         ticketId: item._id
       }
     }).then(() => {});
