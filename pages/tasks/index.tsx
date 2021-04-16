@@ -1,11 +1,11 @@
-import React from "react";
-import Tasks from "../../components/task/containers/Tasks";
-import Layout from "../../components/main/containers/Layout";
+import React from 'react';
+import Tasks from '../../modules/task/containers/Tasks';
+import Layout from '../../modules/main/containers/Layout';
 
 export default function Category() {
   return (
     <Layout>
-      {(props) => {
+      {props => {
         return <Tasks {...props} />;
       }}
     </Layout>

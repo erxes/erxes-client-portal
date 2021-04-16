@@ -1,1 +1,1 @@
-export { default } from '../../components/user/containers/Login';
+export { default } from '../../modules/user/containers/Login';

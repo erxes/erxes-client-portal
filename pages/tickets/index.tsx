@@ -1,5 +1,5 @@
-import Layout from '../../components/main/containers/Layout';
-import TicketList from '../../components/ticket/containers/Ticket';
+import Layout from '../../modules/main/containers/Layout';
+import TicketList from '../../modules/ticket/containers/Ticket';
 
 function Ticket() {
   return (

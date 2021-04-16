@@ -1,7 +1,7 @@
 import React from 'react';
-import CategoriesContainer from '../components/knowledgeBase/containers/CategoryList';
-import Layout from '../components/main/containers/Layout';
-import { Store } from '../components/types';
+import CategoriesContainer from '../modules/knowledgeBase/containers/CategoryList';
+import Layout from '../modules/main/containers/Layout';
+import { Store } from '../modules/types';
 
 export default function Home() {
   return (

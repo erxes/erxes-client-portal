@@ -5,7 +5,7 @@ import 'erxes-icon/css/erxes.min.css';
 
 import { ApolloProvider } from '@apollo/client';
 import withApolloClient from './lib/withApolloClient';
-import { ApiApolloClientContext } from '../components/ApiContext';
+import { ApiApolloClientContext } from '../modules/ApiContext';
 
 type Props = {
   apolloClient: any;

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import ArticleDetail from '../../../components/knowledgeBase/containers/ArticleDetail';
-import Layout from '../../../components/main/containers/Layout';
+import ArticleDetail from '../../../modules/knowledgeBase/containers/ArticleDetail';
+import Layout from '../../../modules/main/containers/Layout';
 
 export default function Category() {
   const router = useRouter();

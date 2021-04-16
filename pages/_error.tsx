@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon from '../components/common/Icon';
+import Icon from '../modules/common/Icon';
 
 const ErrorContainer = styled.div`
   position: relative;
