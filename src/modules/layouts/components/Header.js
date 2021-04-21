@@ -24,22 +24,23 @@ function Header(props) {
                   <img src={Logo} alt="logo" />
                 </Link>
                 <div className="line">|</div>
-                <div className="text">Community Help Center</div>
+                <div className="text">
+                  Эрксис хотолын гишүүдэд туслах мэдлэгийн сан
+                </div>
               </div>
             </Col>
             <Col md="auto" className="header-links">
               <a
-                href="https://erxes.io/"
+                href="https://erxes.mn/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className=" icon-arrow-up-right"></i> Go to erxes
+                <i className=" icon-arrow-up-right"></i> erxes рүү шилжих
               </a>
             </Col>
           </Row>
           <h3>
-            A knowledge-sharing help center designed specially for the erxes
-            community
+            Эрксис платформ ашиглах гарын авлага болон мэдээлэл солилцох талбар
           </h3>
           <Search
             history={props.history}

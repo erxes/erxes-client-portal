@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Avatar from '../../../assets/images/avatar-colored.svg';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import Avatar from "../../../assets/images/avatar-colored.svg";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Categories extends React.Component {
-  renderAuthors = authors => {
+  renderAuthors = (authors) => {
     if (authors.length > 3) {
       return (
         <>
@@ -20,12 +20,12 @@ class Categories extends React.Component {
     return authors.map((author, index) => (
       <o key={index}>
         {author.details.fullName}
-        {authors.length > 1 && ', '}
+        {authors.length > 1 && ", "}
       </o>
     ));
   };
 
-  renderAvatars = cat => {
+  renderAvatars = (cat) => {
     return (
       <div className="avatars">
         {cat.authors.map((author, index) => (
@@ -61,7 +61,7 @@ class Categories extends React.Component {
     const { categories } = kbTopic;
 
     if (categories) {
-      return categories.map(cat => {
+      return categories.map((cat) => {
         return (
           <Col md={12} key={cat._id}>
             <Card className="category-item">
@@ -95,19 +95,19 @@ class Categories extends React.Component {
         <Row>{this.renderCategories()}</Row>
         <Container fluid="sm">
           <section className="video align-center">
-            <h4>Video tutorials</h4>
+            <h4>Видео хичээл</h4>
             <p className="desc">
-              For those visual learners, we have a full playlist of video
-              tutorials to help you onboard. Make sure you check out the
+              Бидэнд танд туслах олон видео хичээл байна. Манай Youtube суваг
+              дээрх
               <a
                 href="https://www.youtube.com/watch?v=sDzPEEBSp44&feature=youtu.be&list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz&ab_channel=erxesInc"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                &nbsp;full playlist&nbsp;
+                &nbsp;бүх жагсаалтыг&nbsp;
               </a>
-              on our Youtube channel or click the button on the top left corner
-              of this video.
+              үзэх эсвэл энэ видеоны зүүн дээд буланд байгаа товчлуур дээр
+              дарахаа мартуузай.
             </p>
             <iframe
               width="80%"
@@ -127,7 +127,7 @@ class Categories extends React.Component {
 
 Categories.propTypes = {
   kbTopic: PropTypes.object,
-  articlesQuery: PropTypes.object
+  articlesQuery: PropTypes.object,
 };
 
 export default Categories;

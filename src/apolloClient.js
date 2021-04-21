@@ -1,9 +1,9 @@
-import { ApolloClient } from 'apollo-client';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { setContext } from 'apollo-link-context';
-import { ApolloLink } from 'apollo-link';
-import { onError } from 'apollo-link-error';
+import { ApolloClient } from "apollo-client";
+import { createHttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { setContext } from "apollo-link-context";
+import { ApolloLink } from "apollo-link";
+import { onError } from "apollo-link-error";
 
 export const getEnv = () => {
   const envs = {};
@@ -21,34 +21,34 @@ const { REACT_APP_API_URL } = getEnv();
 
 // Create an http link:
 const httpLink = createHttpLink({
-  uri: `${REACT_APP_API_URL}/graphql`
+  uri: `${REACT_APP_API_URL}/graphql`,
 });
 
 // Attach user credentials
 const middlewareLink = setContext(() => ({
   headers: {
-    'x-token': localStorage.getItem('hotelLoginToken'),
-    'x-refresh-token': localStorage.getItem('hotelLoginRefreshToken')
-  }
+    "x-token": localStorage.getItem("hotelLoginToken"),
+    "x-refresh-token": localStorage.getItem("hotelLoginRefreshToken"),
+  },
 }));
 
 const afterwareLink = new ApolloLink((operation, forward) => {
-  return forward(operation).map(response => {
+  return forward(operation).map((response) => {
     const context = operation.getContext();
     const {
-      response: { headers }
+      response: { headers },
     } = context;
 
     if (headers) {
-      const token = headers.get('x-token');
-      const refreshToken = headers.get('x-refresh-token');
+      const token = headers.get("x-token");
+      const refreshToken = headers.get("x-refresh-token");
 
       if (token) {
-        localStorage.setItem('hotelLoginToken', token);
+        localStorage.setItem("hotelLoginToken", token);
       }
 
       if (refreshToken) {
-        localStorage.setItem('hotelLoginRefreshToken', refreshToken);
+        localStorage.setItem("hotelLoginRefreshToken", refreshToken);
       }
     }
 
@@ -63,7 +63,7 @@ const errorLink = onError(
       console.log(response);
       console.log(graphQLErrors);
       console.log(networkError);
-      window.alert('Disconnect ...');
+      window.alert("Disconnect ...");
     }
   }
 );
@@ -76,7 +76,7 @@ const httpLinkWithMiddleware = errorLink.concat(
 // Creating Apollo-client
 const client = new ApolloClient({
   link: httpLinkWithMiddleware,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 export default client;
