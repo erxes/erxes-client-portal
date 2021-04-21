@@ -7,7 +7,7 @@ const SectionHeader = (props) => {
   return (
     <div className="section-header">
       <Link to={`/knowledge-base`}>
-        <div className="item">All categories</div>
+        <div className="item">Бүх ангилалууд</div>
       </Link>
       {catId && (
         <>

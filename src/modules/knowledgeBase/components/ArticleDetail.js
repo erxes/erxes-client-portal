@@ -77,10 +77,10 @@ class Detail extends React.Component {
           />
 
           <Col>
-            <div> Written by: {this.getUserDetails().fullName}</div>
+            <div> Нийтэлсэн: {this.getUserDetails().fullName}</div>
 
             <div>
-              Modified:
+              Өөрчилсөн:
               <span>
                 {dayjs(this.props.articleDetail.modifiedDate).format(
                   " MMM D YYYY"

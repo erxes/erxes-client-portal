@@ -15,14 +15,14 @@ class Lists extends React.Component {
     if (articles.length === 0) {
       return (
         <span className="search-result">
-          We couldn't find any articles for: <b>{searchValue}</b>
+          Илэрц олдсонгүй: <b>{searchValue}</b>
         </span>
       );
     }
 
     return (
       <span className="search-result">
-        Search result for: <b>{searchValue}</b>
+        Хайлтын илэрц: <b>{searchValue}</b>
       </span>
     );
   };
@@ -53,11 +53,11 @@ class Lists extends React.Component {
                     />
                     <div className="avatar-info">
                       <div>
-                        Written by{" "}
+                        Нийтэлсэн{" "}
                         <span>{article.createdUser.details.fullName}</span>
                       </div>
                       <div>
-                        Modified{" "}
+                        Өөрчилсөн{" "}
                         <span>
                           {dayjs(article.modifiedDate).format("MMM D YYYY")}
                         </span>

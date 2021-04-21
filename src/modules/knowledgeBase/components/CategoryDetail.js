@@ -68,7 +68,7 @@ class CategoryDetail extends React.Component {
           </Col>
           <Col md={3}>
             <div className="tags sidebar-list">
-              <h6>Categories</h6>
+              <h6>Ангилалууд</h6>
               {this.renderCategories()}
             </div>
           </Col>

@@ -12,7 +12,7 @@ class Categories extends React.Component {
           {authors.slice(0, 3).map((user, index) => (
             <o key={index}>{user.details.fullName},</o>
           ))}
-          <o> and {authors.length - 3} other </o>
+          <o> болон {authors.length - 3} бусад </o>
         </>
       );
     }
@@ -44,11 +44,11 @@ class Categories extends React.Component {
         ))}
         <div className="avatar-info">
           <div>
-            <div className="darker">{cat.numOfArticles}</div> articles in this
-            category
+            Энэ ангилалд <div className="darker">{cat.numOfArticles}</div>{" "}
+            нийтлэл байна
           </div>
           <div>
-            <div className="darker">Written by: </div>
+            <div className="darker">Нийтэлсэн: </div>
             {this.renderAuthors(cat.authors)}
           </div>
         </div>
