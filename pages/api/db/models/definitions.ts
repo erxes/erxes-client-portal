@@ -26,7 +26,7 @@ export const userSchema = new Schema<IUserDocument, IUserModel>({
     default: Date.now
   }),
   firstName: field({ type: String }),
-  phone: field({ type: String }),
+  phone: field({ type: String, optional: true }),
   lastName: field({ type: String, optional: true }),
   password: field({ type: String }),
   resetPasswordToken: field({ type: String, optional: true }),
