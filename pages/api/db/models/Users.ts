@@ -4,6 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import mongoose, { Model, model } from 'mongoose';
 import * as sha256 from 'sha256';
 import { IUser, IUserDocument, userSchema } from './definitions';
+import Logs from './Logs';
 const SALT_WORK_FACTOR = 10;
 
 interface IEditProfile {
@@ -302,6 +303,12 @@ export const loadClass = () => {
         user,
         this.getSecret()
       );
+
+      await Logs.createLog({
+        type: 'user',
+        typeId: user._id,
+        text: 'login'
+      });
 
       return {
         token,

@@ -4,17 +4,19 @@ import {
   queries as UserQueries,
   types as UserTypes
 } from './user';
-
+import { queries as LogQueries, types as LogTypes } from './logs';
 
 const types = `
   scalar JSON
   scalar Date
   ${UserTypes}
+  ${LogTypes}
 `;
 
 const queries = `
   type Query {
     ${UserQueries}
+    ${LogQueries}
   }
 `;
 
