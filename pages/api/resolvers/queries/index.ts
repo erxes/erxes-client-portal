@@ -3,5 +3,5 @@ import logs from './logs';
 
 export default {
   ...user,
-  ...logs
+  ...logs,
 };

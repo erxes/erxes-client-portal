@@ -11,7 +11,7 @@ type Props = {
 };
 
 function Register({ renderButton }: Props) {
-  const renderContent = formProps => {
+  const renderContent = (formProps) => {
     const { values, isSubmitted } = formProps;
 
     return (
@@ -58,7 +58,7 @@ function Register({ renderButton }: Props) {
 
           {renderButton({
             values,
-            isSubmitted
+            isSubmitted,
           })}
         </FormGroup>
       </>

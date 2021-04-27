@@ -28,7 +28,9 @@ export default class TikcetDetail extends React.Component<
 
     this.setState({ show: false });
 
-    onClose && onClose();
+    if (onClose) {
+      onClose();
+    }
   }
 
   render() {
@@ -40,10 +42,10 @@ export default class TikcetDetail extends React.Component<
           className="client-modal"
           show={this.state.show}
           closeOnOuterClick={true}
-          onClose={this.close.bind(this)}
+          onClose={() => this.close.bind(this)}
         >
           <div className="modal-content">
-            <ModalClose onClick={this.close.bind(this)}>
+            <ModalClose onClick={() => this.close.bind(this)}>
               <Icon icon="times" />
             </ModalClose>
 

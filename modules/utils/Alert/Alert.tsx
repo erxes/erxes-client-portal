@@ -9,23 +9,23 @@ import styledTS from 'styled-components-ts';
 const types = {
   info: {
     background: colors.colorCoreBlue,
-    icon: 'info-circle'
+    icon: 'info-circle',
   },
 
   warning: {
     background: darken(colors.colorCoreYellow, 10),
-    icon: 'exclamation-triangle'
+    icon: 'exclamation-triangle',
   },
 
   error: {
     background: colors.colorCoreRed,
-    icon: 'times-circle'
+    icon: 'times-circle',
   },
 
   success: {
     background: colors.colorCoreGreen,
-    icon: 'check-circle'
-  }
+    icon: 'check-circle',
+  },
 };
 
 export const AlertItem = styledTS<{ type: string }>(styled.div)`
@@ -36,7 +36,7 @@ export const AlertItem = styledTS<{ type: string }>(styled.div)`
   padding: ${dimensions.unitSpacing}px ${dimensions.coreSpacing}px;
   z-index: 10;
   font-weight: ${typography.fontWeightLight};
-  background-color: ${props => types[props.type].background};
+  background-color: ${(props) => types[props.type].background};
   animation-name: ${slideDown};
   border-radius: 2px;
   animation-duration: 0.3s;
@@ -64,7 +64,7 @@ type State = {
 
 export default class AlertStyled extends React.Component<Props, State> {
   static defaultProps = {
-    type: 'information'
+    type: 'information',
   };
 
   private timeout?: NodeJS.Timer = undefined;

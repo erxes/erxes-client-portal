@@ -47,7 +47,7 @@ const userMutations = {
       email,
       password,
       firstName,
-      lastName
+      lastName,
     }: {
       configId: string;
       email: string;
@@ -60,7 +60,7 @@ const userMutations = {
       email: (email || '').toLowerCase().trim(),
       password: (password || '').trim(),
       firstName,
-      lastName
+      lastName,
     };
 
     await Users.createUser(doc);
@@ -72,8 +72,8 @@ const userMutations = {
         configId,
         email,
         firstName,
-        lastName
-      }
+        lastName,
+      },
     });
 
     return 'success';
@@ -93,7 +93,7 @@ const userMutations = {
     res.cookie('client-auth-token', '1', { maxAge: 0 });
 
     return 'loggedout';
-  }
+  },
 };
 
 export default userMutations;

@@ -22,7 +22,7 @@ function HeaderContainer(props: Props) {
 
   const updatedProps = {
     ...props,
-    logout
+    logout,
   };
 
   return <Header {...updatedProps} />;

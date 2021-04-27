@@ -32,7 +32,7 @@ function Tasks({ loading, stages, config }: Props) {
   return (
     <>
       <TabContainers>
-        {stages.map(stage => (
+        {stages.map((stage) => (
           <TabTitle
             key={stage._id}
             active={stageId === stage._id}

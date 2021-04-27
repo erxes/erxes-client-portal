@@ -3,7 +3,7 @@ import { Formgroup } from './styles';
 
 function FormGroup({
   children,
-  horizontal
+  horizontal,
 }: {
   children: React.ReactNode;
   horizontal?: boolean;

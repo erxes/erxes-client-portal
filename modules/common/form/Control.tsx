@@ -6,7 +6,7 @@ import {
   Input,
   Radio,
   Select,
-  SelectWrapper
+  SelectWrapper,
 } from './styles';
 import Textarea from './Textarea';
 
@@ -61,7 +61,7 @@ class FormControl extends React.Component<Props> {
     componentClass: 'input',
     required: false,
     defaultChecked: false,
-    disabled: false
+    disabled: false,
   };
 
   componentDidMount() {
@@ -79,7 +79,7 @@ class FormControl extends React.Component<Props> {
     const errorMessage = props.errors && props.errors[props.name || ''];
 
     // cancel custom browser default form validation error
-    const onChange = e => {
+    const onChange = (e) => {
       if (props.onChange) {
         props.onChange(e);
       }
@@ -95,8 +95,8 @@ class FormControl extends React.Component<Props> {
       [props.defaultChecked
         ? 'defaultChecked'
         : 'checked']: props.defaultChecked
-          ? props.defaultChecked
-          : props.checked,
+        ? props.defaultChecked
+        : props.checked,
       placeholder: props.placeholder,
       hasError: errorMessage ? true : false,
       type: props.type,
@@ -112,7 +112,7 @@ class FormControl extends React.Component<Props> {
       id: props.id,
       maxHeight: props.maxHeight,
       maxLength: props.maxLength,
-      color: props.color
+      color: props.color,
     };
 
     if (elementType === 'select') {

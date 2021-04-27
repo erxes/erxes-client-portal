@@ -74,7 +74,7 @@ class ConfirmDialog extends React.Component<Props, State> {
     this.state = {
       show: true,
       confirm: '',
-      errors: {}
+      errors: {},
     };
   }
 
@@ -105,8 +105,8 @@ class ConfirmDialog extends React.Component<Props, State> {
             <Error>
               Enter <strong>delete</strong> to confirm
             </Error>
-          )
-        }
+          ),
+        },
       });
     }
 
@@ -121,15 +121,15 @@ class ConfirmDialog extends React.Component<Props, State> {
             <Error>
               Enter <strong>update</strong> to confirm
             </Error>
-          )
-        }
+          ),
+        },
       });
     }
 
     return this.invokeProceed();
   };
 
-  handleKeydown = e => {
+  handleKeydown = (e) => {
     if (e.key === 'Enter') {
       this.proceed();
     }
@@ -143,7 +143,7 @@ class ConfirmDialog extends React.Component<Props, State> {
     document.removeEventListener('keydown', this.handleKeydown);
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ confirm: e.target.value });
   };
 
@@ -190,7 +190,7 @@ class ConfirmDialog extends React.Component<Props, State> {
     const {
       okLabel = 'Yes, I am',
       cancelLabel = 'No, Cancel',
-      enableEscape = true
+      enableEscape = true,
     } = options;
 
     return (

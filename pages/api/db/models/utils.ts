@@ -1,7 +1,7 @@
 /*
  * Mongoose field options wrapper
  */
-export const field = options => {
+export const field = (options) => {
   const { optional } = options;
 
   if (!optional) {
@@ -12,7 +12,7 @@ export const field = options => {
   return options;
 };
 
-export const schemaWrapper = schema => {
+export const schemaWrapper = (schema) => {
   schema.add({ scopeBrandIds: [String] });
 
   return schema;

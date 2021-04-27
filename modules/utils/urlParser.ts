@@ -48,5 +48,5 @@ const extractRootDomain = (url: string) => {
 export default {
   isValidURL,
   extractHostname,
-  extractRootDomain
+  extractRootDomain,
 };

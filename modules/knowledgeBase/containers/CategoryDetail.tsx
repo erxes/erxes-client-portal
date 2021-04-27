@@ -16,15 +16,15 @@ function CategoryDetailContainer({ queryParams: { id }, ...props }: Props) {
   const { loading, data = {} } = useQuery(gql(categoryDetailQuery), {
     variables: { _id: id },
     skip: !id,
-    client: apiClient
-  })
+    client: apiClient,
+  });
 
   const category = data.knowledgeBaseCategoryDetail || {};
 
   const updatedProps = {
     ...props,
     loading,
-    category
+    category,
   };
 
   return <CategoryDetail {...updatedProps} />;

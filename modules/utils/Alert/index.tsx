@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import AlertStyled from './Alert';
 
 const AlertWrapper = styled.div.attrs({
-  id: 'alert-wrapper'
+  id: 'alert-wrapper',
 })`
   position: fixed;
   top: 0;
@@ -69,7 +69,7 @@ const Alert = {
   success,
   error,
   warning,
-  info
+  info,
 };
 
 export default Alert;

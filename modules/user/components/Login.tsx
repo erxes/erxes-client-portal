@@ -11,7 +11,7 @@ type Props = {
 };
 
 function Login({ renderButton }: Props) {
-  const renderContent = formProps => {
+  const renderContent = (formProps) => {
     const { values, isSubmitted } = formProps;
 
     return (
@@ -40,7 +40,7 @@ function Login({ renderButton }: Props) {
 
           {renderButton({
             values,
-            isSubmitted
+            isSubmitted,
           })}
         </FormGroup>
       </>

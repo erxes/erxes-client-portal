@@ -14,17 +14,17 @@ type Props = {
 const PRIORITY_OPTIONS = [
   {
     label: 'Critical',
-    value: "critical"
+    value: 'critical',
   },
   {
     label: 'Normal',
-    value: "normal"
+    value: 'normal',
   },
   {
     label: 'Low',
-    value: "low"
+    value: 'low',
   },
-]
+];
 
 export default function TicketForm({ handleSubmit }: Props) {
   const [ticket, setTicket] = useState<Ticket>({} as Ticket);
@@ -33,20 +33,20 @@ export default function TicketForm({ handleSubmit }: Props) {
     handleSubmit(ticket);
   };
 
-  const handleSelect = option => {
-    setTicket(currentValues => ({
+  const handleSelect = (option) => {
+    setTicket((currentValues) => ({
       ...currentValues,
-      priority: option.value
+      priority: option.value,
     }));
   };
 
   function renderControl({ label, name, placeholder, value = '' }) {
-    const handleChange = e => {
+    const handleChange = (e) => {
       setTicket({
         ...ticket,
-        [name]: e.target.value
+        [name]: e.target.value,
       });
-    }
+    };
 
     return (
       <FormGroup>
@@ -75,7 +75,7 @@ export default function TicketForm({ handleSubmit }: Props) {
         name: 'description',
         label: 'Description',
         value: ticket.description,
-        placeholder: 'Enter a description'
+        placeholder: 'Enter a description',
       })}
       {/* <Select
         name="priority"

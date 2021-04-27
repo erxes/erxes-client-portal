@@ -21,27 +21,27 @@ const apolloServer = new ApolloServer({
       }
 
       return {
-        user
+        user,
       };
     }
 
     const requestInfo = {
       secure: req.secure,
-      cookies: req.cookies
+      cookies: req.cookies,
     };
 
     return {
       user,
       res,
-      requestInfo
+      requestInfo,
     };
-  }
+  },
 });
 
 export const config = {
   api: {
-    bodyParser: false
-  }
+    bodyParser: false,
+  },
 };
 
 const handler = apolloServer.createHandler({ path: '/api/graphql' });

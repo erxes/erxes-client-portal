@@ -112,5 +112,5 @@ export default {
   socialViber,
   socialLine,
   socialTwilio,
-  socialWhatsApp
+  socialWhatsApp,
 };

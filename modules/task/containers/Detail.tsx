@@ -25,14 +25,14 @@ function DetailContainer({ _id, ...props }: Props) {
   const { data = {} } = useQuery(gql(clientPortalGetTask), {
     variables: { _id },
     client: apiClient,
-    skip: !_id
+    skip: !_id,
   });
 
   const item = data.clientPortalTask;
 
   const updatedProps = {
     ...props,
-    item
+    item,
   };
 
   return <Detail {...updatedProps} />;

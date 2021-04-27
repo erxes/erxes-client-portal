@@ -21,6 +21,7 @@ export const loadClass = () => {
 
 loadClass();
 
+// tslint:disable-next-line
 delete mongoose.connection.models['logs'];
 
 // tslint:disable-next-line

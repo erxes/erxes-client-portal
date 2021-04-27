@@ -138,5 +138,5 @@ export {
   stripe,
   wave,
   robotAnimation,
-  highlight
+  highlight,
 };

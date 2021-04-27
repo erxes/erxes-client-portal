@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-micro';
 import {
   mutations as UserMutations,
   queries as UserQueries,
-  types as UserTypes
+  types as UserTypes,
 } from './user';
 import { queries as LogQueries, types as LogTypes } from './logs';
 

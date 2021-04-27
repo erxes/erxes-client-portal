@@ -35,7 +35,7 @@ function ItemContainer({ loading, tasks, backgroundColor }: Props) {
     <Wrapper backgroundColor={backgroundColor}>
       {tasks.map(task => {
         return (
-          <ItemWrapper>
+          <ItemWrapper key={task._id}>
             <Content onClick={() => setId(task._id)}>
               <h5>{task.name}</h5>
               <Footer>

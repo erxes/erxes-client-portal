@@ -1,11 +1,11 @@
 import React from 'react';
+import { getConfigColor } from '../../common/utils';
 import {
   Container,
   Footer as StyledFooter,
-  FooterLink
+  FooterLink,
 } from '../../styles/main';
 import { Config } from '../../types';
-import { getConfigColor } from '../../common/utils';
 
 type Props = {
   config: Config;
@@ -15,10 +15,7 @@ function Footer(props: Props) {
   const renderLink = (url: string, imgSrc: string, iconName: string) => {
     return (
       <FooterLink href={url} target="_blank" rel="noopener noreferrer">
-        <img
-          src={`/static/logos/${imgSrc}`}
-          alt={iconName}
-        />
+        <img src={`/static/logos/${imgSrc}`} alt={iconName} />
       </FooterLink>
     );
   };

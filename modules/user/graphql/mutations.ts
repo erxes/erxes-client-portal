@@ -19,5 +19,5 @@ const logout = `
 export default {
   login,
   logout,
-  createUser
+  createUser,
 };

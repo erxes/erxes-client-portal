@@ -23,7 +23,7 @@ function TasksContainer({ config, ...props }: Props) {
   const { loading, data = {} } = useQuery(gql(clientPortalGetTaskStages), {
     variables: { taskPublicPipelineId: config.taskPublicPipelineId },
     client: apiClient,
-    skip: !config.taskPublicPipelineId
+    skip: !config.taskPublicPipelineId,
   });
 
   const stages = data.clientPortalGetTaskStages || [];
@@ -32,7 +32,7 @@ function TasksContainer({ config, ...props }: Props) {
     ...props,
     config,
     stages,
-    loading
+    loading,
   };
 
   return <Tasks {...updatedProps} />;

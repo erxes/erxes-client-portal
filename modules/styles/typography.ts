@@ -49,5 +49,5 @@ export default {
   lineHeightHeading7,
   lineHeightHeading8,
   lineHeightBody,
-  lineHeightUppercase
+  lineHeightUppercase,
 };

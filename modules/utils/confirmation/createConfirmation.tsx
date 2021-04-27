@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ConfirmDialog from '../../common/ConfirmDialog';
 
 const createConfirmation = (unmountDelay = 1000) => {
-  return props => {
+  return (props) => {
     const wrapper = document.body.appendChild(document.createElement('div'));
 
     function dismiss() {
@@ -17,7 +17,7 @@ const createConfirmation = (unmountDelay = 1000) => {
       }, unmountDelay);
     }
 
-    const promise = new Promise(proceed => {
+    const promise = new Promise((proceed) => {
       try {
         ReactDOM.render(
           <ConfirmDialog proceed={proceed} dismiss={dismiss} {...props} />,

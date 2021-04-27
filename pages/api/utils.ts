@@ -15,7 +15,7 @@ export const sendGraphQLRequest = ({ query, variables, name }: Params) => {
         url: `${MAIN_API_DOMAIN}/graphql`,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, variables })
+        body: JSON.stringify({ query, variables }),
       },
       (error, _response, body) => {
         if (error) {

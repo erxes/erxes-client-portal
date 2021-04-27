@@ -32,7 +32,7 @@ const getSelector = (name: string) => {
   return document.querySelector(`[name='${name}']`) as any;
 };
 
-export const getValue = name => {
+export const getValue = (name) => {
   const element = getSelector(name);
 
   if (element) {

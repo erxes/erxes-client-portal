@@ -68,7 +68,7 @@ function DetailContainer({ _id, ...props }: Props) {
         ...values,
         ticketId: item._id
       }
-    }).then(() => {});
+    });
   };
 
   const updatedProps = {

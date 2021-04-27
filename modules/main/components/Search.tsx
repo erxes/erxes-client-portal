@@ -17,7 +17,7 @@ export default class Search extends React.Component<Props, State> {
 
     this.state = {
       searchValue: searchValue || '',
-      focused: false,
+      focused: false
     };
   }
 
@@ -37,9 +37,13 @@ export default class Search extends React.Component<Props, State> {
     });
   };
 
-  onSearch = () => {};
+  onSearch = () => {
+    return;
+  };
 
-  onKeyDown = e => {};
+  onKeyDown = e => {
+    return;
+  };
 
   clearSearch = () => {
     this.setState({ searchValue: '' });
@@ -47,11 +51,11 @@ export default class Search extends React.Component<Props, State> {
 
   onFocus = () => {
     this.setState({ focused: true });
-  }
+  };
 
   onBlur = () => {
     this.setState({ focused: false });
-  }
+  };
 
   render() {
     const { searchValue, focused } = this.state;

@@ -48,7 +48,7 @@ export default function Ticket({ tickets, currentUser }: Props) {
         <div>Status</div>
       </TicketListRow>
 
-      {tickets.map(ticket => (
+      {tickets.map((ticket) => (
         <TicketListRow
           onClick={() => setId(ticket._id)}
           key={ticket._id}

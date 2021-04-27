@@ -29,7 +29,7 @@ function RegisterContainer(props: Props) {
 
   const updatedProps = {
     ...props,
-    renderButton
+    renderButton,
   };
 
   return <Register {...updatedProps} />;

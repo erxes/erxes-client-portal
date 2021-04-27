@@ -75,12 +75,12 @@ function AppProvider({ children }: Props) {
 
   useEffect(() => {
     const fetch = async () => {
-      const clientPortalConfigResponse = await apiClient.query<ConfigQueryResponse>(
-        {
-          query: gql(clientPortalGetConfig),
-          variables: { _id: REACT_APP_CLIENT_PORTAL_CONFIG_ID }
-        }
-      );
+      const clientPortalConfigResponse = await apiClient.query<
+        ConfigQueryResponse
+      >({
+        query: gql(clientPortalGetConfig),
+        variables: { _id: REACT_APP_CLIENT_PORTAL_CONFIG_ID }
+      });
 
       const cpData =
         (clientPortalConfigResponse || {}).data || ({} as ConfigQueryResponse);
@@ -100,9 +100,9 @@ function AppProvider({ children }: Props) {
             variables: { _id: config.knowledgeBaseTopicId }
           });
 
-          const data = (topicResponse.data || {}) as any;
+          const kbData = (topicResponse.data || {}) as any;
 
-          setTopic(data.knowledgeBaseTopicDetail || {});
+          setTopic(kbData.knowledgeBaseTopicDetail || {});
         }
       };
 

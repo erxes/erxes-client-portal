@@ -1,4 +1,4 @@
-const replaceRegex = (regex, replacement) => str =>
+const replaceRegex = (regex, replacement) => (str) =>
   str.replace(regex, replacement);
 // Regular expressions for Markdown (a bit strict, but they work)
 const codeBlockRegex = /((\n\t)(.*))+/g;
@@ -14,7 +14,7 @@ const unorderedListRegex = /(\n\s*(-|\+)\s.*)+/g;
 const orderedListRegex = /(\n\s*([0-9]+\.)\s.*)+/g;
 const paragraphRegex = /\n+(?!<pre>)(?!<h)(?!<ul>)(?!<blockquote)(?!<hr)(?!\t)([^\n]+)\n/g;
 // Replacer functions for Markdown
-const codeBlockReplacer = fullMatch => {
+const codeBlockReplacer = (fullMatch) => {
   return '\n<pre>' + fullMatch + '</pre>';
 };
 const inlineCodeReplacer = (fullMatch, tagStart, tagContents) => {
@@ -52,23 +52,23 @@ const strikethroughReplacer = (fullMatch, tagStart, tagContents) =>
   '<del>' + tagContents + '</del>';
 const blockquoteReplacer = (fullMatch, tagStart, tagContents) =>
   '\n<blockquote>' + tagContents + '</blockquote>';
-const horizontalRuleReplacer = fullMatch => '\n<hr />';
-const unorderedListReplacer = fullMatch => {
+const horizontalRuleReplacer = (fullMatch) => '\n<hr />';
+const unorderedListReplacer = (fullMatch) => {
   let items = '';
   fullMatch
     .trim()
     .split('\n')
-    .forEach(item => {
+    .forEach((item) => {
       items += '<li>' + item.substring(2) + '</li>';
     });
   return '\n<ul>' + items + '</ul>';
 };
-const orderedListReplacer = fullMatch => {
+const orderedListReplacer = (fullMatch) => {
   let items = '';
   fullMatch
     .trim()
     .split('\n')
-    .forEach(item => {
+    .forEach((item) => {
       items += '<li>' + item.substring(item.indexOf('.') + 2) + '</li>';
     });
   return '\n<ol>' + items + '</ol>';
@@ -107,7 +107,7 @@ const codeBlockFixer = (
   tagEnd
 ) => {
   let lines = '';
-  tagContents.split('\n').forEach(line => {
+  tagContents.split('\n').forEach((line) => {
     lines += line.substring(1) + '\n';
   });
   return tagStart + lines + tagEnd;
@@ -115,7 +115,7 @@ const codeBlockFixer = (
 const fixCodeBlocks = replaceRegex(codeBlockFixRegex, codeBlockFixer);
 // Replacement rule order function for Markdown
 // Do not use as-is, prefer parseMarkdown as seen below
-const replaceMarkdown = str =>
+const replaceMarkdown = (str) =>
   replaceParagraphs(
     replaceOrderedLists(
       replaceUnorderedLists(
@@ -138,7 +138,7 @@ const replaceMarkdown = str =>
 
 // Parser for Markdown (fixes code, adds empty lines around for parsing)
 // Usage: parseMarkdown(strVar)
-const parseMarkdown = str =>
+const parseMarkdown = (str) =>
   fixCodeBlocks(replaceMarkdown('\n' + str + '\n')).trim();
 
 export default parseMarkdown;

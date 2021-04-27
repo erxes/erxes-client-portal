@@ -28,7 +28,7 @@ function CategoryDetail({ loading, article }: Props) {
             <p>{article.summary}</p>
             <p
               dangerouslySetInnerHTML={{
-                __html: article.content
+                __html: article.content,
               }}
             />
           </div>

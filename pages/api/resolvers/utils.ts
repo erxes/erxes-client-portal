@@ -5,7 +5,7 @@ export const authCookieOptions = (secure: boolean) => {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
     maxAge: oneDay,
-    secure
+    secure,
   };
 
   return cookieOptions;

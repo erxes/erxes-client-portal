@@ -6,14 +6,17 @@ import { field } from './utils';
 export interface IUser {
   createdAt?: Date;
   password: string;
+  email?: string;
   resetPasswordToken?: string;
   resetPasswordExpires?: number;
   registrationToken?: string;
   registrationTokenExpires?: Date;
-  email?: string;
   firstName?: string;
   lastName?: string;
   phone?: string;
+  type?: string;
+  companyName?: string;
+  companyRegistrationNumber?: number;
 }
 
 export interface IUserDocument extends IUser, Document {
@@ -21,18 +24,15 @@ export interface IUserDocument extends IUser, Document {
 }
 
 export const userSchema = new Schema<IUserDocument, IUserModel>({
+  type: field({
+    type: String,
+    enum: ['customer', 'company'],
+    default: 'customer'
+  }),
   createdAt: field({
     type: Date,
     default: Date.now
   }),
-  firstName: field({ type: String }),
-  phone: field({ type: String, optional: true }),
-  lastName: field({ type: String, optional: true }),
-  password: field({ type: String }),
-  resetPasswordToken: field({ type: String, optional: true }),
-  registrationToken: field({ type: String, optional: true }),
-  registrationTokenExpires: field({ type: Date, optional: true }),
-  resetPasswordExpires: field({ type: Date, optional: true }),
   email: field({
     type: String,
     unique: true,
@@ -41,7 +41,18 @@ export const userSchema = new Schema<IUserDocument, IUserModel>({
       'Please fill a valid email address'
     ],
     label: 'Email'
-  })
+  }),
+  password: field({ type: String }),
+
+  firstName: field({ type: String, optional: true }),
+  phone: field({ type: String, optional: true }),
+  lastName: field({ type: String, optional: true }),
+  resetPasswordToken: field({ type: String, optional: true }),
+  registrationToken: field({ type: String, optional: true }),
+  registrationTokenExpires: field({ type: Date, optional: true }),
+  resetPasswordExpires: field({ type: Date, optional: true }),
+  companyName: field({ type: String, optional: true }),
+  companyRegistrationNumber: field({ type: Number, optional: true })
 });
 
 export interface ILog {

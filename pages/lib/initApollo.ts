@@ -1,4 +1,9 @@
-import { ApolloClient, createHttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client';
 
 interface ApolloServer extends NodeJS.Global {
   fetch: typeof fetch;
@@ -13,7 +18,7 @@ const apolloMap = {};
 
 function create(
   linkOptions: object,
-  initialState: NormalizedCacheObject,
+  initialState: NormalizedCacheObject
 ): ApolloClient<NormalizedCacheObject> {
   const httpLink = createHttpLink(linkOptions);
 
@@ -22,7 +27,7 @@ function create(
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: httpLink,
-    cache: new InMemoryCache().restore(initialState || {})
+    cache: new InMemoryCache().restore(initialState || {}),
   });
 }
 
@@ -36,10 +41,7 @@ export default function initApollo(
 
   // Reuse client on the client-side
   if (!apolloMap[linkOptions.uri]) {
-    apolloMap[linkOptions.uri] = create(
-      linkOptions,
-      initialState,
-    );
+    apolloMap[linkOptions.uri] = create(linkOptions, initialState);
   }
 
   return apolloMap[linkOptions.uri as string];

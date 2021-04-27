@@ -34,7 +34,7 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
   const apiClient = useContext(ApiApolloClientContext);
 
   const [createTicket] = useMutation(gql(clientPortalCreateTicket), {
-    client: apiClient
+    client: apiClient,
   });
 
   const handleSubmit = (doc: Ticket) => {
@@ -43,8 +43,8 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
         ...doc,
         stageId: config.ticketStageId,
         email: currentUser.email,
-        priority: 'Critical' // TODO: Add select in Form
-      }
+        priority: 'Critical', // TODO: Add select in Form
+      },
     }).then(() => {
       window.location.href = '/tickets';
     });
@@ -52,13 +52,13 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
 
   const updatedProps = {
     ...props,
-    handleSubmit
+    handleSubmit,
   };
 
   return <Form {...updatedProps} />;
 }
 
-const WithConsumer = props => {
+const WithConsumer = (props) => {
   return (
     <AppConsumer>
       {({ currentUser }: Store) => {

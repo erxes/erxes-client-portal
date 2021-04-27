@@ -11,8 +11,9 @@ const Header = styledTS<{ color?: string; backgroundImage?: string }>(
   color: ${colors.colorWhite};
   font-size: ${typography.fontSizeBody};
 
-  background-color: ${props => (props.color ? props.color : colors.colorWhite)};
-  background-image: ${props =>
+  background-color: ${(props) =>
+    props.color ? props.color : colors.colorWhite};
+  background-image: ${(props) =>
     props.backgroundImage && `url(${props.backgroundImage})`};
 
   h3 {
@@ -51,7 +52,7 @@ const CategoryIcon = styled.div`
 
 const CategoryContent = styledTS<{ color?: string }>(styled.div)`
   h5 {
-    color: ${props => props.color || colors.colorSecondary};
+    color: ${(props) => props.color || colors.colorSecondary};
     font-weight: ${typography.fontWeightMedium};
     margin: 0 0 2px;
     font-size: 18px;
@@ -193,7 +194,7 @@ const SidebarItem = styledTS<{ active?: boolean }>(styled.div)`
     transition: 0.4s;
   }
 
-  ${props =>
+  ${(props) =>
     props.active &&
     `
       font-weight: 500;
@@ -266,5 +267,5 @@ export {
   SidebarItem,
   SidebarIcon,
   SidebarContent,
-  ArticleWrapper
+  ArticleWrapper,
 };

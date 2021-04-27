@@ -97,5 +97,5 @@ export {
   TicketContent,
   Table,
   TicketListRow,
-  TicketComment
+  TicketComment,
 };

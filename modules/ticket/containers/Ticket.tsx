@@ -28,7 +28,7 @@ function TicketContainer({ currentUser, ...props }: Props) {
   const { loading, data = {} } = useQuery(gql(clientPortalTickets), {
     variables: { email: (currentUser || {}).email },
     client: apiClient,
-    skip: !currentUser
+    skip: !currentUser,
   });
 
   const tickets = data.clientPortalTickets || [];
@@ -37,13 +37,13 @@ function TicketContainer({ currentUser, ...props }: Props) {
     ...props,
     tickets,
     loading,
-    currentUser
+    currentUser,
   };
 
   return <Ticket {...updatedProps} />;
 }
 
-const WithConsumer = props => {
+const WithConsumer = (props) => {
   return (
     <AppConsumer>
       {({ currentUser }: Store) => {

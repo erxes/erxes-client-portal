@@ -23,7 +23,7 @@ const Wrapper = styledTS<{ backgroundColor?: string }>(styled.div)`
   border-radius: 3px;
   padding: ${pWitdh * 2}px ${pWitdh}px 0;
   
-  ${props => `background: ${props.backgroundColor || stageGray};`}
+  ${(props) => `background: ${props.backgroundColor || stageGray};`}
   
   display: flex;
   flex-wrap: wrap;
@@ -101,7 +101,7 @@ const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
   text-align: center;
   padding: 5px 10px;
 
-  ${props =>
+  ${(props) =>
     props.active &&
     `
     background: ${props.color || colors.colorPrimary};
@@ -119,5 +119,5 @@ export {
   Right,
   ItemDate,
   TabContainers,
-  TabTitle
+  TabTitle,
 };

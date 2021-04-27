@@ -28,7 +28,7 @@ function LoginContainer(props: Props) {
 
   const updatedProps = {
     ...props,
-    renderButton
+    renderButton,
   };
 
   return <Login {...updatedProps} />;

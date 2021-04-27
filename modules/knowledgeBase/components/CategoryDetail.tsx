@@ -31,7 +31,7 @@ function CategoryDetail({ loading, topic, category }: Props) {
 
     return categories.map(cat => {
       return (
-        <Link href={`/knowledge-base/category?id=${cat._id}`}>
+        <Link href={`/knowledge-base/category?id=${cat._id}`} key={cat._id}>
           <SidebarItem active={id === cat._id}>
             <SidebarIcon>
               <Icon icon={cat.icon || 'book'} />

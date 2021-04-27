@@ -17,7 +17,10 @@ class Lists extends React.Component<Props> {
 
     return articles.map(article => {
       return (
-        <Link href={`/knowledge-base/article?id=${article._id}`}>
+        <Link
+          href={`/knowledge-base/article?id=${article._id}`}
+          key={article._id}
+        >
           <CategoryItem>
             <CategoryContent>
               <h5 className="base-color">{article.title}</h5>
@@ -25,7 +28,6 @@ class Lists extends React.Component<Props> {
 
               <Avatar date={article.modifiedDate} user={article.createdUser} />
             </CategoryContent>
-            
           </CategoryItem>
         </Link>
       );

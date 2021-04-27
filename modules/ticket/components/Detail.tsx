@@ -4,7 +4,7 @@ import {
   TicketRow,
   TicketLabel,
   TicketContent,
-  TicketComment
+  TicketComment,
 } from '../../styles/tickets';
 import { IUser } from '../../types';
 import Button from '../../common/Button';
@@ -17,7 +17,7 @@ type Props = {
   onClose: () => void;
   handleSubmit: ({
     content,
-    email
+    email,
   }: {
     content: string;
     email: string;
@@ -32,7 +32,7 @@ export default class TicketDetail extends React.Component<
     super(props);
 
     this.state = {
-      content: ''
+      content: '',
     };
   }
 
@@ -45,7 +45,7 @@ export default class TicketDetail extends React.Component<
     );
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ content: e.target.value });
   };
 
@@ -93,7 +93,7 @@ export default class TicketDetail extends React.Component<
             <br />
             <br />
 
-            {comments.map(comment => (
+            {comments.map((comment) => (
               <TicketComment key={comment._id}>
                 <span>
                   {dayjs(comment.createdAt).format('YYYY-MM-DD HH:mm')}

@@ -25,7 +25,7 @@ function ItemContainer({ stageId, ...props }: Props) {
   const { loading, data = {} } = useQuery(gql(clientPortalGetTasks), {
     variables: { stageId },
     client: apiClient,
-    skip: !stageId
+    skip: !stageId,
   });
 
   const tasks = data.clientPortalGetTasks || [];
@@ -33,7 +33,7 @@ function ItemContainer({ stageId, ...props }: Props) {
   const updatedProps = {
     ...props,
     tasks,
-    loading
+    loading,
   };
 
   return <Item {...updatedProps} />;

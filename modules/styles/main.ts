@@ -10,9 +10,9 @@ const Header = styledTS<{ color?: string; backgroundImage?: string }>(
   color: ${colors.colorWhite};
   font-size: ${typography.fontSizeBody}px;
 
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.color ? props.color : colors.colorPrimary};
-  background-image: ${props =>
+  background-image: ${(props) =>
     props.backgroundImage && `url(${props.backgroundImage})`};
 
   h3 {
@@ -101,7 +101,7 @@ const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
 
   border-bottom: 2px solid transparent;
 
-  ${props =>
+  ${(props) =>
     props.active &&
     `
     border-bottom-color:${colors.colorWhite};
@@ -118,7 +118,7 @@ const MainContent = styledTS<{ baseColor?: string }>(styled.div)`
   min-height: 30vh;
   padding: 32px 0;
 
-  ${props =>
+  ${(props) =>
     props.baseColor &&
     css`
       .base-color {
@@ -134,7 +134,7 @@ const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(
 
   margin: 0 auto;
 
-  ${props =>
+  ${(props) =>
     !props.shrink &&
     css`
       height: 100%;
@@ -150,7 +150,7 @@ const BoxRoot = styledTS<{ selected?: boolean }>(styled.div)`
   text-align: center;
   float: left;
   background: ${colors.colorLightBlue};
-  box-shadow: ${props =>
+  box-shadow: ${(props) =>
     props.selected
       ? `0 10px 20px ${rgba(colors.colorCoreDarkGray, 0.12)}`
       : `0 6px 10px 1px ${rgba(colors.colorCoreGray, 0.08)}`} ;
@@ -159,7 +159,8 @@ const BoxRoot = styledTS<{ selected?: boolean }>(styled.div)`
   border-radius: ${dimensions.unitSpacing / 2 - 1}px;
   transition: all 0.25s ease;
   border: 1px solid
-    ${props => (props.selected ? colors.colorSecondary : colors.borderPrimary)};
+    ${(props) =>
+      props.selected ? colors.colorSecondary : colors.borderPrimary};
 
   > a {
     display: block;
@@ -202,7 +203,7 @@ const BoxRoot = styledTS<{ selected?: boolean }>(styled.div)`
 
 const SearchContainer = styledTS<{ focused: boolean }>(styled.div)`
   position: relative;
-  ${props =>
+  ${(props) =>
     props.focused &&
     css`
       i {
@@ -259,7 +260,7 @@ const SearchContainer = styledTS<{ focused: boolean }>(styled.div)`
 const Footer = styledTS<{ color?: string; backgroundImage?: string }>(
   styled.div
 )`
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.color ? props.color : colors.colorPrimary};
   padding: 40px 0;
   color: ${colors.colorWhite};
@@ -352,5 +353,5 @@ export {
   FooterLink,
   LinkItem,
   ModalWrapper,
-  ModalClose
+  ModalClose,
 };

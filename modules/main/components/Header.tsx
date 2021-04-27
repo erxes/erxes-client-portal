@@ -1,23 +1,23 @@
-import React from 'react';
 import Link from 'next/link';
+import { withRouter } from 'next/router';
+import React from 'react';
+import Icon from '../../common/Icon';
+import { getConfigColor } from '../../common/utils';
 import {
-  Header as Head,
-  HeaderTop,
-  HeaderLogo,
-  HeaderLinks,
   Container,
+  Header as Head,
+  HeaderLeft,
+  HeaderLinks,
+  HeaderLogo,
+  HeaderRight,
   HeaderTitle,
-  WebLink,
+  HeaderTop,
   LinkItem,
   SupportMenus,
-  HeaderLeft,
-  HeaderRight
+  WebLink,
 } from '../../styles/main';
-import Search from './Search';
-import Icon from '../../common/Icon';
 import { Config, IUser } from '../../types';
-import { withRouter } from 'next/router';
-import { getConfigColor } from '../../common/utils';
+import Search from './Search';
 
 type Props = {
   config: Config;

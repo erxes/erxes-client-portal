@@ -15,7 +15,7 @@ function ArticleDetailContainer({ queryParams: { id }, ...props }: Props) {
     ? useQuery(gql(articleDetailQuery), {
         variables: { _id: id },
         client: apiClient,
-        skip: !id
+        skip: !id,
       })
     : { loading: true };
 
@@ -24,7 +24,7 @@ function ArticleDetailContainer({ queryParams: { id }, ...props }: Props) {
   const updatedProps = {
     ...props,
     loading,
-    article
+    article,
   };
 
   return <ArticleDetail {...updatedProps} />;

@@ -3,7 +3,7 @@ import Mutation from './mutations';
 
 const resolvers = {
   Mutation,
-  Query
+  Query,
 };
 
 export default resolvers;

@@ -9,5 +9,5 @@ export default {
   coreSpacing,
   headerSpacing,
   headerSpacingWide,
-  wrapperWidth
+  wrapperWidth,
 };
