@@ -14,11 +14,13 @@
 // }
 
 body {
-  background: #f5f8fb;
+  //background: #f5f8fb;
   font-family: "Roboto", sans-serif;
 }
 a {
+  color: #222;
   &:hover {
+    color: #036;
     text-decoration: none;
   }
 }

@@ -17,36 +17,30 @@ class CategoryDetail extends React.Component {
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { categories } = kbTopic;
-
+    
+    
     if (categories) {
-      return categories.map((cat) => {
-        return (
-          <Link
-            key={cat._id}
-            to={`/knowledge-base/category/details/${cat._id}`}
-          >
-            <div className="tags sidebar-list">
-              <ul>
-                <li className={this.isActive(cat._id)}>
-                  <Row>
-                    <Col md={2} key={cat._id}>
-                      <div className="icon-wrapper">
-                        <i className={`icon-${cat.icon}`}></i>
-                      </div>
-                    </Col>
-                    <Col md={10} key={cat._id}>
-                      <div className="tab-content">
-                        <h6>{cat.title}</h6>
-                        <p>{cat.description}</p>
-                      </div>
-                    </Col>
-                  </Row>
-                </li>
-              </ul>
-            </div>
-          </Link>
-        );
-      });
+      return (
+        <>          
+          {categories.map((cat) => (
+            <Link
+              key={cat._id}
+              to={`/knowledge-base/category/details/${cat._id}`}
+            >
+              <div className="tags sidebar-list">
+                <ul>
+                  <li className={this.isActive(cat._id)}>
+                    <div className="icon-wrapper">
+                      <i className={`icon-${cat.icon}`}></i>
+                    </div>
+                    <h6>{cat.title}</h6>
+                  </li>
+                </ul>
+              </div>
+            </Link>
+          ))}
+        </>
+      )
     }
     return;
   };
@@ -56,21 +50,22 @@ class CategoryDetail extends React.Component {
 
     return (
       <Container className="knowledge-base" fluid="sm">
-        <SectionHeader title={category.title} />
+         <SectionHeader title={category.title} />
 
         <Row className="category-detail">
+          <Col md={3}>
+            <div className="sidebar-wrap">
+              <div className="tags sidebar-list">
+                {this.renderCategories()}
+              </div>
+            </div>
+          </Col>
           <Col md={9}>
             <ArticleList
               articles={category.articles}
               history={history}
               catId={category._id}
             />
-          </Col>
-          <Col md={3}>
-            <div className="tags sidebar-list">
-              <h6>Categories</h6>
-              {this.renderCategories()}
-            </div>
           </Col>
         </Row>
       </Container>

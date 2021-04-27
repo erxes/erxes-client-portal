@@ -20,3 +20,22 @@ $btnGradient: linear-gradient(
   rgba(86, 41, 182, 1) 0%,
   rgba(177, 10, 159, 1) 100%
 );
+
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+@keyframes searchIcon {
+  0% {
+      transform: translateX(50px);
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(0px);
+  }
+}

@@ -33,7 +33,7 @@ function Header(props) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className=" icon-arrow-up-right"></i> Go to erxes
+                <i className=" icon-arrow-up-right"></i> erxes рүү шилжих
               </a>
             </Col>
           </Row>
@@ -44,7 +44,10 @@ function Header(props) {
           <Search
             history={props.history}
             searchValue={props.searchValue}
-          ></Search>
+
+          >
+          </Search>
+
         </Container>
       </div>
     </div>

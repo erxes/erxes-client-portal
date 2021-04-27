@@ -58,6 +58,8 @@ const getKbCategoryQuery = `
   }
 `;
 
+
+
 const getArticleDetailQuery = `
   query knowledgeBaseArticleDetail($_id: String!) {
     knowledgeBaseArticleDetail(_id: $_id) {
@@ -80,6 +82,16 @@ const getArticleDetailQuery = `
       modifiedDate
     }
   }
+`;
+
+const getKnowledgeBaseCategories = `
+query knowledgeBaseCategories{ 
+  knowledgeBaseCategories{
+    _id
+    title
+    icon
+  }
+}
 `;
 
 const widgetsKnowledgeBaseArticles = `
@@ -106,6 +118,6 @@ const widgetsKnowledgeBaseArticles = `
 export default {
   getKbTopicQuery,
   getKbCategoryQuery,
-  getArticleDetailQuery,
+  getArticleDetailQuery,  
   widgetsKnowledgeBaseArticles
 };
