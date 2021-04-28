@@ -104,7 +104,7 @@ const userMutations = {
   /*
    * Change user password
    */
-  usersChangePassword(
+  userChangePassword(
     _root,
     args: { currentPassword: string; newPassword: string },
     { user }: IContext
