@@ -12,7 +12,14 @@ class Detail extends React.Component {
 
     this.state = {
       activeReaction: "",
+      selectTags: [],
     };
+  }
+
+  componentDidMount() {
+    const selectTags = document.getElementsByTagName("h2");
+
+    this.setState({ selectTags });
   }
 
   onReactionClick = (reactionChoice) => {
@@ -93,6 +100,7 @@ class Detail extends React.Component {
       </div>
     );
   };
+
   isActive = (articleId) => {
     if (articleId === this.props.articleDetail._id) {
       return "active";
@@ -127,8 +135,7 @@ class Detail extends React.Component {
                     <h6>{article.title}</h6>
                   </li>
                 </Link>
-              ))
-              }
+              ))}
             </ul>
           </div>
         </>
@@ -138,19 +145,21 @@ class Detail extends React.Component {
   };
 
   renderTags = () => {
-    const { content } = this.props.articleDetail;
-    const selectTags = document.getElementsByTagName('H2');
+    const { selectTags } = this.state;
 
     if (selectTags.length === 0) {
       return null;
     }
-    console.log('sss',selectTags);
-    /*const valler = [];
+
+    let valler = [];
+
     for (let item of selectTags) {
-      console.log('> ', item.outerHTML);
-      //valler = item.outerHTML;
-    }*/
-    return 'sss';
+      valler.push(item.innerHTML);
+    }
+
+    return valler.map((val, index) => (
+      <div key={index} dangerouslySetInnerHTML={{ __html: val }} />
+    ));
   };
 
   render() {
@@ -188,9 +197,15 @@ class Detail extends React.Component {
               {this.renderTags()}
               <h6>Холбоос</h6>
               <ul>
-                <li><a href="#home">Ангилах</a></li>
-                <li><a href="#anchor1">Ажилчид</a></li>
-                <li><a href="#anchor2">Идэвхжинэ</a></li>
+                <li>
+                  <a href="#home">Ангилах</a>
+                </li>
+                <li>
+                  <a href="#anchor1">Ажилчид</a>
+                </li>
+                <li>
+                  <a href="#anchor2">Идэвхжинэ</a>
+                </li>
               </ul>
             </div>
           </Col>
