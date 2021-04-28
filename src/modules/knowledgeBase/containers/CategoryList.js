@@ -18,7 +18,7 @@ class CategoriesContainer extends React.Component {
       return <div></div>;
     }
 
-    const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
+    const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};    
 
     return (
       <Categories

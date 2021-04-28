@@ -57,9 +57,7 @@ time {
   }
 
   &.article-detail {
-    padding: 30px;
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
+    padding: 0;    
     border-radius: 0;
     box-shadow: none;
     &:hover{
@@ -325,7 +323,7 @@ h1 strong, h2 strong, h3 strong {
 .sidebar-list {
   h6 {
     text-transform: uppercase;
-    color: $silverGrey;
+    color: $grayeshblack;
     font-weight: 500;
     font-size: 14px;
     margin-bottom: 20px;

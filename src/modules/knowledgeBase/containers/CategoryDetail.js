@@ -12,7 +12,7 @@ class CategoryDetailsContainer extends React.Component {
 
     if (getKbCategoryQuery.loading || getKbTopicQuery.loading) {
       return <div></div>;
-    }
+    }    
 
     const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};
 

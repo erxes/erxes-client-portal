@@ -35,6 +35,7 @@ class Layout extends React.Component {
 
     const queryParams = queryString.parse(location.search);
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
+    
 
     return (
       <div className="layout knowlegde-base">

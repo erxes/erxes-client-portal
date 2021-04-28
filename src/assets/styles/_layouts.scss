@@ -359,13 +359,15 @@
   }
 
   .sidebar-wrap {
+    height: 100%;
+    border-right: 1px solid #eee;
     .sidebar-type-title {
-      font-weight: 300;
-      text-transform: uppercase;
-      font-size: 19px;
+      font-weight: 200;
+      text-transform: capitalize;
+      font-size: 22px;
       margin-bottom: 20px;
       color: #5629b6;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #eee;
       padding-bottom: 10px;
       padding-left: 15px;
     }
@@ -375,7 +377,8 @@
         li {
           display: flex;
           align-items: center;
-
+          padding-left: 0;
+          padding-right: 15px;
           &.active,
           &:hover {
             background: none;
@@ -405,9 +408,30 @@
         }
       }
 
-      &.artitle-title {
+      &.article-title {
         ul {
-          padding-left: 30px;
+          padding-left: 20px;
+
+          li {
+            position: relative;
+            border-bottom: 1px dotted #dedede;
+            margin-bottom: 12px !important;
+            padding-bottom: 15px;
+            border-radius: 0 !important;
+            flex-flow: row wrap;
+            padding-left: 8px;
+
+            &::before {
+              content: '';
+              position: absolute;
+              height: 130%;
+              left: -11px;
+              border-left: 1px solid #eee;
+            }
+            &:last-child{
+              border-bottom: 0;
+            }
+          }
 
           h6 {
             font-size: 14px;

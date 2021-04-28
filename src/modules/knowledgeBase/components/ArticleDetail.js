@@ -101,7 +101,8 @@ class Detail extends React.Component {
   };
 
   renderCategories = () => {
-    const { category } = this.props;
+    console.log('categories: ',this.props.kbTopic.categories);
+    const { category } = this.props;    
     const { articles } = category;
     if (articles) {
       return (
@@ -116,7 +117,7 @@ class Detail extends React.Component {
               </li>
             </ul>
           </div>
-          <div className="tags sidebar-list artitle-title">
+          <div className="tags sidebar-list article-title">
             <ul>
               {articles.map((article) => (
                 <Link
@@ -144,13 +145,13 @@ class Detail extends React.Component {
     if (selectTags.length === 0) {
       return null;
     }
-    console.log('sss',selectTags);
+    
     /*const valler = [];
     for (let item of selectTags) {
       console.log('> ', item.outerHTML);
       //valler = item.outerHTML;
     }*/
-    return 'sss';
+    return '';
   };
 
   render() {

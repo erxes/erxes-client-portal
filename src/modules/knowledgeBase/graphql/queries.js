@@ -84,16 +84,6 @@ const getArticleDetailQuery = `
   }
 `;
 
-const getKnowledgeBaseCategories = `
-query knowledgeBaseCategories{ 
-  knowledgeBaseCategories{
-    _id
-    title
-    icon
-  }
-}
-`;
-
 const widgetsKnowledgeBaseArticles = `
   query widgetsKnowledgeBaseArticles($topicId: String!, $searchString: String!) {
     widgetsKnowledgeBaseArticles(topicId: $topicId, searchString: $searchString) {

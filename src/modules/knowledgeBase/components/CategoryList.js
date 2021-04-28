@@ -43,9 +43,9 @@ class Categories extends React.Component {
     );
   };
 
-  renderCategories = () => {
+  renderCategories = () => {    
     const { kbTopic } = this.props;
-    const { categories } = kbTopic;
+    const { categories } = kbTopic;    
     const { title } = kbTopic;
 
     if (categories) {
