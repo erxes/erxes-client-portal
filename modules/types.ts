@@ -86,6 +86,8 @@ export interface IUser {
   lastName: string;
   email: string;
   details?: IUserDetails;
+  type: string;
+  companyName: string;
 }
 
 export interface IKbArticle extends ICommonFields {

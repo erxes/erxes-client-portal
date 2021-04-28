@@ -3,6 +3,8 @@ import * as crypto from 'crypto';
 import * as jwt from 'jsonwebtoken';
 import mongoose, { Model, model } from 'mongoose';
 import * as sha256 from 'sha256';
+import { ILoginParams } from '../../types';
+import { USER_LOGIN_TYPES } from '../utils';
 import { IUser, IUserDocument, userSchema } from './definitions';
 import Logs from './Logs';
 const SALT_WORK_FACTOR = 10;
@@ -42,13 +44,7 @@ export interface IUserModel extends Model<IUserDocument> {
   refreshTokens(
     refreshToken: string
   ): { token: string; refreshToken: string; user: IUserDocument };
-  login({
-    email,
-    password
-  }: {
-    email: string;
-    password?: string;
-  }): { token: string; refreshToken: string };
+  login(args: ILoginParams): { token: string; refreshToken: string };
 }
 
 export const loadClass = () => {
@@ -87,12 +83,7 @@ export const loadClass = () => {
       }
     }
 
-    public static async createUser({
-      firstName,
-      lastName,
-      email,
-      password
-    }: IUser) {
+    public static async createUser({ password, ...doc }: IUser) {
       // empty string password validation
       if (password === '') {
         throw new Error('Password can not be empty');
@@ -101,9 +92,7 @@ export const loadClass = () => {
       this.checkPassword(password);
 
       const user = await Users.create({
-        firstName,
-        lastName,
-        email,
+        ...doc,
         // hash password
         password: await this.generatePassword(password)
       });
@@ -111,10 +100,22 @@ export const loadClass = () => {
       return user._id;
     }
 
-    public static async editProfile(
-      _id: string,
-      { firstName, lastName, email }: IEditProfile
-    ) {
+    public static async editProfile(_id: string, { password, ...doc }: IUser) {
+      const user = await Users.findOne({ _id }).lean();
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      // check current password ============
+      const valid = await this.comparePassword(password, user.password);
+
+      if (!valid) {
+        throw new Error('Incorrect current password');
+      }
+
+      const email = doc.email;
+
       // Checking duplicated email
       const exisitingUser = await Users.findOne({ email }).lean();
 
@@ -122,7 +123,7 @@ export const loadClass = () => {
         throw new Error('Email duplicated');
       }
 
-      await Users.updateOne({ _id }, { $set: { firstName, lastName, email } });
+      await Users.updateOne({ _id }, { $set: doc });
 
       return Users.findOne({ _id });
     }
@@ -277,14 +278,14 @@ export const loadClass = () => {
     }
 
     public static async login({
+      type,
       email,
-      password
-    }: {
-      email: string;
-      password: string;
-    }) {
+      password,
+      description
+    }: ILoginParams) {
       const user = await Users.findOne({
-        email: { $regex: new RegExp(`^${email}$`, 'i') }
+        email: { $regex: new RegExp(`^${email}$`, 'i') },
+        type: type || { $ne: USER_LOGIN_TYPES.COMPANY }
       });
 
       if (!user || !user.password) {
@@ -307,7 +308,8 @@ export const loadClass = () => {
       await Logs.createLog({
         type: 'user',
         typeId: user._id,
-        text: 'login'
+        text: 'login',
+        description
       });
 
       return {

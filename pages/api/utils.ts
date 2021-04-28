@@ -7,15 +7,15 @@ type Params = {
 };
 
 export const sendGraphQLRequest = ({ query, variables, name }: Params) => {
-  const { MAIN_API_DOMAIN } = process.env;
+  const { REACT_APP_MAIN_API_DOMAIN } = process.env;
 
   return new Promise((resolve, reject) => {
     request(
       {
-        url: `${MAIN_API_DOMAIN}/graphql`,
+        url: `${REACT_APP_MAIN_API_DOMAIN}/graphql`,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, variables }),
+        body: JSON.stringify({ query, variables })
       },
       (error, _response, body) => {
         if (error) {
@@ -28,7 +28,11 @@ export const sendGraphQLRequest = ({ query, variables, name }: Params) => {
 
         const response = JSON.parse(body || '{}');
 
-        const { data = {} } = response || {};
+        const { errors, data = {} } = response || {};
+
+        if (errors) {
+          return reject(errors);
+        }
 
         return resolve(data[name]);
       }

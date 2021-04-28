@@ -5,7 +5,9 @@ export const types = `
     lastName: String
     phone: String
     email: String!
-    password: String!
+    type: String
+    companyName: String
+    companyRegistrationNumber: String
   }
 `;
 
@@ -15,15 +17,18 @@ export const queries = `
 `;
 
 const userParams = `
-  email: String!,
   password: String!,
-  firstName: String!,
+  email: String,
+  firstName: String,
   lastName: String,
-  phone: String
+  phone: String,
+  type: String,
+  companyName: String,
+  companyRegistrationNumber: Int,
 `;
 
 export const mutations = `
-  login(email: String!, password: String!): String
+  login(email: String!, password: String!, type: String, description: String): String
   logout: String
   forgotPassword(email: String!): String!
   resetPassword(token: String!, newPassword: String!): JSON

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import React from 'react';
+import { USER_LOGIN_TYPES } from '../../../pages/api/db/utils';
 import Icon from '../../common/Icon';
 import { getConfigColor } from '../../common/utils';
 import {
@@ -14,7 +15,7 @@ import {
   HeaderTop,
   LinkItem,
   SupportMenus,
-  WebLink,
+  WebLink
 } from '../../styles/main';
 import { Config, IUser } from '../../types';
 import Search from './Search';
@@ -61,7 +62,9 @@ function Header({ config, currentUser, logout, router }: Props) {
               {currentUser ? (
                 <span title="Log out" onClick={() => logout()}>
                   <Icon icon="user" /> &nbsp;
-                  {currentUser.firstName}
+                  {currentUser.type === USER_LOGIN_TYPES.COMPANY
+                    ? currentUser.companyName
+                    : currentUser.firstName}
                 </span>
               ) : (
                 <>

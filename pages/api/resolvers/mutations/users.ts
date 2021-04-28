@@ -1,35 +1,25 @@
 import * as express from 'express';
 import { IUser } from '../../db/models/definitions';
+import { ILoginParams } from '../../types';
 import Users from '../../db/models/Users';
+import { USER_LOGIN_TYPES } from '../../db/utils';
 import { IContext } from '../../types';
 import { sendGraphQLRequest } from '../../utils';
 import { authCookieOptions } from '../utils';
+import {
+  clientPortalCreateCustomer,
+  clientPortalCreateCompany
+} from './graphql/mutations';
 
-interface ILogin {
-  email: string;
-  password: string;
-  deviceToken?: string;
-}
+type AddParams = {
+  configId: string;
+} & IUser;
 
-const clientPortalCreateCustomer = `
-  mutation createCustomer(
-    $configId: String!,
-    $firstName: String!,
-    $lastName: String
-    $email: String!
-  ) {
-    clientPortalCreateCustomer(
-      configId: $configId,
-      firstName: $firstName,
-      lastName: $lastName
-      email: $email
-    ) {
-      _id
-    }
-  }
-`;
-
-const login = async (args: ILogin, res: express.Response, secure: boolean) => {
+const login = async (
+  args: ILoginParams,
+  res: express.Response,
+  secure: boolean
+) => {
   const response = await Users.login(args);
 
   const { token } = response;
@@ -45,36 +35,52 @@ const userMutations = {
     {
       configId,
       email,
+      type,
       password,
       firstName,
       lastName,
-    }: {
-      configId: string;
-      email: string;
-      password: string;
-      firstName: string;
-      lastName?: string;
-    }
+      phone,
+      companyName,
+      companyRegistrationNumber
+    }: AddParams
   ) {
+    const tEmail = (email || '').toLowerCase().trim();
+
     const doc: IUser = {
-      email: (email || '').toLowerCase().trim(),
+      email: tEmail,
       password: (password || '').trim(),
       firstName,
       lastName,
+      phone,
+      companyName,
+      companyRegistrationNumber,
+      type
     };
 
     await Users.createUser(doc);
 
-    await sendGraphQLRequest({
-      query: clientPortalCreateCustomer,
-      name: 'createCustomer',
-      variables: {
-        configId,
-        email,
-        firstName,
-        lastName,
-      },
-    });
+    if (type === USER_LOGIN_TYPES.COMPANY) {
+      await sendGraphQLRequest({
+        query: clientPortalCreateCompany,
+        name: 'createCompany',
+        variables: {
+          configId,
+          email: tEmail,
+          companyName
+        }
+      });
+    } else {
+      await sendGraphQLRequest({
+        query: clientPortalCreateCustomer,
+        name: 'createCustomer',
+        variables: {
+          configId,
+          email: tEmail,
+          firstName,
+          lastName
+        }
+      });
+    }
 
     return 'success';
   },
@@ -82,7 +88,7 @@ const userMutations = {
   /*
    * Login
    */
-  async login(_root, args: ILogin, { res, requestInfo }: IContext) {
+  async login(_root, args: ILoginParams, { res, requestInfo }: IContext) {
     return login(args, res, requestInfo.secure);
   },
 
@@ -94,6 +100,24 @@ const userMutations = {
 
     return 'loggedout';
   },
+
+  /*
+   * Change user password
+   */
+  usersChangePassword(
+    _root,
+    args: { currentPassword: string; newPassword: string },
+    { user }: IContext
+  ) {
+    return Users.changePassword({ _id: user._id, ...args });
+  },
+
+  /*
+   * Edit user profile
+   */
+  async userEdit(_root, args: IUser, { user }: IContext) {
+    return Users.editProfile(user._id, args);
+  }
 };
 
 export default userMutations;

@@ -5,6 +5,10 @@ const currentUser = `
       email
       firstName
       lastName
+      type
+      companyName
+      companyRegistrationNumber
+      phone
     }
   }
 `;

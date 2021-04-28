@@ -2,10 +2,11 @@ import { Document, Schema } from 'mongoose';
 import { IUserModel } from './Users';
 import { ILogModel } from './Logs';
 import { field } from './utils';
+import { USER_LOGIN_TYPES } from '../utils';
 
 export interface IUser {
   createdAt?: Date;
-  password: string;
+  password?: string;
   email?: string;
   resetPasswordToken?: string;
   resetPasswordExpires?: number;
@@ -26,8 +27,8 @@ export interface IUserDocument extends IUser, Document {
 export const userSchema = new Schema<IUserDocument, IUserModel>({
   type: field({
     type: String,
-    enum: ['customer', 'company'],
-    default: 'customer'
+    enum: USER_LOGIN_TYPES.ALL,
+    default: USER_LOGIN_TYPES.CUSTOMER
   }),
   createdAt: field({
     type: Date,

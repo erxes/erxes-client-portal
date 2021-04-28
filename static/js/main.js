@@ -23,6 +23,10 @@ window.envMaps = [
   {
     name: 'REACT_APP_CLIENT_PORTAL_CONFIG_ID',
     processValue: '%REACT_APP_CLIENT_PORTAL_CONFIG_ID%'
+  },
+  {
+    name: 'REACT_APP_HAS_COMPANY',
+    processValue: '%REACT_APP_HAS_COMPANY%'
   }
 ];
 

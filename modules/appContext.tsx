@@ -10,6 +10,7 @@ import {
   UserQueryResponse
 } from './types';
 import { currentUser } from './user/graphql/queries';
+import { clientPortalGetConfig } from './main/graphql/queries';
 import { getEnv } from '../utils/configs';
 
 const AppContext = createContext({});
@@ -19,50 +20,6 @@ export const AppConsumer = AppContext.Consumer;
 type Props = {
   children: any;
 };
-
-const clientPortalGetConfig = `
-  query clientPortalGetConfig($_id: String!) {
-    clientPortalGetConfig(_id: $_id) {
-      _id
-      name
-      description
-      logo
-      icon
-      url
-      knowledgeBaseLabel
-      knowledgeBaseTopicId
-      taskLabel
-      taskPublicPipelineId
-      taskStageId
-      ticketLabel
-      ticketStageId
-
-      styles {
-        bodyColor
-        headerColor
-        footerColor
-        helpColor
-        backgroundColor
-        activeTabColor
-        baseColor
-        headingColor
-        linkColor
-        linkHoverColor
-        baseFont
-        headingFont
-        dividerColor
-        primaryBtnColor
-        secondaryBtnColor
-      }
-
-      advanced {
-        authAllow
-        permission
-        viewTicket
-      }
-    }
-  }
-`;
 
 function AppProvider({ children }: Props) {
   const apiClient = useContext(ApiApolloClientContext);
@@ -75,12 +32,12 @@ function AppProvider({ children }: Props) {
 
   useEffect(() => {
     const fetch = async () => {
-      const clientPortalConfigResponse = await apiClient.query<
-        ConfigQueryResponse
-      >({
-        query: gql(clientPortalGetConfig),
-        variables: { _id: REACT_APP_CLIENT_PORTAL_CONFIG_ID }
-      });
+      const clientPortalConfigResponse = await apiClient.query<ConfigQueryResponse>(
+        {
+          query: gql(clientPortalGetConfig),
+          variables: { _id: REACT_APP_CLIENT_PORTAL_CONFIG_ID }
+        }
+      );
 
       const cpData =
         (clientPortalConfigResponse || {}).data || ({} as ConfigQueryResponse);

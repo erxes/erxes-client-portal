@@ -15,7 +15,7 @@
     }
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4300",
     "build": "next build",
     "start": "next start -p 4300",
     "format": "prettier --single-quote --write '@(pages)/**/*.ts' && prettier --single-quote --write '@(modules)/**/*.@(ts|tsx|json|css)'",
@@ -61,6 +61,7 @@
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "detect-browser": "^5.2.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "tslint": "^6.1.3",

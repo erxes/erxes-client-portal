@@ -8,10 +8,12 @@ import { getEnv } from '../../../utils/configs';
 type Props = {};
 
 function RegisterContainer(props: Props) {
+  const { REACT_APP_CLIENT_PORTAL_CONFIG_ID, REACT_APP_HAS_COMPANY } = getEnv();
+
   const renderButton = ({ values, isSubmitted }: IButtonMutateProps) => {
     const callbackResponse = () => (window.location.href = '/');
 
-    values.configId = getEnv().REACT_APP_CLIENT_PORTAL_CONFIG_ID;
+    values.configId = REACT_APP_CLIENT_PORTAL_CONFIG_ID;
 
     return (
       <ButtonMutate
@@ -29,7 +31,8 @@ function RegisterContainer(props: Props) {
 
   const updatedProps = {
     ...props,
-    renderButton,
+    hasCompany: REACT_APP_HAS_COMPANY === 'true',
+    renderButton
   };
 
   return <Register {...updatedProps} />;

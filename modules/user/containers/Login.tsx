@@ -3,10 +3,14 @@ import { mutations } from '../graphql';
 import Login from '../components/Login';
 import { IButtonMutateProps } from '../../common/types';
 import ButtonMutate from '../../common/ButtonMutate';
+import { getEnv } from '../../../utils/configs';
+import { detect } from 'detect-browser';
 
 type Props = {};
 
 function LoginContainer(props: Props) {
+  const browser = detect();
+
   const renderButton = ({ values, isSubmitted }: IButtonMutateProps) => {
     const callbackResponse = () => {
       window.location.href = '/';
@@ -15,7 +19,10 @@ function LoginContainer(props: Props) {
     return (
       <ButtonMutate
         mutation={mutations.login}
-        variables={values}
+        variables={{
+          ...values,
+          description: `${browser.os}, ${browser.type}: ${browser.name}`
+        }}
         callback={callbackResponse}
         isSubmitted={isSubmitted}
         type="submit"
@@ -28,7 +35,8 @@ function LoginContainer(props: Props) {
 
   const updatedProps = {
     ...props,
-    renderButton,
+    hasCompany: getEnv().REACT_APP_HAS_COMPANY === 'true',
+    renderButton
   };
 
   return <Login {...updatedProps} />;

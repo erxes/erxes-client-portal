@@ -6,3 +6,11 @@ export interface IContext {
   requestInfo: any;
   user: IUserDocument;
 }
+
+export interface ILoginParams {
+  type?: string;
+  email: string;
+  password: string;
+  deviceToken?: string;
+  description?: string;
+}
