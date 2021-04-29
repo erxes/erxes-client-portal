@@ -250,7 +250,7 @@ span {
 
   .page-anchor {
     position: sticky;
-    top: 20px;    
+    top: 20px;
     padding-top: 10px;
 
     h6 {
@@ -277,6 +277,12 @@ span {
       li {
         position: relative;
 
+        h2 {
+          line-height: 1.6;
+          margin: 0;
+          font-size: 14px;
+        }
+
         &::before {
           content: '';
           position: absolute;
@@ -290,10 +296,11 @@ span {
           font-weight: 300;
         }
 
-        &:hover {
+        &:hover,
+        &.active {
           a {
-            color: #000;
-            text-decoration: underline;
+            color: #6569DF;
+            font-weight: 500;            
             position: relative;
           }
 

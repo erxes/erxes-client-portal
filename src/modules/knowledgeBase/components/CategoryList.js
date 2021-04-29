@@ -43,22 +43,26 @@ class Categories extends React.Component {
     );
   };
 
-  renderCategories = () => {    
+  renderCategories = () => {
     const { kbTopic } = this.props;
-    const { categories } = kbTopic;    
-    const { title } = kbTopic;
-
-    if (categories) {
+    const { categories } = kbTopic;
+    const { title } = kbTopic;        
+    console.log(this.props);
+    if (categories && this.props.articlesQuery.widgetsKnowledgeBaseArticles) {
+      
+      //get First article id
+      const link = this.props.articlesQuery.widgetsKnowledgeBaseArticles[0]._id;      
       return (
         <>
           <Container className="knowledge-base" fluid="sm">
             <div className="category-knowledge-list">
               <h2 className="list-category-title">{title}</h2>
               <Row>
-                {categories.map(cat => (
+                {
+                categories.map(cat => (
                   <Col md={4} key={cat._id}>
                     <Card className="category-item">
-                      <Link to={`/knowledge-base/category/details/${cat._id}`} className="d-flex flex-column align-items-center w-100">
+                      <Link to={`/knowledge-base/article/detail?catId=${cat._id}&_id=${link}`} className="d-flex flex-column align-items-center w-100">
                         <div className="icon-wrapper">
                           <i className={`icon-${cat.icon}`}></i>
                         </div>

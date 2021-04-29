@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import * as dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import Scrollspy from 'react-scrollspy';
 import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 
@@ -144,7 +145,7 @@ class Detail extends React.Component {
   renderTags = () => {
     const { content } = this.props.articleDetail;
     const tagged = [];
-    
+
     //find custom selected elements
     if (content && content.match(/<h2 id="(.*?)">(.*?)<\/h2>/g)) {
       content.match(/<h2 id="(.*?)">(.*?)<\/h2>/g).map((obj, i) => (
@@ -156,20 +157,22 @@ class Detail extends React.Component {
     if (tagged.length === 0) {
       return null;
     }
-
+    const relId = [];
     for (let item of tagged) {
       tagedTitles.push(item);
+      const getId = item.match(/id="(.*?)"/g)[0];      
+      relId.push(getId.replaceAll('"','').split('=')[1]);      
     }
-
+    console.log(relId);
     return (
       <>
         <div className="page-anchor" id="anchorTag">
           <h6>Холбоос</h6>
-          <ul>
+          <Scrollspy items={relId} currentClassName="active">
             {tagedTitles.map((val, index) => (
               <li key={index} dangerouslySetInnerHTML={{ __html: val }} />
             ))}
-          </ul>
+          </Scrollspy>
         </div>
       </>
     )
@@ -181,7 +184,7 @@ class Detail extends React.Component {
     const { articleDetail } = this.props;
 
     return (
-      <div className="knowledge-base">
+      <div className="knowledge-base">        
         <Row>
           <Col md={3}>
             <div className="sidebar-wrap">
@@ -195,7 +198,7 @@ class Detail extends React.Component {
             <div className="card article-detail">
               <div className="kbase-detail kbase-lists">
                 <h4>{articleDetail.title}</h4>
-                <div className="content mt-4 scrollspy-example" id="contentText" data-bs-spy="scroll" data-target="#anchorTag" data-offset="0">
+                <div className="content mt-4" id="contentText">
                   <p>{articleDetail.summary}</p>
                   <p
                     dangerouslySetInnerHTML={{

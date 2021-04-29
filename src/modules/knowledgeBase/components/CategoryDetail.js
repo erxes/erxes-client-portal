@@ -17,11 +17,11 @@ class CategoryDetail extends React.Component {
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { categories } = kbTopic;
-    
-    
+
+
     if (categories) {
       return (
-        <>          
+        <>
           {categories.map((cat) => (
             <Link
               key={cat._id}
@@ -30,10 +30,12 @@ class CategoryDetail extends React.Component {
               <div className="tags sidebar-list">
                 <ul>
                   <li className={this.isActive(cat._id)}>
-                    <div className="icon-wrapper">
-                      <i className={`icon-${cat.icon}`}></i>
+                    <div className="sidebar-item">
+                      <div className="icon-wrapper">
+                        <i className={`icon-${cat.icon}`}></i>
+                      </div>
+                      <h6>{cat.title}</h6>
                     </div>
-                    <h6>{cat.title}</h6>
                   </li>
                 </ul>
               </div>
@@ -50,7 +52,7 @@ class CategoryDetail extends React.Component {
 
     return (
       <Container className="knowledge-base" fluid="sm">
-         <SectionHeader title={category.title} />
+        <SectionHeader title={category.title} />
 
         <Row className="category-detail">
           <Col md={3}>

@@ -11,20 +11,20 @@ class CategoriesContainer extends React.Component {
     const {
       getKbTopicQuery,
       widgetsKnowledgeBaseArticles,
-      history,
+      history,      
     } = this.props;
 
     if (getKbTopicQuery.loading) {
-      return <div></div>;
+      return <div>Loading...</div>;
     }
 
-    const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};    
+    const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
     return (
       <Categories
         kbTopic={kbTopic}
         history={history}
-        articlesQuery={widgetsKnowledgeBaseArticles}
+        articlesQuery={widgetsKnowledgeBaseArticles}        
       />
     );
   }
@@ -34,7 +34,7 @@ CategoriesContainer.propTypes = {
   getKbTopicQuery: PropTypes.object,
   history: PropTypes.object,
   queryParams: PropTypes.object,
-  topicId: PropTypes.string,
+  topicId: PropTypes.string,  
 };
 
 export default compose(

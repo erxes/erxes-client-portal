@@ -361,6 +361,7 @@
   .sidebar-wrap {
     height: 100%;
     border-right: 1px solid #eee;
+
     .sidebar-type-title {
       font-weight: 200;
       text-transform: capitalize;
@@ -375,14 +376,16 @@
     .sidebar-list {
       ul {
         li {
-          display: flex;
-          align-items: center;
-          padding-left: 0;
-          padding-right: 15px;
+          .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding-left: 0;
+            padding-right: 15px;
+          }
+
           &.active,
           &:hover {
             background: none;
-            text-decoration: underline;
 
             h6,
             .icon-wrapper {
@@ -408,7 +411,9 @@
         }
       }
 
-      &.article-title {
+      .submenu {
+        width: 100%;
+
         ul {
           padding-left: 20px;
 
@@ -428,8 +433,28 @@
               left: -11px;
               border-left: 1px solid #eee;
             }
-            &:last-child{
+
+            &:last-child {
               border-bottom: 0;
+            }
+
+            &:hover {
+              background: none;
+
+              h6 {
+                color: #000;
+                text-decoration: underline;
+              }
+            }
+
+            &.active {
+              background: none;
+
+              h6 {
+                font-weight: 400;
+                color: #000;
+                text-decoration: underline;
+              }
             }
           }
 
