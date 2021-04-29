@@ -3,8 +3,8 @@ import classNames from "classnames";
 import * as dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Container, Row, Col } from "react-bootstrap";
-import SectionHeader from "../../common/components/SectionHeader";
+import { Row, Col } from "react-bootstrap";
+
 
 class Detail extends React.Component {
   constructor(props) {
@@ -12,14 +12,7 @@ class Detail extends React.Component {
 
     this.state = {
       activeReaction: "",
-      selectTags: [],
     };
-  }
-
-  componentDidMount() {
-    const selectTags = document.getElementsByTagName("h2");
-
-    this.setState({ selectTags });
   }
 
   onReactionClick = (reactionChoice) => {
@@ -109,34 +102,37 @@ class Detail extends React.Component {
   };
 
   renderCategories = () => {
-    console.log('categories: ',this.props.kbTopic.categories);
-    const { category } = this.props;    
+    //const { categories } = this.props.kbTopic.categories;
+    const { category } = this.props;
     const { articles } = category;
+
     if (articles) {
       return (
         <>
           <div className="tags sidebar-list">
             <ul>
               <li className={this.isActive(category._id)}>
-                <div className="icon-wrapper">
-                  <i className={`icon-${category.icon}`}></i>
+                <div className="sidebar-item">
+                  <div className="icon-wrapper">
+                    <i className={`icon-${category.icon}`}></i>
+                  </div>
+                  <h6>{category.title}</h6>
                 </div>
-                <h6>{category.title}</h6>
+                <div className="submenu">
+                  <ul>
+                    {articles.map((article) => (
+                      <Link
+                        key={article._id}
+                        to={`/knowledge-base/article/detail?catId=${category._id}&_id=${article._id}`}
+                      >
+                        <li className={this.isActive(article._id)}>
+                          <h6>{article.title}</h6>
+                        </li>
+                      </Link>
+                    ))}
+                  </ul>
+                </div>
               </li>
-            </ul>
-          </div>
-          <div className="tags sidebar-list article-title">
-            <ul>
-              {articles.map((article) => (
-                <Link
-                  key={article._id}
-                  to={`/knowledge-base/article/detail?catId=${category._id}&_id=${article._id}`}
-                >
-                  <li className={this.isActive(article._id)}>
-                    <h6>{article.title}</h6>
-                  </li>
-                </Link>
-              ))}
             </ul>
           </div>
         </>
@@ -146,25 +142,43 @@ class Detail extends React.Component {
   };
 
   renderTags = () => {
-    const { selectTags } = this.state;
+    const { content } = this.props.articleDetail;
+    const tagged = [];
+    
+    //find custom selected elements
+    if (content && content.match(/<h2 id="(.*?)">(.*?)<\/h2>/g)) {
+      content.match(/<h2 id="(.*?)">(.*?)<\/h2>/g).map((obj, i) => (
+        tagged.push(obj)
+      ));
+    }
 
-    if (selectTags.length === 0) {
+    let tagedTitles = [];
+    if (tagged.length === 0) {
       return null;
     }
 
-    let valler = [];
-
-    for (let item of selectTags) {
-      valler.push(item.innerHTML);
+    for (let item of tagged) {
+      tagedTitles.push(item);
     }
 
-    return valler.map((val, index) => (
-      <div key={index} dangerouslySetInnerHTML={{ __html: val }} />
-    ));
+    return (
+      <>
+        <div className="page-anchor" id="anchorTag">
+          <h6>Холбоос</h6>
+          <ul>
+            {tagedTitles.map((val, index) => (
+              <li key={index} dangerouslySetInnerHTML={{ __html: val }} />
+            ))}
+          </ul>
+        </div>
+      </>
+    )
   };
 
+
+
   render() {
-    const { articleDetail, category } = this.props;
+    const { articleDetail } = this.props;
 
     return (
       <div className="knowledge-base">
@@ -181,7 +195,7 @@ class Detail extends React.Component {
             <div className="card article-detail">
               <div className="kbase-detail kbase-lists">
                 <h4>{articleDetail.title}</h4>
-                <div className="content mt-4" id="contentText">
+                <div className="content mt-4 scrollspy-example" id="contentText" data-bs-spy="scroll" data-target="#anchorTag" data-offset="0">
                   <p>{articleDetail.summary}</p>
                   <p
                     dangerouslySetInnerHTML={{
@@ -194,24 +208,10 @@ class Detail extends React.Component {
             </div>
           </Col>
           <Col md={2}>
-            <div className="page-anchor">
-              {this.renderTags()}
-              <h6>Холбоос</h6>
-              <ul>
-                <li>
-                  <a href="#home">Ангилах</a>
-                </li>
-                <li>
-                  <a href="#anchor1">Ажилчид</a>
-                </li>
-                <li>
-                  <a href="#anchor2">Идэвхжинэ</a>
-                </li>
-              </ul>
-            </div>
+            {this.renderTags()}
           </Col>
         </Row>
-      </div>
+      </div >
     );
   }
 }
