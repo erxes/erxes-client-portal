@@ -16,7 +16,6 @@ const login = `
 
 const createUser = `
   mutation userAdd(
-    $configId: String!,
     $password: String!,
     $email: String,
     $firstName: String,
@@ -27,7 +26,6 @@ const createUser = `
     $companyRegistrationNumber: Int
   ) {
     userAdd(
-      configId: $configId,
       email: $email,
       password: $password,
       firstName: $firstName,

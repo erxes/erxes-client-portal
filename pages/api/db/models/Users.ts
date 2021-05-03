@@ -7,7 +7,15 @@ import { ILoginParams } from '../../types';
 import { USER_LOGIN_TYPES } from '../utils';
 import { IUser, IUserDocument, userSchema } from './definitions';
 import Logs from './Logs';
+import { sendGraphQLRequest } from '../../utils';
+import {
+  clientPortalCreateCustomer,
+  clientPortalCreateCompany
+} from './graphql/mutations';
+
 const SALT_WORK_FACTOR = 10;
+
+const configId = process.env.REACT_APP_CLIENT_PORTAL_CONFIG_ID;
 
 interface IEditProfile {
   firstName?: string;
@@ -83,7 +91,7 @@ export const loadClass = () => {
       }
     }
 
-    public static async createUser({ password, ...doc }: IUser) {
+    public static async createUser({ password, email, ...doc }: IUser) {
       // empty string password validation
       if (password === '') {
         throw new Error('Password can not be empty');
@@ -91,11 +99,38 @@ export const loadClass = () => {
 
       this.checkPassword(password);
 
+      const tEmail = (email || '').toLowerCase().trim();
       const user = await Users.create({
         ...doc,
+        email: tEmail,
         // hash password
         password: await this.generatePassword(password)
       });
+
+      const { companyName, firstName, lastName, type } = doc;
+
+      if (type === USER_LOGIN_TYPES.COMPANY) {
+        await sendGraphQLRequest({
+          query: clientPortalCreateCompany,
+          name: 'clientPortalCreateCompany',
+          variables: {
+            configId,
+            email: tEmail,
+            companyName
+          }
+        });
+      } else {
+        await sendGraphQLRequest({
+          query: clientPortalCreateCustomer,
+          name: 'clientPortalCreateCustomer',
+          variables: {
+            configId,
+            email: tEmail,
+            firstName,
+            lastName
+          }
+        });
+      }
 
       return user._id;
     }
