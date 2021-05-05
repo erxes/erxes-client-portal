@@ -46,23 +46,47 @@ class Categories extends React.Component {
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { categories } = kbTopic;
-    const { title } = kbTopic;        
-    console.log(this.props);
-    if (categories && this.props.articlesQuery.widgetsKnowledgeBaseArticles) {
-      
-      //get First article id
-      const link = this.props.articlesQuery.widgetsKnowledgeBaseArticles[0]._id;      
-      return (
-        <>
-          <Container className="knowledge-base" fluid="sm">
-            <div className="category-knowledge-list">
-              <h2 className="list-category-title">{title}</h2>
-              <Row>
-                {
+    const { title } = kbTopic;
+
+    return (
+      <>
+        <Container className="knowledge-base promoted" fluid="sm">
+          <div className="category-knowledge-list">
+            <h2 className="list-category-title">{'Онцлох цэсүүд'}</h2>
+            <div className="promoted-wrap">
+              {
+                categories.map(cat => (
+                  <Card key={cat._id}>
+                    <div className="item">
+                      <Link to={(cat.articles.length !== 0) ? `/knowledge-base/article/detail?catId=${cat._id}&_id=${cat.articles[0]._id}` : '/'} className="d-flex flex-column align-items-center w-100">
+                        <div className="icon-wrapper">
+                          <i className={`icon-${cat.icon}`}></i>
+                        </div>
+                        <div className="tab-content">
+                          <h5>{cat.title}</h5>
+                          <div className="description">
+                            <p>{cat.description}</p>
+                          </div>
+                        </div>
+                        <div className="more">{'Дэлгэрэнгүй'}</div>
+                      </Link>
+                    </div>
+                  </Card>
+                ))
+              }
+
+            </div>
+          </div>
+        </Container>
+        <Container className="knowledge-base" fluid="sm">
+          <div className="category-knowledge-list">
+            <h2 className="list-category-title">{title}</h2>
+            <Row>
+              {
                 categories.map(cat => (
                   <Col md={4} key={cat._id}>
                     <Card className="category-item">
-                      <Link to={`/knowledge-base/article/detail?catId=${cat._id}&_id=${link}`} className="d-flex flex-column align-items-center w-100">
+                      <Link to={(cat.articles.length !== 0) ? `/knowledge-base/article/detail?catId=${cat._id}&_id=${cat.articles[0]._id}` : '/'} className="d-flex flex-column align-items-center w-100">
                         <div className="icon-wrapper">
                           <i className={`icon-${cat.icon}`}></i>
                         </div>
@@ -74,15 +98,12 @@ class Categories extends React.Component {
                     </Card>
                   </Col>
                 ))
-                }
-              </Row>
-            </div>
-          </Container>
-        </>
-      )
-
-    }
-    return;
+              }
+            </Row>
+          </div>
+        </Container>
+      </>
+    )
   };
 
   render() {

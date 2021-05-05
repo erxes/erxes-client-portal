@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Scrollspy from 'react-scrollspy';
 import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
+import Categories from "./CategoryList";
 
 
 class Detail extends React.Component {
@@ -13,12 +14,18 @@ class Detail extends React.Component {
 
     this.state = {
       activeReaction: "",
+      toggle: false,
+      nextFirstId: "0"
     };
   }
 
   onReactionClick = (reactionChoice) => {
     this.setState({ activeReaction: reactionChoice });
   };
+
+  onToggle = () => {
+    this.setState({ toggle: !this.state.toggle })
+  }
 
   getUserDetails = () => {
     const { articleDetail } = this.props;
@@ -102,68 +109,99 @@ class Detail extends React.Component {
     return;
   };
 
+  isActiveCategory = (categoryId) => {
+    const { category } = this.props;
+    const catId = category._id;
+    if (categoryId === catId) {
+      return 'active';
+    }
+    return;
+  }
+
+
   renderCategories = () => {
-    //const { categories } = this.props.kbTopic.categories;
+    const { kbTopic } = this.props;
+    const { categories } = kbTopic;
+
+    if (categories === 0) {
+      return null;
+    }
+    return (
+      <>
+        <div className="tags sidebar-list">
+          <ul>
+            {
+              categories.map((category, index) => (
+                <li key={index} className={this.isActiveCategory(category._id)}>
+                  <Link to={(category.articles.length !== 0) ? `/knowledge-base/article/detail?catId=${category._id}&_id=${category.articles[0]._id}` : `/`}>
+                    <div className="sidebar-item">
+                      <div className="icon-wrapper">
+                        <i className={`icon-${category.icon}`}></i>
+                      </div>
+                      <h6>{category.title}</h6>
+                    </div>
+                  </Link>
+                  {this.renderArticles(category._id)}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </>
+    )
+  }
+
+  renderArticles = (categoryId) => {
     const { category } = this.props;
     const { articles } = category;
 
-    if (articles) {
-      return (
-        <>
-          <div className="tags sidebar-list">
-            <ul>
-              <li className={this.isActive(category._id)}>
-                <div className="sidebar-item">
-                  <div className="icon-wrapper">
-                    <i className={`icon-${category.icon}`}></i>
-                  </div>
-                  <h6>{category.title}</h6>
-                </div>
-                <div className="submenu">
-                  <ul>
-                    {articles.map((article) => (
-                      <Link
-                        key={article._id}
-                        to={`/knowledge-base/article/detail?catId=${category._id}&_id=${article._id}`}
-                      >
-                        <li className={this.isActive(article._id)}>
-                          <h6>{article.title}</h6>
-                        </li>
-                      </Link>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </>
-      );
+    if (!articles.length === 0 || category._id != categoryId) {
+      return null
     }
-    return;
+
+    return (
+      <div className="submenu">
+        <ul>
+          {articles.map((article, index) => (
+            <li key={index} className={this.isActive(article._id)}>
+              <Link
+                to={`/knowledge-base/article/detail?catId=${category._id}&_id=${article._id}`}
+              >
+                <div>{article.title}</div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   };
 
   renderTags = () => {
     const { content } = this.props.articleDetail;
     const tagged = [];
 
-    //find custom selected elements
-    if (content && content.match(/<h2 id="(.*?)">(.*?)<\/h2>/g)) {
-      content.match(/<h2 id="(.*?)">(.*?)<\/h2>/g).map((obj, i) => (
-        tagged.push(obj)
-      ));
+    if (!content.length || !content.match(/<h2(.*?)><a href="#(.*?)">(.*?)<\/a><\/h2>/g)) {
+      return null;
     }
+
+    //find custom selected elements
+    content.match(/<h2(.*?)<a href="#(.*?)">(.*?)<\/a><\/h2>/g).map((obj, i) => (
+      tagged.push(obj)
+    ));
+
 
     let tagedTitles = [];
     if (tagged.length === 0) {
       return null;
     }
     const relId = [];
+
     for (let item of tagged) {
       tagedTitles.push(item);
-      const getId = item.match(/id="(.*?)"/g)[0];      
-      relId.push(getId.replaceAll('"','').split('=')[1]);      
+      const getId = item.match(/id="(.*?)"/g)[0];
+      relId.push(getId.replaceAll('"', '').split('=')[1]);
     }
-    console.log(relId);
+
     return (
       <>
         <div className="page-anchor" id="anchorTag">
@@ -184,7 +222,7 @@ class Detail extends React.Component {
     const { articleDetail } = this.props;
 
     return (
-      <div className="knowledge-base">        
+      <div className="knowledge-base">
         <Row>
           <Col md={3}>
             <div className="sidebar-wrap">

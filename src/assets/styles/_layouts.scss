@@ -22,6 +22,9 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: $mainColor;
+
+  background-image: url(../images/header-bg.png);
+  background-position: center center;
 }
 
 .header {
@@ -326,8 +329,6 @@
   overflow: initial;
 
   .search-container {
-    margin-top: -70px;
-    top: 75px;
     margin-left: 50px;
     margin-right: 50px;
 
@@ -393,20 +394,15 @@
             }
           }
 
-          &.active {
-            h6 {
-              font-weight: 400;
-            }
-          }
-
           .icon-wrapper {
             margin-right: 10px;
           }
 
           h6 {
+            font-weight: 500;
             text-transform: initial;
             margin-top: 0;
-            font-size: 16px;
+            font-size: 14px;
           }
         }
       }
@@ -419,12 +415,15 @@
 
           li {
             position: relative;
-            border-bottom: 1px dotted #dedede;
-            margin-bottom: 12px !important;
-            padding-bottom: 15px;
+            border-bottom: 1px solid #ececec;
+            margin-bottom: 5px !important;
+            padding-bottom: 5px;
             border-radius: 0 !important;
             flex-flow: row wrap;
-            padding-left: 8px;
+            padding-left: 12px;
+            font-weight: 300;
+            color: #222;
+            font-size: 13px;
 
             &::before {
               content: '';
@@ -438,35 +437,32 @@
               border-bottom: 0;
             }
 
-            &:hover {
-              background: none;
-
-              h6 {
-                color: #000;
-                text-decoration: underline;
-              }
-            }
-
             &.active {
-              background: none;
+              color: #000;
+              font-weight: 400;
+            }
 
-              h6 {
-                font-weight: 400;
+            a {
+              @include transition(all 0.3s ease-in-out);
+            }
+
+            &:hover {
+              a {
                 color: #000;
-                text-decoration: underline;
+                font-weight: 400;
               }
             }
-          }
 
-          h6 {
-            font-size: 14px;
-            font-weight: 300;
-            text-transform: unset;
-            color: #444;
           }
         }
       }
     }
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .head {
+    padding-bottom: 10rem;
   }
 }
 

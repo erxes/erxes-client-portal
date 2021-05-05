@@ -18,11 +18,7 @@ $text: #3a3c4c;
 $shadow: 0px 0 15px -10px rgba(0, 0, 0, 0.25);
 $shadowHover: 0px 4px 30px -13px rgba(0, 0, 0, 0.25);
 $radius: 5px;
-$btnGradient: linear-gradient(
-  90deg,
-  rgba(86, 41, 182, 1) 0%,
-  rgba(177, 10, 159, 1) 100%
-);
+$btnGradient: linear-gradient(90deg,rgba(86, 41, 182, 1) 0%,rgba(177, 10, 159, 1) 100%);
 
 
 @mixin transition($transition...) {
@@ -34,11 +30,21 @@ $btnGradient: linear-gradient(
 
 @keyframes searchIcon {
   0% {
-      transform: translateX(50px);
+      transform: translateX(10px);
       opacity: 0;
   }
   100% {
       opacity: 1;
       transform: translateX(0px);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+      transform: translateY(5px);
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0px);
   }
 }

@@ -19,6 +19,10 @@ const getKbTopicQuery = `
             avatar
           }
         }
+        articles{
+          _id
+          title        
+        }
       }
     }
   }
