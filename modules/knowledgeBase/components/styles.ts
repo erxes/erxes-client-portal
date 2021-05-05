@@ -1,8 +1,8 @@
-import { colors, typography } from '../../styles';
-import styled from 'styled-components';
-import styledTS from 'styled-components-ts';
+import { colors, typography } from "../../styles";
+import styled from "styled-components";
+import styledTS from "styled-components-ts";
 
-const silverGrey = '#6c718b';
+const silverGrey = "#6c718b";
 
 const Header = styledTS<{ color?: string; backgroundImage?: string }>(
   styled.div
@@ -136,7 +136,6 @@ const Sidebar = styled.div`
     color: ${silverGrey};
     font-weight: 400;
     font-size: 12px;
-    margin-bottom: 20px;
   }
 `;
 
@@ -254,6 +253,11 @@ const ArticleWrapper = styled.div`
   }
 `;
 
+const CategoryListWrapper = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+`;
+
 export {
   Header,
   CategoryItem,
@@ -268,4 +272,5 @@ export {
   SidebarIcon,
   SidebarContent,
   ArticleWrapper,
+  CategoryListWrapper,
 };

@@ -1,12 +1,12 @@
-import { colors, dimensions, typography } from '../styles';
-import { rgba } from '../styles/ecolor';
-import styled, { css } from 'styled-components';
-import styledTS from 'styled-components-ts';
+import { colors, dimensions, typography } from "../styles";
+import { rgba } from "../styles/ecolor";
+import styled, { css } from "styled-components";
+import styledTS from "styled-components-ts";
 
 const Header = styledTS<{ color?: string; backgroundImage?: string }>(
   styled.div
 )`
-  padding: 30px;
+  padding: 30px 0;
   color: ${colors.colorWhite};
   font-size: ${typography.fontSizeBody}px;
 
@@ -130,7 +130,7 @@ const MainContent = styledTS<{ baseColor?: string }>(styled.div)`
 const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(
   styled.div
 )`
-  width: ${dimensions.wrapperWidth}px;
+  width: ${dimensions.wrapperWidth}%;
 
   margin: 0 auto;
 
@@ -141,7 +141,7 @@ const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(
       height: calc(100% - 20px);
     `};
 
-  @media (max-width: ${dimensions.wrapperWidth}px) {
+  @media (max-width: ${dimensions.wrapperWidth}%) {
     width: 100%;
   }
 `;

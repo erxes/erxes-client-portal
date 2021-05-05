@@ -1,21 +1,21 @@
-import React from 'react';
-import Link from 'next/link';
-import { Container } from '../../styles/main';
+import React from "react";
+import Link from "next/link";
 import {
   CategoryItem,
   CategoryIcon,
   CategoryContent,
   VideoTutorial,
-  Avatars
-} from './styles';
-import Icon from '../../common/Icon';
-import { Topic } from '../../types';
+  Avatars,
+  CategoryListWrapper,
+} from "./styles";
+import Icon from "../../common/Icon";
+import { Topic } from "../../types";
 
 type Props = {
   topic: Topic;
 };
 class CategoryList extends React.Component<Props> {
-  renderNames = authors => {
+  renderNames = (authors) => {
     if (authors.length > 3) {
       return (
         <>
@@ -30,12 +30,12 @@ class CategoryList extends React.Component<Props> {
     return authors.map((author, index) => (
       <span key={index}>
         {author.details.fullName}
-        {authors.length > 1 && ', '}
+        {authors.length > 1 && ", "}
       </span>
     ));
   };
 
-  renderAuthors = cat => {
+  renderAuthors = (cat) => {
     const { authors } = cat;
 
     if (authors.length === 0) {
@@ -70,12 +70,12 @@ class CategoryList extends React.Component<Props> {
     const { categories } = topic;
 
     if (categories) {
-      return categories.map(cat => {
+      return categories.map((cat) => {
         return (
           <Link href={`knowledge-base/category?id=${cat._id}`} key={cat._id}>
             <CategoryItem>
               <CategoryIcon>
-                <Icon icon={cat.icon || 'book'} />
+                <Icon icon={cat.icon || "book"} />
               </CategoryIcon>
               <CategoryContent>
                 <h5 className="base-color">{cat.title} </h5>
@@ -93,7 +93,7 @@ class CategoryList extends React.Component<Props> {
 
   render() {
     return (
-      <Container>
+      <CategoryListWrapper>
         <div>{this.renderCategories()}</div>
 
         <VideoTutorial>
@@ -123,7 +123,7 @@ class CategoryList extends React.Component<Props> {
             allowFullScreen={true}
           />
         </VideoTutorial>
-      </Container>
+      </CategoryListWrapper>
     );
   }
 }

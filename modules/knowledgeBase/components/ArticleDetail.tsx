@@ -1,14 +1,14 @@
-import React from 'react';
-import Breadcrumb from '../../common/Breadcrumb';
-import Avatar from '../../common/Avatar';
-import { Container, ArticleWrapper } from './styles';
+import React from "react";
+import Breadcrumb from "../../common/Breadcrumb";
+import Avatar from "../../common/Avatar";
+import { Container, ArticleWrapper } from "./styles";
 
 type Props = {
   article: any;
   loading: boolean;
 };
 
-function CategoryDetail({ loading, article }: Props) {
+function ArticleDetail({ loading, article }: Props) {
   if (loading) {
     return <div>'loading ...'</div>;
   }
@@ -38,4 +38,4 @@ function CategoryDetail({ loading, article }: Props) {
   );
 }
 
-export default CategoryDetail;
+export default ArticleDetail;

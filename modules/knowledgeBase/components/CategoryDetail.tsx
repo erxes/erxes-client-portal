@@ -1,18 +1,18 @@
-import React from 'react';
-import { Topic } from '../../types';
-import Breadcrumb from '../../common/Breadcrumb';
-import Icon from '../../common/Icon';
+import React from "react";
+import { Topic } from "../../types";
+import Breadcrumb from "../../common/Breadcrumb";
+import Icon from "../../common/Icon";
 import {
   Container,
   CategoryLeft,
   Sidebar,
   SidebarItem,
   SidebarIcon,
-  SidebarContent
-} from './styles';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Articles from './ArticleList';
+  SidebarContent,
+} from "./styles";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Articles from "./ArticleList";
 
 type Props = {
   category: any;
@@ -29,12 +29,12 @@ function CategoryDetail({ loading, topic, category }: Props) {
     const router = useRouter();
     const { id } = router.query;
 
-    return categories.map(cat => {
+    return categories.map((cat) => {
       return (
         <Link href={`/knowledge-base/category?id=${cat._id}`} key={cat._id}>
           <SidebarItem active={id === cat._id}>
             <SidebarIcon>
-              <Icon icon={cat.icon || 'book'} />
+              <Icon icon={cat.icon || "book"} />
             </SidebarIcon>
             <SidebarContent>
               <h6>{cat.title}</h6>
@@ -51,7 +51,7 @@ function CategoryDetail({ loading, topic, category }: Props) {
       <Breadcrumb title={category.title} />
       <Container>
         <CategoryLeft>
-          {loading ? ' Loading ...' : <Articles articles={category.articles} />}
+          {loading ? " Loading ..." : <Articles articles={category.articles} />}
         </CategoryLeft>
 
         <Sidebar>
