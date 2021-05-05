@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 
 function Header(props) {
   const { backgroundImage, color } = props.kbTopic || {};
-
+  console.log(props);
   const backImg = backgroundImage && `url(${backgroundImage})`;
   const backColor = color && color;
 
   return (
     <div
-      className="head"
+      className={`head ${props.headingSpacing && 'bottom-spacing'}`}
       style={{ backgroundImage: backImg, backgroundColor: backColor }}
     >
       <div className="header">

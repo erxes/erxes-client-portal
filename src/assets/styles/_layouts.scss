@@ -461,9 +461,11 @@
 }
 
 @media only screen and (min-width: 1080px) {
-  .head {
+
+  .head.bottom-spacing {
     padding-bottom: 10rem;
   }
+
 }
 
 @media only screen and (min-width: 1250px) {
