@@ -11,7 +11,7 @@ class CategoriesContainer extends React.Component {
     const {
       getKbTopicQuery,
       widgetsKnowledgeBaseArticles,
-      history,      
+      history
     } = this.props;
 
     if (getKbTopicQuery.loading) {
@@ -24,7 +24,7 @@ class CategoriesContainer extends React.Component {
       <Categories
         kbTopic={kbTopic}
         history={history}
-        articlesQuery={widgetsKnowledgeBaseArticles}        
+        articlesQuery={widgetsKnowledgeBaseArticles}
       />
     );
   }
@@ -34,15 +34,15 @@ CategoriesContainer.propTypes = {
   getKbTopicQuery: PropTypes.object,
   history: PropTypes.object,
   queryParams: PropTypes.object,
-  topicId: PropTypes.string,  
+  topicId: PropTypes.string
 };
 
 export default compose(
   graphql(gql(queries.getKbTopicQuery), {
     name: 'getKbTopicQuery',
     options: ({ topicId }) => ({
-      variables: { _id: topicId },
-    }),
+      variables: { _id: topicId }
+    })
   }),
 
   graphql(gql(queries.widgetsKnowledgeBaseArticles), {
@@ -52,9 +52,9 @@ export default compose(
         fetchPolicy: 'network-only',
         variables: {
           topicId,
-          searchString: searchString || '',
-        },
+          searchString: searchString || ''
+        }
       };
-    },
+    }
   })
 )(CategoriesContainer);

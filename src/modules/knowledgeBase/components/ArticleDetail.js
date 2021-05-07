@@ -1,31 +1,30 @@
-import React from "react";
-import classNames from "classnames";
-import * as dayjs from "dayjs";
-import { Link } from "react-router-dom";
+import React from 'react';
+import classNames from 'classnames';
+import * as dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
-import PropTypes from "prop-types";
-import { Row, Col } from "react-bootstrap";
-import Categories from "./CategoryList";
-
+import PropTypes from 'prop-types';
+import { Row, Col } from 'react-bootstrap';
+import Categories from './CategoryList';
 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeReaction: "",
+      activeReaction: '',
       toggle: false,
-      nextFirstId: "0"
+      nextFirstId: '0'
     };
   }
 
-  onReactionClick = (reactionChoice) => {
+  onReactionClick = reactionChoice => {
     this.setState({ activeReaction: reactionChoice });
   };
 
   onToggle = () => {
-    this.setState({ toggle: !this.state.toggle })
-  }
+    this.setState({ toggle: !this.state.toggle });
+  };
 
   getUserDetails = () => {
     const { articleDetail } = this.props;
@@ -46,8 +45,8 @@ class Detail extends React.Component {
       return null;
     }
 
-    const reactionClassess = classNames("reactions", {
-      clicked: this.state.activeReaction,
+    const reactionClassess = classNames('reactions', {
+      clicked: this.state.activeReaction
     });
 
     return (
@@ -59,7 +58,7 @@ class Detail extends React.Component {
                 key={index}
                 className={
                   reactionChoice === this.state.activeReaction
-                    ? "active"
+                    ? 'active'
                     : undefined
                 }
                 onClick={this.onReactionClick.bind(this, reactionChoice)}
@@ -92,7 +91,7 @@ class Detail extends React.Component {
               Modified:
               <span>
                 {dayjs(this.props.articleDetail.modifiedDate).format(
-                  " MMM D YYYY"
+                  ' MMM D YYYY'
                 )}
               </span>
             </div>
@@ -102,38 +101,45 @@ class Detail extends React.Component {
     );
   };
 
-  isActive = (articleId) => {
+  isActive = articleId => {
     if (articleId === this.props.articleDetail._id) {
-      return "active";
+      return 'active';
     }
     return;
   };
 
-  isActiveCategory = (categoryId) => {
+  isActiveCategory = categoryId => {
     const { category } = this.props;
     const catId = category._id;
     if (categoryId === catId) {
       return 'active';
     }
     return;
-  }
-
+  };
 
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { categories } = kbTopic;
 
-    if (categories === 0) {
+    if (!categories || categories.length === 0) {
       return null;
     }
     return (
       <>
         <div className="tags sidebar-list">
           <ul>
-            {
-              categories.map((category, index) => (
+            {categories.map((category, index) => {
+              const url = `/knowledge-base/article/detail?catId=${category._id}`;
+
+              return (
                 <li key={index} className={this.isActiveCategory(category._id)}>
-                  <Link to={(category.articles.length !== 0) ? `/knowledge-base/article/detail?catId=${category._id}&_id=${category.articles[0]._id}` : `/`}>
+                  <Link
+                    to={
+                      category.articles && category.articles.length > 0
+                        ? `${url}&_id=${category.articles[0]._id}`
+                        : url
+                    }
+                  >
                     <div className="sidebar-item">
                       <div className="icon-wrapper">
                         <i className={`icon-${category.icon}`}></i>
@@ -143,20 +149,20 @@ class Detail extends React.Component {
                   </Link>
                   {this.renderArticles(category._id)}
                 </li>
-              ))
-            }
+              );
+            })}
           </ul>
         </div>
       </>
-    )
-  }
+    );
+  };
 
-  renderArticles = (categoryId) => {
+  renderArticles = categoryId => {
     const { category } = this.props;
     const { articles } = category;
 
-    if (!articles.length === 0 || category._id != categoryId) {
-      return null
+    if (!articles || !articles.length === 0 || category._id != categoryId) {
+      return null;
     }
 
     return (
@@ -177,18 +183,25 @@ class Detail extends React.Component {
   };
 
   renderTags = () => {
-    const { content } = this.props.articleDetail;
+    const { articleDetail } = this.props.articleDetail;
+    if (!articleDetail) {
+      return null;
+    }
+
+    const { content } = articleDetail;
     const tagged = [];
 
-    if (!content.length || !content.match(/<h2(.*?)><a href="#(.*?)">(.*?)<\/a><\/h2>/g)) {
+    if (
+      !content.length ||
+      !content.match(/<h2(.*?)><a href="#(.*?)">(.*?)<\/a><\/h2>/g)
+    ) {
       return null;
     }
 
     //find custom selected elements
-    content.match(/<h2(.*?)<a href="#(.*?)">(.*?)<\/a><\/h2>/g).map((obj, i) => (
-      tagged.push(obj)
-    ));
-
+    content
+      .match(/<h2(.*?)<a href="#(.*?)">(.*?)<\/a><\/h2>/g)
+      .map((obj, i) => tagged.push(obj));
 
     let tagedTitles = [];
     if (tagged.length === 0) {
@@ -213,10 +226,8 @@ class Detail extends React.Component {
           </Scrollspy>
         </div>
       </>
-    )
+    );
   };
-
-
 
   render() {
     const { articleDetail } = this.props;
@@ -240,7 +251,7 @@ class Detail extends React.Component {
                   <p>{articleDetail.summary}</p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: articleDetail.content,
+                      __html: articleDetail.content
                     }}
                   />
                 </div>
@@ -248,17 +259,15 @@ class Detail extends React.Component {
               {this.renderReactions()}
             </div>
           </Col>
-          <Col md={2}>
-            {this.renderTags()}
-          </Col>
+          <Col md={2}>{this.renderTags()}</Col>
         </Row>
-      </div >
+      </div>
     );
   }
 }
 
 Detail.propTypes = {
-  kbTopic: PropTypes.object,
+  kbTopic: PropTypes.object
 };
 
 export default Detail;

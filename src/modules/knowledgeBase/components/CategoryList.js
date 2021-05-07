@@ -16,6 +16,7 @@ class Categories extends React.Component {
         </>
       );
     }
+
     return authors.map((author, index) => (
       <ol key={index}>
         {author.details.fullName}
@@ -28,13 +29,25 @@ class Categories extends React.Component {
     return (
       <div className="avatars">
         {cat.authors.map((author, index) => (
-          <img key={index} className="round-img" alt={author.details.fullName}
-            src={(author.details.avatar || []).length === 0 ? Avatar : author.details.avatar}
-            width="34" height="34" />
+          <img
+            key={index}
+            className="round-img"
+            alt={author.details.fullName}
+            src={
+              (author.details.avatar || []).length === 0
+                ? Avatar
+                : author.details.avatar
+            }
+            width="34"
+            height="34"
+          />
         ))}
         <div className="avatar-info">
           <div>
-            <div className="darker">{cat.numOfArticles}</div> articles in this category </div><div>
+            <div className="darker">{cat.numOfArticles}</div> articles in this
+            category{' '}
+          </div>
+          <div>
             <div className="darker">Written by: </div>
             {this.renderAuthors(cat.authors)}
           </div>
@@ -45,73 +58,76 @@ class Categories extends React.Component {
 
   renderCategories = () => {
     const { kbTopic } = this.props;
-    const { categories } = kbTopic;
-    const { title } = kbTopic;
+    const { parentCategories } = kbTopic;
+    const specialCategory = parentCategories[0];
+    const categories = parentCategories.slice(1);
+    const categoryUrl = `/knowledge-base/article/detail?catId=`;
+
+    const detail = cat => {
+      return (
+        <Link
+          to={`${categoryUrl}${cat._id}`}
+          className="d-flex flex-column align-items-center w-100"
+        >
+          <div className="icon-wrapper">
+            <i className={`icon-${cat.icon}`}></i>
+          </div>
+          <div className="tab-content">
+            <h5>{cat.title}</h5>
+            <div className="description">
+              <p>{cat.description}</p>
+            </div>
+          </div>
+          <div className="more">{'Дэлгэрэнгүй'}</div>
+        </Link>
+      );
+    };
 
     return (
       <>
-        <Container className="knowledge-base promoted" fluid="sm">
-          <div className="category-knowledge-list">
-            <h2 className="list-category-title">{'Онцлох цэсүүд'}</h2>
-            <div className="promoted-wrap">
-              {
-                categories.map(cat => (
-                  <Card key={cat._id}>
-                    <div className="item">
-                      <Link to={(cat.articles.length !== 0) ? `/knowledge-base/article/detail?catId=${cat._id}&_id=${cat.articles[0]._id}` : '/'} className="d-flex flex-column align-items-center w-100">
-                        <div className="icon-wrapper">
-                          <i className={`icon-${cat.icon}`}></i>
-                        </div>
-                        <div className="tab-content">
-                          <h5>{cat.title}</h5>
-                          <div className="description">
-                            <p>{cat.description}</p>
-                          </div>
-                        </div>
-                        <div className="more">{'Дэлгэрэнгүй'}</div>
-                      </Link>
-                    </div>
-                  </Card>
-                ))
-              }
-
+        {specialCategory && (
+          <Container className="knowledge-base promoted" fluid="sm">
+            <div className="category-knowledge-list">
+              <h2 className="list-category-title">
+                <Link to={`${categoryUrl}${specialCategory._id}`}>
+                  {specialCategory.title}
+                </Link>
+              </h2>
+              <div className="promoted-wrap">
+                {specialCategory.childrens &&
+                  specialCategory.childrens.map(cat => (
+                    <Card key={cat._id}>{detail(cat)}</Card>
+                  ))}
+              </div>
             </div>
-          </div>
-        </Container>
-        <Container className="knowledge-base" fluid="sm">
-          <div className="category-knowledge-list">
-            <h2 className="list-category-title">{title}</h2>
-            <Row>
-              {
-                categories.map(cat => (
-                  <Col md={4} key={cat._id}>
-                    <Card className="category-item">
-                      <Link to={(cat.articles.length !== 0) ? `/knowledge-base/article/detail?catId=${cat._id}&_id=${cat.articles[0]._id}` : '/'} className="d-flex flex-column align-items-center w-100">
-                        <div className="icon-wrapper">
-                          <i className={`icon-${cat.icon}`}></i>
-                        </div>
-                        <div className="tab-content">
-                          <h5>{cat.title}</h5>
-                          <p>{cat.description}</p>
-                        </div>
-                      </Link>
-                    </Card>
-                  </Col>
-                ))
-              }
-            </Row>
-          </div>
-        </Container>
+          </Container>
+        )}
+
+        {categories.map(parentCat => (
+          <Container className="knowledge-base" fluid="sm" key={parentCat._id}>
+            <div className="category-knowledge-list">
+              <h2 className="list-category-title">
+                <Link to={`${categoryUrl}${parentCat._id}`}>
+                  {parentCat.title}
+                </Link>
+              </h2>
+              <Row>
+                {parentCat.childrens &&
+                  parentCat.childrens.map(cat => (
+                    <Col md={4} key={cat._id}>
+                      <Card className="category-item">{detail(cat)}</Card>
+                    </Col>
+                  ))}
+              </Row>
+            </div>
+          </Container>
+        ))}
       </>
-    )
+    );
   };
 
   render() {
-    return (
-      <>
-        { this.renderCategories()}
-      </>
-    );
+    return <>{this.renderCategories()}</>;
   }
 }
 

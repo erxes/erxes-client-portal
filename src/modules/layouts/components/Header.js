@@ -1,12 +1,11 @@
-import React from "react";
-import { Row, Col, Container } from "react-bootstrap";
-import Search from "../../common/components/Search";
-import Logo from "../../../assets/images/logos/erxes-logo.svg";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
+import Search from '../../common/components/Search';
+import Logo from '../../../assets/images/logos/erxes-logo.svg';
+import { Link } from 'react-router-dom';
 
 function Header(props) {
   const { backgroundImage, color } = props.kbTopic || {};
-  console.log(props);
   const backImg = backgroundImage && `url(${backgroundImage})`;
   const backColor = color && color;
 
@@ -44,10 +43,7 @@ function Header(props) {
           <Search
             history={props.history}
             searchValue={props.searchValue}
-
-          >
-          </Search>
-
+          ></Search>
         </Container>
       </div>
     </div>
