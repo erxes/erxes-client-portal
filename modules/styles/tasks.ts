@@ -1,8 +1,8 @@
-import { colors, dimensions, typography } from '../styles';
-import styled from 'styled-components';
-import styledTS from 'styled-components-ts';
+import { colors, dimensions, typography } from "../styles";
+import styled from "styled-components";
+import styledTS from "styled-components-ts";
 
-const stageGray = '#e5e8ec';
+const stageGray = "#e5e8ec";
 const pWitdh = 4;
 const itemWidth = (dimensions.wrapperWidth - pWitdh * 8) / 3;
 
@@ -92,21 +92,30 @@ const ItemDate = styled.span`
 
 const TabContainers = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e5e8ec;
 `;
 
 const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
   flex: 1 1 auto;
   text-align: center;
   padding: 5px 10px;
+  min-width: 100px;
+  line-height: 20px;
+
+  > a {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+  }
 
   ${(props) =>
     props.active &&
     `
-    background: ${props.color || colors.colorPrimary};
-    color: #fff;
-    border-radius: 5px 5px 0 0;
+      border-bottom: 2px solid ${props.color || colors.colorPrimary};
+      color: ${props.color || colors.colorPrimary};
     `}
 `;
 

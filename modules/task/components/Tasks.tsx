@@ -1,32 +1,19 @@
-import React from 'react';
-import Item from '../containers/Item';
-import { TabContainers, TabTitle } from '../../styles/tasks';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { Config } from '../../types';
-import { getConfigColor } from '../../common/utils';
+import React from "react";
+import Item from "../containers/Item";
+import { TabContainers, TabTitle } from "../../styles/tasks";
+import Link from "next/link";
+import { Config, IStage } from "../../types";
+import { getConfigColor } from "../../common/utils";
 
 type Props = {
-  loading: boolean;
-  stages: any;
+  stages: IStage[];
   config: Config;
+  stageId: string;
 };
 
-function Tasks({ loading, stages, config }: Props) {
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (stages.length === 0) {
-    return <>Empty</>;
-  }
-
-  const router = useRouter();
-
-  const { stageId } = router.query;
-
-  if (router && !stageId) {
-    router.push(`/tasks?stageId=${stages[0]._id}`);
+function Tasks({ stages, config, stageId }: Props) {
+  if (!stages || stages.length === 0) {
+    return null;
   }
 
   return (
@@ -36,7 +23,7 @@ function Tasks({ loading, stages, config }: Props) {
           <TabTitle
             key={stage._id}
             active={stageId === stage._id}
-            color={getConfigColor(config, 'activeTabColor')}
+            color={getConfigColor(config, "activeTabColor")}
           >
             <Link href={`/tasks?stageId=${stage._id}`}>{stage.name}</Link>
           </TabTitle>
@@ -45,7 +32,7 @@ function Tasks({ loading, stages, config }: Props) {
 
       <Item
         stageId={stageId && stageId.toString()}
-        backgroundColor={getConfigColor(config, 'backgroundColor')}
+        backgroundColor={getConfigColor(config, "backgroundColor")}
       />
     </>
   );

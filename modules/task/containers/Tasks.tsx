@@ -1,11 +1,15 @@
-import { gql, useQuery } from '@apollo/client';
-import React, { useContext } from 'react';
-import { ApiApolloClientContext } from '../../ApiContext';
-import { Config } from '../../types';
-import Tasks from '../components/Tasks';
+import { gql, useQuery } from "@apollo/client";
+import React, { useContext } from "react";
+import { withRouter } from "next/router";
+import { ApiApolloClientContext } from "../../ApiContext";
+import { Config, Store } from "../../types";
+import Tasks from "../components/Tasks";
+import Spinner from "../../common/Spinner";
+import Layout from "../../main/containers/Layout";
 
 type Props = {
   config: Config;
+  router: any;
 };
 
 const clientPortalGetTaskStages = `
@@ -17,25 +21,48 @@ const clientPortalGetTaskStages = `
   }
 `;
 
-function TasksContainer({ config, ...props }: Props) {
+function TasksContainer({ config, router, ...props }: Props) {
   const apiClient = useContext(ApiApolloClientContext);
 
-  const { loading, data = {} } = useQuery(gql(clientPortalGetTaskStages), {
+  const { loading, data } = useQuery(gql(clientPortalGetTaskStages), {
     variables: { taskPublicPipelineId: config.taskPublicPipelineId },
     client: apiClient,
     skip: !config.taskPublicPipelineId,
   });
 
+  if (!data) {
+    return null;
+  }
+
+  if (loading || Object.keys(data).length === 0) {
+    return <Spinner objective={true} />;
+  }
+
+  const { stageId } = router.query;
   const stages = data.clientPortalGetTaskStages || [];
+
+  if (router && !stageId) {
+    router.push(`/tasks?stageId=${stages[0]._id}`);
+  }
 
   const updatedProps = {
     ...props,
     config,
     stages,
-    loading,
+    stageId,
   };
 
   return <Tasks {...updatedProps} />;
 }
 
-export default TasksContainer;
+const WithRouterParams = (props) => {
+  return (
+    <Layout>
+      {(layoutProps: Store) => {
+        return <TasksContainer {...props} {...layoutProps} />;
+      }}
+    </Layout>
+  );
+};
+
+export default withRouter(WithRouterParams);

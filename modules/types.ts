@@ -90,6 +90,21 @@ export interface IUser {
   companyName: string;
 }
 
+export interface IStage {
+  _id: string;
+  name: string;
+  type: string;
+  probability: string;
+  index?: number;
+  itemId?: string;
+  amount?: any;
+  itemsTotalCount: number;
+  formId: string;
+  pipelineId: string;
+  status: string;
+  order: number;
+}
+
 export interface IKbArticle extends ICommonFields {
   _id: string;
   title: string;
