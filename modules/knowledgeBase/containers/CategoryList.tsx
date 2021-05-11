@@ -1,13 +1,17 @@
-import React from 'react';
-import CategoryList from '../components/CategoryList';
-import { Topic } from '../../types';
+import React from "react";
+import CategoryList from "../components/CategoryList";
+import { Store } from "../../types";
+import Layout from "../../main/containers/Layout";
+import Search from "../../main/components/Search";
 
-type Props = {
-  topic: Topic;
-};
-
-function CategoriesContainer({ topic, ...props }: Props) {
-  return <CategoryList {...props} topic={topic} />;
+function CategoriesContainer() {
+  return (
+    <Layout headerBottomComponent={<Search />}>
+      {(props: Store) => {
+        return <CategoryList {...props} />;
+      }}
+    </Layout>
+  );
 }
 
 export default CategoriesContainer;
