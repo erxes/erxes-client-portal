@@ -1,9 +1,9 @@
-import { gql, useMutation } from '@apollo/client';
-import React, { useContext } from 'react';
-import { ApiApolloClientContext } from '../../ApiContext';
-import { Config, IUser, Ticket, Store } from '../../types';
-import Form from '../components/Form';
-import { AppConsumer } from '../../appContext';
+import { gql, useMutation } from "@apollo/client";
+import React, { useContext } from "react";
+import { ApiApolloClientContext } from "../../ApiContext";
+import { Config, IUser, Ticket, Store } from "../../types";
+import Form from "../components/Form";
+import { AppConsumer } from "../../appContext";
 
 type Props = {
   config: Config;
@@ -43,10 +43,10 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
         ...doc,
         stageId: config.ticketStageId,
         email: currentUser.email,
-        priority: 'Critical', // TODO: Add select in Form
+        priority: "Critical", // TODO: Add select in Form
       },
     }).then(() => {
-      window.location.href = '/tickets';
+      window.location.href = "/tickets";
     });
   };
 
@@ -61,8 +61,10 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
 const WithConsumer = (props) => {
   return (
     <AppConsumer>
-      {({ currentUser }: Store) => {
-        return <FormContainer {...props} currentUser={currentUser} />;
+      {({ currentUser, config }: Store) => {
+        return (
+          <FormContainer {...props} config={config} currentUser={currentUser} />
+        );
       }}
     </AppConsumer>
   );

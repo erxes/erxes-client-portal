@@ -48,7 +48,7 @@ function Header({
       </LinkItem>
     );
   };
-  console.log(showlogin);
+
   return (
     <Head color={getConfigColor(config, "headerColor")}>
       <Container transparent={true}>

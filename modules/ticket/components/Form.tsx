@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Select from 'react-select-plus';
-import FormControl from '../../common/form/Control';
-import FormGroup from '../../common/form/Group';
-import Button from '../../common/Button';
-import { Ticket } from '../../types';
-import { ControlLabel } from '../../common/form';
+import Select from "react-select-plus";
+import FormControl from "../../common/form/Control";
+import FormGroup from "../../common/form/Group";
+import Button from "../../common/Button";
+import { Ticket } from "../../types";
+import { ControlLabel } from "../../common/form";
+import { TicketFormWrapper } from "../../styles/tickets";
 
 type Props = {
   handleSubmit: (doc: Ticket) => void;
@@ -13,16 +14,16 @@ type Props = {
 
 const PRIORITY_OPTIONS = [
   {
-    label: 'Critical',
-    value: 'critical',
+    label: "Critical",
+    value: "critical",
   },
   {
-    label: 'Normal',
-    value: 'normal',
+    label: "Normal",
+    value: "normal",
   },
   {
-    label: 'Low',
-    value: 'low',
+    label: "Low",
+    value: "low",
   },
 ];
 
@@ -40,7 +41,7 @@ export default function TicketForm({ handleSubmit }: Props) {
     }));
   };
 
-  function renderControl({ label, name, placeholder, value = '' }) {
+  function renderControl({ label, name, placeholder, value = "" }) {
     const handleChange = (e) => {
       setTicket({
         ...ticket,
@@ -63,30 +64,38 @@ export default function TicketForm({ handleSubmit }: Props) {
   }
 
   return (
-    <>
-      <h2>New ticket</h2>
-      {renderControl({
-        name: 'subject',
-        label: 'Subject',
-        value: ticket.subject,
-        placeholder: 'Enter a subject',
-      })}
-      {renderControl({
-        name: 'description',
-        label: 'Description',
-        value: ticket.description,
-        placeholder: 'Enter a description',
-      })}
-      {/* <Select
+    <TicketFormWrapper>
+      <h4>Add a new ticket</h4>
+      <div className="content">
+        {renderControl({
+          name: "subject",
+          label: "Subject",
+          value: ticket.subject,
+          placeholder: "Enter a subject",
+        })}
+        {renderControl({
+          name: "description",
+          label: "Description",
+          value: ticket.description,
+          placeholder: "Enter a description",
+        })}
+        {/* <Select
         name="priority"
         value={ticket.priority || ''}
         options={PRIORITY_OPTIONS}
         onChange={handleSelect}
       /> */}
-      <FormGroup>
-        <Button href="/tickets">Cancel</Button>
-        <Button onClick={handleClick}>Submit</Button>
-      </FormGroup>
-    </>
+        <div className="right">
+          <Button
+            btnStyle="success"
+            onClick={handleClick}
+            uppercase={false}
+            icon="check-circle"
+          >
+            Submit
+          </Button>
+        </div>
+      </div>
+    </TicketFormWrapper>
   );
 }

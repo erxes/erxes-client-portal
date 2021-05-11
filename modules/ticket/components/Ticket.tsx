@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { StageTitle } from "../../styles/tasks";
-import { TicketListRow } from "../../styles/tickets";
+import { ListHead, ListBody, ListRow, Label } from "../../styles/tickets";
 import Button from "../../common/Button";
 import Link from "next/link";
 import Detail from "../containers/Detail";
 import { IUser } from "../../types";
 import dayjs from "dayjs";
 import LoginContainer from "../../user/containers/Login";
+import PriorityIndicator from "../../common/PriorityIndicator";
 
 type Props = {
   loading: boolean;
@@ -23,40 +24,40 @@ export default function Ticket({ tickets, currentUser }: Props) {
     );
   }
 
+  if (!tickets || tickets.length === 0) {
+    return null;
+  }
+
   return (
     <>
-      <StageTitle className="base-color">
-        Tickets
-        <Button
-          btnStyle="success"
-          uppercase={false}
-          icon="plus-circle"
-          size="medium"
-        >
-          <Link href="/tickets/form">Submit new ticket</Link>
-        </Button>
-      </StageTitle>
-
-      <TicketListRow className="head">
+      <ListHead className="head">
         <div>Subject</div>
         <div>Created date</div>
         <div>Priority</div>
         <div>Status</div>
-      </TicketListRow>
-
-      {tickets.map((ticket) => (
-        <TicketListRow
-          onClick={() => setId(ticket._id)}
-          key={ticket._id}
-          className="item"
-        >
-          <div className="base-color">{ticket.name}</div>
-          <div>{dayjs(ticket.createdAt).format("MMM D YYYY")}</div>
-          <div>{ticket.priority}</div>
-          <div>{ticket.status}</div>
-        </TicketListRow>
-      ))}
-
+      </ListHead>
+      <ListBody>
+        {tickets.map((ticket) => (
+          <ListRow
+            key={ticket._id}
+            className="item"
+            onClick={() => setId(ticket._id)}
+          >
+            <div className="base-color">{ticket.name}</div>
+            <div>{dayjs(ticket.createdAt).format("MMM D YYYY")}</div>
+            <div>
+              {<PriorityIndicator value={ticket.priority} />} {ticket.priority}
+            </div>
+            <div>
+              <Label
+                lblStyle={ticket.status === "active" ? "success" : "danger"}
+              >
+                {ticket.status}
+              </Label>
+            </div>
+          </ListRow>
+        ))}
+      </ListBody>
       <Detail
         _id={ticketId}
         onClose={() => setId(null)}

@@ -117,6 +117,7 @@ const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
   padding: 5px 10px;
   min-width: 100px;
   line-height: 20px;
+  font-size: 14px;
 
   > a {
     cursor: pointer;
