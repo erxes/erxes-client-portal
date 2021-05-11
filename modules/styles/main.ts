@@ -115,7 +115,7 @@ const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
 
 const MainContent = styledTS<{ baseColor?: string }>(styled.div)`
   background-color: #f5f8fb;
-  min-height: 30vh;
+  min-height: 60vh;
   padding: 32px 0;
 
   ${(props) =>

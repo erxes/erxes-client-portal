@@ -4,7 +4,6 @@ import styledTS from "styled-components-ts";
 
 const stageGray = "#e5e8ec";
 const pWitdh = 4;
-const itemWidth = (dimensions.wrapperWidth - pWitdh * 8) / 3;
 
 const StageTitle = styled.h3`
   color: ${colors.colorPrimary};
@@ -30,26 +29,33 @@ const Wrapper = styledTS<{ backgroundColor?: string }>(styled.div)`
 `;
 
 const ItemWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(${itemWidth - 16}px, 1fr));
   margin: 0 ${pWitdh}px ${pWitdh * 2}px;
-
-  max-width: ${itemWidth}px;
   overflow: hidden;
-  word-break: break-word;
-
-  position: relative;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
   padding: 8px;
   outline: 0px;
   font-size: 12px;
+  border-radius: 2px;
   transition: box-shadow 0.3s ease-in-out 0s;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  will-change: transform;
-
   cursor: pointer;
+  flex-basis: 24%;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 1400px) {
+    flex-basis: 31.3333%;
+  }
+
+  @media (max-width: 1000px) {
+    flex-basis: 48.3333%;
+  }
+
+  @media (max-width: 850px) {
+    flex-basis: 98.3333%;
+  }
 `;
 
 const Content = styledTS<{ type?: string }>(styled.div)`
@@ -58,31 +64,19 @@ const Content = styledTS<{ type?: string }>(styled.div)`
     word-break: break-word;
     line-height: 18px;
     font-size: 14px;
+    font-weight: 500;
   }
-  
-  position: relative;
-  padding-bottom: 32px;
 `;
 
 const Right = styled.div`
   float: right;
 `;
 
-const Footer = styled.div`
+const ItemFooter = styled.div`
   padding-top: 8px;
+  margin-top: 8px;
   border-top: 1px dotted ${colors.borderPrimary};
   font-size: 11px;
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-
-  ul {
-    float: left;
-  }
-
-  > i {
-    padding: 3px;
-  }
 `;
 
 const ItemDate = styled.span`
@@ -95,6 +89,26 @@ const TabContainers = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
   border-bottom: 1px solid #e5e8ec;
+  overflow-x: hidden;
+  transition: all ease 0.3;
+
+  &:hover {
+    overflow-x: auto;
+  }
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c8cfd6;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #b7bec5;
+  }
 `;
 
 const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
@@ -116,6 +130,7 @@ const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
     `
       border-bottom: 2px solid ${props.color || colors.colorPrimary};
       color: ${props.color || colors.colorPrimary};
+      font-weight: 500;
     `}
 `;
 
@@ -124,7 +139,7 @@ export {
   StageTitle,
   ItemWrapper,
   Content,
-  Footer,
+  ItemFooter,
   Right,
   ItemDate,
   TabContainers,

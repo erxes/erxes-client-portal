@@ -4,7 +4,7 @@ import {
   Wrapper,
   ItemWrapper,
   Content,
-  Footer,
+  ItemFooter,
   Right,
   ItemDate,
 } from "../../styles/tasks";
@@ -29,14 +29,14 @@ function ItemContainer({ tasks, backgroundColor }: Props) {
   return (
     <Wrapper backgroundColor={backgroundColor}>
       {tasks.map((task) => (
-        <ItemWrapper key={task._id}>
-          <Content onClick={() => setId(task._id)}>
+        <ItemWrapper key={task._id} onClick={() => setId(task._id)}>
+          <Content>
             <h5>{task.name}</h5>
-            <Footer>
-              Last updated:
-              <Right>{renderDate(task.modifiedAt)}</Right>
-            </Footer>
           </Content>
+          <ItemFooter>
+            Last updated:
+            <Right>{renderDate(task.modifiedAt)}</Right>
+          </ItemFooter>
         </ItemWrapper>
       ))}
 

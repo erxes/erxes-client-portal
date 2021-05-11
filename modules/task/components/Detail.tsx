@@ -1,15 +1,12 @@
-import React from 'react';
-import Modal from '../../common/Modal';
+import React from "react";
+import Modal from "../../common/Modal";
 
 type Props = {
   item?: any;
   onClose: () => void;
 };
 
-export default class TaskDetail extends React.Component<
-  Props,
-  { show: boolean }
-> {
+export default class TaskDetail extends React.Component<Props> {
   render() {
     const { item, onClose } = this.props;
 
@@ -25,6 +22,8 @@ export default class TaskDetail extends React.Component<
       </>
     );
 
-    return <Modal content={content} onClose={onClose} isOpen={item} />;
+    return (
+      <Modal content={content} onClose={onClose} isOpen={item ? true : false} />
+    );
   }
 }

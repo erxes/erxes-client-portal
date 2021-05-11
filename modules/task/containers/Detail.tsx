@@ -1,7 +1,8 @@
-import { gql, useQuery } from '@apollo/client';
-import React, { useContext } from 'react';
-import { ApiApolloClientContext } from '../../ApiContext';
-import Detail from '../components/Detail';
+import { gql, useQuery } from "@apollo/client";
+import React, { useContext } from "react";
+import { ApiApolloClientContext } from "../../ApiContext";
+import Detail from "../components/Detail";
+import Spinner from "../../common/Spinner";
 
 type Props = {
   _id?: string;
@@ -22,13 +23,21 @@ const clientPortalGetTask = `
 function DetailContainer({ _id, ...props }: Props) {
   const apiClient = useContext(ApiApolloClientContext);
 
-  const { data = {} } = useQuery(gql(clientPortalGetTask), {
+  const { data } = useQuery(gql(clientPortalGetTask), {
     variables: { _id },
     client: apiClient,
     skip: !_id,
   });
 
-  const item = data.clientPortalTask;
+  if (!data) {
+    return null;
+  }
+
+  if (Object.keys(data).length === 0) {
+    return <Spinner objective={true} />;
+  }
+
+  const item = data.clientPortalTask || {};
 
   const updatedProps = {
     ...props,

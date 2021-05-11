@@ -1,7 +1,7 @@
-import React from 'react';
-import Modal from 'simple-react-modal';
-import Icon from './Icon';
-import { ModalWrapper, ModalClose } from '../styles/main';
+import React from "react";
+import Modal from "simple-react-modal";
+import Icon from "./Icon";
+import { ModalWrapper, ModalClose } from "../styles/main";
 
 type Props = {
   isOpen?: boolean;
@@ -9,7 +9,7 @@ type Props = {
   content: ({ closeModal }: { closeModal: () => void }) => React.ReactNode;
 };
 
-export default class TikcetDetail extends React.Component<
+export default class ModalComponent extends React.Component<
   Props,
   { show: boolean }
 > {
@@ -19,11 +19,7 @@ export default class TikcetDetail extends React.Component<
     this.state = { show: props.isOpen || false };
   }
 
-  show() {
-    this.setState({ show: true });
-  }
-
-  close() {
+  onCancel = () => {
     const { onClose } = this.props;
 
     this.setState({ show: false });
@@ -31,7 +27,7 @@ export default class TikcetDetail extends React.Component<
     if (onClose) {
       onClose();
     }
-  }
+  };
 
   render() {
     const { content } = this.props;
@@ -42,14 +38,14 @@ export default class TikcetDetail extends React.Component<
           className="client-modal"
           show={this.state.show}
           closeOnOuterClick={true}
-          onClose={() => this.close.bind(this)}
+          onClose={this.onCancel}
         >
           <div className="modal-content">
-            <ModalClose onClick={() => this.close.bind(this)}>
+            <ModalClose onClick={this.onCancel}>
               <Icon icon="times" />
             </ModalClose>
 
-            {content({ closeModal: this.close })}
+            {content({ closeModal: this.onCancel })}
           </div>
         </Modal>
       </ModalWrapper>
