@@ -11,7 +11,7 @@ const fontSizeHeading6 = 20;
 const fontSizeHeading7 = 16;
 const fontSizeHeading8 = 12;
 
-const fontSizeBody = 13;
+const fontSizeBody = 14;
 const fontSizeUppercase = 11;
 
 const lineHeightHeading1 = 72 / fontSizeHeading1;

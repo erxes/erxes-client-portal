@@ -65,10 +65,6 @@ function Login({ renderButton, hasCompany, infoText }: Props) {
           <Button btnStyle="primary" block={true} href="/">
             <Icon icon="left-arrow-from-left" size={15} /> &nbsp; Return to home
           </Button>
-          <div className="links">
-            Don’t have an account?
-            <Link href="/user/register">Sign up</Link>
-          </div>
         </FormGroup>
       </>
     );

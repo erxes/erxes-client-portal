@@ -135,6 +135,10 @@ const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
 `;
 
 const DetailContent = styled.div`
+  padding: 30px 40px;
+  background: ${colors.colorWhite};
+  box-shadow: 0 2px 10px -3px rgba(0, 0, 0, 0.5);
+
   > div {
     font-size: 12px;
     margin-bottom: ${dimensions.unitSpacing}px;

@@ -24,6 +24,7 @@ const Header = styledTS<{ color?: string; backgroundImage?: string }>(
 
 const HeaderTop = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-bottom: ${dimensions.unitSpacing}px;
 `;
 
@@ -43,10 +44,9 @@ const HeaderTitle = styled.span`
   margin-left: 10px;
   padding-left: 10px;
   border-left: 1px solid ${colors.colorWhite};
-  font-weight: 400;
-  line-height: 14px;
+  font-size: 16px;
   letter-spacing: 1px;
-  white-space: nowrap;
+  text-transform: capitalize;
 `;
 
 const HeaderRight = styled.div`
@@ -75,6 +75,10 @@ const SupportMenus = styled.div`
     letter-spacing: 0.5px;
     opacity: 0.8;
   }
+
+  > button {
+    color: ${colors.colorWhite} !important;
+  }
 `;
 
 const WebLink = styled.a`
@@ -90,13 +94,18 @@ const HeaderLinks = styled.div`
 
 const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
   display: inline-block;
-  padding-bottom: 4px;
-  margin: 0 10px;
+  padding-right: ${dimensions.unitSpacing}px;
+  margin-right: ${dimensions.unitSpacing}px;
   font-size: 14px;
   opacity: 0.9;
+  border-right: 1px solid #fff;
+  text-transform: capitalize;
+  position: relative;
+  transition: all ease 0.3s;
 
   &:last-child {
     margin-right: 0;
+    border-right: 0;
   }
 
   border-bottom: 2px solid transparent;
@@ -104,12 +113,20 @@ const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
   ${(props) =>
     props.active &&
     `
-    border-bottom-color:${colors.colorWhite};
+    font-weight: 500;
     opacity: 1;
+
+    &:after {
+      content: '.';
+      position absolute;
+      bottom: -15px;
+      left: 45%;
+      font-size: 25px;
+    }
   `}
 
   &:hover {
-    border-bottom-color:${colors.colorWhite};
+    opacity: 1;
   }
 `;
 
@@ -140,9 +157,13 @@ const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(
       height: 100%;
       height: calc(100% - 20px);
     `};
+  
+  @media (max-width: 1200px) {
+    width: 80%;
+  }
 
-  @media (max-width: ${dimensions.wrapperWidth}%) {
-    width: 100%;
+  @media (max-width: 800px) {
+    width: 90%;
   }
 `;
 
@@ -300,22 +321,19 @@ const ModalWrapper = styledTS<{ show?: boolean }>(styled.div)`
     position: fixed;
     overflow: auto;
     z-index: 9;
-    background: rgba(48, 67, 92, .5);
+    background: rgba(48, 67, 92, .6);
     width: 100%;
     height: 100vh;
     top: 0;
     left: 0;
 
-    .modal-content {
+    > div {
       position: relative;
       z-index: 99;
       width: 60%;
-      max-width: 900px;
-      background: ${colors.colorWhite};
-      box-shadow: 0 2px 10px -3px rgba(0,0,0,0.5);
+      max-width: 600px;
       border-radius: 2px;
       margin: 100px auto;
-      padding: 30px 40px;
     }
   }
 `;

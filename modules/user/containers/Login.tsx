@@ -30,6 +30,7 @@ function LoginContainer(props: Props) {
         block={true}
         uppercase={true}
         icon={false}
+        btnStyle="warning"
         type="submit"
       >
         Sign in

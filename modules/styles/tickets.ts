@@ -98,6 +98,19 @@ const TicketHeaderWrapper = styled.div`
 
   > div:first-child {
     width: 60%;
+    margin-right: ${dimensions.coreSpacing}px;
+
+    @media (max-width: 1550px) {
+      width: 45%;
+    }
+  }
+
+  .right {
+    @media (max-width: 1140px) {
+      button {
+        margin-bottom: ${dimensions.unitSpacing}px;
+      }
+    }
   }
 `;
 

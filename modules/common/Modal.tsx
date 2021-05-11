@@ -30,14 +30,14 @@ export default class ModalComponent extends React.Component<
   };
 
   render() {
-    const { content } = this.props;
+    const { content, isOpen } = this.props;
 
     return (
       <ModalWrapper>
         <Modal
           className="client-modal"
           closeOnOuterClick={true}
-          show={this.state.show}
+          show={isOpen || this.state.show}
           onClose={this.onCancel}
         >
           <div className="modal-content">
