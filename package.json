@@ -17,7 +17,7 @@
   "scripts": {
     "dev": "next dev -p 4300",
     "build": "next build",
-    "start": "next start -p 4300",
+    "start": "next start",
     "format": "prettier --single-quote --write '@(pages)/**/*.ts' && prettier --single-quote --write '@(modules)/**/*.@(ts|tsx|json|css)'",
     "precommit": "lint-staged",
     "lint": "func () { if [ -z \"$1\" ]; then tslint '@(pages|modules)/**/*.ts?(x)'; else echo \"${1}/**/*.ts?(x)\" && tslint ${1}'/**/*.ts?(x)'; fi ;}; func"
