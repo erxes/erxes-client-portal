@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
-import Categories from './CategoryList';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -161,7 +160,7 @@ class Detail extends React.Component {
     const { category } = this.props;
     const { articles } = category;
 
-    if (!articles || !articles.length === 0 || category._id != categoryId) {
+    if (!articles || !articles.length === 0 || category._id !== categoryId) {
       return null;
     }
 
