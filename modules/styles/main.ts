@@ -300,7 +300,7 @@ const ModalWrapper = styledTS<{ show?: boolean }>(styled.div)`
     position: fixed;
     overflow: auto;
     z-index: 9;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(48, 67, 92, .5);
     width: 100%;
     height: 100vh;
     top: 0;
@@ -310,13 +310,12 @@ const ModalWrapper = styledTS<{ show?: boolean }>(styled.div)`
       position: relative;
       z-index: 99;
       width: 60%;
-      max-width: 800px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin: 50px auto;
-      top: 60px;
-      padding: 10px;
+      max-width: 900px;
+      background: ${colors.colorWhite};
+      box-shadow: 0 2px 10px -3px rgba(0,0,0,0.5);
+      border-radius: 2px;
+      margin: 100px auto;
+      padding: 30px 40px;
     }
   }
 `;

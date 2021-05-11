@@ -134,6 +134,21 @@ const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
     `}
 `;
 
+const DetailContent = styled.div`
+  > div {
+    font-size: 12px;
+    margin-bottom: ${dimensions.unitSpacing}px;
+
+    > span {
+      font-size: 12px;
+    }
+  }
+
+  > p {
+    font-size: 14px;
+  }
+`;
+
 export {
   Wrapper,
   StageTitle,
@@ -144,4 +159,5 @@ export {
   ItemDate,
   TabContainers,
   TabTitle,
+  DetailContent,
 };

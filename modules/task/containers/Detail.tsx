@@ -6,6 +6,7 @@ import Spinner from "../../common/Spinner";
 
 type Props = {
   _id?: string;
+  renderDate: (date: Date) => React.ReactNode;
   onClose: () => void;
 };
 
@@ -16,6 +17,7 @@ const clientPortalGetTask = `
       name
       description
       modifiedAt
+      createdAt
     }
   }
 `;

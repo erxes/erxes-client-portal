@@ -40,7 +40,11 @@ function ItemContainer({ tasks, backgroundColor }: Props) {
         </ItemWrapper>
       ))}
 
-      <Detail _id={taskId} onClose={() => setId(null)} />
+      <Detail
+        _id={taskId}
+        renderDate={renderDate}
+        onClose={() => setId(null)}
+      />
     </Wrapper>
   );
 }
