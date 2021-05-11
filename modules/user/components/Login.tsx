@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
-import { LoginFormWrapper } from '../../styles/form';
-import FormControl from '../../common/form/Control';
-import Form from '../../common/form/Form';
-import FormGroup from '../../common/form/Group';
-import { IButtonMutateProps } from '../../common/types';
-import Button from '../../common/Button';
-import { LOGIN_TYPES } from '../types';
+import React, { useState } from "react";
+import { LoginFormWrapper } from "../../styles/form";
+import FormControl from "../../common/form/Control";
+import Form from "../../common/form/Form";
+import FormGroup from "../../common/form/Group";
+import { IButtonMutateProps } from "../../common/types";
+import Button from "../../common/Button";
+import { LOGIN_TYPES } from "../types";
+import Icon from "../../common/Icon";
+import Link from "next/link";
 
 type Props = {
   renderButton: (props: IButtonMutateProps) => JSX.Element;
   hasCompany: boolean;
+  infoText?: string;
 };
 
-function Login({ renderButton, hasCompany }: Props) {
+function Login({ renderButton, hasCompany, infoText }: Props) {
   const [type, changeType] = useState(LOGIN_TYPES.CUSTOMER);
 
-  const onChange = e => {
+  const onChange = (e) => {
     changeType(e.target.value);
     e.isDefaultPrevented();
   };
 
-  const renderContent = formProps => {
+  const renderContent = (formProps) => {
     const { values, isSubmitted } = formProps;
 
     return (
@@ -38,7 +41,7 @@ function Login({ renderButton, hasCompany }: Props) {
           <FormControl
             {...formProps}
             name="email"
-            placeholder={'registered@email.com'}
+            placeholder={"registered@email.com"}
             required={true}
           />
         </FormGroup>
@@ -48,18 +51,24 @@ function Login({ renderButton, hasCompany }: Props) {
             {...formProps}
             name="password"
             type="password"
-            placeholder={'password'}
+            placeholder={"password"}
             required={true}
           />
         </FormGroup>
 
         <FormGroup>
-          <Button href="/">Home</Button>
-
           {renderButton({
             values: hasCompany ? { ...values, type } : values,
-            isSubmitted
+            isSubmitted,
           })}
+          <div className="auth-divider" />
+          <Button btnStyle="primary" block={true} href="/">
+            <Icon icon="left-arrow-from-left" size={15} /> &nbsp; Return to home
+          </Button>
+          <div className="links">
+            Don’t have an account?
+            <Link href="/user/register">Sign up</Link>
+          </div>
         </FormGroup>
       </>
     );
@@ -67,7 +76,12 @@ function Login({ renderButton, hasCompany }: Props) {
 
   return (
     <LoginFormWrapper>
-      <h2>{'Sign in'}</h2>
+      <h2>{"Sign in"}</h2>
+      {infoText && (
+        <div className="info">
+          <Icon icon="info-circle" size={18} /> &nbsp; {infoText}
+        </div>
+      )}
       <Form renderContent={renderContent} />
     </LoginFormWrapper>
   );

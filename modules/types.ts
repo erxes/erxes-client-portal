@@ -105,6 +105,39 @@ export interface IStage {
   order: number;
 }
 
+export interface ITicket {
+  source?: string;
+  _id: string;
+  name: string;
+  order: number;
+  stageId: string;
+  boardId?: string;
+  closeDate: Date;
+  description: string;
+  amount: number;
+  modifiedAt: Date;
+  assignedUserIds?: string[];
+  assignedUsers: IUser[];
+  createdUser?: IUser;
+  stage?: IStage;
+  isWatched?: boolean;
+  priority?: string;
+  hasNotified?: boolean;
+  isComplete: boolean;
+  reminderMinute: number;
+  labelIds: string[];
+  status?: string;
+  createdAt: Date;
+  timeTrack: {
+    status: string;
+    timeSpent: number;
+    startDate?: string;
+  };
+  customFieldsData?: {
+    [key: string]: any;
+  };
+}
+
 export interface IKbArticle extends ICommonFields {
   _id: string;
   title: string;

@@ -1,9 +1,9 @@
-import { gql, useQuery } from '@apollo/client';
-import React, { useContext } from 'react';
-import { ApiApolloClientContext } from '../../ApiContext';
-import { AppConsumer } from '../../appContext';
-import { IUser, Store } from '../../types';
-import Ticket from '../components/Ticket';
+import { gql, useQuery } from "@apollo/client";
+import React, { useContext } from "react";
+import { ApiApolloClientContext } from "../../ApiContext";
+import { AppConsumer } from "../../appContext";
+import { IUser, Store } from "../../types";
+import Ticket from "../components/Ticket";
 
 type Props = {
   currentUser: IUser;

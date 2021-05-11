@@ -1,5 +1,5 @@
-import { dimensions, colors } from '../styles';
-import styled from 'styled-components';
+import { dimensions, colors } from "../styles";
+import styled from "styled-components";
 
 const TicketRow = styled.div`
   margin-bottom: ${dimensions.coreSpacing}px;
@@ -91,6 +91,16 @@ const TicketComment = styled.div`
   margin-bottom: ${dimensions.unitSpacing}px;
 `;
 
+const TicketHeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > div:first-child {
+    width: 60%;
+  }
+`;
+
 export {
   TicketRow,
   TicketLabel,
@@ -98,4 +108,5 @@ export {
   Table,
   TicketListRow,
   TicketComment,
+  TicketHeaderWrapper,
 };

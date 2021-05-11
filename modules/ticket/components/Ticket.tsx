@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { StageTitle } from '../../styles/tasks';
-import { TicketListRow } from '../../styles/tickets';
-import Button from '../../common/Button';
-import Icon from '../../common/Icon';
-import Link from 'next/link';
-import Detail from '../containers/Detail';
-import { IUser } from '../../types';
-import dayjs from 'dayjs';
+import React, { useState } from "react";
+import { StageTitle } from "../../styles/tasks";
+import { TicketListRow } from "../../styles/tickets";
+import Button from "../../common/Button";
+import Link from "next/link";
+import Detail from "../containers/Detail";
+import { IUser } from "../../types";
+import dayjs from "dayjs";
+import LoginContainer from "../../user/containers/Login";
 
 type Props = {
   loading: boolean;
@@ -19,11 +19,7 @@ export default function Ticket({ tickets, currentUser }: Props) {
 
   if (!currentUser) {
     return (
-      <Link href="/user/login">
-        <Button>
-          <Icon icon="user" /> &nbsp; login
-        </Button>
-      </Link>
+      <LoginContainer infoText="Log in first to create or manage ticket cards" />
     );
   }
 
@@ -55,7 +51,7 @@ export default function Ticket({ tickets, currentUser }: Props) {
           className="item"
         >
           <div className="base-color">{ticket.name}</div>
-          <div>{dayjs(ticket.createdAt).format('MMM D YYYY')}</div>
+          <div>{dayjs(ticket.createdAt).format("MMM D YYYY")}</div>
           <div>{ticket.priority}</div>
           <div>{ticket.status}</div>
         </TicketListRow>

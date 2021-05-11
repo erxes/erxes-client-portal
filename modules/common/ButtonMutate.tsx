@@ -1,12 +1,12 @@
-import gql from 'graphql-tag';
-import { colors } from '../styles';
-import Alert from '../utils/Alert';
-import confirm from '../utils/confirmation/confirm';
-import { rotate } from '../utils/animations';
-import React from 'react';
-import styled from 'styled-components';
-import Button from './Button';
-import withApolloClient from '../../pages/lib/withApolloClient';
+import gql from "graphql-tag";
+import { colors } from "../styles";
+import Alert from "../utils/Alert";
+import confirm from "../utils/confirmation/confirm";
+import { rotate } from "../utils/animations";
+import React from "react";
+import styled from "styled-components";
+import Button from "./Button";
+import withApolloClient from "../../pages/lib/withApolloClient";
 
 export const SmallLoader = styled.i`
   width: 13px;
@@ -49,8 +49,8 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
   static SmallLoader = SmallLoader;
 
   static defaultProps = {
-    btnSize: 'medium',
-    icon: 'check-circle',
+    btnSize: "medium",
+    icon: "check-circle",
   };
 
   constructor(props: Props) {
@@ -73,7 +73,7 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
       mutation,
       callback,
       variables,
-      successMessage = '',
+      successMessage = "",
       refetchQueries,
       beforeSubmit,
       disableLoading,
@@ -109,9 +109,9 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
         }
       })
       .catch((error) => {
-        if (error.message.includes('Invalid login')) {
+        if (error.message.includes("Invalid login")) {
           Alert.error(
-            'The email address or password you entered is incorrect.'
+            "The email address or password you entered is incorrect."
           );
         } else {
           Alert.error(error.message);
@@ -131,7 +131,7 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
     const { confirmationUpdate } = this.props;
 
     if (confirmationUpdate) {
-      return confirm('This will permanently update are you absolutely sure?', {
+      return confirm("This will permanently update are you absolutely sure?", {
         hasUpdateConfirm: true,
       })
         .then(() => {
@@ -147,11 +147,11 @@ class ButtonMutate extends React.Component<Props, { isLoading: boolean }> {
 
   render() {
     const {
-      children = 'Save',
+      children = "Save",
       btnSize,
       icon,
       type,
-      btnStyle = 'success',
+      btnStyle = "success",
       disabled,
       block,
       uppercase,
