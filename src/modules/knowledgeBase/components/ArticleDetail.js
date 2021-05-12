@@ -118,36 +118,50 @@ class Detail extends React.Component {
 
   renderCategories = () => {
     const { kbTopic } = this.props;
-    const { categories } = kbTopic;
+    const categories = kbTopic.parentCategories;
 
     if (!categories || categories.length === 0) {
       return null;
     }
+
+    const renderCategory = category => {
+      const url = `/knowledge-base/category/details/${category._id}`;
+
+      return (
+        <li key={category._id} className={this.isActiveCategory(category._id)}>
+          <Link
+            to={
+              category.articles && category.articles.length > 0
+                ? `${url}&_id=${category.articles[0]._id}`
+                : url
+            }
+          >
+            <div className="sidebar-item">
+              <div className="icon-wrapper">
+                <i className={`icon-${category.icon}`}></i>
+              </div>
+              <h6>{category.title}</h6>
+            </div>
+          </Link>
+          {this.renderArticles(category._id)}
+        </li>
+      );
+    };
+
     return (
       <>
         <div className="tags sidebar-list">
           <ul>
-            {categories.map((category, index) => {
-              const url = `/knowledge-base/article/detail?catId=${category._id}`;
-
+            {categories.map(category => {
               return (
-                <li key={index} className={this.isActiveCategory(category._id)}>
-                  <Link
-                    to={
-                      category.articles && category.articles.length > 0
-                        ? `${url}&_id=${category.articles[0]._id}`
-                        : url
-                    }
-                  >
-                    <div className="sidebar-item">
-                      <div className="icon-wrapper">
-                        <i className={`icon-${category.icon}`}></i>
-                      </div>
-                      <h6>{category.title}</h6>
+                <>
+                  {renderCategory(category)}
+                  {category.childrens && (
+                    <div className="sub-categories">
+                      {category.childrens.map(child => renderCategory(child))}
                     </div>
-                  </Link>
-                  {this.renderArticles(category._id)}
-                </li>
+                  )}
+                </>
               );
             })}
           </ul>

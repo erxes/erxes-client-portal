@@ -31,7 +31,7 @@
 
 .tab-content {
   h5 {
-    color: #6569DF;
+    color: #6569df;
     font-size: 16px;
   }
 
@@ -107,7 +107,7 @@
   }
 
   &:first-child {
-    >img {
+    > img {
       margin-left: 0;
     }
   }
@@ -371,13 +371,13 @@ span {
         &:hover,
         &.active {
           a {
-            color: #6569DF;
+            color: #6569df;
             font-weight: 500;
             position: relative;
           }
 
           &::before {
-            border-left: 2px solid #6569DF;
+            border-left: 2px solid #6569df;
           }
         }
       }
@@ -389,9 +389,13 @@ span {
   .knowledge-base {
     &.promoted {
       margin-top: -14.5rem;
-      .category-knowledge-list{
-        .list-category-title{
+      .category-knowledge-list {
+        .list-category-title {
           color: #fff;
+
+          a {
+            color: inherit;
+          }
         }
       }
       .promoted-wrap {

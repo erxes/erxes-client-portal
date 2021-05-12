@@ -58,10 +58,11 @@ class Categories extends React.Component {
 
   renderCategories = () => {
     const { kbTopic } = this.props;
-    const { parentCategories } = kbTopic;
+    const { parentCategories = [] } = kbTopic;
+
     const specialCategory = parentCategories[0];
     const categories = parentCategories.slice(1);
-    const categoryUrl = `/knowledge-base/article/detail?catId=`;
+    const categoryUrl = `/knowledge-base/category/details/`;
 
     const detail = cat => {
       return (

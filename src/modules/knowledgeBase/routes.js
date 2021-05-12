@@ -97,7 +97,7 @@ const index = () => {
 };
 
 const routes = () => [
-  <Route exact={true} path="/" key="root" render={index} />,
+  <Route exact path="/" key="root" render={index} />,
   <Route
     path="/knowledge-base"
     exact
