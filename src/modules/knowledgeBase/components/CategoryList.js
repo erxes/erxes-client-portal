@@ -23,12 +23,10 @@ class Categories extends React.Component {
 
     if (categories) {
       return categories.map(cat => (
-        <div>
+        <div key={cat._id}>
           <h4>{cat.title}</h4>
           {cat.childrens && (
-            <>
-              <Row>{this.renderSubCategories(cat.childrens)}</Row>
-            </>
+            <Row>{this.renderSubCategories(cat.childrens)}</Row>
           )}
         </div>
       ));
@@ -64,7 +62,7 @@ class Categories extends React.Component {
               src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
               frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen="allowfullscreen"
+              allowFullScreen="allowfullscreen"
             ></iframe>
           </section>
         </Container>
