@@ -30,10 +30,7 @@ function Tasks({ stages, config, stageId }: Props) {
         ))}
       </TabContainers>
 
-      <Item
-        stageId={stageId && stageId.toString()}
-        backgroundColor={getConfigColor(config, "backgroundColor")}
-      />
+      <Item stageId={stageId && stageId.toString()} />
     </>
   );
 }

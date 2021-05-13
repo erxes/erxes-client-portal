@@ -1,5 +1,5 @@
-import { ServerStyleSheet } from 'styled-components';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from "styled-components";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -9,7 +9,8 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
         });
 
       const initialProps = await Document.getInitialProps(ctx);
@@ -21,7 +22,7 @@ export default class MyDocument extends Document {
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
-        )
+        ),
       };
     } finally {
       sheet.seal();
@@ -40,7 +41,7 @@ export default class MyDocument extends Document {
 
           <link href="/static/images/favicon.png" rel="shortcut icon" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap"
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&amp;display=swap"
             rel="stylesheet"
           />
 

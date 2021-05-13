@@ -15,6 +15,7 @@ const clientPortalGetTasks = `
       _id
       name
       description
+      labelIds
       modifiedAt
     }
   }

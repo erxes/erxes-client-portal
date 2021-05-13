@@ -2,7 +2,6 @@ import { colors, dimensions, typography } from "../styles";
 import styled from "styled-components";
 import styledTS from "styled-components-ts";
 
-const stageGray = "#e5e8ec";
 const pWitdh = 4;
 
 const StageTitle = styled.h3`
@@ -17,33 +16,38 @@ const StageTitle = styled.h3`
   }
 `;
 
-const Wrapper = styledTS<{ backgroundColor?: string }>(styled.div)`
+const Wrapper = styled.div`
   margin-bottom: ${dimensions.coreSpacing}px;
   border-radius: 3px;
   padding: ${pWitdh * 2}px ${pWitdh}px 0;
-  
-  ${(props) => `background: ${props.backgroundColor || stageGray};`}
-  
   display: flex;
   flex-wrap: wrap;
 `;
 
 const ItemWrapper = styled.div`
-  margin: 0 ${pWitdh}px ${pWitdh * 2}px;
+  margin: 0 ${dimensions.unitSpacing}px ${dimensions.unitSpacing}px 0;
   overflow: hidden;
-  background-color: rgb(255, 255, 255);
+  background-color: ${colors.colorWhite};
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
-  padding: 8px;
-  outline: 0px;
+  padding: ${dimensions.unitSpacing}px;
   font-size: 12px;
   border-radius: 2px;
   transition: box-shadow 0.3s ease-in-out 0s;
   cursor: pointer;
-  flex-basis: 24%;
+  flex-basis: 23.33333%;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
   justify-content: space-between;
+
+  &:hover {
+    box-shadow: 0 5px 15px -5px rgba(48, 54, 60, 0.15),
+      0 1px 4px 0 rgba(48, 54, 60, 0.15);
+
+    h5 {
+      color: ${colors.textSecondary};
+    }
+  }
 
   @media (max-width: 1400px) {
     flex-basis: 31.3333%;
@@ -64,7 +68,25 @@ const Content = styledTS<{ type?: string }>(styled.div)`
     word-break: break-word;
     line-height: 18px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
+    max-height: 55px;
+    min-height: 55px;
+    overflow: hidden;
+    display: -webkit-box;
+    transition: all ease 0.3s;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
+
+  p {
+    line-height: 20px;
+    max-height: 100px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -112,27 +134,35 @@ const TabContainers = styled.div`
 `;
 
 const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
+  display: flex;
+  justify-content: center;
   flex: 1 1 auto;
-  text-align: center;
-  padding: 5px 10px;
-  min-width: 100px;
   line-height: 20px;
-  font-size: 14px;
+  color: ${colors.colorCoreGray};
+  white-space: nowrap;
+  margin-right: ${dimensions.coreSpacing}px;
+  transition: all ease 0.3s;
 
   > a {
     cursor: pointer;
-    display: flex;
-    justify-content: center;
+    padding: 5px 10px;
     height: 100%;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
   }
 
   ${(props) =>
     props.active &&
     `
-      border-bottom: 2px solid ${props.color || colors.colorPrimary};
+      border-bottom: 4px solid ${props.color || colors.colorPrimary};
       color: ${props.color || colors.colorPrimary};
       font-weight: 500;
     `}
+  
+  &:hover {
+    color: ${(props) => (props.color ? props.color : colors.colorPrimary)}
+  }
 `;
 
 const DetailContent = styled.div`

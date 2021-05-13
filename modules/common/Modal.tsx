@@ -5,6 +5,7 @@ import { ModalWrapper, ModalClose } from "../styles/main";
 
 type Props = {
   isOpen?: boolean;
+  isFull?: boolean;
   onClose?: () => void;
   content: ({ closeModal }: { closeModal: () => void }) => React.ReactNode;
 };
@@ -30,10 +31,10 @@ export default class ModalComponent extends React.Component<
   };
 
   render() {
-    const { content, isOpen } = this.props;
+    const { content, isOpen, isFull } = this.props;
 
     return (
-      <ModalWrapper>
+      <ModalWrapper isFull={isFull}>
         <Modal
           className="client-modal"
           closeOnOuterClick={true}

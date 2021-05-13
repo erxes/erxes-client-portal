@@ -12,12 +12,11 @@ import Detail from "../containers/Detail";
 
 type Props = {
   tasks: any;
-  backgroundColor?: string;
 };
 
-function ItemContainer({ tasks, backgroundColor }: Props) {
+function ItemContainer({ tasks }: Props) {
   const [taskId, setId] = useState(null);
-
+  console.log(tasks);
   const renderDate = (date) => {
     if (!date) {
       return null;
@@ -27,11 +26,12 @@ function ItemContainer({ tasks, backgroundColor }: Props) {
   };
 
   return (
-    <Wrapper backgroundColor={backgroundColor}>
+    <Wrapper>
       {tasks.map((task) => (
         <ItemWrapper key={task._id} onClick={() => setId(task._id)}>
           <Content>
             <h5>{task.name}</h5>
+            <p>{task.description}</p>
           </Content>
           <ItemFooter>
             Last updated:

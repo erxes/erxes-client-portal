@@ -113,7 +113,7 @@ const LinkItem = styledTS<{ active?: boolean }>(styled.span)`
   ${(props) =>
     props.active &&
     `
-    font-weight: 500;
+    font-weight: 600;
     opacity: 1;
 
     &:after {
@@ -316,7 +316,7 @@ const FooterLink = styled.a`
   }
 `;
 
-const ModalWrapper = styledTS<{ show?: boolean }>(styled.div)`
+const ModalWrapper = styledTS<{ isFull?: boolean }>(styled.div)`
   .client-modal {
     position: fixed;
     overflow: auto;
@@ -331,7 +331,7 @@ const ModalWrapper = styledTS<{ show?: boolean }>(styled.div)`
       position: relative;
       z-index: 99;
       width: 60%;
-      max-width: 600px;
+      max-width: ${(props) => (props.isFull ? "900px" : "600px")};
       border-radius: 2px;
       margin: 100px auto;
     }

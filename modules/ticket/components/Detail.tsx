@@ -67,12 +67,11 @@ export default class TicketDetail extends React.Component<
     }
 
     const comments = item.comments || [];
-
+    console.log(item);
     const content = () => (
       <TicketFormWrapper>
         <h4>{item.name}</h4>
         <TicketDetailContent>
-          {this.renderRow("Ticket name:", item.name)}
           {this.renderRow("Requestor:", email)}
           {this.renderRow("Priority:", item.priority)}
           {this.renderRow("Description:", item.description)}
@@ -94,9 +93,6 @@ export default class TicketDetail extends React.Component<
                 Reply
               </Button>
 
-              <br />
-              <br />
-
               {comments.map((comment) => (
                 <TicketComment key={comment._id}>
                   <span>
@@ -111,6 +107,8 @@ export default class TicketDetail extends React.Component<
       </TicketFormWrapper>
     );
 
-    return <Modal content={content} onClose={onClose} isOpen={item} />;
+    return (
+      <Modal content={content} onClose={onClose} isFull={true} isOpen={item} />
+    );
   }
 }

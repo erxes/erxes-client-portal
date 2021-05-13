@@ -4,18 +4,23 @@ import styledTS from "styled-components-ts";
 import { rgba, darken } from "./ecolor";
 
 const TicketRow = styled.div`
-  margin-bottom: ${dimensions.coreSpacing}px;
+  margin-bottom: ${dimensions.unitSpacing}px;
   display: flex;
   flex-wrap: wrap;
 `;
 
 const TicketLabel = styled.div`
-  font-weight: bold;
+  font-weight: 500;
   flex: 0 0 20%;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: ${colors.colorCoreGray};
 `;
 
 const TicketContent = styled.div`
   flex: 0 0 80%;
+  padding-left: ${dimensions.unitSpacing}px;
+  font-size: 14px;
 `;
 
 const Table = styled.table`
@@ -43,7 +48,7 @@ const ListHead = styled.div`
   background-color: ${colors.bgActive};
   text-transform: uppercase;
   color: ${colors.colorCoreGray};
-  font-size: 11px;
+  font-size: 12px;
   padding: 8px 18px;
   display: flex;
 
