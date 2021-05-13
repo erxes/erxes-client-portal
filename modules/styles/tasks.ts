@@ -166,22 +166,52 @@ const TabTitle = styledTS<{ color?: string; active?: boolean }>(styled.div)`
 `;
 
 const DetailContent = styled.div`
-  padding: 30px 40px;
+  padding: 30px 50px;
   background: ${colors.colorWhite};
+  border-radius: 5px;
+  min-height: 300px;
   box-shadow: 0 2px 10px -3px rgba(0, 0, 0, 0.5);
+  position: relative;
 
-  > div {
+  h4 {
+    font-size: 20px;
+  }
+
+  .content {
     font-size: 12px;
-    margin-bottom: ${dimensions.unitSpacing}px;
 
     > span {
       font-size: 12px;
+
+      img {
+        width: 26px;
+        height: 26px;
+        border-radius: 26px;
+      }
+
+      b {
+        padding: 0 ${dimensions.unitSpacing}px;
+        text-transform: uppercase;
+        font-size: 11px;
+        border-right: 1px solid ${colors.colorCoreGray};
+        margin-right: ${dimensions.unitSpacing}px;
+      }
     }
   }
 
   > p {
     font-size: 14px;
+    padding-left: ${dimensions.coreSpacing + 15}px;
   }
+`;
+
+const Priority = styled.div`
+  background: ${colors.bgActive};
+  font-size: ${dimensions.unitSpacing}px;
+  font-weight: 600;
+  padding: 3px ${dimensions.unitSpacing}px;
+  text-transform: uppercase;
+  border-radius: 25px;
 `;
 
 export {
@@ -194,5 +224,6 @@ export {
   ItemDate,
   TabContainers,
   TabTitle,
+  Priority,
   DetailContent,
 };

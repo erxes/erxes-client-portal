@@ -9,6 +9,7 @@ import {
   ItemDate,
 } from "../../styles/tasks";
 import Detail from "../containers/Detail";
+import PriorityIndicator from "../../common/PriorityIndicator";
 
 type Props = {
   tasks: any;
@@ -30,7 +31,10 @@ function ItemContainer({ tasks }: Props) {
       {tasks.map((task) => (
         <ItemWrapper key={task._id} onClick={() => setId(task._id)}>
           <Content>
-            <h5>{task.name}</h5>
+            <h5>
+              {task.priority && <PriorityIndicator value={task.priority} />}{" "}
+              {task.name}
+            </h5>
             <p>{task.description}</p>
           </Content>
           <ItemFooter>

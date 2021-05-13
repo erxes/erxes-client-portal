@@ -16,6 +16,7 @@ const clientPortalGetTasks = `
       name
       description
       labelIds
+      priority
       modifiedAt
     }
   }

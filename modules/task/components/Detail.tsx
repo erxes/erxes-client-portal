@@ -1,7 +1,8 @@
 import React from "react";
 import Modal from "../../common/Modal";
-import { DetailContent } from "../../styles/tasks";
+import { DetailContent, Priority } from "../../styles/tasks";
 import { ModalWrapper } from "../../styles/main";
+import PriorityIndicator from "../../common/PriorityIndicator";
 
 type Props = {
   item?: any;
@@ -20,13 +21,29 @@ export default class TaskDetail extends React.Component<Props> {
     const content = () => (
       <DetailContent>
         <h4> {item.name}</h4>
-        <div>Posted on {renderDate(item.createdAt)}</div>
+        <div className="flex-between mb-10">
+          <div className="content">
+            <span>
+              <img
+                src="https://erxes.io/static/images/team/square/mungunshagai.jpg"
+                alt="profile"
+              />
+              <b>Anu-ujin Bat-Ulzii</b>
+            </span>
+            Posted on {renderDate(item.createdAt)}
+          </div>
+          {item.priority && (
+            <Priority>
+              <PriorityIndicator value={item.priority} /> {item.priority}
+            </Priority>
+          )}
+        </div>
         <p>{item.description}</p>
       </DetailContent>
     );
 
     return (
-      <ModalWrapper>
+      <ModalWrapper isFull={true}>
         <Modal
           content={content}
           onClose={onClose}

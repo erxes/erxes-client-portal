@@ -47,7 +47,7 @@ export default function TaskForm({ handleSubmit }: Props) {
       </FormGroup>
     );
   }
-  console.log(task);
+
   return (
     <FormWrapper>
       <h4>Add a new task</h4>
@@ -79,7 +79,7 @@ export default function TaskForm({ handleSubmit }: Props) {
             uppercase={false}
             icon="check-circle"
           >
-            Submit
+            Save
           </Button>
         </div>
       </div>

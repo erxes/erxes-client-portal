@@ -16,6 +16,7 @@ const clientPortalGetTask = `
       _id
       name
       description
+      priority
       modifiedAt
       createdAt
     }
