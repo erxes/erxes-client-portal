@@ -1,9 +1,10 @@
 import React from "react";
-import { SearchContainer, HeaderWrapper } from "../../modules/styles/main";
-import Icon from "../../modules/common/Icon";
-import Modal from "../../modules/common/Modal";
-import Button from "../../modules/common/Button";
-import TicketForm from "../../modules/ticket/containers/Form";
+import { SearchContainer } from "../../../modules/styles/main";
+import Icon from "../../../modules/common/Icon";
+import Modal from "../../../modules/common/Modal";
+import Button from "../../../modules/common/Button";
+import TaskForm from "../containers/Form";
+import { HeaderWrapper } from "../../styles/main";
 
 type Props = {};
 
@@ -13,7 +14,7 @@ type State = {
   show: boolean;
 };
 
-export default class TicketHeader extends React.Component<Props, State> {
+export default class TaskHeader extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 
@@ -81,7 +82,7 @@ export default class TicketHeader extends React.Component<Props, State> {
 
             <input
               onChange={this.onChange}
-              placeholder="Search for tickets..."
+              placeholder="Search for tasks..."
               value={searchValue}
               onKeyDown={this.onKeyDown}
               onBlur={this.onBlur}
@@ -89,20 +90,17 @@ export default class TicketHeader extends React.Component<Props, State> {
             />
           </SearchContainer>
           <div className="right">
-            <Button btnStyle="primary" uppercase={false}>
-              <Icon icon="file-check" /> Check Ticket Status
-            </Button>
             <Button
               btnStyle="primary"
               uppercase={false}
               onClick={this.showModal}
             >
-              <Icon icon="add" /> Submit New Ticket
+              <Icon icon="add" /> Submit New Task
             </Button>
           </div>
         </HeaderWrapper>
         <Modal
-          content={() => <TicketForm />}
+          content={() => <TaskForm />}
           onClose={this.showModal}
           isOpen={show}
         />

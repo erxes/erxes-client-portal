@@ -4,54 +4,39 @@ import Select from "react-select-plus";
 import FormControl from "../../common/form/Control";
 import FormGroup from "../../common/form/Group";
 import Button from "../../common/Button";
-import { Ticket } from "../../types";
+import { Task } from "../../types";
 import { ControlLabel } from "../../common/form";
 import { FormWrapper } from "../../styles/main";
 
 type Props = {
-  handleSubmit: (doc: Ticket) => void;
+  handleSubmit: (doc: Task) => void;
 };
 
-const PRIORITY_OPTIONS = [
-  {
-    label: "Critical",
-    value: "critical",
-  },
-  {
-    label: "Normal",
-    value: "normal",
-  },
-  {
-    label: "Low",
-    value: "low",
-  },
-];
-
-export default function TicketForm({ handleSubmit }: Props) {
-  const [ticket, setTicket] = useState<Ticket>({} as Ticket);
+export default function TaskForm({ handleSubmit }: Props) {
+  const [task, setTask] = useState<Task>({} as Task);
 
   const handleClick = () => {
-    handleSubmit(ticket);
+    handleSubmit(task);
   };
 
   const handleSelect = (option) => {
-    setTicket((currentValues) => ({
+    setTask((currentValues) => ({
       ...currentValues,
       priority: option.value,
     }));
   };
 
-  function renderControl({ label, name, placeholder, value = "" }) {
+  function renderControl({ label, name, placeholder, value = "", isRequired }) {
     const handleChange = (e) => {
-      setTicket({
-        ...ticket,
+      setTask({
+        ...task,
         [name]: e.target.value,
       });
     };
 
     return (
       <FormGroup>
-        <ControlLabel>{label}</ControlLabel>
+        <ControlLabel required={isRequired}>{label}</ControlLabel>
         <FormControl
           name={name}
           placeholder={placeholder}
@@ -62,26 +47,28 @@ export default function TicketForm({ handleSubmit }: Props) {
       </FormGroup>
     );
   }
-
+  console.log(task);
   return (
     <FormWrapper>
-      <h4>Add a new ticket</h4>
+      <h4>Add a new task</h4>
       <div className="content">
         {renderControl({
           name: "subject",
-          label: "Subject",
-          value: ticket.subject,
-          placeholder: "Enter a subject",
+          label: "Name",
+          value: task.subject,
+          isRequired: true,
+          placeholder: "Enter a name",
         })}
         {renderControl({
           name: "description",
           label: "Description",
-          value: ticket.description,
+          value: task.description,
+          isRequired: false,
           placeholder: "Enter a description",
         })}
         {/* <Select
         name="priority"
-        value={ticket.priority || ''}
+        value={task.priority || ''}
         options={PRIORITY_OPTIONS}
         onChange={handleSelect}
       /> */}

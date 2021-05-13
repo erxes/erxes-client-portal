@@ -129,56 +129,6 @@ const Label = styledTS<{ lblStyle: string }>(styled.div)`
         : darken(colors.colorCoreGreen, 50)};
 `;
 
-const TicketHeaderWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  > div:first-child {
-    width: 60%;
-    margin-right: ${dimensions.coreSpacing}px;
-
-    @media (max-width: 1550px) {
-      width: 45%;
-    }
-  }
-
-  .right {
-    @media (max-width: 1140px) {
-      button {
-        margin-bottom: ${dimensions.unitSpacing}px;
-      }
-    }
-  }
-`;
-
-const TicketFormWrapper = styled.div`
-  background: ${colors.colorWhite};
-  border-radius: 5px;
-
-  h4 {
-    color: ${colors.textPrimary};
-    font-weight: 500;
-    font-size: 18px;
-    padding: 20px 40px;
-    background: #fafafa;
-    border-bottom: 1px solid #eee;
-    margin: 0;
-  }
-
-  .content {
-    padding: 20px 40px;
-
-    > div:last-child {
-      margin-bottom: 10px;
-    }
-
-    .right {
-      text-align: right;
-    }
-  }
-`;
-
 export {
   TicketRow,
   TicketLabel,
@@ -190,6 +140,4 @@ export {
   ListRow,
   TicketComment,
   TicketDetailContent,
-  TicketFormWrapper,
-  TicketHeaderWrapper,
 };

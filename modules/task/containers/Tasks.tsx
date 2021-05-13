@@ -6,6 +6,7 @@ import { Config, Store } from "../../types";
 import Tasks from "../components/Tasks";
 import Spinner from "../../common/Spinner";
 import Layout from "../../main/containers/Layout";
+import TaskHeader from "../components/Header";
 
 type Props = {
   config: Config;
@@ -57,7 +58,7 @@ function TasksContainer({ config, router, ...props }: Props) {
 
 const WithRouterParams = (props) => {
   return (
-    <Layout>
+    <Layout headerBottomComponent={<TaskHeader />}>
       {(layoutProps: Store) => {
         return <TasksContainer {...props} {...layoutProps} />;
       }}

@@ -6,12 +6,12 @@ import {
   TicketContent,
   TicketComment,
   TicketDetailContent,
-  TicketFormWrapper,
 } from "../../styles/tickets";
 import { IUser } from "../../types";
 import Button from "../../common/Button";
 import Modal from "../../common/Modal";
 import dayjs from "dayjs";
+import { FormWrapper } from "../../styles/main";
 
 type Props = {
   item?: any;
@@ -67,9 +67,9 @@ export default class TicketDetail extends React.Component<
     }
 
     const comments = item.comments || [];
-    console.log(item);
+
     const content = () => (
-      <TicketFormWrapper>
+      <FormWrapper>
         <h4>{item.name}</h4>
         <TicketDetailContent>
           {this.renderRow("Requestor:", email)}
@@ -104,7 +104,7 @@ export default class TicketDetail extends React.Component<
             </TicketContent>
           </TicketRow>
         </TicketDetailContent>
-      </TicketFormWrapper>
+      </FormWrapper>
     );
 
     return (

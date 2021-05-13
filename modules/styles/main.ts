@@ -352,6 +352,68 @@ const ModalClose = styled.div`
   cursor: pointer;
 `;
 
+const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    border: 1px solid ${colors.colorWhite};
+    background: transparent;
+    opacity: 0.9;
+    transition: all ease 0.3s;
+
+    &:hover {
+      opacity: 1;
+      background: transparent;
+    }
+  }
+
+  > div:first-child {
+    width: 60%;
+    margin-right: ${dimensions.coreSpacing}px;
+
+    @media (max-width: 1550px) {
+      width: 45%;
+    }
+  }
+
+  .right {
+    @media (max-width: 1140px) {
+      button {
+        margin-bottom: ${dimensions.unitSpacing}px;
+      }
+    }
+  }
+`;
+
+const FormWrapper = styled.div`
+  background: ${colors.colorWhite};
+  border-radius: 5px;
+
+  h4 {
+    color: ${colors.textPrimary};
+    font-weight: 500;
+    font-size: 18px;
+    padding: 20px 40px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+  }
+
+  .content {
+    padding: 20px 40px;
+
+    > div:last-child {
+      margin-bottom: 10px;
+    }
+
+    .right {
+      text-align: right;
+    }
+  }
+`;
+
 export {
   Header,
   HeaderTop,
@@ -371,4 +433,6 @@ export {
   LinkItem,
   ModalWrapper,
   ModalClose,
+  HeaderWrapper,
+  FormWrapper,
 };
