@@ -1,50 +1,42 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import SectionHeader from "../../common/components/SectionHeader";
-import ArticleList from "./ArticleList";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import SectionHeader from '../../common/components/SectionHeader';
+import ArticleList from './ArticleList';
 
 class CategoryDetail extends React.Component {
-  isActive = (categoryId) => {
-    if (categoryId === this.props.category._id) {
-      return "active";
-    }
-
-    return;
-  };
-
   renderCategories = () => {
-    const { kbTopic } = this.props;
-    const { categories } = kbTopic;
+    const { kbTopic, category } = this.props;
+    const categories = kbTopic.parentCategories;
+    const mainUrl = '/knowledge-base/category/details/';
 
     if (categories) {
-      return categories.map((cat) => {
+      return categories.map(cat => {
         return (
-          <Link
-            key={cat._id}
-            to={`/knowledge-base/category/details/${cat._id}`}
-          >
-            <div className="tags sidebar-list">
-              <ul>
-                <li className={this.isActive(cat._id)}>
-                  <Row>
-                    <Col md={2} key={cat._id}>
-                      <div className="icon-wrapper">
-                        <i className={`icon-${cat.icon}`}></i>
-                      </div>
-                    </Col>
-                    <Col md={10} key={cat._id}>
-                      <div className="tab-content">
-                        <h6>{cat.title}</h6>
-                        <p>{cat.description}</p>
-                      </div>
-                    </Col>
-                  </Row>
-                </li>
-              </ul>
-            </div>
-          </Link>
+          <>
+            <li className={cat._id === category._id ? 'active' : null}>
+              <div className="tab-content">
+                <h6>{cat.title}</h6>
+                <p>{cat.description}</p>
+              </div>
+            </li>
+            {cat.childrens &&
+              cat.childrens.map(child => (
+                <Link key={child._id} to={`${mainUrl}${child._id}`}>
+                  <li className={child._id === category._id ? 'active' : null}>
+                    <Row>
+                      <Col md={{ span: 11, offset: 1 }} key={child._id} offs>
+                        <div className="tab-content">
+                          <h6>{child.title}</h6>
+                          <p>{child.description}</p>
+                        </div>
+                      </Col>
+                    </Row>
+                  </li>
+                </Link>
+              ))}
+          </>
         );
       });
     }
@@ -69,7 +61,10 @@ class CategoryDetail extends React.Component {
           <Col md={3}>
             <div className="tags sidebar-list">
               <h6>Categories</h6>
-              {this.renderCategories()}
+
+              <div className="tags sidebar-list">
+                <ul>{this.renderCategories()}</ul>
+              </div>
             </div>
           </Col>
         </Row>
@@ -79,7 +74,7 @@ class CategoryDetail extends React.Component {
 }
 
 CategoryDetail.propTypes = {
-  kbTopic: PropTypes.object,
+  kbTopic: PropTypes.object
 };
 
 export default CategoryDetail;

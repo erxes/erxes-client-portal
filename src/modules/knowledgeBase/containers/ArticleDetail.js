@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import * as compose from "lodash.flowright";
-import { graphql } from "react-apollo";
-import gql from "graphql-tag";
-import Details from "../components/ArticleDetail";
-import { queries } from "../graphql/index";
+import React from 'react';
+import PropTypes from 'prop-types';
+import * as compose from 'lodash.flowright';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import Details from '../components/ArticleDetail';
+import { queries } from '../graphql/index';
 
 class DetailContainer extends React.Component {
   render() {
@@ -26,22 +26,22 @@ class DetailContainer extends React.Component {
 DetailContainer.propTypes = {
   getArticleDetailQuery: PropTypes.object,
   getKbCategoryQuery: PropTypes.object,
-  queryParams: PropTypes.object,
+  queryParams: PropTypes.object
 };
 
 export default compose(
   graphql(gql(queries.getArticleDetailQuery), {
-    name: "getArticleDetailQuery",
+    name: 'getArticleDetailQuery',
+    skip: ({ queryParams }) => !queryParams._id,
     options: ({ queryParams }) => ({
-      variables: { _id: queryParams._id },
-      skip: !queryParams._id
-    }),
+      variables: { _id: queryParams._id }
+    })
   }),
   graphql(gql(queries.getKbCategoryQuery), {
-    name: "getKbCategoryQuery",
+    name: 'getKbCategoryQuery',
     options: ({ queryParams }) => ({
       variables: { _id: queryParams.catId },
       skip: !queryParams.catId
-    }),
+    })
   })
 )(DetailContainer);

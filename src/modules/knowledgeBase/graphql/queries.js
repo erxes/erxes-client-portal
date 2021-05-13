@@ -1,3 +1,9 @@
+const catFields = `
+  _id
+  title
+  description
+`;
+
 const getKbTopicQuery = `
   query widgetsKnowledgeBaseTopicDetail($_id: String!) {
     widgetsKnowledgeBaseTopicDetail(_id: $_id) {
@@ -6,17 +12,15 @@ const getKbTopicQuery = `
       color
       backgroundImage
       languageCode
+
       categories {
-        _id
-        title
-        description
-        icon
-        numOfArticles
-        authors {
-          details {
-            fullName
-            avatar
-          }
+        ${catFields}
+      }
+
+      parentCategories {
+        ${catFields}
+        childrens {
+          ${catFields}
         }
       }
     }
@@ -37,6 +41,7 @@ const getKbCategoryQuery = `
           avatar
         }
       }
+
       articles {
         _id
         title
