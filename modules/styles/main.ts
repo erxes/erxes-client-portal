@@ -393,10 +393,11 @@ const FormWrapper = styled.div`
 
   h4 {
     color: ${colors.textPrimary};
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
     padding: 20px 40px;
-    background: #fafafa;
+    border-radius: 5px 5px 0 0;
+    background: #f2f5f7;
     border-bottom: 1px solid #eee;
     margin: 0;
   }

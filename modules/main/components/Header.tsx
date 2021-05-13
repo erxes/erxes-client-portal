@@ -22,6 +22,7 @@ import { Config, IUser } from "../../types";
 import Button from "../../common/Button";
 import LoginContainer from "../../../pages/user/login";
 import RegisterContainer from "../../../pages/user/register";
+import { Alert } from "../../utils";
 
 type Props = {
   config: Config;
@@ -41,10 +42,20 @@ function Header({
   const [showlogin, setLogin] = useState(false);
   const [showregister, setRegister] = useState(false);
 
-  const renderLink = (url: string, label: string) => {
+  const onClick = (url) => {
+    if (!currentUser && url.includes("tickets")) {
+      Alert.error("Log in first to create or manage ticket cards");
+
+      return setLogin(true);
+    }
+  };
+
+  const renderMenu = (url: string, label: string) => {
     return (
-      <LinkItem active={router.pathname === url}>
-        <Link href={url}>{label}</Link>
+      <LinkItem active={router.pathname === url} onClick={() => onClick(url)}>
+        <Link href={!currentUser && url.includes("tickets") ? "" : url}>
+          {label}
+        </Link>
       </LinkItem>
     );
   };
@@ -100,9 +111,9 @@ function Header({
             <HeaderTitle>{config.name}</HeaderTitle>
           </HeaderLogo>
           <HeaderLinks>
-            {renderLink("/", config.knowledgeBaseLabel || "Knowledge Base")}
-            {renderLink("/tasks", config.taskLabel || "Task")}
-            {renderLink("/tickets", config.ticketLabel || "Ticket")}
+            {renderMenu("/", config.knowledgeBaseLabel || "Knowledge Base")}
+            {renderMenu("/tasks", config.taskLabel || "Task")}
+            {renderMenu("/tickets", config.ticketLabel || "Ticket")}
           </HeaderLinks>
         </HeaderTop>
         <h3>{config.description}</h3>

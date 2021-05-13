@@ -17,7 +17,7 @@ type Props = {
 
 function ItemContainer({ tasks }: Props) {
   const [taskId, setId] = useState(null);
-  console.log(tasks);
+
   const renderDate = (date) => {
     if (!date) {
       return null;
