@@ -110,10 +110,6 @@ function Register({ renderButton, hasCompany }: Props) {
             values: { ...values, type },
             isSubmitted,
           })}
-          <div className="auth-divider" />
-          <Button btnStyle="primary" block={true} href="/">
-            <Icon icon="left-arrow-from-left" size={15} /> &nbsp; Return to home
-          </Button>
         </FormGroup>
       </>
     );
