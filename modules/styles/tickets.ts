@@ -10,17 +10,29 @@ const TicketRow = styled.div`
 `;
 
 const TicketLabel = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   flex: 0 0 20%;
   font-size: 12px;
   text-transform: uppercase;
-  color: ${colors.colorCoreGray};
+  color: ${colors.textSecondary};
 `;
 
 const TicketContent = styled.div`
   flex: 0 0 80%;
   padding-left: ${dimensions.unitSpacing}px;
   font-size: 14px;
+
+  .buttons {
+    text-align: right;
+    margin-top: ${dimensions.unitSpacing}px;
+  }
+`;
+
+const Description = styled.div`
+  background: #edeef0;
+  font-size: 13px;
+  padding: ${dimensions.unitSpacing}px ${dimensions.coreSpacing}px;
+  border-radius: 5px;
 `;
 
 const Table = styled.table`
@@ -45,18 +57,21 @@ const Table = styled.table`
 `;
 
 const ListHead = styled.div`
-  background-color: ${colors.bgActive};
-  text-transform: uppercase;
-  color: ${colors.colorCoreGray};
-  font-size: 12px;
-  padding: 8px 18px;
   display: flex;
+  background-color: ${colors.bgLight};
+  padding: ${dimensions.unitSpacing + 5}px ${dimensions.coreSpacing}px;
+  border: 1px solid ${colors.borderPrimary};
+  margin-bottom: ${dimensions.unitSpacing}px;
+  border-radius: 5px;
 
   > div {
     display: inline-block;
-    font-weight: 500;
+    font-weight: 600;
     flex: 0 0 15%;
+    color: ${colors.colorCoreGray};
     text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
 
     &:first-child {
       flex: 0 0 55%;
@@ -65,18 +80,15 @@ const ListHead = styled.div`
   }
 `;
 
-const ListBody = styled.div`
-  background: #e5e8ec;
-  padding: ${dimensions.coreSpacing}px;
-`;
+const ListBody = styled.div``;
 
 const ListRow = styled.div`
   display: flex;
   background: ${colors.colorWhite};
   margin-bottom: ${dimensions.unitSpacing}px;
-  border-radius: 5px;
-  padding: ${dimensions.unitSpacing}px;
+  padding: ${dimensions.unitSpacing + 5}px ${dimensions.coreSpacing}px;
   border: 1px solid ${colors.borderPrimary};
+  border-radius: 5px;
   cursor: pointer;
   transition: all ease 0.3s;
 
@@ -84,17 +96,18 @@ const ListRow = styled.div`
     display: inline-block;
     flex: 0 0 15%;
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
 
     &:first-child {
       flex: 0 0 55%;
       text-align: left;
+      font-weight: 600;
       text-transform: capitalize;
     }
   }
 
   &:hover {
-    background: ${colors.bgLight};
+    background: #f5f5f5;
   }
 `;
 
@@ -108,17 +121,17 @@ const TicketComment = styled.div`
     padding-right: 12px;
   }
 
-  margin-bottom: ${dimensions.unitSpacing}px;
+  margin-bottom: ${dimensions.coreSpacing}px;
 `;
 
 const Label = styledTS<{ lblStyle: string }>(styled.div)`
-  border-radius: 14px;
+    border-radius: 14px;
     padding: 3px 9px;
     text-transform: uppercase;
     font-size: 8px;
     display: inline-block;
     line-height: 1.32857143;
-    font-weight: 500;
+    font-weight: 600;
     background: ${(props) =>
       props.lblStyle === "danger"
         ? rgba(colors.colorCoreRed, 0.2)
@@ -127,6 +140,52 @@ const Label = styledTS<{ lblStyle: string }>(styled.div)`
       props.lblStyle === "danger"
         ? darken(colors.colorCoreRed, 50)
         : darken(colors.colorCoreGreen, 50)};
+`;
+
+const CommentWrapper = styled.div`
+  margin: ${dimensions.coreSpacing}px 0;
+`;
+
+const CommentContent = styled.div`
+  background: rgb(239, 241, 243);
+  border-radius: 5px;
+  padding: 8px ${dimensions.unitSpacing}px;
+
+  > h5 {
+    font-size: 12px;
+    color: rgb(58, 89, 153);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .comment {
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 5px;
+  }
+`;
+
+const CreatedUser = styled.div`
+  display: flex;
+
+  > div {
+    flex: 1;
+  }
+
+  > img {
+    width: 34px;
+    height: 34px;
+    border-radius: 34px;
+    border: 2px solid #eee;
+    margin-right: ${dimensions.unitSpacing}px;
+  }
+
+  span {
+    font-size: 11px;
+    color: ${colors.colorCoreGray};
+    font-weight: 500;
+    padding-left: ${dimensions.unitSpacing}px;
+  }
 `;
 
 export {
@@ -138,6 +197,10 @@ export {
   ListHead,
   ListBody,
   ListRow,
+  Description,
   TicketComment,
   TicketDetailContent,
+  CommentWrapper,
+  CommentContent,
+  CreatedUser,
 };

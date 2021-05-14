@@ -89,9 +89,6 @@ export default class TicketHeader extends React.Component<Props, State> {
             />
           </SearchContainer>
           <div className="right">
-            <Button btnStyle="primary" uppercase={false}>
-              <Icon icon="file-check" /> Check Ticket Status
-            </Button>
             <Button
               btnStyle="primary"
               uppercase={false}

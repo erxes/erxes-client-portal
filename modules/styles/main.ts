@@ -397,7 +397,7 @@ const FormWrapper = styled.div`
     font-size: 18px;
     padding: 20px 40px;
     border-radius: 5px 5px 0 0;
-    background: #f2f5f7;
+    background: ${colors.bgLight};
     border-bottom: 1px solid #eee;
     margin: 0;
   }

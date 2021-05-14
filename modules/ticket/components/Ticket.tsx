@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { StageTitle } from "../../styles/tasks";
 import { ListHead, ListBody, ListRow, Label } from "../../styles/tickets";
-import Button from "../../common/Button";
-import Link from "next/link";
 import Detail from "../containers/Detail";
 import { IUser } from "../../types";
 import dayjs from "dayjs";
-import LoginContainer from "../../user/containers/Login";
 import PriorityIndicator from "../../common/PriorityIndicator";
 
 type Props = {
@@ -17,12 +13,6 @@ type Props = {
 
 export default function Ticket({ tickets, currentUser }: Props) {
   const [ticketId, setId] = useState(null);
-
-  if (!currentUser) {
-    return (
-      <LoginContainer infoText="Log in first to create or manage ticket cards" />
-    );
-  }
 
   if (!tickets || tickets.length === 0) {
     return null;

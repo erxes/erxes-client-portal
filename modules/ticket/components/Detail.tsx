@@ -6,12 +6,18 @@ import {
   TicketContent,
   TicketComment,
   TicketDetailContent,
+  Description,
+  CommentWrapper,
+  CreatedUser,
+  CommentContent,
 } from "../../styles/tickets";
 import { IUser } from "../../types";
 import Button from "../../common/Button";
 import Modal from "../../common/Modal";
 import dayjs from "dayjs";
 import { FormWrapper } from "../../styles/main";
+import PriorityIndicator from "../../common/PriorityIndicator";
+import Icon from "../../common/Icon";
 
 type Props = {
   item?: any;
@@ -38,11 +44,28 @@ export default class TicketDetail extends React.Component<
     };
   }
 
-  renderRow = (label: string, text: string) => {
+  renderContent(label, text) {
+    switch (label) {
+      case "Priority:":
+        return (
+          <>
+            <PriorityIndicator value={text} /> {text}
+          </>
+        );
+      case "Description:":
+        return <Description>{text}</Description>;
+      default:
+        return text;
+    }
+  }
+
+  renderRow = (icon: string, label: string, text: string) => {
     return (
       <TicketRow>
-        <TicketLabel>{label}</TicketLabel>
-        <TicketContent>{text}</TicketContent>
+        <TicketLabel>
+          <Icon icon={icon} size={14} /> {label}
+        </TicketLabel>
+        <TicketContent>{this.renderContent(label, text)}</TicketContent>
       </TicketRow>
     );
   };
@@ -57,6 +80,37 @@ export default class TicketDetail extends React.Component<
     this.setState({ content: "" });
   };
 
+  renderComments(item) {
+    const comments = item.comments || [];
+
+    return (
+      <CommentWrapper>
+        {comments.map((comment) => (
+          <TicketComment key={comment._id}>
+            <CreatedUser>
+              <img
+                src="https://erxes.io/static/images/team/square/mungunshagai.jpg"
+                alt="profile"
+              />
+              <div>
+                <CommentContent>
+                  <h5>Anu-ujin Bat-Ulzii</h5>
+                  <div
+                    className="comment"
+                    dangerouslySetInnerHTML={{ __html: comment.content }}
+                  />
+                </CommentContent>
+                <span>
+                  Reported {dayjs(comment.createdAt).format("YYYY-MM-DD HH:mm")}
+                </span>
+              </div>
+            </CreatedUser>
+          </TicketComment>
+        ))}
+      </CommentWrapper>
+    );
+  }
+
   render() {
     const currentUser = this.props.currentUser || ({} as IUser);
     const { item, onClose } = this.props;
@@ -66,41 +120,43 @@ export default class TicketDetail extends React.Component<
       return null;
     }
 
-    const comments = item.comments || [];
-
     const content = () => (
       <FormWrapper>
         <h4>{item.name}</h4>
         <TicketDetailContent>
-          {this.renderRow("Requestor:", email)}
-          {this.renderRow("Priority:", item.priority)}
-          {this.renderRow("Description:", item.description)}
+          {this.renderRow("file-question-alt", "Requestor:", email)}
+          {this.renderRow("chart-growth", "Priority:", item.priority)}
+          {this.renderRow(
+            "align-left-justify",
+            "Description:",
+            item.description
+          )}
 
           <TicketRow>
-            <TicketLabel>Activity:</TicketLabel>
+            <TicketLabel>
+              {" "}
+              <Icon icon="puzzle" size={14} />
+              &nbsp; Activity:
+            </TicketLabel>
             <TicketContent>
               <TextArea
                 onChange={this.handleChange}
-                placeholde="comment ..."
+                placeholder="Write comment..."
                 value={this.state.content}
               />
-
-              <Button
-                btnStyle="success"
-                size="small"
-                onClick={this.createComment.bind(this, email)}
-              >
-                Reply
-              </Button>
-
-              {comments.map((comment) => (
-                <TicketComment key={comment._id}>
-                  <span>
-                    {dayjs(comment.createdAt).format("YYYY-MM-DD HH:mm")}
-                  </span>
-                  <div dangerouslySetInnerHTML={{ __html: comment.content }} />
-                </TicketComment>
-              ))}
+              {this.state.content.length !== 0 && (
+                <div className="buttons">
+                  <Button
+                    btnStyle="success"
+                    size="small"
+                    icon="message"
+                    onClick={this.createComment.bind(this, email)}
+                  >
+                    Reply
+                  </Button>
+                </div>
+              )}
+              {this.renderComments(item)}
             </TicketContent>
           </TicketRow>
         </TicketDetailContent>
