@@ -11,7 +11,7 @@ import { sendGraphQLRequest } from '../../utils';
 import {
   clientPortalCreateCustomer,
   clientPortalCreateCompany
-} from './graphql/mutations';
+} from '../../graphql/mutations';
 
 const SALT_WORK_FACTOR = 10;
 
@@ -110,7 +110,7 @@ export const loadClass = () => {
       const { companyName, firstName, lastName, type } = doc;
 
       if (type === USER_LOGIN_TYPES.COMPANY) {
-        await sendGraphQLRequest({
+        const company: { _id?: string } = await sendGraphQLRequest({
           query: clientPortalCreateCompany,
           name: 'clientPortalCreateCompany',
           variables: {
@@ -119,8 +119,15 @@ export const loadClass = () => {
             companyName
           }
         });
+
+        if (company && company._id) {
+          await Users.updateOne(
+            { _id: user._id },
+            { $set: { erxesCompanyId: company._id } }
+          );
+        }
       } else {
-        await sendGraphQLRequest({
+        const customer: { _id?: string } = await sendGraphQLRequest({
           query: clientPortalCreateCustomer,
           name: 'clientPortalCreateCustomer',
           variables: {
@@ -130,6 +137,13 @@ export const loadClass = () => {
             lastName
           }
         });
+
+        if (customer && customer._id) {
+          await Users.updateOne(
+            { _id: user._id },
+            { $set: { erxesCustomerId: customer._id } }
+          );
+        }
       }
 
       return user._id;
