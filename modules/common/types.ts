@@ -1,3 +1,10 @@
+export interface IAttachment {
+  name: string;
+  type: string;
+  url: string;
+  size?: number;
+}
+
 export type IFormProps = {
   errors: any;
   values: any;

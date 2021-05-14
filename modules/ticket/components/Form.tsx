@@ -92,7 +92,7 @@ export default function TicketForm({ handleSubmit }: Props) {
             uppercase={false}
             icon="check-circle"
           >
-            Submit
+            Save
           </Button>
         </div>
       </div>

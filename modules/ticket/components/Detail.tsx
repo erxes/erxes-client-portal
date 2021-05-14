@@ -18,6 +18,8 @@ import dayjs from "dayjs";
 import { FormWrapper } from "../../styles/main";
 import PriorityIndicator from "../../common/PriorityIndicator";
 import Icon from "../../common/Icon";
+import Uploader from "../../common/Uploader";
+import { IAttachment } from "../../common/types";
 
 type Props = {
   item?: any;
@@ -43,6 +45,18 @@ export default class TicketDetail extends React.Component<
       content: "",
     };
   }
+
+  handleChange = (e) => {
+    this.setState({ content: e.target.value });
+  };
+
+  onChangeAttachment = (files: IAttachment[]) => console.log(files);
+
+  createComment = (email: string) => {
+    this.props.handleSubmit({ content: this.state.content, email });
+
+    this.setState({ content: "" });
+  };
 
   renderContent(label, text) {
     switch (label) {
@@ -70,15 +84,20 @@ export default class TicketDetail extends React.Component<
     );
   };
 
-  handleChange = (e) => {
-    this.setState({ content: e.target.value });
-  };
-
-  createComment = (email: string) => {
-    this.props.handleSubmit({ content: this.state.content, email });
-
-    this.setState({ content: "" });
-  };
+  renderAttachments(item) {
+    return (
+      <TicketRow>
+        <TicketLabel>
+          {" "}
+          <Icon icon="paperclip" size={14} />
+          &nbsp; Attachments:
+        </TicketLabel>
+        <TicketContent>
+          <Uploader defaultFileList={[]} onChange={this.onChangeAttachment} />
+        </TicketContent>
+      </TicketRow>
+    );
+  }
 
   renderComments(item) {
     const comments = item.comments || [];
@@ -131,6 +150,7 @@ export default class TicketDetail extends React.Component<
             "Description:",
             item.description
           )}
+          {this.renderAttachments(item)}
 
           <TicketRow>
             <TicketLabel>
