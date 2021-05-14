@@ -52,6 +52,10 @@ export default class TicketDetail extends React.Component<
 
   onChangeAttachment = (files: IAttachment[]) => console.log(files);
 
+  onEditComment = (comment) => {
+    this.setState({ content: comment.content });
+  };
+
   createComment = (email: string) => {
     this.props.handleSubmit({ content: this.state.content, email });
 
@@ -60,14 +64,12 @@ export default class TicketDetail extends React.Component<
 
   renderContent(label, text) {
     switch (label) {
-      case "Priority:":
+      case "Priority":
         return (
           <>
             <PriorityIndicator value={text} /> {text}
           </>
         );
-      case "Description:":
-        return <Description>{text}</Description>;
       default:
         return text;
     }
@@ -90,7 +92,7 @@ export default class TicketDetail extends React.Component<
         <TicketLabel>
           {" "}
           <Icon icon="paperclip" size={14} />
-          &nbsp; Attachments:
+          &nbsp; Attachments
         </TicketLabel>
         <TicketContent>
           <Uploader defaultFileList={[]} onChange={this.onChangeAttachment} />
@@ -123,6 +125,10 @@ export default class TicketDetail extends React.Component<
                   Reported {dayjs(comment.createdAt).format("YYYY-MM-DD HH:mm")}
                 </span>
               </div>
+              <div className="actions">
+                <span onClick={() => this.onEditComment(comment)}>Edit</span>
+                <span>Delete</span>
+              </div>
             </CreatedUser>
           </TicketComment>
         ))}
@@ -143,11 +149,11 @@ export default class TicketDetail extends React.Component<
       <FormWrapper>
         <h4>{item.name}</h4>
         <TicketDetailContent>
-          {this.renderRow("file-question-alt", "Requestor:", email)}
-          {this.renderRow("chart-growth", "Priority:", item.priority)}
+          {this.renderRow("file-question-alt", "Requestor", email)}
+          {this.renderRow("chart-growth", "Priority", item.priority)}
           {this.renderRow(
             "align-left-justify",
-            "Description:",
+            "Description",
             item.description
           )}
           {this.renderAttachments(item)}
@@ -155,13 +161,13 @@ export default class TicketDetail extends React.Component<
           <TicketRow>
             <TicketLabel>
               {" "}
-              <Icon icon="puzzle" size={14} />
-              &nbsp; Activity:
+              <Icon icon="comment-1" size={14} />
+              &nbsp; Activity
             </TicketLabel>
             <TicketContent>
               <TextArea
                 onChange={this.handleChange}
-                placeholder="Write comment..."
+                placeholder="Write a comment..."
                 value={this.state.content}
               />
               {this.state.content.length !== 0 && (
@@ -172,7 +178,7 @@ export default class TicketDetail extends React.Component<
                     icon="message"
                     onClick={this.createComment.bind(this, email)}
                   >
-                    Reply
+                    Save
                   </Button>
                 </div>
               )}

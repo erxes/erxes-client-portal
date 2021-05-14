@@ -14,7 +14,11 @@ const TicketLabel = styled.div`
   flex: 0 0 20%;
   font-size: 12px;
   text-transform: uppercase;
-  color: ${colors.textSecondary};
+  color: ${colors.colorCoreGray};
+
+  > i {
+    margin-right: 5px;
+  }
 `;
 
 const TicketContent = styled.div`
@@ -167,6 +171,7 @@ const CommentContent = styled.div`
 
 const CreatedUser = styled.div`
   display: flex;
+  position: relative;
 
   > div {
     flex: 1;
@@ -185,6 +190,35 @@ const CreatedUser = styled.div`
     color: ${colors.colorCoreGray};
     font-weight: 500;
     padding-left: ${dimensions.unitSpacing}px;
+  }
+
+  .actions {
+    position: absolute;
+    right: 0;
+    top: 3px;
+    visibility: hidden;
+    text-transform: uppercase;
+
+    > span {
+      cursor: pointer;
+      font-weight: 600;
+      padding-left: 0;
+      transition: all ease 0.1s;
+
+      &:hover {
+        color: ${colors.colorCoreRed};
+
+        &:first-child {
+          color: ${colors.colorCoreBlue};
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .actions {
+      visibility: visible;
+    }
   }
 `;
 
