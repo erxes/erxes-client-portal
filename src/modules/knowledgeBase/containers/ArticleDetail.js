@@ -8,10 +8,10 @@ import { queries } from '../graphql/index';
 
 class DetailContainer extends React.Component {
   render() {
-    const { getArticleDetailQuery, getKbCategoryQuery } = this.props;
+    const { getArticleDetailQuery = {}, getKbCategoryQuery = {} } = this.props;
 
     if (getKbCategoryQuery.loading || getArticleDetailQuery.loading) {
-      return <div></div>;
+      return null;
     }
 
     const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};
@@ -39,9 +39,9 @@ export default compose(
   }),
   graphql(gql(queries.getKbCategoryQuery), {
     name: 'getKbCategoryQuery',
+    skip: ({ queryParams }) => !queryParams.catId,
     options: ({ queryParams }) => ({
-      variables: { _id: queryParams.catId },
-      skip: !queryParams.catId
+      variables: { _id: queryParams.catId }
     })
   })
 )(DetailContainer);
