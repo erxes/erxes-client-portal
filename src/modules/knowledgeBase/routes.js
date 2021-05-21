@@ -3,7 +3,7 @@ import { Redirect, Route } from 'react-router-dom';
 import Categories from './containers/CategoryList';
 import queryString from 'query-string';
 import Details from './containers/ArticleDetail';
-import Layout from "../layouts/components/Layout";
+import Layout from '../layouts/components/Layout';
 import ArticleList from './containers/ArticleList';
 import CategoryDetail from './containers/CategoryDetail';
 import { getEnv } from '../../apolloClient';
@@ -13,7 +13,6 @@ const { REACT_APP_TOPIC_ID } = getEnv();
 const articleDetails = ({ history, location }) => {
   const queryParams = queryString.parse(location.search);
   const { searchValue } = queryParams;
-  
 
   if (searchValue) {
     return (
@@ -27,7 +26,15 @@ const articleDetails = ({ history, location }) => {
     );
   }
 
-  return <Layout headingSpacing={false}><Details queryParams={queryParams} history={history} /></Layout>;
+  return (
+    <Layout headingSpacing={false}>
+      <Details
+        queryParams={queryParams}
+        history={history}
+        location={location}
+      />
+    </Layout>
+  );
 };
 
 const categories = ({ history, location }) => {
@@ -90,7 +97,7 @@ const index = () => {
 };
 
 const routes = () => [
-  <Route exact={true} path="/" key="root" render={index} />,
+  <Route exact path="/" key="root" render={index} />,
   <Route
     path="/knowledge-base"
     exact

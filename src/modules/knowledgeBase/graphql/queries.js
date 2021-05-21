@@ -1,3 +1,37 @@
+const categoryFields = `
+  _id
+  title
+  description
+  icon
+  numOfArticles
+  authors {
+    details {
+      fullName
+      avatar
+    }
+  }
+`;
+
+const articleFields = `
+  _id
+  title
+  summary
+  content
+  status
+  reactionChoices
+  reactionCounts
+  createdBy
+  createdUser {
+    details {
+      fullName
+      avatar
+    }
+  }
+  createdDate
+  modifiedBy
+  modifiedDate
+`;
+
 const getKbTopicQuery = `
   query widgetsKnowledgeBaseTopicDetail($_id: String!) {
     widgetsKnowledgeBaseTopicDetail(_id: $_id) {
@@ -8,17 +42,15 @@ const getKbTopicQuery = `
       backgroundImage
       languageCode
       categories {
-        _id
-        title
-        description
-        icon
-        numOfArticles
-        authors {
-          details {
-            fullName
-            avatar
-          }
+        ${categoryFields}
+      }
+      parentCategories {
+        ${categoryFields}
+
+        childrens {
+          ${categoryFields}
         }
+
         articles{
           _id
           title        
@@ -31,60 +63,18 @@ const getKbTopicQuery = `
 const getKbCategoryQuery = `
   query knowledgeBaseCategoryDetail($_id: String!) {
     knowledgeBaseCategoryDetail(_id: $_id) {
-      _id
-      title
-      description
-      numOfArticles
-      icon
-      authors {
-        details {
-          fullName
-          avatar
-        }
-      }
+      ${categoryFields}
       articles {
-        _id
-        title
-        summary
-        content
-        reactionChoices
-        createdBy
-        createdDate
-        modifiedBy
-        modifiedDate
-        createdUser {
-          details {
-            fullName
-            avatar
-          }
-        }
+        ${articleFields}
       }
     }
   }
 `;
 
-
-
 const getArticleDetailQuery = `
   query knowledgeBaseArticleDetail($_id: String!) {
     knowledgeBaseArticleDetail(_id: $_id) {
-      _id
-      title
-      summary
-      content
-      status
-      reactionChoices
-      reactionCounts
-      createdBy
-      createdUser {
-        details {
-          fullName
-          avatar
-        }
-      }
-      createdDate
-      modifiedBy
-      modifiedDate
+      ${articleFields}
     }
   }
 `;
@@ -92,20 +82,7 @@ const getArticleDetailQuery = `
 const widgetsKnowledgeBaseArticles = `
   query widgetsKnowledgeBaseArticles($topicId: String!, $searchString: String!) {
     widgetsKnowledgeBaseArticles(topicId: $topicId, searchString: $searchString) {
-      _id
-      title
-      summary
-      content
-      createdBy
-      createdDate
-      modifiedBy
-      modifiedDate
-      createdUser {
-        details {
-          fullName
-          avatar
-        }
-      }
+      ${articleFields}
     }
   }
 `;
@@ -113,6 +90,6 @@ const widgetsKnowledgeBaseArticles = `
 export default {
   getKbTopicQuery,
   getKbCategoryQuery,
-  getArticleDetailQuery,  
+  getArticleDetailQuery,
   widgetsKnowledgeBaseArticles
 };

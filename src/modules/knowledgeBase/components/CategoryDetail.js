@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import SectionHeader from "../../common/components/SectionHeader";
-import ArticleList from "./ArticleList";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import SectionHeader from '../../common/components/SectionHeader';
+import ArticleList from './ArticleList';
 
 class CategoryDetail extends React.Component {
-  isActive = (categoryId) => {
+  isActive = categoryId => {
     if (categoryId === this.props.category._id) {
-      return "active";
+      return 'active';
     }
 
     return;
@@ -16,33 +16,44 @@ class CategoryDetail extends React.Component {
 
   renderCategories = () => {
     const { kbTopic } = this.props;
-    const { categories } = kbTopic;
+    const { parentCategories } = kbTopic;
 
+    const renderCategory = cat => {
+      return (
+        <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
+          <div className="tags sidebar-list">
+            <ul>
+              <li className={this.isActive(cat._id)}>
+                <div className="sidebar-item">
+                  <div className="icon-wrapper">
+                    <i className={`icon-${cat.icon}`} />
+                  </div>
+                  <h6>{cat.title}</h6>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </Link>
+      );
+    };
 
-    if (categories) {
+    if (parentCategories) {
       return (
         <>
-          {categories.map((cat) => (
-            <Link
-              key={cat._id}
-              to={`/knowledge-base/category/details/${cat._id}`}
-            >
-              <div className="tags sidebar-list">
-                <ul>
-                  <li className={this.isActive(cat._id)}>
-                    <div className="sidebar-item">
-                      <div className="icon-wrapper">
-                        <i className={`icon-${cat.icon}`}></i>
-                      </div>
-                      <h6>{cat.title}</h6>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </Link>
-          ))}
+          {parentCategories.map(cat => {
+            return (
+              <>
+                {renderCategory(cat)}
+                {cat.childrens && (
+                  <div className="sub-categories">
+                    {cat.childrens.map(child => renderCategory(child))}
+                  </div>
+                )}
+              </>
+            );
+          })}
         </>
-      )
+      );
     }
     return;
   };
@@ -57,9 +68,7 @@ class CategoryDetail extends React.Component {
         <Row className="category-detail">
           <Col md={3}>
             <div className="sidebar-wrap">
-              <div className="tags sidebar-list">
-                {this.renderCategories()}
-              </div>
+              <div className="tags sidebar-list">{this.renderCategories()}</div>
             </div>
           </Col>
           <Col md={9}>
@@ -76,7 +85,7 @@ class CategoryDetail extends React.Component {
 }
 
 CategoryDetail.propTypes = {
-  kbTopic: PropTypes.object,
+  kbTopic: PropTypes.object
 };
 
 export default CategoryDetail;

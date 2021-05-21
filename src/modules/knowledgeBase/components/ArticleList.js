@@ -1,8 +1,7 @@
-import React from "react";
-import * as dayjs from "dayjs";
-import PropTypes from "prop-types";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class Lists extends React.Component {
   renderSearchResult = () => {
@@ -28,22 +27,21 @@ class Lists extends React.Component {
   };
 
   render() {
-    const { articles, catId } = this.props;    
+    const { articles, catId } = this.props;
     return (
       <Container className="knowledge-base" fluid="sm">
         <Row>
           <Col>
             {this.renderSearchResult()}
-            {articles.map((article) => (
-                  <Link
-                    to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
-                    key={article._id}
-                  >
-              <div className="kbase-lists card tab-content">
+            {articles.map(article => (
+              <Link
+                to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
+                key={article._id}
+              >
+                <div className="kbase-lists card tab-content">
                   <h5>{article.title}</h5>
                   <p>{article.summary}</p>
-                
-              </div>
+                </div>
               </Link>
             ))}
           </Col>
@@ -54,7 +52,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
-  articles: PropTypes.array,
+  articles: PropTypes.array
 };
 
 export default Lists;
