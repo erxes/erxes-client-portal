@@ -57,7 +57,7 @@ class Categories extends React.Component {
   };
 
   renderCategories = () => {
-    const { kbTopic } = this.props;
+    const { kbTopic } = this.props;    
     const { parentCategories = [] } = kbTopic;
 
     const specialCategory = parentCategories[0];

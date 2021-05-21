@@ -249,9 +249,11 @@ span {
         font-size: 13px;
         margin-top: 10px;
       }
-      &:hover{
-        .more{
-          color: crimson;
+
+      &:hover {
+        
+        .more {
+          color: darkblue;
         }
       }
     }
@@ -326,13 +328,15 @@ span {
           position: absolute;
           bottom: 15px;
           left: 52px;
+          line-height: 1;
+          transition: all 0.3s ease-in-out;
         }
 
-        &:hover {
-
-          h5,
-          .more {
-            color: crimson;
+        &:hover {                    
+          .more {            
+            border-left: 2px solid #333;
+            padding-left: 5px;
+            color: darkblue;
           }
         }
       }
