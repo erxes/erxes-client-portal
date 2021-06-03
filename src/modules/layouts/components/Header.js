@@ -28,11 +28,11 @@ function Header(props) {
             </Col>
             <Col md="auto" className="header-links">
               <a
-                href="https://erxes.io/"
+                href="http://www.apu.mn/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className=" icon-arrow-up-right"></i> erxes рүү шилжих
+                <i className=" icon-arrow-up-right"></i> Apu.mn шилжих
               </a>
             </Col>
           </Row>
