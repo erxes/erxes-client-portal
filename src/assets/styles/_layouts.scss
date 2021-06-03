@@ -19,8 +19,9 @@
 .head {
   box-shadow: $shadow;
   background-color: $mainColor;
-  background: linear-gradient(173deg, rgba(223, 32, 40, 1) 0%, rgba(37, 59, 134, 1) 99%);
-  ;
+  background-image: url(../images/glowing-red-and-blue-wave-background.jpg);
+  background-position: center center !important;
+  background-size: cover !important;
 }
 
 .header {
@@ -68,6 +69,7 @@
 
 .footer {
   background: $mainColor;
+  //background: linear-gradient(173deg, rgba(223,32,40,1) 0%, rgba(37,59,134,1) 99%);;
   padding: 40px 0;
   color: $white;
 
