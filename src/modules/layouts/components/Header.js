@@ -19,7 +19,7 @@ const { REACT_APP_API_URL } = getEnv();
 function Header(props) {
 
   const { backgroundImage, color } = props.kbTopic || {};
-  const backImg = backgroundImage && `url(${REACT_APP_API_URL}/read-file?key=${backgroundImage})`;
+  const backImg = backgroundImage && `url(${backgroundImage})`;
   const backColor = color && color;
 
   return (
