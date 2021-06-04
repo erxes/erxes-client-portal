@@ -3,19 +3,7 @@ import { Row, Col, Container } from 'react-bootstrap';
 import Search from '../../common/components/Search';
 import Logo from '../../../assets/images/logos/apu-logo.png';
 import { Link } from 'react-router-dom';
-export const getEnv = () => {
-  const envs = {};
 
-  for (const envMap of window.envMaps) {
-    envs[envMap.name] = localStorage.getItem(
-      `erxes_client_portal_env_${envMap.name}`
-    );
-  }
-
-  return envs;
-};
-
-const { REACT_APP_API_URL } = getEnv();
 function Header(props) {
 
   const { backgroundImage, color } = props.kbTopic || {};
