@@ -1,12 +1,12 @@
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import Categories from './containers/CategoryList';
-import queryString from 'query-string';
-import Details from './containers/ArticleDetail';
-import Layout from '../layouts/components/Layout';
-import ArticleList from './containers/ArticleList';
-import CategoryDetail from './containers/CategoryDetail';
-import { getEnv } from '../../apolloClient';
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
+import Categories from "./containers/CategoryList";
+import queryString from "query-string";
+import Details from "./containers/ArticleDetail";
+import Layout from "../layouts/components/Layout";
+import ArticleList from "./containers/ArticleList";
+import CategoryDetail from "./containers/CategoryDetail";
+import { getEnv } from "../../apolloClient";
 
 const { REACT_APP_TOPIC_ID } = getEnv();
 
@@ -52,8 +52,25 @@ const categories = ({ history, location }) => {
       </Layout>
     );
   }
+
   return (
-    <Layout headingSpacing={true}>
+    <Layout
+      headingSpacing={true}
+      forms={[
+        {
+          brand_id: "arcXxZ",
+          form_id: "ThgJPg",
+        },
+        {
+          brand_id: "arcXxZ",
+          form_id: "xKQ7FT",
+        },
+        {
+          brand_id: "arcXxZ",
+          form_id: "obAZPp",
+        },
+      ]}
+    >
       <Categories
         queryParams={queryParams}
         history={history}
@@ -115,7 +132,7 @@ const routes = () => [
     exact
     key="knowledge-base/article/detail"
     render={articleDetails}
-  />
+  />,
 ];
 
 export default routes;

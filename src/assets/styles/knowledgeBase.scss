@@ -107,7 +107,7 @@
   }
 
   &:first-child {
-    >img {
+    > img {
       margin-left: 0;
     }
   }
@@ -225,13 +225,11 @@ span {
         min-height: 160px;
       }
 
-
       .tab-content {
         text-align: center;
 
         h5 {
           font-size: 14px;
-
         }
 
         p {
@@ -251,7 +249,6 @@ span {
       }
 
       &:hover {
-        
         .more {
           color: darkblue;
         }
@@ -332,12 +329,35 @@ span {
           transition: all 0.3s ease-in-out;
         }
 
-        &:hover {  
-          h5{
+        &:hover {
+          h5 {
             color: #666;
-          }                  
-          .more {                        
+          }
+          .more {
             color: darkblue;
+          }
+        }
+      }
+
+      &.forms {
+        .card {
+          justify-content: space-between;
+
+          .tab-content {
+            text-align: center;
+          }
+
+          button {
+            font-size: 13px;
+
+            &:hover {
+              background: transparent;
+            }
+
+            &:active,
+            &:focus {
+              box-shadow: none;
+            }
           }
         }
       }
@@ -363,7 +383,7 @@ span {
       height: 100%;
 
       &::before {
-        content: '';
+        content: "";
         height: 100%;
         border-left: 2px solid #d6d6d6;
         position: absolute;
@@ -380,7 +400,7 @@ span {
         }
 
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           left: -20px;
           height: 100%;

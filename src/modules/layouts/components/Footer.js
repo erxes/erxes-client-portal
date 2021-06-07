@@ -7,28 +7,16 @@ function Footer(props) {
   return (
     <section className="footer align-center" style={{ background: color }}>
       <Container fluid="sm">
-        <h4>Community</h4>
+        <h4>Холбоо барих</h4>
         <p className="desc">
-          Still have questions? Start a discussion, browse solutions, and get
-          tips from erxes experts.
+          Танд асуулт байна уу? Хэлэлцүүлэг эхлүүлж, шийдлүүдийг хайж, АПУ-ийн
+          мэргэжилтнүүдээс зөвлөгөө аваарай.
         </p>
         <div className="align-center">
           <ul className="socials">
             <li>
               <a
-                href="https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://erxes.io/static/images/logo/rocketchat-icon.png"
-                  alt="rocketchat"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://fb.erxes.io/"
+                href="https://www.facebook.com/APUCompany"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -40,19 +28,7 @@ function Footer(props) {
             </li>
             <li>
               <a
-                href="https://github.com/erxes"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://erxes.io/static/images/logo/github.png"
-                  alt="github"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://twitter.com/erxeshq"
+                href="https://twitter.com/APU_Company"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Avatar from '../../../assets/images/avatar-colored.svg';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import Avatar from "../../../assets/images/avatar-colored.svg";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Categories extends React.Component {
-  renderAuthors = authors => {
+  renderAuthors = (authors) => {
     if (authors.length > 3) {
       return (
         <>
@@ -20,12 +20,12 @@ class Categories extends React.Component {
     return authors.map((author, index) => (
       <ol key={index}>
         {author.details.fullName}
-        {authors.length > 1 && ', '}
+        {authors.length > 1 && ", "}
       </ol>
     ));
   };
 
-  renderAvatars = cat => {
+  renderAvatars = (cat) => {
     return (
       <div className="avatars">
         {cat.authors.map((author, index) => (
@@ -45,7 +45,7 @@ class Categories extends React.Component {
         <div className="avatar-info">
           <div>
             <div className="darker">{cat.numOfArticles}</div> articles in this
-            category{' '}
+            category{" "}
           </div>
           <div>
             <div className="darker">Written by: </div>
@@ -56,15 +56,32 @@ class Categories extends React.Component {
     );
   };
 
+  renderForm(name, formId) {
+    const { color } = this.props.kbTopic || {};
+
+    return (
+      <Card>
+        <div className="tab-content">
+          <h5>{name}</h5>
+        </div>
+        <Button
+          variant="outline-primary"
+          data-erxes-modal={formId}
+          style={{ color, borderColor: color }}
+        >
+          Дэлгэрэнгүй
+        </Button>
+      </Card>
+    );
+  }
+
   renderCategories = () => {
-    const { kbTopic } = this.props;    
+    const { kbTopic } = this.props;
     const { parentCategories = [] } = kbTopic;
 
-    const specialCategory = parentCategories[0];
-    const categories = parentCategories.slice(1);
     const categoryUrl = `/knowledge-base/category/details/`;
 
-    const detail = cat => {
+    const detail = (cat) => {
       return (
         <Link
           to={`${categoryUrl}${cat._id}`}
@@ -79,32 +96,28 @@ class Categories extends React.Component {
               <p>{cat.description}</p>
             </div>
           </div>
-          <div className="more">{'Дэлгэрэнгүй'}</div>
+          <div className="more">{"Дэлгэрэнгүй"}</div>
         </Link>
       );
     };
 
     return (
       <>
-        {specialCategory && (
-          <Container className="knowledge-base promoted" fluid="sm">
-            <div className="category-knowledge-list">
-              <h2 className="list-category-title">
-                <Link to={`${categoryUrl}${specialCategory._id}`}>
-                  {specialCategory.title}
-                </Link>
-              </h2>
-              <div className="promoted-wrap">
-                {specialCategory.childrens &&
-                  specialCategory.childrens.map(cat => (
-                    <Card key={cat._id}>{detail(cat)}</Card>
-                  ))}
-              </div>
+        <Container className="knowledge-base promoted" fluid="sm">
+          <div className="category-knowledge-list">
+            <h2 className="list-category-title">1. САНАЛ ХҮСЭЛТ</h2>
+            <div className="promoted-wrap forms">
+              {this.renderForm(
+                "Ажилтан, үйл ажиллагаатай холбоотой санал хүсэлт",
+                "ThgJPg"
+              )}
+              {this.renderForm("Гомдлын үл тохирлын маягт", "xKQ7FT")}
+              {this.renderForm("Торхтой шар айрагны маягт", "obAZPp")}
             </div>
-          </Container>
-        )}
+          </div>
+        </Container>
 
-        {categories.map(parentCat => (
+        {parentCategories.map((parentCat) => (
           <Container className="knowledge-base" fluid="sm" key={parentCat._id}>
             <div className="category-knowledge-list">
               <h2 className="list-category-title">
@@ -114,7 +127,7 @@ class Categories extends React.Component {
               </h2>
               <Row>
                 {parentCat.childrens &&
-                  parentCat.childrens.map(cat => (
+                  parentCat.childrens.map((cat) => (
                     <Col md={4} key={cat._id}>
                       <Card className="category-item">{detail(cat)}</Card>
                     </Col>
@@ -128,13 +141,13 @@ class Categories extends React.Component {
   };
 
   render() {
-    return <>{this.renderCategories()}</>;
+    return this.renderCategories();
   }
 }
 
 Categories.propTypes = {
   kbTopic: PropTypes.object,
-  articlesQuery: PropTypes.object
+  articlesQuery: PropTypes.object,
 };
 
 export default Categories;

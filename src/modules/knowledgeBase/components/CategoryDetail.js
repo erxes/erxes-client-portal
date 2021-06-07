@@ -1,29 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import SectionHeader from '../../common/components/SectionHeader';
-import ArticleList from './ArticleList';
+import React from "react";
+import PropTypes from "prop-types";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import SectionHeader from "../../common/components/SectionHeader";
+import ArticleList from "./ArticleList";
 
 class CategoryDetail extends React.Component {
-  isActive = categoryId => {
-    if (categoryId === this.props.category._id) {
-      return 'active';
-    }
-
-    return;
-  };
-
   renderCategories = () => {
-    const { kbTopic } = this.props;
+    const { kbTopic, category } = this.props;
     const { parentCategories } = kbTopic;
 
-    const renderCategory = cat => {
+    const renderCategory = (cat) => {
       return (
         <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
           <div className="tags sidebar-list">
             <ul>
-              <li className={this.isActive(cat._id)}>
+              <li className={cat._id === category._id ? "active" : ""}>
                 <div className="sidebar-item">
                   <div className="icon-wrapper">
                     <i className={`icon-${cat.icon}`} />
@@ -40,18 +32,16 @@ class CategoryDetail extends React.Component {
     if (parentCategories) {
       return (
         <>
-          {parentCategories.map(cat => {
-            return (
-              <>
-                {renderCategory(cat)}
-                {cat.childrens && (
-                  <div className="sub-categories">
-                    {cat.childrens.map(child => renderCategory(child))}
-                  </div>
-                )}
-              </>
-            );
-          })}
+          {parentCategories.map((cat) => (
+            <React.Fragment key={cat._id}>
+              {renderCategory(cat)}
+              {cat.childrens && (
+                <div className="sub-categories">
+                  {cat.childrens.map((child) => renderCategory(child))}
+                </div>
+              )}
+            </React.Fragment>
+          ))}
         </>
       );
     }
@@ -85,7 +75,7 @@ class CategoryDetail extends React.Component {
 }
 
 CategoryDetail.propTypes = {
-  kbTopic: PropTypes.object
+  kbTopic: PropTypes.object,
 };
 
 export default CategoryDetail;
