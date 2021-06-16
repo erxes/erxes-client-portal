@@ -77,7 +77,7 @@ class Categories extends React.Component {
 
   renderCategories = () => {
     const { kbTopic } = this.props;
-    const { parentCategories = [] } = kbTopic;
+    const { parentCategories = [], color } = kbTopic;
 
     const categoryUrl = `/knowledge-base/category/details/`;
 
@@ -96,7 +96,6 @@ class Categories extends React.Component {
               <p>{cat.description}</p>
             </div>
           </div>
-          <div className="more">{"Дэлгэрэнгүй"}</div>
         </Link>
       );
     };

@@ -228,10 +228,6 @@ span {
       .tab-content {
         text-align: center;
 
-        h5 {
-          font-size: 14px;
-        }
-
         p {
           font-size: 12px;
           font-weight: 300;
@@ -246,12 +242,6 @@ span {
       .more {
         font-size: 13px;
         margin-top: 10px;
-      }
-
-      &:hover {
-        .more {
-          color: darkblue;
-        }
       }
     }
 
@@ -291,12 +281,6 @@ span {
         .tab-content {
           text-align: left;
           width: 100%;
-
-          h5 {
-            font-size: 15px;
-            font-weight: 500;
-            color: #333;
-          }
 
           .description {
             display: flex;

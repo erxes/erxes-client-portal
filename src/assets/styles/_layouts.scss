@@ -36,7 +36,7 @@
     color: $white;
     font-weight: 300;
     padding: 20px 0;
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
   }
 
@@ -106,8 +106,8 @@
 
       img {
         width: 100%;
-        filter: contrast(0) sepia(100%) hue-rotate(0deg) brightness(0.4) saturate(0);
-        ;
+        filter: contrast(0) sepia(100%) hue-rotate(0deg) brightness(0.4)
+          saturate(0);
       }
 
       &:hover {
@@ -330,32 +330,6 @@
   .search-container {
     margin-left: 50px;
     margin-right: 50px;
-
-    input {
-      padding: 10px 32px 11px 59px;
-      color: #222;
-      background: white;
-      border: 1px solid #e2e2e2;
-      border-radius: 0;
-      font-weight: 300;
-
-      &::placeholder {
-        color: #888;
-        font-weight: 300;
-      }
-    }
-
-    i {
-      color: #666;
-      top: 8px;
-      animation: searchIcon 1.2s forwards;
-    }
-  }
-
-  .header {
-    h3 {
-      padding-bottom: 10px;
-    }
   }
 
   .sidebar-wrap {
@@ -429,7 +403,7 @@
             font-size: 13px;
 
             &::before {
-              content: '';
+              content: "";
               position: absolute;
               height: 130%;
               left: -11px;

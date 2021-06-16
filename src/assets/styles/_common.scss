@@ -57,10 +57,10 @@ time {
   }
 
   &.article-detail {
-    padding: 0;    
+    padding: 0;
     border-radius: 0;
     box-shadow: none;
-    &:hover{
+    &:hover {
       box-shadow: none;
     }
     .content {
@@ -75,10 +75,11 @@ time {
   }
 }
 
-h1 strong, h2 strong, h3 strong {
+h1 strong,
+h2 strong,
+h3 strong {
   font-weight: 500;
 }
-
 
 .btn {
   width: 100%;
@@ -278,7 +279,7 @@ h1 strong, h2 strong, h3 strong {
     top: 18px;
   }
 
-  .icon-search {        
+  .icon-search {
     color: $white;
   }
 
@@ -287,25 +288,26 @@ h1 strong, h2 strong, h3 strong {
     background: none;
     width: 100%;
     color: $white;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     font-size: 18px;
     border-radius: 5px;
     margin-bottom: 20px;
     padding: 20px 32px 21px 59px;
 
     &::placeholder {
-      color: rgba(255,255,255,.6);
+      color: rgba(255, 255, 255, 0.8);
       font-weight: 400;
     }
 
-    &:focus, &:active {
+    &:focus,
+    &:active {
       background: $white;
       color: #666;
     }
   }
 
   input:focus::-webkit-input-placeholder {
-    color: rgba(0,0,0,.5);
+    color: rgba(0, 0, 0, 0.5);
     font-weight: 400;
   }
 
@@ -328,7 +330,7 @@ h1 strong, h2 strong, h3 strong {
     font-size: 14px;
     margin-bottom: 20px;
   }
-  
+
   ul {
     list-style: none;
     padding: 0;
