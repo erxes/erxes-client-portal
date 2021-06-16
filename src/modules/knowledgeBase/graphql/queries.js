@@ -2,6 +2,13 @@ const catFields = `
   _id
   title
   description
+  icon
+  authors {
+    details {
+      fullName
+      avatar
+    }
+  }
 `;
 
 const getKbTopicQuery = `
@@ -112,5 +119,5 @@ export default {
   getKbTopicQuery,
   getKbCategoryQuery,
   getArticleDetailQuery,
-  widgetsKnowledgeBaseArticles
+  widgetsKnowledgeBaseArticles,
 };

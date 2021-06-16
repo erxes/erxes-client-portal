@@ -1,16 +1,84 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import Avatar from "../../../assets/images/avatar-colored.svg";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Categories extends React.Component {
-  renderSubCategories = categories => {
-    return categories.map(child => (
+  renderAuthors = (authors) => {
+    if (authors.length > 3) {
+      return (
+        <>
+          {authors.slice(0, 3).map((user, index) => (
+            <o key={index}>{user.details.fullName},</o>
+          ))}
+          <o> and {authors.length - 3} other </o>
+        </>
+      );
+    }
+
+    return authors.map((author, index) => (
+      <o key={index}>
+        {author.details.fullName}
+        {authors.length > 1 && ", "}
+      </o>
+    ));
+  };
+
+  renderAvatars = (cat) => {
+    if (!cat.authors || cat.authors.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className="avatars">
+        {cat.authors.map((author, index) => (
+          <img
+            key={index}
+            className="round-img"
+            alt={author.details.fullName}
+            src={
+              author.details.avatar.length === 0
+                ? Avatar
+                : author.details.avatar
+            }
+            width="34"
+            height="34"
+          />
+        ))}
+        <div className="avatar-info">
+          <div>
+            <div className="darker">{cat.numOfArticles}</div> articles in this
+            category
+          </div>
+          <div>
+            <div className="darker">Written by: </div>
+            {this.renderAuthors(cat.authors)}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  renderSubCategories = (categories) => {
+    return categories.map((child) => (
       <Col key={child._id} md={4}>
         <Card className="category-box">
           <Link to={`/knowledge-base/category/details/${child._id}`}>
-            <h5>{child.title}</h5>
-            <p>{child.description}</p>
+            <Row>
+              <Col md={2} key={child._id}>
+                <div className="icon-wrapper">
+                  <i className={`icon-${child.icon}`}></i>
+                </div>
+              </Col>
+              <Col md={10} key={child._id}>
+                <div className="tab-content">
+                  <h5>{child.title}</h5>
+                  <p>{child.description}</p>
+                  {this.renderAvatars(child)}
+                </div>
+              </Col>
+            </Row>
           </Link>
         </Card>
       </Col>
@@ -21,18 +89,16 @@ class Categories extends React.Component {
     const { kbTopic } = this.props;
     const categories = kbTopic.parentCategories;
 
-    if (categories) {
-      return categories.map(cat => (
-        <div key={cat._id}>
-          <h4>{cat.title}</h4>
-          {cat.childrens && (
-            <Row>{this.renderSubCategories(cat.childrens)}</Row>
-          )}
-        </div>
-      ));
+    if (!categories || categories.length === 0) {
+      return null;
     }
 
-    return;
+    return categories.map((cat) => (
+      <div key={cat._id}>
+        <h4>{cat.title}</h4>
+        {cat.childrens && <Row>{this.renderSubCategories(cat.childrens)}</Row>}
+      </div>
+    ));
   };
 
   render() {
@@ -73,7 +139,7 @@ class Categories extends React.Component {
 
 Categories.propTypes = {
   kbTopic: PropTypes.object,
-  articlesQuery: PropTypes.object
+  articlesQuery: PropTypes.object,
 };
 
 export default Categories;
