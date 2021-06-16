@@ -53,6 +53,7 @@ class CategoryDetail extends React.Component {
               <i className={`icon-${cat.icon ? cat.icon : "clipboard-1"}`}></i>
               {cat.title}
             </h6>
+            <p>{cat.description}</p>
           </div>
         </li>
         {this.renderChildrens(cat.childrens)}
