@@ -75,16 +75,15 @@ class Categories extends React.Component {
     );
   }
 
-  renderCategories = () => {
-    const { kbTopic } = this.props;
-    const { parentCategories = [], color } = kbTopic;
-
-    const categoryUrl = `/knowledge-base/category/details/`;
+  renderChildCategories = (categories, url) => {
+    if (!categories || categories.length === 0) {
+      return null;
+    }
 
     const detail = (cat) => {
       return (
         <Link
-          to={`${categoryUrl}${cat._id}`}
+          to={`${url}${cat._id}`}
           className="d-flex flex-column align-items-center w-100"
         >
           <div className="icon-wrapper">
@@ -99,6 +98,25 @@ class Categories extends React.Component {
         </Link>
       );
     };
+
+    return categories.map((cat) => {
+      if (cat.numOfArticles === 0) {
+        return null;
+      }
+
+      return (
+        <Col md={4} key={cat._id}>
+          <Card className="category-item">{detail(cat)}</Card>
+        </Col>
+      );
+    });
+  };
+
+  render() {
+    const { kbTopic } = this.props;
+    const { parentCategories = [] } = kbTopic;
+
+    const categoryUrl = `/knowledge-base/category/details/`;
 
     return (
       <>
@@ -125,22 +143,13 @@ class Categories extends React.Component {
                 </Link>
               </h2>
               <Row>
-                {parentCat.childrens &&
-                  parentCat.childrens.map((cat) => (
-                    <Col md={4} key={cat._id}>
-                      <Card className="category-item">{detail(cat)}</Card>
-                    </Col>
-                  ))}
+                {this.renderChildCategories(parentCat.childrens, categoryUrl)}
               </Row>
             </div>
           </Container>
         ))}
       </>
     );
-  };
-
-  render() {
-    return this.renderCategories();
   }
 }
 

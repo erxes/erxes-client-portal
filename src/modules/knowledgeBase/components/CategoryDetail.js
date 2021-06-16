@@ -6,46 +6,59 @@ import SectionHeader from "../../common/components/SectionHeader";
 import ArticleList from "./ArticleList";
 
 class CategoryDetail extends React.Component {
+  renderCategory(cat) {
+    if (!cat.childrens && cat.numOfArticles === 0) {
+      return null;
+    }
+
+    return (
+      <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
+        <div className="tags sidebar-list">
+          <ul>
+            <li className={cat._id === this.props.category._id ? "active" : ""}>
+              <div className="sidebar-item">
+                <div className="icon-wrapper">
+                  <i className={`icon-${cat.icon}`} />
+                </div>
+                <h6>{cat.title}</h6>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </Link>
+    );
+  }
+
+  renderChildrenCategories(childs) {
+    if (!childs || childs.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className="sub-categories">
+        {childs.map((child) => this.renderCategory(child))}
+      </div>
+    );
+  }
+
   renderCategories = () => {
-    const { kbTopic, category } = this.props;
+    const { kbTopic } = this.props;
     const { parentCategories } = kbTopic;
 
-    const renderCategory = (cat) => {
-      return (
-        <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
-          <div className="tags sidebar-list">
-            <ul>
-              <li className={cat._id === category._id ? "active" : ""}>
-                <div className="sidebar-item">
-                  <div className="icon-wrapper">
-                    <i className={`icon-${cat.icon}`} />
-                  </div>
-                  <h6>{cat.title}</h6>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </Link>
-      );
-    };
-
-    if (parentCategories) {
-      return (
-        <>
-          {parentCategories.map((cat) => (
-            <React.Fragment key={cat._id}>
-              {renderCategory(cat)}
-              {cat.childrens && (
-                <div className="sub-categories">
-                  {cat.childrens.map((child) => renderCategory(child))}
-                </div>
-              )}
-            </React.Fragment>
-          ))}
-        </>
-      );
+    if (!parentCategories || parentCategories.length === 0) {
+      return null;
     }
-    return;
+
+    return (
+      <>
+        {parentCategories.map((cat) => (
+          <React.Fragment key={cat._id}>
+            {this.renderCategory(cat)}
+            {this.renderChildrenCategories(cat.childrens)}
+          </React.Fragment>
+        ))}
+      </>
+    );
   };
 
   render() {

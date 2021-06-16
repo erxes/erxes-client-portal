@@ -353,6 +353,8 @@
 
     .sidebar-list {
       ul {
+        margin-bottom: 10px;
+
         li {
           .sidebar-item {
             display: flex;
@@ -376,7 +378,6 @@
           }
 
           h6 {
-            font-weight: 500;
             text-transform: initial;
             margin-top: 0;
             font-size: 14px;

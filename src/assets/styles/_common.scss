@@ -322,6 +322,7 @@ h3 strong {
     }
   }
 }
+
 .sidebar-list {
   h6 {
     text-transform: uppercase;
@@ -343,6 +344,7 @@ h3 strong {
       cursor: pointer;
       font-size: 14px;
       transition: 0.4s;
+
       &.active,
       &:hover {
         background: #e4eaf0;
