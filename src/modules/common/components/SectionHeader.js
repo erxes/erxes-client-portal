@@ -11,13 +11,13 @@ const SectionHeader = (props) => {
       </Link>
       {catId && (
         <>
-          <i class="icon-chevron"> </i>
+          <i className="icon-chevron"> </i>
           <Link to={`/knowledge-base/category/details/${catId}`}>
             <div className="item">{catTitle}</div>
           </Link>
         </>
       )}
-      <i class="icon-chevron"> </i>
+      <i className="icon-chevron"> </i>
       <div className="item">{title}</div>
     </div>
   );

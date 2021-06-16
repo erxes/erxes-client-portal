@@ -3,6 +3,7 @@ const catFields = `
   title
   description
   icon
+  numOfArticles
   authors {
     details {
       fullName

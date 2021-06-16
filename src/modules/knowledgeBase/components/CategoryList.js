@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 
 class Categories extends React.Component {
   renderAuthors = (authors) => {
-    if (authors.length > 3) {
+    if (authors.length > 2) {
       return (
         <>
-          {authors.slice(0, 3).map((user, index) => (
+          {authors.slice(0, 2).map((user, index) => (
             <o key={index}>{user.details.fullName},</o>
           ))}
-          <o> and {authors.length - 3} other </o>
+          <o> and {authors.length - 2} other </o>
         </>
       );
     }
@@ -61,28 +61,32 @@ class Categories extends React.Component {
   };
 
   renderSubCategories = (categories) => {
-    return categories.map((child) => (
-      <Col key={child._id} md={4}>
-        <Card className="category-box">
+    return categories.map((child) => {
+      if (child.numOfArticles === 0) {
+        return null;
+      }
+
+      return (
+        <Col className="category-col" key={child._id} md={4}>
           <Link to={`/knowledge-base/category/details/${child._id}`}>
-            <Row>
-              <Col md={2} key={child._id}>
-                <div className="icon-wrapper">
-                  <i className={`icon-${child.icon}`}></i>
-                </div>
-              </Col>
-              <Col md={10} key={child._id}>
-                <div className="tab-content">
+            <Card className="category-box">
+              <div className="icon-wrapper">
+                <i
+                  className={`icon-${child.icon ? child.icon : "clipboard-1"}`}
+                ></i>
+              </div>
+              <div className="tab-content">
+                <div>
                   <h5>{child.title}</h5>
                   <p>{child.description}</p>
-                  {this.renderAvatars(child)}
                 </div>
-              </Col>
-            </Row>
+                {this.renderAvatars(child)}
+              </div>
+            </Card>
           </Link>
-        </Card>
-      </Col>
-    ));
+        </Col>
+      );
+    });
   };
 
   renderCategories = () => {
