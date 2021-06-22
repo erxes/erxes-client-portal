@@ -5,26 +5,6 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class Categories extends React.Component {
-  renderAuthors = (authors) => {
-    if (authors.length > 2) {
-      return (
-        <>
-          {authors.slice(0, 2).map((user, index) => (
-            <o key={index}>{user.details.fullName},</o>
-          ))}
-          <o> and {authors.length - 2} other </o>
-        </>
-      );
-    }
-
-    return authors.map((author, index) => (
-      <o key={index}>
-        {author.details.fullName}
-        {authors.length > 1 && ", "}
-      </o>
-    ));
-  };
-
   renderAvatars = (cat) => {
     if (!cat.authors || cat.authors.length === 0) {
       return null;
@@ -32,13 +12,13 @@ class Categories extends React.Component {
 
     return (
       <div className="avatars">
-        {cat.authors.map((author, index) => (
+        {cat.authors.slice(0, 2).map((author, index) => (
           <img
             key={index}
             className="round-img"
             alt={author.details.fullName}
             src={
-              author.details.avatar.length === 0
+              author.details.avatar && author.details.avatar.length === 0
                 ? Avatar
                 : author.details.avatar
             }
@@ -52,8 +32,8 @@ class Categories extends React.Component {
             category
           </div>
           <div>
-            <div className="darker">Written by: </div>
-            {this.renderAuthors(cat.authors)}
+            <div className="darker">Written by </div>
+            {cat.authors.length} authors
           </div>
         </div>
       </div>
