@@ -195,47 +195,54 @@ class Detail extends React.Component {
       </div>
     );
   };
-
   renderTags = () => {
-    const { articleDetail } = this.props.articleDetail;
+    const  articleDetail  = this.props.articleDetail;
+
     if (!articleDetail) {
       return null;
     }
-
-    const { content } = articleDetail;
+    const content  = articleDetail.content;
     const tagged = [];
-
+    const regex =  /(?<=\<h2>)(.*?)(?=\<\/h2\>)/g
     if (
       !content.length ||
-      !content.match(/<h2(.*?)><a href="#(.*?)">(.*?)<\/a><\/h2>/g)
+      !content.match(regex)
     ) {
       return null;
     }
 
     //find custom selected elements
     content
-      .match(/<h2(.*?)<a href="#(.*?)">(.*?)<\/a><\/h2>/g)
-      .map((obj, i) => tagged.push(obj));
+      .match(regex)
+      .map((obj) => tagged.push(obj));
 
-    let tagedTitles = [];
-    if (tagged.length === 0) {
-      return null;
-    }
-    const relId = [];
+if(tagged.length === 0){
+  return null;
+}
 
-    for (let item of tagged) {
-      tagedTitles.push(item);
-      const getId = item.match(/id="(.*?)"/g)[0];
-      relId.push(getId.replaceAll('"', '').split('=')[1]);
-    }
+    // let tagedTitles = [];
+    // if (tagged.length === 0) {
+    //   return null;
+    // }
+    // const relId = [];
+
+    // for (let item of tagged) {
+    //   tagedTitles.push(item);
+    //   console.log("----------", item)
+    //   const getId = item.match(/id="(.*?)"/g)[0];
+    //   relId.push(getId.replaceAll('"', '').split('=')[1]);
+    // }
+    const  h2Array = [...document.getElementsByTagName("h2")];
+    h2Array.map( (el)=>
+      el.setAttribute("id",el.innerText))
 
     return (
       <>
         <div className="page-anchor" id="anchorTag">
           <h6>Холбоос</h6>
-          <Scrollspy items={relId} currentClassName="active">
-            {tagedTitles.map((val, index) => (
-              <li key={index} dangerouslySetInnerHTML={{ __html: val }} />
+          <Scrollspy items={tagged} currentClassName="active">
+            {tagged.map((val, index) => (
+              <li key={index} > <a href={`#${val}`} > {val}</a></li>
             ))}
           </Scrollspy>
         </div>
@@ -243,6 +250,7 @@ class Detail extends React.Component {
     );
   };
 
+  
   render() {
     const { articleDetail, category, kbTopic } = this.props;
 
@@ -256,9 +264,6 @@ class Detail extends React.Component {
         <Row>
           <Col md={3}>
             <div className="sidebar-wrap">
-              <Link to={`/knowledge-base`}>
-                <h3 className="sidebar-type-title">knowledge base</h3>
-              </Link>
               {this.renderCategories()}
             </div>
           </Col>
@@ -278,7 +283,7 @@ class Detail extends React.Component {
               {this.renderReactions()}
             </div>
           </Col>
-          <Col md={2}>{this.renderTags()}</Col>
+          <Col md={2} >{this.renderTags()}</Col>
         </Row>
       </div>
     );
