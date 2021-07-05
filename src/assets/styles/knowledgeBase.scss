@@ -217,7 +217,7 @@ span {
     }
 
     .card {
-      border: 1px solid #e2e2e2;
+      border: 1px solid #e2e2e271;
       animation: fadeInDown 0.8s ease-in-out;
     }
 
@@ -266,7 +266,7 @@ span {
       flex-flow: row wrap;
       justify-content: center;
       border-radius: 3px;
-      box-shadow: 0 1px 5px #6e6c6e59;
+      box-shadow: 0 1px 5px #6e6c6e4b;
       border-radius: $radius;
       .card {
         width: 100%;
