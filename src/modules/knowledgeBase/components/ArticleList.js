@@ -41,6 +41,14 @@ class Lists extends React.Component {
                 <div className="kbase-lists card tab-content">
                   <h5>{article.title}</h5>
                   <p>{article.summary}</p>
+                  <div className="article-desc ">
+                    <img src={article.createdUser.details.avatar}  alt="#"  />
+                    <div>
+                    <p>{article.createdUser.details.fullName}</p>
+                    <p>{(article.modifiedDate).slice(0,10)}</p>
+                    </div>   
+                  </div>
+                  
                 </div>
               </Link>
             ))}

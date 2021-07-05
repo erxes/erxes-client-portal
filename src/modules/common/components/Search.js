@@ -77,7 +77,7 @@ export default class Search extends React.Component {
       <div className="search-container">
         <input
           onChange={this.onChange}
-          placeholder="Search for articles..."
+          placeholder="Хайх..."
           value={searchValue}
           onKeyDown={this.onKeyDown}
         />

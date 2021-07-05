@@ -13,7 +13,6 @@ const { REACT_APP_TOPIC_ID } = getEnv();
 const articleDetails = ({ history, location }) => {
   const queryParams = queryString.parse(location.search);
   const { searchValue } = queryParams;
-
   if (searchValue) {
     return (
       <Layout headingSpacing={false}>

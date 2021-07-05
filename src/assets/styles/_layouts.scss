@@ -15,6 +15,9 @@
 .align-center {
   text-align: center;
 }
+.ml-30p {
+  margin-left: 30px;
+}
 
 .head {
   box-shadow: $shadow;
@@ -23,7 +26,7 @@
   background-position: center;
   background-color: $mainColor;
 
-  background-image: url(../images/header-bg.png);
+  // background-image: url(../images/header-bg.png);
   background-position: center bottom;
 }
 
@@ -39,8 +42,9 @@
     color: $white;
     font-weight: 300;
     padding: 20px 0;
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
+    margin-top: 50px;
   }
 
   .log-in {
@@ -135,7 +139,8 @@
     text-decoration: none;
     transition: background 0.3s ease;
     position: relative;
-    min-height: 135px;
+    min-height: 110px;
+    height: 100%;
     font-size: 14px;
 
     img {
@@ -338,7 +343,7 @@
       color: #222;
       background: white;
       border: 1px solid #e2e2e2;
-      border-radius: 0;
+      border-radius: 5px;
       font-weight: 300;
 
       &::placeholder {
@@ -395,7 +400,8 @@
 
             h6,
             .icon-wrapper {
-              color: #222;
+              font-weight: 570;
+              color: #5629b6;
             }
           }
 
@@ -431,7 +437,7 @@
             font-size: 13px;
 
             &::before {
-              content: '';
+              content: "";
               position: absolute;
               height: 130%;
               left: -11px;

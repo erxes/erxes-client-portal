@@ -10,7 +10,6 @@ class CategoryDetail extends React.Component {
     if (categoryId === this.props.category._id) {
       return 'active';
     }
-
     return;
   };
 
@@ -26,7 +25,7 @@ class CategoryDetail extends React.Component {
               <li className={this.isActive(cat._id)}>
                 <div className="sidebar-item">
                   <div className="icon-wrapper">
-                    <i className={`icon-${cat.icon}`} />
+                    {cat.childrens && <i className={`icon-${cat.icon}`} />}
                   </div>
                   <h6>{cat.title}</h6>
                 </div>
@@ -59,11 +58,10 @@ class CategoryDetail extends React.Component {
   };
 
   render() {
-    const { category, history } = this.props;
-
+    const { category, history, kbTopic } = this.props;
     return (
       <Container className="knowledge-base" fluid="sm">
-        <SectionHeader title={category.title} />
+        <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
 
         <Row className="category-detail">
           <Col md={3}>

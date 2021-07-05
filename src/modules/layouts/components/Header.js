@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 
 function Header(props) {
   const { backgroundImage, color } = props.kbTopic || {};
-  const backImg = backgroundImage && `url(${backgroundImage})`;
   const backColor = color && color;
+  const backImg = backgroundImage ? `url(${backgroundImage})` : backColor;
+  
 
   return (
     <div
       className={`head ${props.headingSpacing && 'bottom-spacing'}`}
-      style={{ backgroundImage: backImg, backgroundColor: backColor }}
+      style={{ background: backImg, backgroundColor: backColor }}
     >
       <div className="header">
         <Container fluid="sm">
@@ -23,7 +24,7 @@ function Header(props) {
                   <img src={Logo} alt="logo" />
                 </Link>
                 <div className="line">|</div>
-                <div className="text">Community Help Center</div>
+                <div className="text">Эрксис хотолын гишүүдэд туслах мэдлэгийн сан</div>
               </div>
             </Col>
             <Col md="auto" className="header-links">
@@ -32,13 +33,12 @@ function Header(props) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className=" icon-arrow-up-right"></i> erxes рүү шилжих
+                <i className=" icon-arrow-up-right"></i> erxes.mn
               </a>
             </Col>
           </Row>
           <h3>
-            A knowledge-sharing help center designed specially for the erxes
-            community
+          Эрксис платформ ашиглах гарын авлага болон мэдээлэл солилцох талбар
           </h3>
           <Search
             history={props.history}

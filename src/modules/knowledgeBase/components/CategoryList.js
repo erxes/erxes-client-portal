@@ -55,7 +55,7 @@ class Categories extends React.Component {
       </div>
     );
   };
-
+  
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { parentCategories = [] } = kbTopic;
@@ -79,10 +79,22 @@ class Categories extends React.Component {
               <p>{cat.description}</p>
             </div>
           </div>
-          <div className="more">{'Дэлгэрэнгүй'}</div>
         </Link>
       );
     };
+    const Arrow = (i) =>{
+     
+        return(
+          <>
+                      <div className="arrow-container">
+                      <svg class="right-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 0 1e2 50 0 1e2"></path></svg>
+                      </div>
+                      <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 0 50 1e2 1e2.0"></path></svg>
+                      </>
+        )
+      
+    }
+ 
 
     return (
       <>
@@ -96,8 +108,14 @@ class Categories extends React.Component {
               </h2>
               <div className="promoted-wrap">
                 {specialCategory.childrens &&
-                  specialCategory.childrens.map(cat => (
-                    <Card key={cat._id}>{detail(cat)}</Card>
+                  specialCategory.childrens.map((cat , i)=> (
+                    <>
+                    <Card key={cat._id}>{detail(cat)} 
+                        <div className="more">Дэлгэрэнгүй </div>
+                        
+                    </Card>
+                    {i<2 ? <Arrow /> :""}
+                    </>
                   ))}
               </div>
             </div>
@@ -115,7 +133,7 @@ class Categories extends React.Component {
               <Row>
                 {parentCat.childrens &&
                   parentCat.childrens.map(cat => (
-                    <Col md={4} key={cat._id}>
+                    <Col md={4} key={cat._id} className="category-col">
                       <Card className="category-item">{detail(cat)}</Card>
                     </Col>
                   ))}

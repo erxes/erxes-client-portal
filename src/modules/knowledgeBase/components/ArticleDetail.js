@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
+import SectionHeader from "../../common/components/SectionHeader"
 
 class Detail extends React.Component {
   constructor(props) {
@@ -243,10 +244,15 @@ class Detail extends React.Component {
   };
 
   render() {
-    const { articleDetail } = this.props;
+    const { articleDetail, category, kbTopic } = this.props;
 
     return (
       <div className="knowledge-base">
+        <Row>
+          <div className="ml-30p">
+          <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
+          </div>
+        </Row>
         <Row>
           <Col md={3}>
             <div className="sidebar-wrap">
