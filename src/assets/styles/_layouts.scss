@@ -387,11 +387,13 @@
     .sidebar-list {
       ul {
         li {
+          margin-bottom: 10px;
           .sidebar-item {
             display: flex;
             align-items: center;
             padding-left: 0;
             padding-right: 15px;
+            margin: 5px 0;
           }
 
           &.active,
@@ -427,7 +429,6 @@
           li {
             position: relative;
             border-bottom: 1px solid #ececec;
-            margin-bottom: 5px !important;
             padding-bottom: 5px;
             border-radius: 0 !important;
             flex-flow: row wrap;

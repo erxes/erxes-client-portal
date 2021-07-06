@@ -44,8 +44,8 @@ class Lists extends React.Component {
                   <div className="article-desc ">
                     <img src={article.createdUser.details.avatar} alt="#"  />
                     <div>
-                    <p>Нийтлэсэн: {article.createdUser.details.fullName}</p>
-                    <p>Огноо: {(article.modifiedDate).slice(0,10)}</p>
+                    <p>Нийтлэсэн: <strong>{article.createdUser.details.fullName}</strong></p>
+                    <p>Огноо:  <strong>{(article.modifiedDate).slice(0,10)}</strong></p>
                     </div>   
                   </div>
                   
