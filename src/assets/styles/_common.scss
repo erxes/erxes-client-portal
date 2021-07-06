@@ -10,18 +10,15 @@
   .item {
     display: inline-block;
     font-size: 14px;
-    &:hover {
-      color: #000;
+    color: #afafaf;
+    &.all {
+      color: #6c718b;
     }
   }
 
   i {
     font-size: 10px;
     margin-right: 5px;
-
-    &:before {
-      font-weight: 600;
-    }
   }
 
   a {
@@ -331,7 +328,6 @@ h3 strong {
 .sidebar-list {
   h6 {
     text-transform: uppercase;
-    font-weight: 500;
     font-size: 14px;
     margin-bottom: 20px;
   }

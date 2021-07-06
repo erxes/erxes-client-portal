@@ -43,16 +43,19 @@ $yellow: #fac534;
   .article-desc {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     padding-top: 10px;
     p {
       font-size: 80%;
       padding: 0 10px;
     }
     img {
-      width: 30px;
-      height: 30px;
+      height: 100%;
+      width: auto;
+      vertical-align: middle;
       border-radius: 100%;
-      object-fit: cover;
+      background: #f0f0f0;
+      border: 2px solid #fff;
     }
   }
 }

@@ -16,7 +16,6 @@ class CategoryDetail extends React.Component {
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { parentCategories } = kbTopic;
-
     const renderCategory = cat => {
       return (
         <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
@@ -25,7 +24,7 @@ class CategoryDetail extends React.Component {
               <li className={this.isActive(cat._id)}>
                 <div className="sidebar-item">
                   <div className="icon-wrapper">
-                    {cat.childrens && <i className={`icon-${cat.icon}`} />}
+                    {cat.childrens &&  <i className={`icon-${cat.icon}`}/>}
                   </div>
                   <h6>{cat.title}</h6>
                 </div>

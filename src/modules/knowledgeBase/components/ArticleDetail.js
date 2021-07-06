@@ -139,7 +139,7 @@ class Detail extends React.Component {
           >
             <div className="sidebar-item">
               <div className="icon-wrapper">
-                <i className={`icon-${category.icon}`}></i>
+                {category.childrens &&  <i className={`icon-${category.icon}`}/>}
               </div>
               <h6>{category.title}</h6>
             </div>
@@ -203,7 +203,7 @@ class Detail extends React.Component {
     }
     const content  = articleDetail.content;
     const tagged = [];
-    const regex =  /(?<=\<h2>)(.*?)(?=\<\/h2\>)/g
+    const regex =  /<h2>(.*?)<\/h2>/g;
     if (
       !content.length ||
       !content.match(regex)
@@ -211,27 +211,13 @@ class Detail extends React.Component {
       return null;
     }
 
-    //find custom selected elements
     content
       .match(regex)
-      .map((obj) => tagged.push(obj));
+      .map((obj) => tagged.push(obj.replace(/<\/?h2>/g,'')));
 
 if(tagged.length === 0){
   return null;
 }
-
-    // let tagedTitles = [];
-    // if (tagged.length === 0) {
-    //   return null;
-    // }
-    // const relId = [];
-
-    // for (let item of tagged) {
-    //   tagedTitles.push(item);
-    //   console.log("----------", item)
-    //   const getId = item.match(/id="(.*?)"/g)[0];
-    //   relId.push(getId.replaceAll('"', '').split('=')[1]);
-    // }
     const  h2Array = [...document.getElementsByTagName("h2")];
     h2Array.map( (el)=>
       el.setAttribute("id",el.innerText))

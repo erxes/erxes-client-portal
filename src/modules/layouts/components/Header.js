@@ -29,7 +29,7 @@ function Header(props) {
             </Col>
             <Col md="auto" className="header-links">
               <a
-                href="https://erxes.io/"
+                href="https://erxes.mn/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
