@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const SectionHeader = (props) => {
   const { categories, selectedCat } = props;
-  let sub;
-  if(categories){
-    sub = categories.find(cat => cat.childrens.find(child => child._id === selectedCat._id));
+  let subCats;
+  if(categories && categories.length > 0){
+    subCats = categories.find(cat => cat.childrens.find(child => child._id === selectedCat._id));
  }
 
   const renderCat = ( cat) => {
@@ -25,7 +25,7 @@ const SectionHeader = (props) => {
     <div className="section-header">
       <Link to={`/knowledge-base`}>
         <div className="item">Бүх ангилал</div>
-        {renderCat(sub)}
+        {renderCat(subCats)}
         {renderCat(selectedCat)||"" }
       </Link>
       

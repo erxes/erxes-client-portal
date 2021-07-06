@@ -82,19 +82,6 @@ class Categories extends React.Component {
         </Link>
       );
     };
-    const Arrow = (i) =>{
-     
-        return(
-          <>
-                      <div className="arrow-container">
-                      <svg class="right-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 0 1e2 50 0 1e2"></path></svg>
-                      </div>
-                      <svg class="down-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 0 50 1e2 1e2.0"></path></svg>
-                      </>
-        )
-      
-    }
- 
 
     return (
       <>
@@ -112,9 +99,8 @@ class Categories extends React.Component {
                     <>
                     <Card key={cat._id}>{detail(cat)} 
                         <div className="more">Дэлгэрэнгүй </div>
-                        
                     </Card>
-                    {i<2 ? <Arrow /> :""}
+                   
                     </>
                   ))}
               </div>
