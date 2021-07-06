@@ -29,7 +29,7 @@ class Lists extends React.Component {
   render() {
     const { articles, catId } = this.props;
     return (
-      <Container className="knowledge-base" fluid="sm">
+      <Container className="knowledge-base">
         <Row>
           <Col>
             {this.renderSearchResult()}

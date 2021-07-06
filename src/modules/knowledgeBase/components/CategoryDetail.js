@@ -59,11 +59,11 @@ class CategoryDetail extends React.Component {
   render() {
     const { category, history, kbTopic } = this.props;
     return (
-      <Container className="knowledge-base" fluid="sm">
+      <Container className="knowledge-base">
         <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
 
         <Row className="category-detail">
-          <Col md={3}>
+          <Col md={3} >
             <div className="sidebar-wrap">
               <div className="tags sidebar-list">{this.renderCategories()}</div>
             </div>

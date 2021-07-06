@@ -209,11 +209,12 @@ span {
     }
   }
 }
-
-.category-detail .container-sm {
-  padding: 0;
+.category-detail {
+  .col-md-3 {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
-
 .knowledge-base {
   .category-knowledge-list {
     .list-category-title {
@@ -251,7 +252,7 @@ span {
       }
 
       p {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 300;
       }
     }
