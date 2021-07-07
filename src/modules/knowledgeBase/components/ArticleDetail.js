@@ -213,22 +213,28 @@ class Detail extends React.Component {
 
     content
       .match(regex)
-      .map((obj) => tagged.push(obj.replace(/<\/?h2>/g,'')));
+      .map((obj) => tagged.push(
+        obj.replace(/<[^>]*>?/gm, '')
+        ));
 
-if(tagged.length === 0){
-  return null;
-}
+    if(tagged.length === 0){
+        return null;
+    }
     const  h2Array = [...document.getElementsByTagName("h2")];
     h2Array.map( (el)=>
       el.setAttribute("id",el.innerText))
-
     return (
       <>
         <div className="page-anchor" id="anchorTag">
           <h6>Холбоос</h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
-              <li key={index} > <a href={`#${val}`} > {val}</a></li>
+
+              <li key={index} > 
+                 <a href={`#${val}`} >
+                 {val}
+                 </a>
+              </li>
             ))}
           </Scrollspy>
         </div>

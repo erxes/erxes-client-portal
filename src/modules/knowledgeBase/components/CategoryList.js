@@ -98,7 +98,9 @@ class Categories extends React.Component {
                   specialCategory.childrens.map((cat , i)=> (
                     <>
                     <Card key={cat._id}>{detail(cat)} 
-                        <div className="more">Дэлгэрэнгүй </div>
+                       <Link to={`${categoryUrl}${specialCategory._id}`} className="more">
+                          Дэлгэрэнгүй
+                       </Link>
                     </Card>
                    
                     </>
