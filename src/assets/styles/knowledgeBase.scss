@@ -45,7 +45,6 @@ $yellow: #fac534;
     justify-content: flex-start;
     align-items: center;
     padding-top: 10px;
-    height: 40px;
     p {
       font-size: 80%;
       padding: 0 10px;
@@ -54,8 +53,8 @@ $yellow: #fac534;
       color: #6c718b;
     }
     img {
-      height: 100%;
-      width: auto;
+      height: 35px;
+      width: 35px;
       vertical-align: middle;
       border-radius: 100%;
       background: #f0f0f0;
@@ -227,6 +226,7 @@ span {
     .card {
       border: 1px solid #e2e2e271;
       animation: fadeInDown 0.8s ease-in-out;
+      margin-bottom: 10px;
     }
 
     .category-item {
@@ -285,7 +285,7 @@ span {
         position: relative;
         min-height: 160px;
         padding: 1.8rem 2.2rem 1.8rem 3.2rem;
-
+        margin-bottom: 10px;
         &:hover > * {
           .icon-wrapper,
           .tab-content > h5 {

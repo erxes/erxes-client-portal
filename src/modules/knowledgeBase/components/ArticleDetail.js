@@ -203,7 +203,7 @@ class Detail extends React.Component {
     }
     const content  = articleDetail.content;
     const tagged = [];
-    const regex =  /<h2>(.*?)<\/h2>/g;
+    const regex =  /<h[1-6]>(.*?)<\/h[1-6]>/g;
     if (
       !content.length ||
       !content.match(regex)
@@ -220,7 +220,7 @@ class Detail extends React.Component {
     if(tagged.length === 0){
         return null;
     }
-    const  h2Array = [...document.getElementsByTagName("h2")];
+    const  h2Array = [...document.querySelectorAll("h1, h2, h3, h4, h5, h6")];
     h2Array.map( (el)=>
       el.setAttribute("id",el.innerText))
     return (
@@ -245,7 +245,7 @@ class Detail extends React.Component {
   
   render() {
     const { articleDetail, category, kbTopic } = this.props;
-
+    
     return (
       <div className="knowledge-base">
         <Row>

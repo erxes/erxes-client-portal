@@ -38,7 +38,7 @@ time {
 }
 
 .card {
-  border: 0;
+  border: 1px solid #eee;
   padding: 1rem;
   background: $white;
   box-shadow: $shadow;
@@ -48,7 +48,7 @@ time {
   display: flex;
   flex-direction: column;
   min-width: 0;
-
+  margin-bottom: 10px;
   .card-title {
     text-align: center;
     color: $mainColor;
@@ -422,4 +422,14 @@ h3 strong {
       color: #555;
     }
   }
+}
+.empty-box {
+  svg {
+    fill-opacity: 10%;
+    width: 100px;
+  }
+
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
