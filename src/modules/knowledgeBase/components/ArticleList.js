@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { ReactComponent as Emptybox} from '../../../../src/assets/images/empty-box.svg';
 
 class Lists extends React.Component {
   renderSearchResult = () => {
@@ -33,7 +34,7 @@ class Lists extends React.Component {
         <Row>
           <Col>
             {this.renderSearchResult()}
-            {articles.map(article => (
+            {articles.length >0 ? articles.map(article => (
               <Link
                 to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
                 key={article._id}
@@ -51,7 +52,8 @@ class Lists extends React.Component {
                   
                 </div>
               </Link>
-            ))}
+            ))
+            : <div className="empty-box"> <Emptybox/></div>}
           </Col>
         </Row>
       </Container>

@@ -238,8 +238,8 @@ span {
         justify-content: unset;
 
         i {
-          font-size: 20px;
-          color: $mainColor;
+          font-size: 25px;
+          color: #6569df;
         }
       }
     }
@@ -289,7 +289,7 @@ span {
         &:hover > * {
           .icon-wrapper,
           .tab-content > h5 {
-            color: $mainColor;
+            color: #6569df;
           }
         }
         .icon-wrapper {
@@ -313,7 +313,8 @@ span {
         }
 
         .more {
-          color: $mainColor;
+          color: #6569df;
+          text-transform: uppercase;
           font-weight: 500;
           position: absolute;
           bottom: 15px;
@@ -459,4 +460,14 @@ span {
       content: none;
     }
   }
+}
+.empty-box {
+  svg {
+    fill-opacity: 10%;
+    width: 100px;
+  }
+
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
