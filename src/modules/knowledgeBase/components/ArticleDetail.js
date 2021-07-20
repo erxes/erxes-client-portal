@@ -141,7 +141,8 @@ class Detail extends React.Component {
               <div className="icon-wrapper">
                 {category.childrens &&  <i className={`icon-${category.icon}`}/>}
               </div>
-              <h6>{category.title}</h6>
+              <h6>{category.title} </h6>
+              <span>{`(${category.numOfArticles})`}</span>
             </div>
           </Link>
           {this.renderArticles(category._id)}
@@ -203,7 +204,7 @@ class Detail extends React.Component {
     }
     const content  = articleDetail.content;
     const tagged = [];
-    const regex =  /<h2>(.*?)<\/h2>/g;
+    const regex =  /<h[1-6]>(.*?)<\/h[1-6]>/g;
     if (
       !content.length ||
       !content.match(regex)
@@ -213,22 +214,28 @@ class Detail extends React.Component {
 
     content
       .match(regex)
-      .map((obj) => tagged.push(obj.replace(/<\/?h2>/g,'')));
+      .map((obj) => tagged.push(
+        obj.replace(/<[^>]*>?/gm, '')
+        ));
 
-if(tagged.length === 0){
-  return null;
-}
-    const  h2Array = [...document.getElementsByTagName("h2")];
+    if(tagged.length === 0){
+        return null;
+    }
+    const  h2Array = [...document.querySelectorAll("h1, h2, h3, h4, h5, h6")];
     h2Array.map( (el)=>
       el.setAttribute("id",el.innerText))
-
     return (
       <>
         <div className="page-anchor" id="anchorTag">
-          <h6>Холбоос</h6>
+          <h6>On this page </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
-              <li key={index} > <a href={`#${val}`} > {val}</a></li>
+
+              <li key={index} > 
+                 <a href={`#${val}`} >
+                 {val}
+                 </a>
+              </li>
             ))}
           </Scrollspy>
         </div>
@@ -239,7 +246,7 @@ if(tagged.length === 0){
   
   render() {
     const { articleDetail, category, kbTopic } = this.props;
-
+    
     return (
       <div className="knowledge-base">
         <Row>
@@ -254,7 +261,7 @@ if(tagged.length === 0){
             </div>
           </Col>
           <Col md={7}>
-            <div className="card article-detail">
+            <div className="article-detail">
               <div className="kbase-detail kbase-lists">
                 <h4>{articleDetail.title}</h4>
                 <div className="content mt-4" id="contentText">

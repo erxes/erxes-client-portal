@@ -24,7 +24,7 @@ const SectionHeader = (props) => {
   return (
     <div className="section-header">
       <Link to={`/knowledge-base`}>
-        <div className="item all">Бүх ангилал</div>
+        <div className="item all">All categories</div>
         {renderCat(subCats)}
         {renderCat(selectedCat)||"" }
       </Link>

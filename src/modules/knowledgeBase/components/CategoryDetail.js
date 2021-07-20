@@ -27,6 +27,7 @@ class CategoryDetail extends React.Component {
                     {cat.childrens &&  <i className={`icon-${cat.icon}`}/>}
                   </div>
                   <h6>{cat.title}</h6>
+                  <span>{`(${cat.numOfArticles})`}</span>
                 </div>
               </li>
             </ul>

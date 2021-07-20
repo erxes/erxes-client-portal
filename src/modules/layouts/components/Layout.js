@@ -31,8 +31,8 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { location, getKbTopicQuery, history, children, headingSpacing } = this.props;
-    
+    const { location, getKbTopicQuery, history, children,headingSpacing } = this.props;
+
     const queryParams = queryString.parse(location.search);
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
@@ -45,7 +45,6 @@ class Layout extends React.Component {
           kbTopic={kbTopic}
           headingSpacing={headingSpacing}
         />
-
         <Container className="main-body" fluid="lg">{children}</Container>
         <Footer kbTopic={kbTopic} />
       </div>

@@ -86,7 +86,7 @@ class Categories extends React.Component {
     return (
       <>
         {specialCategory && (
-          <Container className="knowledge-base promoted" fluid="sm">
+          <Container className="knowledge-base promoted mt-30" fluid="sm">
             <div className="category-knowledge-list">
               <h2 className="list-category-title">
                 <Link to={`${categoryUrl}${specialCategory._id}`}>
@@ -98,7 +98,9 @@ class Categories extends React.Component {
                   specialCategory.childrens.map((cat , i)=> (
                     <>
                     <Card key={cat._id}>{detail(cat)} 
-                        <div className="more">Дэлгэрэнгүй </div>
+                       <Link to={`${categoryUrl}${specialCategory._id}`} className="more">
+                          Read more
+                       </Link>
                     </Card>
                    
                     </>
@@ -127,10 +129,35 @@ class Categories extends React.Component {
             </div>
           </Container>
         ))}
+
+<section className="video align-center">
+    <h5>Video tutorials</h5>
+    <p>
+      For those visual learners, we have a full playlist of video
+      tutorials to help you onboard. Make sure you check out the
+      <a
+        href="https://www.youtube.com/watch?v=sDzPEEBSp44&feature=youtu.be&list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz&ab_channel=erxesInc"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        &nbsp;full playlist&nbsp;
+      </a>
+      on our Youtube channel or click the button on the top left corner
+      of this video.
+    </p>
+    <iframe
+      width="80%"
+      height="450"
+      title="erxes-list"
+      src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
+      frameBorder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen="allowfullscreen"
+    ></iframe>
+  </section>
       </>
     );
   };
-
   render() {
     return <>{this.renderCategories()}</>;
   }

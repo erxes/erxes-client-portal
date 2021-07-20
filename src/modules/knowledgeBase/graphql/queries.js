@@ -46,11 +46,9 @@ const getKbTopicQuery = `
       }
       parentCategories {
         ${categoryFields}
-
         childrens {
           ${categoryFields}
         }
-
         articles{
           _id
           title        

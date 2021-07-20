@@ -5,7 +5,7 @@ import KnowledgeBaseRouter from './modules/knowledgeBase/routes';
 const Routes = () => {
   return (
     <Router basename="/help">
-      <KnowledgeBaseRouter />
+        <KnowledgeBaseRouter />
     </Router>
   );
 };

@@ -7,9 +7,9 @@ function Footer(props) {
   return (
     <section className="footer align-center" style={{ background: color }}>
       <Container fluid="sm">
-        <h4>ХОЛБОО БАРИХ</h4>
+        <h4>COMMUNITY</h4>
         <p className="desc">  
-        Танд асуулт байна уу? Хэлэлцүүлэг эхлүүлж, шийдлүүдийг хайж, Эрксисийн мэргэжилтнүүдээс зөвлөгөө аваарай.
+        Still have questions? Start a discussion, browse solutions, and get tips from erxes experts.
         </p>
         <div className="align-center">
           <ul className="socials">
