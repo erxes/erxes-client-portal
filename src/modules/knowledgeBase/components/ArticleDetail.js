@@ -142,6 +142,7 @@ class Detail extends React.Component {
                 {category.childrens &&  <i className={`icon-${category.icon}`}/>}
               </div>
               <h6>{category.title}</h6>
+              <span>{`(${category.numOfArticles})`}</span>
             </div>
           </Link>
           {this.renderArticles(category._id)}
