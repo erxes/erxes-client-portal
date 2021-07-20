@@ -8,11 +8,11 @@ import CategoryDetail from '../components/CategoryDetail';
 
 class CategoryDetailsContainer extends React.Component {
   render() {
-    const { getKbTopicQuery, getKbCategoryQuery, history } = this.props;
+    const { getKbTopicQuery, getKbCategoryQuery, history } = this.props;    
 
     if (getKbCategoryQuery.loading || getKbTopicQuery.loading) {
       return <div></div>;
-    }
+    }    
 
     const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};
 

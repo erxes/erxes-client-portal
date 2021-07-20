@@ -1,9 +1,13 @@
 //colors
 $mainColor: #5629b6;
+$lightMain: #6569df;
 $darkColor: #036;
 $softYellow: #f7e19e;
 $white: #fff;
 $grey: #afafaf;
+$black: #000;
+$grayeshblack: #222;
+$lightblack: #444;
 $lightGrey: #ccc;
 $silverGrey: #6c718b;
 $orange: #fda50f;
@@ -20,3 +24,31 @@ $btnGradient: linear-gradient(
   rgba(86, 41, 182, 1) 0%,
   rgba(177, 10, 159, 1) 100%
 );
+
+@mixin transition($transition...) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+@keyframes searchIcon {
+  0% {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    transform: translateY(5px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

@@ -3,6 +3,7 @@ import { Redirect, Route } from 'react-router-dom';
 import Categories from './containers/CategoryList';
 import queryString from 'query-string';
 import Details from './containers/ArticleDetail';
+import Layout from '../layouts/components/Layout';
 import ArticleList from './containers/ArticleList';
 import CategoryDetail from './containers/CategoryDetail';
 import { getEnv } from '../../apolloClient';
@@ -12,18 +13,27 @@ const { REACT_APP_TOPIC_ID } = getEnv();
 const articleDetails = ({ history, location }) => {
   const queryParams = queryString.parse(location.search);
   const { searchValue } = queryParams;
-
   if (searchValue) {
     return (
-      <ArticleList
-        topicId={REACT_APP_TOPIC_ID}
-        history={history}
-        searchValue={searchValue}
-      />
+      <Layout headingSpacing={false}>
+        <ArticleList
+          topicId={REACT_APP_TOPIC_ID}
+          history={history}
+          searchValue={searchValue}
+        />
+      </Layout>
     );
   }
 
-  return <Details queryParams={queryParams} history={history} />;
+  return (
+    <Layout headingSpacing={false}>
+      <Details
+        queryParams={queryParams}
+        history={history}
+        location={location}
+      />
+    </Layout>
+  );
 };
 
 const categories = ({ history, location }) => {
@@ -32,19 +42,23 @@ const categories = ({ history, location }) => {
 
   if (searchValue) {
     return (
-      <ArticleList
-        topicId={REACT_APP_TOPIC_ID}
-        history={history}
-        searchValue={searchValue}
-      />
+      <Layout headingSpacing={true}>
+        <ArticleList
+          topicId={REACT_APP_TOPIC_ID}
+          history={history}
+          searchValue={searchValue}
+        />
+      </Layout>
     );
   }
   return (
-    <Categories
-      queryParams={queryParams}
-      history={history}
-      topicId={REACT_APP_TOPIC_ID}
-    />
+    <Layout headingSpacing={true}>
+      <Categories
+        queryParams={queryParams}
+        history={history}
+        topicId={REACT_APP_TOPIC_ID}
+      />
+    </Layout>
   );
 };
 
@@ -55,21 +69,25 @@ const categoryDetail = ({ location, history, match }) => {
 
   if (searchValue) {
     return (
-      <ArticleList
-        topicId={REACT_APP_TOPIC_ID}
-        history={history}
-        searchValue={searchValue}
-      />
+      <Layout headingSpacing={false}>
+        <ArticleList
+          topicId={REACT_APP_TOPIC_ID}
+          history={history}
+          searchValue={searchValue}
+        />
+      </Layout>
     );
   }
 
   return (
-    <CategoryDetail
-      queryParams={queryParams}
-      history={history}
-      categoryId={categoryId}
-      topicId={REACT_APP_TOPIC_ID}
-    />
+    <Layout headingSpacing={false}>
+      <CategoryDetail
+        queryParams={queryParams}
+        history={history}
+        categoryId={categoryId}
+        topicId={REACT_APP_TOPIC_ID}
+      />
+    </Layout>
   );
 };
 
@@ -78,7 +96,7 @@ const index = () => {
 };
 
 const routes = () => [
-  <Route exact={true} path="/" key="root" render={index} />,
+  <Route exact path="/" key="root" render={index} />,
   <Route
     path="/knowledge-base"
     exact

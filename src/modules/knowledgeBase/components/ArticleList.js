@@ -1,8 +1,8 @@
-import React from "react";
-import * as dayjs from "dayjs";
-import PropTypes from "prop-types";
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { ReactComponent as Emptybox} from '../../../../src/assets/images/empty-box.svg';
 
 class Lists extends React.Component {
   renderSearchResult = () => {
@@ -29,13 +29,12 @@ class Lists extends React.Component {
 
   render() {
     const { articles, catId } = this.props;
-
     return (
-      <Container className="knowledge-base" fluid="sm">
+      <Container className="knowledge-base">
         <Row>
           <Col>
             {this.renderSearchResult()}
-            {articles.map((article) => (
+            {articles.length >0 ? articles.map(article => (
               <Link
                 to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
                 key={article._id}
@@ -43,30 +42,18 @@ class Lists extends React.Component {
                 <div className="kbase-lists card tab-content">
                   <h5>{article.title}</h5>
                   <p>{article.summary}</p>
-                  <div className="avatars">
-                    <img
-                      className="round-img"
-                      alt={article.createdUser.details.fullName}
-                      src={article.createdUser.details.avatar}
-                      width="34"
-                      height="34"
-                    />
-                    <div className="avatar-info">
-                      <div>
-                        Written by{" "}
-                        <span>{article.createdUser.details.fullName}</span>
-                      </div>
-                      <div>
-                        Modified{" "}
-                        <span>
-                          {dayjs(article.modifiedDate).format("MMM D YYYY")}
-                        </span>
-                      </div>
-                    </div>
+                  <div className="article-desc ">
+                    <img src={article.createdUser.details.avatar} alt="#"  />
+                    <div>
+                    <p>Written by: <strong>{article.createdUser.details.fullName}</strong></p>
+                    <p>Modified: <strong>{(article.modifiedDate).slice(0,10)}</strong></p>
+                    </div>   
                   </div>
+                  
                 </div>
               </Link>
-            ))}
+            ))
+            : <div className="empty-box"> <Emptybox/></div>}
           </Col>
         </Row>
       </Container>
@@ -75,7 +62,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
-  articles: PropTypes.array,
+  articles: PropTypes.array
 };
 
 export default Lists;
