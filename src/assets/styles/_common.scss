@@ -61,7 +61,7 @@ time {
 
   &.article-detail {
     padding: 0;
-    border: none;
+    border-radius: 0;
     box-shadow: none;
     &:hover {
       box-shadow: none;
@@ -430,6 +430,14 @@ h3 strong {
   }
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 50px;
+  span {
+    margin-top: 10px;
+    margin-right: 0;
+    color: $lightGrey;
+    font-size: 14px;
+    width: auto;
+  }
 }
