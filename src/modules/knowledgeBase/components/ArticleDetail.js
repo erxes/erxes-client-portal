@@ -196,41 +196,47 @@ class Detail extends React.Component {
       </div>
     );
   };
+
+  
+
   renderTags = () => {
     const  articleDetail  = this.props.articleDetail;
 
     if (!articleDetail) {
       return null;
     }
-    const content  = articleDetail.content;
+    const content= articleDetail.content;
+    const dom = new DOMParser().parseFromString(content, 'text/html');
+    const nodes = dom.getElementsByTagName("h2");
+
     const tagged = [];
-    const regex =  /<h[1-6]>(.*?)<\/h[1-6]>/g;
-    if (
-      !content.length ||
-      !content.match(regex)
-    ) {
-      return null;
-    }
 
-    content
-      .match(regex)
-      .map((obj) => tagged.push(
-        obj.replace(/<[^>]*>?/gm, '')
-        ));
+    const addId = (array, isTag) => {
+      return array.map( el => {
+ 
+       let taggedItem;
+       if(!el.lastChild.innerText ==String.fromCharCode(160)) {
+         el.children.length > 0 ? taggedItem = el.lastChild.innerText
+         : taggedItem = el.innerText;
+ 
+          el.setAttribute("id", taggedItem)
+          isTag && tagged.push(taggedItem);
+       } 
+     })
+   }
 
-    if(tagged.length === 0){
-        return null;
-    }
-    const  h2Array = [...document.querySelectorAll("h1, h2, h3, h4, h5, h6")];
-    h2Array.map( (el)=>
-      el.setAttribute("id",el.innerText))
+    const  h2Array = document.getElementsByTagName("h2");
+    addId([...nodes], true)
+
+   
+    addId([...h2Array], false)
+
     return (
       <>
         <div className="page-anchor" id="anchorTag">
           <h6>On this page </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
-
               <li key={index} > 
                  <a href={`#${val}`} >
                  {val}
