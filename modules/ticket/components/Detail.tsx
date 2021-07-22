@@ -20,7 +20,6 @@ import PriorityIndicator from '../../common/PriorityIndicator';
 import Icon from '../../common/Icon';
 import Uploader from '../../common/Uploader';
 import { IAttachment } from '../../common/types';
-import uploadHandler from '../../utils/uploadHandler';
 
 type Props = {
   item?: any;
