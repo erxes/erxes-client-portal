@@ -212,10 +212,9 @@ class Detail extends React.Component {
     const tagged = [];
 
     const addId = (array, isTag) => {
-      return array.map( el => {
- 
+      return array.forEach( el => {
        let taggedItem;
-       if(!el.lastChild.innerText ==String.fromCharCode(160)) {
+       if(!el.lastChild.innerText === String.fromCharCode(160)) {
          el.children.length > 0 ? taggedItem = el.lastChild.innerText
          : taggedItem = el.innerText;
  
@@ -227,8 +226,6 @@ class Detail extends React.Component {
 
     const  h2Array = document.getElementsByTagName("h2");
     addId([...nodes], true)
-
-   
     addId([...h2Array], false)
 
     return (
