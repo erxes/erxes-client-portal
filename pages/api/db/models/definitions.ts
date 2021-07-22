@@ -55,7 +55,9 @@ export const userSchema = new Schema<IUserDocument, IUserModel>({
   companyName: field({ type: String, optional: true }),
   companyRegistrationNumber: field({ type: Number, optional: true }),
   erxesCustomerId: field({ type: String, optional: true }),
-  erxesCompanyId: field({ type: String, optional: true })
+  erxesCompanyId: field({ type: String, optional: true }),
+  verificationCode: field({ type: String, optional: true }),
+  verificationCodeExpires: field({ type: Date, optional: true })
 });
 
 export interface ILog {

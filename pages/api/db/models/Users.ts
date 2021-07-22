@@ -12,6 +12,7 @@ import {
   clientPortalCreateCustomer,
   clientPortalCreateCompany
 } from '../../graphql/mutations';
+import * as randomize from 'randomatic';
 
 const SALT_WORK_FACTOR = 10;
 
@@ -53,6 +54,16 @@ export interface IUserModel extends Model<IUserDocument> {
     refreshToken: string
   ): { token: string; refreshToken: string; user: IUserDocument };
   login(args: ILoginParams): { token: string; refreshToken: string };
+  imposeVerificationCode(phone: string): string;
+  changePasswordWithCode({
+    phone,
+    code,
+    password
+  }: {
+    phone: string;
+    code: string;
+    password: string;
+  }): string;
 }
 
 export const loadClass = () => {
@@ -277,6 +288,42 @@ export const loadClass = () => {
       return token;
     }
 
+    public static async changePasswordWithCode({
+      phone,
+      code,
+      password
+    }: {
+      phone: string;
+      code: string;
+      password: string;
+    }) {
+      const user = await Users.findOne({
+        phone,
+        verificationCode: code
+      }).lean();
+
+      if (!user) {
+        throw new Error('Wrong code');
+      }
+
+      // Password can not be empty string
+      if (password === '') {
+        throw new Error('Password can not be empty');
+      }
+
+      this.checkPassword(password);
+
+      // set new password
+      await Users.findByIdAndUpdate(
+        { _id: user._id },
+        {
+          password: await this.generatePassword(password)
+        }
+      );
+
+      return 'success';
+    }
+
     public static async createTokens(_user: IUserDocument, secret: string) {
       const user = {
         _id: _user._id,
@@ -324,6 +371,29 @@ export const loadClass = () => {
         refreshToken: newRefreshToken,
         user: dbUsers
       };
+    }
+
+    static generateVerificationCode() {
+      return randomize('0', 6);
+    }
+
+    public static async imposeVerificationCode(phone: string) {
+      const user = await Users.findOne({ phone });
+      const code = this.generateVerificationCode();
+      const codeExpires = Date.now() + 60000;
+
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      await Users.updateOne(
+        { _id: user._id },
+        {
+          $set: { verificationCode: code, verificationCodeExpires: codeExpires }
+        }
+      );
+
+      return code;
     }
 
     public static async login({

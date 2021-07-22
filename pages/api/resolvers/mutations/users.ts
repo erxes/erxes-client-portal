@@ -4,6 +4,7 @@ import { ILoginParams } from '../../types';
 import Users from '../../db/models/Users';
 import { IContext } from '../../types';
 import { authCookieOptions } from '../utils';
+import twilio from 'twilio';
 
 type AddParams = {
   configId: string;
@@ -56,10 +57,45 @@ const userMutations = {
   },
 
   /*
+   * Change user password
+   */
+  resetPasswordWithCode(
+    _root,
+    args: { phone: string; password: string; code: string }
+  ) {
+    return Users.changePasswordWithCode(args);
+  },
+
+  /*
    * Edit user profile
    */
   async userEdit(_root, args: IUser, { user }: IContext) {
     return Users.editProfile(user._id, args);
+  },
+
+  async sendVerificationCode(root, { phone }) {
+    const code = await Users.imposeVerificationCode(phone);
+
+    // Twilio Credentials
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const fromNumber = process.env.TWILIO_FROM_NUMBER;
+
+    // require the Twilio module and create a REST client
+    const client = twilio(accountSid, authToken);
+    client.messages.create(
+      {
+        to: `+976${phone}`,
+        from: fromNumber,
+        body: code
+      },
+      (err, message) => {
+        console.log(err);
+        console.log(message);
+      }
+    );
+
+    return 'sent';
   }
 };
 
