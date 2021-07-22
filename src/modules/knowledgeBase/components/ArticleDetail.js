@@ -211,9 +211,9 @@ class Detail extends React.Component {
     const addId = (array, isTag) => {
       return array.forEach( el => {
        let taggedItem;
-       if(!el.lastChild.innerText === String.fromCharCode(160)) {
-         el.children.length > 0 ? taggedItem = el.lastChild.innerText
-         : taggedItem = el.innerText;
+       if(el.lastChild.innerText ) {
+        el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
+        : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
  
           el.setAttribute("id", taggedItem)
           isTag && tagged.push(taggedItem);
