@@ -218,10 +218,7 @@ class Detail extends React.Component {
        if(el.lastChild.innerText ) {
          el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
          : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
- 
           el.setAttribute("id", taggedItem)
-
-          console.log(el)
           isTag && tagged.push(taggedItem);
        } 
      })
