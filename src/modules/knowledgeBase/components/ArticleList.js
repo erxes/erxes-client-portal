@@ -56,7 +56,7 @@ class Lists extends React.Component {
             : 
             <div className="empty-box"> 
               <Emptybox/> 
-              <span>Одоогоор энэ ангилалд нийтлэл байхгүй байна</span>
+              <span>Thare are no articles in this category</span>
             </div>}
           </Col>
         </Row>
