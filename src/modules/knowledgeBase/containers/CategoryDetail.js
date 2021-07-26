@@ -8,11 +8,11 @@ import CategoryDetail from '../components/CategoryDetail';
 
 class CategoryDetailsContainer extends React.Component {
   render() {
-    const { getKbTopicQuery, getKbCategoryQuery, history } = this.props;    
+    const { getKbTopicQuery, getKbCategoryQuery = {}, history } = this.props;
 
     if (getKbCategoryQuery.loading || getKbTopicQuery.loading) {
       return <div></div>;
-    }    
+    }
 
     const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};
 
@@ -32,21 +32,21 @@ CategoryDetailsContainer.propTypes = {
   getKbCategoryQuery: PropTypes.object,
   history: PropTypes.object,
   categoryId: PropTypes.string,
-  topicId: PropTypes.string,
+  topicId: PropTypes.string
 };
 
 export default compose(
   graphql(gql(queries.getKbTopicQuery), {
     name: 'getKbTopicQuery',
     options: ({ topicId }) => ({
-      variables: { _id: topicId },
-    }),
+      variables: { _id: topicId }
+    })
   }),
   graphql(gql(queries.getKbCategoryQuery), {
     name: 'getKbCategoryQuery',
+    skip: ({ categoryId }) => !categoryId,
     options: ({ categoryId }) => ({
-      variables: { _id: categoryId },
-      skip: !categoryId
-    }),
+      variables: { _id: categoryId }
+    })
   })
 )(CategoryDetailsContainer);

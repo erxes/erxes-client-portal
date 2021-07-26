@@ -41,6 +41,7 @@ const getKbTopicQuery = `
       color
       backgroundImage
       languageCode
+
       categories {
         ${categoryFields}
       }

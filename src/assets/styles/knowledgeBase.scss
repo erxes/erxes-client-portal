@@ -1,4 +1,10 @@
 .knowledge-base {
+  .category-wrapper {
+    > div {
+      margin-bottom: 40px;
+    }
+  }
+
   .category-item {
     margin-bottom: 30px;
 
@@ -98,8 +104,9 @@
   img {
     background: rgb(240, 240, 240);
     border: 2px solid rgb(255, 255, 255);
-    margin-left: -12px;
+    margin-left: -15px;
     font-size: 10px;
+    flex-shrink: 0;
 
     &:first-child {
       margin-left: 0;
@@ -117,6 +124,11 @@
     margin-left: 10px;
     font-size: 13px;
 
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
     .darker {
       display: inline;
     }
@@ -124,6 +136,7 @@
     span {
       color: $silverGrey;
       width: auto;
+      padding-left: 5px;
     }
   }
 }
@@ -367,7 +380,7 @@ span {
       height: 100%;
 
       &::before {
-        content: "";
+        content: '';
         height: 100%;
         border-left: 2px solid #d6d6d6;
         position: absolute;
@@ -384,7 +397,7 @@ span {
         }
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: -20px;
           height: 100%;

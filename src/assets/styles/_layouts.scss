@@ -404,7 +404,7 @@
             font-size: 13px;
 
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               height: 130%;
               left: -11px;
@@ -467,5 +467,10 @@
 
   .logged-in-user {
     padding: 0 20px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .card.article-detail {
+    padding: 30px !important;
   }
 }

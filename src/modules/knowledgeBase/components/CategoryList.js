@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Avatar from "../../../assets/images/avatar-colored.svg";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Avatar from '../../../assets/images/avatar-colored.svg';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class Categories extends React.Component {
-  renderAuthors = (authors) => {
+  renderAuthors = authors => {
     if (authors.length > 3) {
       return (
         <>
@@ -20,15 +20,15 @@ class Categories extends React.Component {
     return authors.map((author, index) => (
       <ol key={index}>
         {author.details.fullName}
-        {authors.length > 1 && ", "}
+        {authors.length > 1 && ', '}
       </ol>
     ));
   };
 
-  renderAvatars = (cat) => {
+  renderAvatars = cat => {
     return (
       <div className="avatars">
-        {cat.authors.map((author, index) => (
+        {cat.authors.slice(0, 2).map((author, index) => (
           <img
             key={index}
             className="round-img"
@@ -45,11 +45,11 @@ class Categories extends React.Component {
         <div className="avatar-info">
           <div>
             <div className="darker">{cat.numOfArticles}</div> articles in this
-            category{" "}
+            category{' '}
           </div>
           <div>
-            <div className="darker">Written by: </div>
-            {this.renderAuthors(cat.authors)}
+            <div className="darker">Written by </div>
+            {cat.authors.length} authors
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ class Categories extends React.Component {
       return null;
     }
 
-    const detail = (cat) => {
+    const detail = cat => {
       return (
         <Link
           to={`${url}${cat._id}`}
@@ -99,7 +99,7 @@ class Categories extends React.Component {
       );
     };
 
-    return categories.map((cat) => {
+    return categories.map(cat => {
       if (cat.numOfArticles === 0) {
         return null;
       }
@@ -125,16 +125,16 @@ class Categories extends React.Component {
             <h2 className="list-category-title">1. САНАЛ ХҮСЭЛТ</h2>
             <div className="promoted-wrap forms">
               {this.renderForm(
-                "Ажилтан, үйл ажиллагаатай холбоотой санал хүсэлт",
-                "ThgJPg"
+                'Ажилтан, үйл ажиллагаатай холбоотой санал хүсэлт',
+                'ThgJPg'
               )}
-              {this.renderForm("Гомдлын үл тохирлын маягт", "xKQ7FT")}
-              {this.renderForm("Торхтой шар айрагны маягт", "obAZPp")}
+              {this.renderForm('Гомдлын үл тохирлын маягт', 'xKQ7FT')}
+              {this.renderForm('Торхтой шар айрагны маягт', 'obAZPp')}
             </div>
           </div>
         </Container>
 
-        {parentCategories.map((parentCat) => (
+        {parentCategories.map(parentCat => (
           <Container className="knowledge-base" fluid="sm" key={parentCat._id}>
             <div className="category-knowledge-list">
               <h2 className="list-category-title">
@@ -155,7 +155,7 @@ class Categories extends React.Component {
 
 Categories.propTypes = {
   kbTopic: PropTypes.object,
-  articlesQuery: PropTypes.object,
+  articlesQuery: PropTypes.object
 };
 
 export default Categories;
