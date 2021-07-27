@@ -55,7 +55,7 @@ class Categories extends React.Component {
       </div>
     );
   };
-  
+
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { parentCategories = [] } = kbTopic;
@@ -95,12 +95,12 @@ class Categories extends React.Component {
               </h2>
               <div className="promoted-wrap">
                 {specialCategory.childrens &&
-                  specialCategory.childrens.map((cat , i)=> (
+                  specialCategory.childrens.map((cat, i) => (
                     <>
-                    <Card key={cat._id}>{detail(cat)} 
+                      <Card key={cat._id}>
+                        {detail(cat)}
                         <div className="more">Дэлгэрэнгүй </div>
-                    </Card>
-                   
+                      </Card>
                     </>
                   ))}
               </div>

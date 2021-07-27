@@ -21,7 +21,7 @@ const { REACT_APP_API_URL } = getEnv();
 
 // Create an http link:
 const httpLink = createHttpLink({
-  uri: `${REACT_APP_API_URL}/graphql`
+  uri: `${REACT_APP_API_URL}/graphql`,
 });
 
 // Attach user credentials
