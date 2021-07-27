@@ -4,8 +4,8 @@ import KnowledgeBaseRouter from './modules/knowledgeBase/routes';
 
 const Routes = () => {
   return (
-    <Router basename="/help">
-        <KnowledgeBaseRouter />
+    <Router>
+      <KnowledgeBaseRouter />
     </Router>
   );
 };

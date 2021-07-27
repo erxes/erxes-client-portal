@@ -1,5 +1,11 @@
 $yellow: #fac534;
 .knowledge-base {
+  .category-wrapper {
+    > div {
+      margin-bottom: 40px;
+    }
+  }
+
   .category-item {
     .icon-wrapper {
       display: flex;
@@ -118,8 +124,9 @@ $yellow: #fac534;
   img {
     background: rgb(240, 240, 240);
     border: 2px solid rgb(255, 255, 255);
-    margin-left: -12px;
+    margin-left: -15px;
     font-size: 10px;
+    flex-shrink: 0;
 
     &:first-child {
       margin-left: 0;
@@ -137,6 +144,11 @@ $yellow: #fac534;
     margin-left: 10px;
     font-size: 13px;
 
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
     .darker {
       display: inline;
     }
@@ -144,6 +156,7 @@ $yellow: #fac534;
     span {
       color: $silverGrey;
       width: auto;
+      padding-left: 5px;
     }
   }
 }
@@ -349,7 +362,7 @@ span {
       height: 100%;
 
       &::before {
-        content: "";
+        content: '';
         height: 100%;
         border-left: 2px solid #d6d6d6;
         position: absolute;
@@ -366,7 +379,7 @@ span {
         }
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: -20px;
           height: 100%;
@@ -414,7 +427,7 @@ span {
           border-radius: 0;
           color: red;
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             display: inline-block;
             width: 160px;
@@ -440,7 +453,7 @@ span {
 @media only screen and (max-width: 1080px) {
   .card {
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       display: inline-block;
       width: 27vw;
