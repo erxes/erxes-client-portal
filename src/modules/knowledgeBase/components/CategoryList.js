@@ -135,7 +135,6 @@ class Categories extends React.Component {
       </>
     );
   };
-
   render() {
     return <>{this.renderCategories()}</>;
   }

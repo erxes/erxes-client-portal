@@ -210,25 +210,20 @@ class Detail extends React.Component {
     const nodes = dom.getElementsByTagName("h2");
 
     const tagged = [];
+    const regex = /<h[1-6]>(.*?)<\/h[1-6]>/g;
+    if (!content.length || !content.match(regex)) {
+      return null;
+    }
 
-    const addId = (array, isTag) => {
-      return array.forEach((el) => {
-        let taggedItem;
+    content
+      .match(regex)
+      .map((obj) => tagged.push(obj.replace(/<[^>]*>?/gm, "")));
 
-        if (el.lastChild.innerText) {
-          el.children.length > 0
-            ? (taggedItem = el.lastChild.innerText.replace(/&nbsp;/gi, ""))
-            : (taggedItem = el.innerText.replace(/&nbsp;/gi, ""));
-          el.setAttribute("id", taggedItem);
-          isTag && tagged.push(taggedItem);
-        }
-      });
-    };
-
-    const h2Array = document.getElementsByTagName("h2");
-    addId([...nodes], true);
-    addId([...h2Array], false);
-
+    if (tagged.length === 0) {
+      return null;
+    }
+    const h2Array = [...document.querySelectorAll("h1, h2, h3, h4, h5, h6")];
+    h2Array.map((el) => el.setAttribute("id", el.innerText));
     return (
       <>
         <div className="page-anchor" id="anchorTag">

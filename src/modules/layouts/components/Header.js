@@ -32,7 +32,7 @@ function Header(props) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className=" icon-arrow-up-right"></i> erxes.io
+                <i className=" icon-arrow-up-right"></i> Go to erxes
               </a>
             </Col>
           </Row>

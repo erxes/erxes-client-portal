@@ -11,6 +11,27 @@ const categoryFields = `
     }
   }
 `;
+
+const articleFields = `
+  _id
+  title
+  summary
+  content
+  status
+  reactionChoices
+  reactionCounts
+  createdBy
+  createdUser {
+    details {
+      fullName
+      avatar
+    }
+  }
+  createdDate
+  modifiedBy
+  modifiedDate
+`;
+
 const getKbTopicQuery = `
   query widgetsKnowledgeBaseTopicDetail($_id: String!) {
     widgetsKnowledgeBaseTopicDetail(_id: $_id) {
@@ -33,7 +54,6 @@ const getKbTopicQuery = `
           title        
         }
       }
-
     }
   }
 `;
