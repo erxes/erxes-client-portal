@@ -1,19 +1,18 @@
-import React from 'react';
-import { Row, Col, Container } from 'react-bootstrap';
-import Search from '../../common/components/Search';
-import Logo from '../../../assets/images/logos/erxes-logo.svg';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Row, Col, Container } from "react-bootstrap";
+import Search from "../../common/components/Search";
+import Logo from "../../../assets/images/logos/erxes-logo.svg";
+import { Link } from "react-router-dom";
 
 function Header(props) {
   const { backgroundImage, color } = props.kbTopic || {};
   const backColor = color && color;
   const background = backgroundImage ? `url(${backgroundImage})` : backColor;
-  
 
   return (
     <div
-      className={`head ${props.headingSpacing && 'bottom-spacing'}`}
-      style={{ background: background}}
+      className={`head ${props.headingSpacing && "bottom-spacing"}`}
+      style={{ background: background }}
     >
       <div className="header">
         <Container fluid="sm">
@@ -24,21 +23,22 @@ function Header(props) {
                   <img src={Logo} alt="logo" />
                 </Link>
                 <div className="line">|</div>
-                <div className="text">Эрксис хотолын гишүүдэд туслах мэдлэгийн сан</div>
+                <div className="text">Community Help Center</div>
               </div>
             </Col>
             <Col md="auto" className="header-links">
               <a
-                href="https://erxes.mn/"
+                href="https://erxes.io/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className=" icon-arrow-up-right"></i> erxes.mn
+                <i className=" icon-arrow-up-right"></i> erxes.io
               </a>
             </Col>
           </Row>
           <h3>
-          Эрксис платформ ашиглах гарын авлага болон мэдээлэл солилцох талбар
+            A knowledge-sharing help center designed specially for the erxes
+            community
           </h3>
           <Search
             history={props.history}
