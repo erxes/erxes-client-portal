@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { ReactComponent as Emptybox} from '../../../../src/assets/images/empty-box.svg';
+import React from "react";
+import PropTypes from "prop-types";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { ReactComponent as Emptybox } from "../../../../src/assets/images/empty-box.svg";
 
 class Lists extends React.Component {
   renderSearchResult = () => {
@@ -34,26 +34,40 @@ class Lists extends React.Component {
         <Row>
           <Col>
             {this.renderSearchResult()}
-            {articles.length >0 ? articles.map(article => (
-              <Link
-                to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
-                key={article._id}
-              >
-                <div className="kbase-lists card tab-content">
-                  <h5>{article.title}</h5>
-                  <p>{article.summary}</p>
-                  <div className="article-desc ">
-                    <img src={article.createdUser.details.avatar} alt="#"  />
-                    <div>
-                    <p>Нийтлэсэн: <strong>{article.createdUser.details.fullName}</strong></p>
-                    <p>Огноо:  <strong>{(article.modifiedDate).slice(0,10)}</strong></p>
-                    </div>   
+            {articles.length > 0 ? (
+              articles.map((article) => (
+                <Link
+                  to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
+                  key={article._id}
+                >
+                  <div className="kbase-lists card tab-content">
+                    <h5>{article.title}</h5>
+                    <p>{article.summary}</p>
+                    <div className="article-desc ">
+                      <img src={article.createdUser.details.avatar} alt="#" />
+                      <div>
+                        <p>
+                          Нийтлэсэн:{" "}
+                          <strong>
+                            {article.createdUser.details.fullName}
+                          </strong>
+                        </p>
+                        <p>
+                          Огноо:{" "}
+                          <strong>{article.modifiedDate.slice(0, 10)}</strong>
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  
-                </div>
-              </Link>
-            ))
-            : <div className="empty-box"> <Emptybox/></div>}
+                </Link>
+              ))
+            ) : (
+              <div className="empty-box">
+                {" "}
+                <Emptybox />
+                <span>Одоогоор энэ ангилалд нийтлэл байхгүй байна</span>
+              </div>
+            )}
           </Col>
         </Row>
       </Container>
@@ -62,7 +76,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
-  articles: PropTypes.array
+  articles: PropTypes.array,
 };
 
 export default Lists;

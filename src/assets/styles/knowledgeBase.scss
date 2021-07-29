@@ -36,7 +36,7 @@ $yellow: #fac534;
 
 .tab-content {
   h5 {
-    color: #000;
+    color: #333;
     font-size: 16px;
     font-weight: 500;
   }
@@ -51,7 +51,6 @@ $yellow: #fac534;
     justify-content: flex-start;
     align-items: center;
     padding-top: 10px;
-    height: 40px;
     p {
       font-size: 80%;
       padding: 0 10px;
@@ -60,8 +59,8 @@ $yellow: #fac534;
       color: #6c718b;
     }
     img {
-      height: 100%;
-      width: auto;
+      height: 35px;
+      width: 35px;
       vertical-align: middle;
       border-radius: 100%;
       background: #f0f0f0;
@@ -86,7 +85,7 @@ $yellow: #fac534;
 
     li {
       a {
-        color: $mainColor;
+        color: $lightMain;
 
         h6 {
           font-size: 15px;
@@ -240,6 +239,7 @@ span {
     .card {
       border: 1px solid #e2e2e271;
       animation: fadeInDown 0.8s ease-in-out;
+      margin-bottom: 10px;
     }
 
     .category-item {
@@ -252,7 +252,7 @@ span {
 
         i {
           font-size: 25px;
-          color: #6569df;
+          color: $lightMain;
         }
       }
     }
@@ -298,11 +298,11 @@ span {
         position: relative;
         min-height: 160px;
         padding: 1.8rem 2.2rem 1.8rem 3.2rem;
-
+        margin-bottom: 10px;
         &:hover > * {
           .icon-wrapper,
           .tab-content > h5 {
-            color: #6569df;
+            color: $lightMain;
           }
         }
         .icon-wrapper {
@@ -326,12 +326,12 @@ span {
         }
 
         .more {
-          color: #6569df;
-          text-transform: uppercase;
+          color: $lightMain;
           font-weight: 500;
           position: absolute;
           bottom: 15px;
           font-size: 12px;
+          text-transform: uppercase;
         }
 
         .description {
@@ -362,7 +362,7 @@ span {
       height: 100%;
 
       &::before {
-        content: '';
+        content: "";
         height: 100%;
         border-left: 2px solid #d6d6d6;
         position: absolute;
@@ -379,7 +379,7 @@ span {
         }
 
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           left: -20px;
           height: 100%;
@@ -427,7 +427,7 @@ span {
           border-radius: 0;
           color: red;
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             display: inline-block;
             width: 160px;
@@ -453,7 +453,7 @@ span {
 @media only screen and (max-width: 1080px) {
   .card {
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       display: inline-block;
       width: 27vw;

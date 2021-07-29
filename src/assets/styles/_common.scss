@@ -38,7 +38,7 @@ time {
 }
 
 .card {
-  border: 0;
+  border: 1px solid #eee;
   padding: 1rem;
   background: $white;
   box-shadow: $shadow;
@@ -48,7 +48,7 @@ time {
   display: flex;
   flex-direction: column;
   min-width: 0;
-
+  margin-bottom: 10px;
   .card-title {
     text-align: center;
     color: $mainColor;
@@ -61,6 +61,7 @@ time {
 
   &.article-detail {
     padding: 0;
+    border: none;
     border-radius: 0;
     box-shadow: none;
     &:hover {
@@ -437,5 +438,23 @@ h3 strong {
     &:hover {
       color: #555;
     }
+  }
+}
+.empty-box {
+  svg {
+    fill-opacity: 10%;
+    width: 100px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  span {
+    margin-top: 10px;
+    margin-right: 0;
+    color: $lightGrey;
+    font-size: 14px;
+    width: auto;
   }
 }
