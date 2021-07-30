@@ -6,43 +6,53 @@ import SectionHeader from "../../common/components/SectionHeader";
 import ArticleList from "./ArticleList";
 
 class CategoryDetail extends React.Component {
-  renderChildrens(categories) {
-    const mainUrl = "/knowledge-base/category/details/";
-
-    if (!categories || categories.length === 0) {
-      return null;
+  isActive = (categoryId) => {
+    if (categoryId === this.props.category._id) {
+      return "active";
     }
-
-    return categories.map((child) => {
-      if (child.numOfArticles === 0) {
-        return null;
-      }
-
-      return (
-        <Link key={child._id} to={`${mainUrl}${child._id}`}>
-          <li
-            className={child._id === this.props.category._id ? "active" : null}
-          >
-            <Row>
-              <Col md={{ span: 11, offset: 1 }} key={child._id}>
-                <div className="tab-content">
-                  <h6>{child.title}</h6>
-                  <p>{child.description}</p>
-                </div>
-              </Col>
-            </Row>
-          </li>
-        </Link>
-      );
-    });
-  }
+    return;
+  };
 
   renderCategories = () => {
-    const { kbTopic, category } = this.props;
-    const categories = kbTopic.parentCategories;
+    const { kbTopic } = this.props;
+    const { parentCategories } = kbTopic;
+    const renderCategory = (cat) => {
+      return (
+        <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
+          <div className="tags sidebar-list">
+            <ul>
+              <li className={this.isActive(cat._id)}>
+                <div className="sidebar-item">
+                  <div className="icon-wrapper">
+                    {cat.childrens && <i className={`icon-${cat.icon}`} />}
+                  </div>
+                  <h6>{cat.title}</h6>
+                  <span>{`(${cat.numOfArticles})`}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </Link>
+      );
+    };
 
-    if (!categories || categories.length === 0) {
-      return null;
+    if (parentCategories) {
+      return (
+        <>
+          {parentCategories.map((cat) => {
+            return (
+              <>
+                {renderCategory(cat)}
+                {cat.childrens && (
+                  <div className="sub-categories">
+                    {cat.childrens.map((child) => renderCategory(child))}
+                  </div>
+                )}
+              </>
+            );
+          })}
+        </>
+      );
     }
 
     return categories.map((cat) => (
@@ -62,28 +72,26 @@ class CategoryDetail extends React.Component {
   };
 
   render() {
-    const { category, history } = this.props;
-
+    const { category, history, kbTopic } = this.props;
     return (
-      <Container className="knowledge-base" fluid="sm">
-        <SectionHeader title={category.title} />
+      <Container className="knowledge-base">
+        <SectionHeader
+          categories={kbTopic.parentCategories}
+          selectedCat={category}
+        />
 
         <Row className="category-detail">
+          <Col md={3}>
+            <div className="sidebar-wrap">
+              <div className="tags sidebar-list">{this.renderCategories()}</div>
+            </div>
+          </Col>
           <Col md={9}>
             <ArticleList
               articles={category.articles}
               history={history}
               catId={category._id}
             />
-          </Col>
-          <Col md={3}>
-            <div className="tags sidebar-list">
-              <h6>Categories</h6>
-
-              <div className="tags sidebar-list">
-                <ul>{this.renderCategories()}</ul>
-              </div>
-            </div>
           </Col>
         </Row>
       </Container>

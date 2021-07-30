@@ -1,4 +1,4 @@
-const catFields = `
+const categoryFields = `
   _id
   title
   description
@@ -11,7 +11,6 @@ const catFields = `
     }
   }
 `;
-
 const getKbTopicQuery = `
   query widgetsKnowledgeBaseTopicDetail($_id: String!) {
     widgetsKnowledgeBaseTopicDetail(_id: $_id) {
@@ -22,15 +21,19 @@ const getKbTopicQuery = `
       languageCode
 
       categories {
-        ${catFields}
+        ${categoryFields}
       }
-
       parentCategories {
-        ${catFields}
+        ${categoryFields}
         childrens {
-          ${catFields}
+          ${categoryFields}
+        }
+        articles{
+          _id
+          title        
         }
       }
+
     }
   }
 `;
