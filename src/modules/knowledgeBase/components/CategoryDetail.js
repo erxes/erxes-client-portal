@@ -37,38 +37,19 @@ class CategoryDetail extends React.Component {
     };
 
     if (parentCategories) {
-      return (
+      return parentCategories.map((cat) => (
         <>
-          {parentCategories.map((cat) => {
-            return (
-              <>
-                {renderCategory(cat)}
-                {cat.childrens && (
-                  <div className="sub-categories">
-                    {cat.childrens.map((child) => renderCategory(child))}
-                  </div>
-                )}
-              </>
-            );
-          })}
+          {renderCategory(cat)}
+          {cat.childrens && (
+            <div className="sub-categories">
+              {cat.childrens.map((child) => renderCategory(child))}
+            </div>
+          )}
         </>
-      );
+      ));
     }
 
-    return categories.map((cat) => (
-      <React.Fragment key={cat._id}>
-        <li className={cat._id === category._id ? "active" : null}>
-          <div className="tab-content">
-            <h6>
-              <i className={`icon-${cat.icon ? cat.icon : "clipboard-1"}`}></i>
-              {cat.title}
-            </h6>
-            <p>{cat.description}</p>
-          </div>
-        </li>
-        {this.renderChildrens(cat.childrens)}
-      </React.Fragment>
-    ));
+    return;
   };
 
   render() {
