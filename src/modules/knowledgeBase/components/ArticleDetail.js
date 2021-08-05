@@ -196,41 +196,36 @@ class Detail extends React.Component {
       </div>
     );
   };
-  renderTags = () => {
-    const  articleDetail  = this.props.articleDetail;
 
-    if (!articleDetail) {
-      return null;
-    }
-    const content  = articleDetail.content;
+  renderTags = (dom) => {
+    const nodes = dom.getElementsByTagName("h2");
     const tagged = [];
-    const regex =  /<h[1-6]>(.*?)<\/h[1-6]>/g;
-    if (
-      !content.length ||
-      !content.match(regex)
-    ) {
+
+    const addId = (array, isTag) => {
+      return array.forEach( el => {
+       let taggedItem;
+       if(el.lastChild.innerText ) {
+        el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
+        : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
+ 
+          el.setAttribute("id", taggedItem)
+          isTag && tagged.push(taggedItem);
+       } 
+     })
+   }
+
+   const h2Array = document.getElementsByTagName("h2");
+    addId([...nodes], true)
+    addId([...h2Array], false)
+
+    if( !nodes || nodes.length === 0 ) {
       return null;
     }
-
-    content
-      .match(regex)
-      .map((obj) => tagged.push(
-        obj.replace(/<[^>]*>?/gm, '')
-        ));
-
-    if(tagged.length === 0){
-        return null;
-    }
-    const  h2Array = [...document.querySelectorAll("h1, h2, h3, h4, h5, h6")];
-    h2Array.map( (el)=>
-      el.setAttribute("id",el.innerText))
     return (
-      <>
         <div className="page-anchor" id="anchorTag">
-          <h6>On this page </h6>
+          <h6>ON THIS PAGE </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
-
               <li key={index} > 
                  <a href={`#${val}`} >
                  {val}
@@ -239,14 +234,38 @@ class Detail extends React.Component {
             ))}
           </Scrollspy>
         </div>
-      </>
     );
   };
 
+  createDom = () =>{
+    const  articleDetail  = this.props.articleDetail;
+    if (!articleDetail) {
+      return null;
+    }
+    const content= articleDetail.content;
+    const dom = new DOMParser().parseFromString(content, 'text/html');
+    return dom;
+  }
+
+  showImageModal = (e) => {
+    const img = e.target.closest("img");
+    const modalImg = document.getElementById("modal-content");
+    const modal = document.getElementById("modal");
+
+    if (img && e.currentTarget.contains(img)) {
+        modalImg.src = img.src;    
+        modal.style.display = "block";
+    }
+ }
+
+  handleModal = () => {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+  }
   
   render() {
     const { articleDetail, category, kbTopic } = this.props;
-    
+    const dom = this.createDom()
     return (
       <div className="knowledge-base">
         <Row>
@@ -266,17 +285,23 @@ class Detail extends React.Component {
                 <h4>{articleDetail.title}</h4>
                 <div className="content mt-4" id="contentText">
                   <p>{articleDetail.summary}</p>
-                  <p
+                  <div className="article" onClick={this.showImageModal}
                     dangerouslySetInnerHTML={{
                       __html: articleDetail.content
-                    }}
-                  />
+                    }}>
+                  </div>
+                   <div onClick={this.handleModal} id="modal" >
+                      <span id = "close">&times;</span>
+                      <img id="modal-content"/>
+                    </div>
+                  
                 </div>
               </div>
               {this.renderReactions()}
             </div>
           </Col>
-          <Col md={2} >{this.renderTags()}</Col>
+          <Col md={2} >{this.renderTags(dom)}</Col>
+          
         </Row>
       </div>
     );
