@@ -218,7 +218,7 @@ class Detail extends React.Component {
     addId([...nodes], true)
     addId([...h2Array], false)
 
-    if( nodes.length === 0 ) {
+    if( !nodes || nodes.length === 0 ) {
       return null;
     }
     return (
