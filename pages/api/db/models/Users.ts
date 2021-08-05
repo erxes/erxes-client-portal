@@ -400,7 +400,8 @@ export const loadClass = () => {
       type,
       email,
       password,
-      description
+      description,
+      deviceToken
     }: ILoginParams) {
       const user = await Users.findOne({
         email: { $regex: new RegExp(`^${email}$`, 'i') },
@@ -423,6 +424,16 @@ export const loadClass = () => {
         user,
         this.getSecret()
       );
+
+      if (deviceToken) {
+        const deviceTokens: string[] = user.deviceTokens || [];
+
+        if (!deviceTokens.includes(deviceToken)) {
+          deviceTokens.push(deviceToken);
+
+          await user.update({ $set: { deviceTokens } });
+        }
+      }
 
       await Logs.createLog({
         type: 'user',

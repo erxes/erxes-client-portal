@@ -28,7 +28,7 @@ const userParams = `
 `;
 
 export const mutations = `
-  login(email: String!, password: String!, type: String, description: String): String
+  login(email: String!, password: String!, type: String, description: String, deviceToken: String): String
   logout: String
   forgotPassword(email: String!): String!
   resetPasswordWithCode(phone: String!, code: String!, password: String!): String

@@ -18,6 +18,7 @@ export interface IUser {
   type?: string;
   companyName?: string;
   companyRegistrationNumber?: number;
+  deviceTokens?: string[];
 }
 
 export interface IUserDocument extends IUser, Document {
@@ -57,7 +58,12 @@ export const userSchema = new Schema<IUserDocument, IUserModel>({
   erxesCustomerId: field({ type: String, optional: true }),
   erxesCompanyId: field({ type: String, optional: true }),
   verificationCode: field({ type: String, optional: true }),
-  verificationCodeExpires: field({ type: Date, optional: true })
+  verificationCodeExpires: field({ type: Date, optional: true }),
+  deviceTokens: field({
+    type: [String],
+    default: [],
+    label: 'Device tokens'
+  })
 });
 
 export interface ILog {
