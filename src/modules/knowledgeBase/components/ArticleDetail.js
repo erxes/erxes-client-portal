@@ -14,8 +14,10 @@ class Detail extends React.Component {
     this.state = {
       activeReaction: '',
       toggle: false,
-      nextFirstId: '0'
+      nextFirstId: '0',
     };
+    this.showImageModal = this.showImageModal.bind(this);
+    this.handleModal = this.handleModal.bind(this);
   }
 
   onReactionClick = reactionChoice => {
@@ -116,7 +118,15 @@ class Detail extends React.Component {
     }
     return;
   };
-
+  createDom = () =>{
+    const  articleDetail  = this.props.articleDetail;
+    if (!articleDetail) {
+      return null;
+    }
+    const content= articleDetail.content;
+    const dom = new DOMParser().parseFromString(content, 'text/html');
+    return dom;
+  }
   renderCategories = () => {
     const { kbTopic } = this.props;
     const categories = kbTopic.parentCategories;
@@ -196,16 +206,8 @@ class Detail extends React.Component {
       </div>
     );
   };
-  renderTags = () => {
-    const  articleDetail  = this.props.articleDetail;
-
-    if (!articleDetail) {
-      return null;
-    }
-    const content= articleDetail.content;
-    const dom = new DOMParser().parseFromString(content, 'text/html');
+  renderTags = (dom) => {
     const nodes = dom.getElementsByTagName("h2");
-
     const tagged = [];
 
     const addId = (array, isTag) => {
@@ -221,12 +223,12 @@ class Detail extends React.Component {
      })
    }
 
-    const  h2Array = document.getElementsByTagName("h2");
+   const h2Array = document.getElementsByTagName("h2");
     addId([...nodes], true)
     addId([...h2Array], false)
-
     return (
       <>
+      {nodes && nodes.length>0 ?
         <div className="page-anchor" id="anchorTag">
           <h6>ХОЛБООС </h6>
           <Scrollspy items={tagged} currentClassName="active">
@@ -239,13 +241,28 @@ class Detail extends React.Component {
             ))}
           </Scrollspy>
         </div>
+        :""}
+
       </>
     );
   };
-  
+  showImageModal(e) {
+    const img = e.target.closest("img");
+    const modalImg = document.getElementById("modal-content");
+    const modal = document.getElementById("modal");
+
+    if (img && e.currentTarget.contains(img)) {
+        modalImg.src = img.src;    
+        modal.style.display = "block";
+    }
+ }
+  handleModal(){
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+  }
   render() {
     const { articleDetail, category, kbTopic } = this.props;
-    
+    const dom = this.createDom();
     return (
       <div className="knowledge-base">
         <Row>
@@ -265,17 +282,24 @@ class Detail extends React.Component {
                 <h4>{articleDetail.title}</h4>
                 <div className="content mt-4" id="contentText">
                   <p>{articleDetail.summary}</p>
-                  <p
+
+                  <div className="article" onClick={this.showImageModal}
                     dangerouslySetInnerHTML={{
                       __html: articleDetail.content
                     }}
-                  />
+                    ></div>   
+                    <div onClick={this.handleModal} id="modal" >
+                      <span id = "close">&times;</span>
+                      <img id="modal-content"/>
+                    </div>
+                    
+                  
                 </div>
               </div>
               {this.renderReactions()}
             </div>
           </Col>
-          <Col md={2} >{this.renderTags()}</Col>
+          <Col md={2} >{this.renderTags(dom)}</Col>
         </Row>
       </div>
     );
