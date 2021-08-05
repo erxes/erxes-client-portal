@@ -16,8 +16,6 @@ class Detail extends React.Component {
       toggle: false,
       nextFirstId: '0',
     };
-    this.showImageModal = this.showImageModal.bind(this);
-    this.handleModal = this.handleModal.bind(this);
   }
 
   onReactionClick = reactionChoice => {
@@ -118,6 +116,7 @@ class Detail extends React.Component {
     }
     return;
   };
+
   createDom = () =>{
     const  articleDetail  = this.props.articleDetail;
     if (!articleDetail) {
@@ -127,6 +126,7 @@ class Detail extends React.Component {
     const dom = new DOMParser().parseFromString(content, 'text/html');
     return dom;
   }
+
   renderCategories = () => {
     const { kbTopic } = this.props;
     const categories = kbTopic.parentCategories;
@@ -206,6 +206,7 @@ class Detail extends React.Component {
       </div>
     );
   };
+
   renderTags = (dom) => {
     const nodes = dom.getElementsByTagName("h2");
     const tagged = [];
@@ -226,9 +227,11 @@ class Detail extends React.Component {
    const h2Array = document.getElementsByTagName("h2");
     addId([...nodes], true)
     addId([...h2Array], false)
+
+    if( nodes.length === 0 ) {
+      return null;
+    }
     return (
-      <>
-      {nodes && nodes.length>0 ?
         <div className="page-anchor" id="anchorTag">
           <h6>ХОЛБООС </h6>
           <Scrollspy items={tagged} currentClassName="active">
@@ -241,12 +244,10 @@ class Detail extends React.Component {
             ))}
           </Scrollspy>
         </div>
-        :""}
-
-      </>
     );
   };
-  showImageModal(e) {
+
+  showImageModal = (e) => {
     const img = e.target.closest("img");
     const modalImg = document.getElementById("modal-content");
     const modal = document.getElementById("modal");
@@ -256,10 +257,12 @@ class Detail extends React.Component {
         modal.style.display = "block";
     }
  }
-  handleModal(){
+
+  handleModal = () => {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
   }
+  
   render() {
     const { articleDetail, category, kbTopic } = this.props;
     const dom = this.createDom();
@@ -292,8 +295,7 @@ class Detail extends React.Component {
                       <span id = "close">&times;</span>
                       <img id="modal-content"/>
                     </div>
-                    
-                  
+
                 </div>
               </div>
               {this.renderReactions()}
