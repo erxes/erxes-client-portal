@@ -52,3 +52,11 @@ $btnGradient: linear-gradient(
     transform: translateY(0px);
   }
 }
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
