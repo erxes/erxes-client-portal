@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
-import SectionHeader from "../../common/components/SectionHeader"
+import SectionHeader from '../../common/components/SectionHeader';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -16,6 +16,40 @@ class Detail extends React.Component {
       toggle: false,
       nextFirstId: '0'
     };
+  }
+
+  componentDidMount() {
+    const { content = '' } = this.props.articleDetail;
+
+    const getCode = regex => {
+      const matches = content.match(regex) || [];
+
+      return matches.length > 1 ? matches[1] : null;
+    };
+
+    const formCode = getCode(/data-erxes-embed="([^"]*)/);
+    const brandCode = getCode(/data-erxes-brand="([^"]*)/);
+
+    if (formCode && brandCode) {
+      window.erxesSettings = {
+        ...(window.erxesSettings || {}),
+        forms: [
+          {
+            brand_id: brandCode,
+            form_id: formCode
+          }
+        ]
+      };
+
+      (() => {
+        const script = document.createElement('script');
+        script.src = 'http://localhost:3200/build/formWidget.bundle.js';
+        script.async = true;
+
+        const entry = document.getElementsByTagName('script')[0];
+        entry.parentNode.insertBefore(script, entry);
+      })();
+    }
   }
 
   onReactionClick = reactionChoice => {
@@ -139,7 +173,9 @@ class Detail extends React.Component {
           >
             <div className="sidebar-item">
               <div className="icon-wrapper">
-                {category.childrens &&  <i className={`icon-${category.icon}`}/>}
+                {category.childrens && (
+                  <i className={`icon-${category.icon}`} />
+                )}
               </div>
               <h6>{category.title} </h6>
               <span>{`(${category.numOfArticles})`}</span>
@@ -197,36 +233,35 @@ class Detail extends React.Component {
     );
   };
 
-  
-
   renderTags = () => {
-    const  articleDetail  = this.props.articleDetail;
+    const articleDetail = this.props.articleDetail;
 
     if (!articleDetail) {
       return null;
     }
-    const content= articleDetail.content;
+    const content = articleDetail.content;
     const dom = new DOMParser().parseFromString(content, 'text/html');
-    const nodes = dom.getElementsByTagName("h2");
+    const nodes = dom.getElementsByTagName('h2');
 
     const tagged = [];
 
     const addId = (array, isTag) => {
-      return array.forEach( el => {
-       let taggedItem;
+      return array.forEach(el => {
+        let taggedItem;
 
-       if(el.lastChild.innerText ) {
-         el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
-         : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
-          el.setAttribute("id", taggedItem)
+        if (el.lastChild.innerText) {
+          el.children.length > 0
+            ? (taggedItem = el.lastChild.innerText.replace(/&nbsp;/gi, ''))
+            : (taggedItem = el.innerText.replace(/&nbsp;/gi, ''));
+          el.setAttribute('id', taggedItem);
           isTag && tagged.push(taggedItem);
-       } 
-     })
-   }
+        }
+      });
+    };
 
-    const  h2Array = document.getElementsByTagName("h2");
-    addId([...nodes], true)
-    addId([...h2Array], false)
+    const h2Array = document.getElementsByTagName('h2');
+    addId([...nodes], true);
+    addId([...h2Array], false);
 
     return (
       <>
@@ -234,10 +269,8 @@ class Detail extends React.Component {
           <h6>On this page </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
-              <li key={index} > 
-                 <a href={`#${val}`} >
-                 {val}
-                 </a>
+              <li key={index}>
+                <a href={`#${val}`}>{val}</a>
               </li>
             ))}
           </Scrollspy>
@@ -246,22 +279,22 @@ class Detail extends React.Component {
     );
   };
 
-  
   render() {
     const { articleDetail, category, kbTopic } = this.props;
-    
+
     return (
       <div className="knowledge-base">
         <Row>
           <div className="ml-30p">
-          <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
+            <SectionHeader
+              categories={kbTopic.parentCategories}
+              selectedCat={category}
+            />
           </div>
         </Row>
         <Row>
           <Col md={3}>
-            <div className="sidebar-wrap">
-              {this.renderCategories()}
-            </div>
+            <div className="sidebar-wrap">{this.renderCategories()}</div>
           </Col>
           <Col md={7}>
             <div className="article-detail">
@@ -279,7 +312,7 @@ class Detail extends React.Component {
               {this.renderReactions()}
             </div>
           </Col>
-          <Col md={2} >{this.renderTags()}</Col>
+          <Col md={2}>{this.renderTags()}</Col>
         </Row>
       </div>
     );
