@@ -14,7 +14,7 @@ class Detail extends React.Component {
     this.state = {
       activeReaction: '',
       toggle: false,
-      nextFirstId: '0'
+      nextFirstId: '0',
     };
   }
 
@@ -117,6 +117,16 @@ class Detail extends React.Component {
     return;
   };
 
+  createDom = () =>{
+    const  articleDetail  = this.props.articleDetail;
+    if (!articleDetail) {
+      return null;
+    }
+    const content= articleDetail.content;
+    const dom = new DOMParser().parseFromString(content, 'text/html');
+    return dom;
+  }
+
   renderCategories = () => {
     const { kbTopic } = this.props;
     const categories = kbTopic.parentCategories;
@@ -196,51 +206,66 @@ class Detail extends React.Component {
       </div>
     );
   };
-  renderTags = () => {
-    const  articleDetail  = this.props.articleDetail;
 
-    if (!articleDetail) {
-      return null;
-    }
-    const content  = articleDetail.content;
+  renderTags = (dom) => {
+    const nodes = dom.getElementsByTagName("h2");
     const tagged = [];
-    const regex =  /<h2>(.*?)<\/h2>/g;
-    if (
-      !content.length ||
-      !content.match(regex)
-    ) {
+
+    const addId = (array, isTag) => {
+      return array.forEach( el => {
+       let taggedItem;
+       if(el.lastChild.innerText ) {
+        el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
+        : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
+ 
+          el.setAttribute("id", taggedItem)
+          isTag && tagged.push(taggedItem);
+       } 
+     })
+   }
+
+   const h2Array = document.getElementsByTagName("h2");
+    addId([...nodes], true)
+    addId([...h2Array], false)
+
+    if( nodes.length === 0 ) {
       return null;
     }
-
-    content
-      .match(regex)
-      .map((obj) => tagged.push(obj.replace(/<\/?h2>/g,'')));
-
-if(tagged.length === 0){
-  return null;
-}
-    const  h2Array = [...document.getElementsByTagName("h2")];
-    h2Array.map( (el)=>
-      el.setAttribute("id",el.innerText))
-
     return (
-      <>
         <div className="page-anchor" id="anchorTag">
-          <h6>Холбоос</h6>
+          <h6>ХОЛБООС </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
-              <li key={index} > <a href={`#${val}`} > {val}</a></li>
+              <li key={index} > 
+                 <a href={`#${val}`} >
+                 {val}
+                 </a>
+              </li>
             ))}
           </Scrollspy>
         </div>
-      </>
     );
   };
 
+  showImageModal = (e) => {
+    const img = e.target.closest("img");
+    const modalImg = document.getElementById("modal-content");
+    const modal = document.getElementById("modal");
+
+    if (img && e.currentTarget.contains(img)) {
+        modalImg.src = img.src;    
+        modal.style.display = "flex";
+    }
+ }
+
+  handleModal = () => {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+  }
   
   render() {
     const { articleDetail, category, kbTopic } = this.props;
-
+    const dom = this.createDom();
     return (
       <div className="knowledge-base">
         <Row>
@@ -260,17 +285,23 @@ if(tagged.length === 0){
                 <h4>{articleDetail.title}</h4>
                 <div className="content mt-4" id="contentText">
                   <p>{articleDetail.summary}</p>
-                  <p
+
+                  <div className="article" onClick={this.showImageModal}
                     dangerouslySetInnerHTML={{
                       __html: articleDetail.content
                     }}
-                  />
+                    ></div>   
+                    <div onClick={this.handleModal} id="modal" >
+                      <span id = "close">&times;</span>
+                      <img id="modal-content" alt="modal"/>
+                    </div>
+
                 </div>
               </div>
               {this.renderReactions()}
             </div>
           </Col>
-          <Col md={2} >{this.renderTags()}</Col>
+          <Col md={2} >{this.renderTags(dom)}</Col>
         </Row>
       </div>
     );
