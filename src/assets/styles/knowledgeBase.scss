@@ -1,5 +1,11 @@
 $yellow: #fac534;
 .knowledge-base {
+  .category-wrapper {
+    > div {
+      margin-bottom: 40px;
+    }
+  }
+
   .category-item {
     .icon-wrapper {
       display: flex;
@@ -30,7 +36,7 @@ $yellow: #fac534;
 
 .tab-content {
   h5 {
-    color: #000;
+    color: #333;
     font-size: 16px;
     font-weight: 500;
   }
@@ -45,7 +51,6 @@ $yellow: #fac534;
     justify-content: flex-start;
     align-items: center;
     padding-top: 10px;
-    height: 40px;
     p {
       font-size: 80%;
       padding: 0 10px;
@@ -54,8 +59,8 @@ $yellow: #fac534;
       color: #6c718b;
     }
     img {
-      height: 100%;
-      width: auto;
+      height: 35px;
+      width: 35px;
       vertical-align: middle;
       border-radius: 100%;
       background: #f0f0f0;
@@ -115,7 +120,7 @@ $yellow: #fac534;
 
     li {
       a {
-        color: $mainColor;
+        color: $lightMain;
 
         h6 {
           font-size: 15px;
@@ -154,8 +159,9 @@ $yellow: #fac534;
   img {
     background: rgb(240, 240, 240);
     border: 2px solid rgb(255, 255, 255);
-    margin-left: -12px;
+    margin-left: -15px;
     font-size: 10px;
+    flex-shrink: 0;
 
     &:first-child {
       margin-left: 0;
@@ -173,6 +179,11 @@ $yellow: #fac534;
     margin-left: 10px;
     font-size: 13px;
 
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
     .darker {
       display: inline;
     }
@@ -180,6 +191,7 @@ $yellow: #fac534;
     span {
       color: $silverGrey;
       width: auto;
+      padding-left: 5px;
     }
   }
 }
@@ -262,6 +274,7 @@ span {
     .card {
       border: 1px solid #e2e2e271;
       animation: fadeInDown 0.8s ease-in-out;
+      margin-bottom: 10px;
     }
 
     .category-item {
@@ -274,7 +287,7 @@ span {
 
         i {
           font-size: 25px;
-          color: #6569df;
+          color: $lightMain;
         }
       }
     }
@@ -320,11 +333,11 @@ span {
         position: relative;
         min-height: 160px;
         padding: 1.8rem 2.2rem 1.8rem 3.2rem;
-
+        margin-bottom: 10px;
         &:hover > * {
           .icon-wrapper,
           .tab-content > h5 {
-            color: #6569df;
+            color: $lightMain;
           }
         }
         .icon-wrapper {
@@ -350,12 +363,12 @@ span {
         }
 
         .more {
-          color: #6569df;
-          text-transform: uppercase;
+          color: $lightMain;
           font-weight: 500;
           position: absolute;
           bottom: 15px;
           font-size: 12px;
+          text-transform: uppercase;
         }
 
         .description {

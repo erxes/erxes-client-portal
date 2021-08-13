@@ -24,7 +24,7 @@ class CategoryDetail extends React.Component {
               <li className={this.isActive(cat._id)}>
                 <div className="sidebar-item">
                   <div className="icon-wrapper">
-                    {cat.childrens &&  <i className={`icon-${cat.icon}`}/>}
+                    {cat.childrens && <i className={`icon-${cat.icon}`} />}
                   </div>
                   <h6>{cat.title}</h6>
                   <span>{`(${cat.numOfArticles})`}</span>
@@ -61,10 +61,13 @@ class CategoryDetail extends React.Component {
     const { category, history, kbTopic } = this.props;
     return (
       <Container className="knowledge-base">
-        <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
+        <SectionHeader
+          categories={kbTopic.parentCategories}
+          selectedCat={category}
+        />
 
         <Row className="category-detail">
-          <Col md={3} >
+          <Col md={3}>
             <div className="sidebar-wrap">
               <div className="tags sidebar-list">{this.renderCategories()}</div>
             </div>

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Avatar from '../../../assets/images/avatar-colored.svg';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import Avatar from "../../../assets/images/avatar-colored.svg";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Categories extends React.Component {
-  renderAuthors = authors => {
+  renderAuthors = (authors) => {
     if (authors.length > 3) {
       return (
         <>
@@ -20,12 +20,12 @@ class Categories extends React.Component {
     return authors.map((author, index) => (
       <ol key={index}>
         {author.details.fullName}
-        {authors.length > 1 && ', '}
+        {authors.length > 1 && ", "}
       </ol>
     ));
   };
 
-  renderAvatars = cat => {
+  renderAvatars = (cat) => {
     return (
       <div className="avatars">
         {cat.authors.map((author, index) => (
@@ -45,7 +45,7 @@ class Categories extends React.Component {
         <div className="avatar-info">
           <div>
             <div className="darker">{cat.numOfArticles}</div> articles in this
-            category{' '}
+            category{" "}
           </div>
           <div>
             <div className="darker">Written by: </div>
@@ -55,7 +55,7 @@ class Categories extends React.Component {
       </div>
     );
   };
-  
+
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { parentCategories = [] } = kbTopic;
@@ -64,7 +64,7 @@ class Categories extends React.Component {
     const categories = parentCategories.slice(1);
     const categoryUrl = `/knowledge-base/category/details/`;
 
-    const detail = cat => {
+    const detail = (cat) => {
       return (
         <Link
           to={`${categoryUrl}${cat._id}`}
@@ -95,12 +95,17 @@ class Categories extends React.Component {
               </h2>
               <div className="promoted-wrap">
                 {specialCategory.childrens &&
-                  specialCategory.childrens.map((cat , i)=> (
+                  specialCategory.childrens.map((cat, i) => (
                     <>
-                    <Card key={cat._id}>{detail(cat)} 
-                        <div className="more">Дэлгэрэнгүй </div>
-                    </Card>
-                   
+                      <Card key={cat._id}>
+                        {detail(cat)}
+                        <Link
+                          to={`${categoryUrl}${specialCategory._id}`}
+                          className="more"
+                        >
+                          Дэлгэрэнгүй
+                        </Link>
+                      </Card>
                     </>
                   ))}
               </div>
@@ -108,7 +113,7 @@ class Categories extends React.Component {
           </Container>
         )}
 
-        {categories.map(parentCat => (
+        {categories.map((parentCat) => (
           <Container className="knowledge-base" fluid="sm" key={parentCat._id}>
             <div className="category-knowledge-list">
               <h2 className="list-category-title">
@@ -118,7 +123,7 @@ class Categories extends React.Component {
               </h2>
               <Row>
                 {parentCat.childrens &&
-                  parentCat.childrens.map(cat => (
+                  parentCat.childrens.map((cat) => (
                     <Col md={4} key={cat._id} className="category-col">
                       <Card className="category-item">{detail(cat)}</Card>
                     </Col>
@@ -138,7 +143,7 @@ class Categories extends React.Component {
 
 Categories.propTypes = {
   kbTopic: PropTypes.object,
-  articlesQuery: PropTypes.object
+  articlesQuery: PropTypes.object,
 };
 
 export default Categories;
