@@ -89,5 +89,5 @@ export default {
   getKbTopicQuery,
   getKbCategoryQuery,
   getArticleDetailQuery,
-  widgetsKnowledgeBaseArticles
+  widgetsKnowledgeBaseArticles,
 };

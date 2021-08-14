@@ -1,24 +1,24 @@
-import React from 'react';
-import classNames from 'classnames';
-import * as dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
-import Scrollspy from 'react-scrollspy';
-import PropTypes from 'prop-types';
-import { Row, Col } from 'react-bootstrap';
-import SectionHeader from "../../common/components/SectionHeader"
+import React from "react";
+import classNames from "classnames";
+import * as dayjs from "dayjs";
+import { Link } from "react-router-dom";
+import Scrollspy from "react-scrollspy";
+import PropTypes from "prop-types";
+import { Row, Col } from "react-bootstrap";
+import SectionHeader from "../../common/components/SectionHeader";
 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeReaction: '',
+      activeReaction: "",
       toggle: false,
       nextFirstId: '0',
     };
   }
 
-  onReactionClick = reactionChoice => {
+  onReactionClick = (reactionChoice) => {
     this.setState({ activeReaction: reactionChoice });
   };
 
@@ -45,8 +45,8 @@ class Detail extends React.Component {
       return null;
     }
 
-    const reactionClassess = classNames('reactions', {
-      clicked: this.state.activeReaction
+    const reactionClassess = classNames("reactions", {
+      clicked: this.state.activeReaction,
     });
 
     return (
@@ -58,7 +58,7 @@ class Detail extends React.Component {
                 key={index}
                 className={
                   reactionChoice === this.state.activeReaction
-                    ? 'active'
+                    ? "active"
                     : undefined
                 }
                 onClick={this.onReactionClick.bind(this, reactionChoice)}
@@ -91,7 +91,7 @@ class Detail extends React.Component {
               Modified:
               <span>
                 {dayjs(this.props.articleDetail.modifiedDate).format(
-                  ' MMM D YYYY'
+                  " MMM D YYYY"
                 )}
               </span>
             </div>
@@ -101,18 +101,18 @@ class Detail extends React.Component {
     );
   };
 
-  isActive = articleId => {
+  isActive = (articleId) => {
     if (articleId === this.props.articleDetail._id) {
-      return 'active';
+      return "active";
     }
     return;
   };
 
-  isActiveCategory = categoryId => {
+  isActiveCategory = (categoryId) => {
     const { category } = this.props;
     const catId = category._id;
     if (categoryId === catId) {
-      return 'active';
+      return "active";
     }
     return;
   };
@@ -135,7 +135,7 @@ class Detail extends React.Component {
       return null;
     }
 
-    const renderCategory = category => {
+    const renderCategory = (category) => {
       const url = `/knowledge-base/category/details/${category._id}`;
 
       return (
@@ -149,7 +149,9 @@ class Detail extends React.Component {
           >
             <div className="sidebar-item">
               <div className="icon-wrapper">
-                {category.childrens &&  <i className={`icon-${category.icon}`}/>}
+                {category.childrens && (
+                  <i className={`icon-${category.icon}`} />
+                )}
               </div>
               <h6>{category.title}</h6>
               <span>{`(${category.numOfArticles})`}</span>
@@ -164,13 +166,13 @@ class Detail extends React.Component {
       <>
         <div className="tags sidebar-list">
           <ul>
-            {categories.map(category => {
+            {categories.map((category) => {
               return (
                 <>
                   {renderCategory(category)}
                   {category.childrens && (
                     <div className="sub-categories">
-                      {category.childrens.map(child => renderCategory(child))}
+                      {category.childrens.map((child) => renderCategory(child))}
                     </div>
                   )}
                 </>
@@ -182,7 +184,7 @@ class Detail extends React.Component {
     );
   };
 
-  renderArticles = categoryId => {
+  renderArticles = (categoryId) => {
     const { category } = this.props;
     const { articles } = category;
 
@@ -270,14 +272,15 @@ class Detail extends React.Component {
       <div className="knowledge-base">
         <Row>
           <div className="ml-30p">
-          <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
+            <SectionHeader
+              categories={kbTopic.parentCategories}
+              selectedCat={category}
+            />
           </div>
         </Row>
         <Row>
           <Col md={3}>
-            <div className="sidebar-wrap">
-              {this.renderCategories()}
-            </div>
+            <div className="sidebar-wrap">{this.renderCategories()}</div>
           </Col>
           <Col md={7}>
             <div className="card article-detail">
@@ -288,7 +291,7 @@ class Detail extends React.Component {
 
                   <div className="article" onClick={this.showImageModal}
                     dangerouslySetInnerHTML={{
-                      __html: articleDetail.content
+                      __html: articleDetail.content,
                     }}
                     ></div>   
                     <div onClick={this.handleModal} id="modal" >
@@ -309,7 +312,7 @@ class Detail extends React.Component {
 }
 
 Detail.propTypes = {
-  kbTopic: PropTypes.object
+  kbTopic: PropTypes.object,
 };
 
 export default Detail;

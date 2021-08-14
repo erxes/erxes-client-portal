@@ -46,7 +46,7 @@
           return window.env[name];
         }
 
-        if (defaultValue.includes('REACT_APP')) {
+        if (defaultValue.includes("REACT_APP")) {
           return;
         }
 
@@ -54,11 +54,11 @@
       };
 
       window.envMaps = [
-        { name: 'REACT_APP_API_URL', processValue: '%REACT_APP_API_URL%' },
+        { name: "REACT_APP_API_URL", processValue: "%REACT_APP_API_URL%" },
         {
-          name: 'REACT_APP_TOPIC_ID',
-          processValue: '%REACT_APP_TOPIC_ID%'
-        }
+          name: "REACT_APP_TOPIC_ID",
+          processValue: "%REACT_APP_TOPIC_ID%",
+        },
       ];
 
       for (var i = 0; i < window.envMaps.length; i++) {

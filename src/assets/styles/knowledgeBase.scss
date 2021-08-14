@@ -399,7 +399,7 @@ span {
       height: 100%;
 
       &::before {
-        content: "";
+        content: '';
         height: 100%;
         border-left: 2px solid #d6d6d6;
         position: absolute;
@@ -416,7 +416,7 @@ span {
         }
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: -20px;
           height: 100%;
@@ -464,7 +464,7 @@ span {
           border-radius: 0;
           color: red;
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             display: inline-block;
             width: 160px;
@@ -490,7 +490,7 @@ span {
 @media only screen and (max-width: 1080px) {
   .card {
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       display: inline-block;
       width: 27vw;

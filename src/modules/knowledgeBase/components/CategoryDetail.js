@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import SectionHeader from '../../common/components/SectionHeader';
-import ArticleList from './ArticleList';
+import React from "react";
+import PropTypes from "prop-types";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import SectionHeader from "../../common/components/SectionHeader";
+import ArticleList from "./ArticleList";
 
 class CategoryDetail extends React.Component {
-  isActive = categoryId => {
+  isActive = (categoryId) => {
     if (categoryId === this.props.category._id) {
-      return 'active';
+      return "active";
     }
     return;
   };
@@ -16,7 +16,7 @@ class CategoryDetail extends React.Component {
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { parentCategories } = kbTopic;
-    const renderCategory = cat => {
+    const renderCategory = (cat) => {
       return (
         <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
           <div className="tags sidebar-list">
@@ -24,7 +24,7 @@ class CategoryDetail extends React.Component {
               <li className={this.isActive(cat._id)}>
                 <div className="sidebar-item">
                   <div className="icon-wrapper">
-                    {cat.childrens &&  <i className={`icon-${cat.icon}`}/>}
+                    {cat.childrens && <i className={`icon-${cat.icon}`} />}
                   </div>
                   <h6>{cat.title}</h6>
                   <span>{`(${cat.numOfArticles})`}</span>
@@ -39,13 +39,13 @@ class CategoryDetail extends React.Component {
     if (parentCategories) {
       return (
         <>
-          {parentCategories.map(cat => {
+          {parentCategories.map((cat) => {
             return (
               <>
                 {renderCategory(cat)}
                 {cat.childrens && (
                   <div className="sub-categories">
-                    {cat.childrens.map(child => renderCategory(child))}
+                    {cat.childrens.map((child) => renderCategory(child))}
                   </div>
                 )}
               </>
@@ -61,10 +61,13 @@ class CategoryDetail extends React.Component {
     const { category, history, kbTopic } = this.props;
     return (
       <Container className="knowledge-base">
-        <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
+        <SectionHeader
+          categories={kbTopic.parentCategories}
+          selectedCat={category}
+        />
 
         <Row className="category-detail">
-          <Col md={3} >
+          <Col md={3}>
             <div className="sidebar-wrap">
               <div className="tags sidebar-list">{this.renderCategories()}</div>
             </div>
@@ -83,7 +86,7 @@ class CategoryDetail extends React.Component {
 }
 
 CategoryDetail.propTypes = {
-  kbTopic: PropTypes.object
+  kbTopic: PropTypes.object,
 };
 
 export default CategoryDetail;
