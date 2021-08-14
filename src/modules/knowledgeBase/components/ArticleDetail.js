@@ -207,18 +207,8 @@ class Detail extends React.Component {
     );
   };
 
-<<<<<<< HEAD
   renderTags = (dom) => {
     const nodes = dom.getElementsByTagName("h2");
-=======
-    if (!articleDetail) {
-      return null;
-    }
-    const content= articleDetail.content;
-    const dom = new DOMParser().parseFromString(content, 'text/html');
-    const nodes = dom.getElementsByTagName("h2");
-
->>>>>>> 719de7f7b150aac9b30c6eb55e79cb6271cebfc7
     const tagged = [];
 
     const addId = (array, isTag) => {
@@ -234,11 +224,7 @@ class Detail extends React.Component {
      })
    }
 
-<<<<<<< HEAD
-   const h2Array = document.getElementsByTagName("h2");
-=======
     const  h2Array = document.getElementsByTagName("h2");
->>>>>>> 719de7f7b150aac9b30c6eb55e79cb6271cebfc7
     addId([...nodes], true)
     addId([...h2Array], false)
 
