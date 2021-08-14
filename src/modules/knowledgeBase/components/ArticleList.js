@@ -53,7 +53,9 @@ class Lists extends React.Component {
                 </div>
               </Link>
             ))
-            : <div className="empty-box"> <Emptybox/></div>}
+            : <div className="empty-box"> 
+            <Emptybox/>
+            <span>Thare are no articles in this category</span></div>}
           </Col>
         </Row>
       </Container>

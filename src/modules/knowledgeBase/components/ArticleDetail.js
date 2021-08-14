@@ -14,7 +14,7 @@ class Detail extends React.Component {
     this.state = {
       activeReaction: '',
       toggle: false,
-      nextFirstId: '0'
+      nextFirstId: '0',
     };
   }
 
@@ -117,6 +117,16 @@ class Detail extends React.Component {
     return;
   };
 
+  createDom = () =>{
+    const  articleDetail  = this.props.articleDetail;
+    if (!articleDetail) {
+      return null;
+    }
+    const content= articleDetail.content;
+    const dom = new DOMParser().parseFromString(content, 'text/html');
+    return dom;
+  }
+
   renderCategories = () => {
     const { kbTopic } = this.props;
     const categories = kbTopic.parentCategories;
@@ -141,7 +151,7 @@ class Detail extends React.Component {
               <div className="icon-wrapper">
                 {category.childrens &&  <i className={`icon-${category.icon}`}/>}
               </div>
-              <h6>{category.title} </h6>
+              <h6>{category.title}</h6>
               <span>{`(${category.numOfArticles})`}</span>
             </div>
           </Link>
@@ -214,16 +224,16 @@ class Detail extends React.Component {
      })
    }
 
-   const h2Array = document.getElementsByTagName("h2");
+    const  h2Array = document.getElementsByTagName("h2");
     addId([...nodes], true)
     addId([...h2Array], false)
 
-    if( !nodes || nodes.length === 0 ) {
+    if( nodes.length === 0 ) {
       return null;
     }
     return (
         <div className="page-anchor" id="anchorTag">
-          <h6>ON THIS PAGE </h6>
+          <h6>GO TO PAGE </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
               <li key={index} > 
@@ -237,16 +247,6 @@ class Detail extends React.Component {
     );
   };
 
-  createDom = () =>{
-    const  articleDetail  = this.props.articleDetail;
-    if (!articleDetail) {
-      return null;
-    }
-    const content= articleDetail.content;
-    const dom = new DOMParser().parseFromString(content, 'text/html');
-    return dom;
-  }
-
   showImageModal = (e) => {
     const img = e.target.closest("img");
     const modalImg = document.getElementById("modal-content");
@@ -254,7 +254,7 @@ class Detail extends React.Component {
 
     if (img && e.currentTarget.contains(img)) {
         modalImg.src = img.src;    
-        modal.style.display = "block";
+        modal.style.display = "flex";
     }
  }
 
@@ -265,7 +265,7 @@ class Detail extends React.Component {
   
   render() {
     const { articleDetail, category, kbTopic } = this.props;
-    const dom = this.createDom()
+    const dom = this.createDom();
     return (
       <div className="knowledge-base">
         <Row>
@@ -280,28 +280,28 @@ class Detail extends React.Component {
             </div>
           </Col>
           <Col md={7}>
-            <div className="article-detail">
+            <div className="card article-detail">
               <div className="kbase-detail kbase-lists">
                 <h4>{articleDetail.title}</h4>
                 <div className="content mt-4" id="contentText">
                   <p>{articleDetail.summary}</p>
+
                   <div className="article" onClick={this.showImageModal}
                     dangerouslySetInnerHTML={{
                       __html: articleDetail.content
-                    }}>
-                  </div>
-                   <div onClick={this.handleModal} id="modal" >
+                    }}
+                    ></div>   
+                    <div onClick={this.handleModal} id="modal" >
                       <span id = "close">&times;</span>
-                      <img id="modal-content"/>
+                      <img id="modal-content" alt="modal"/>
                     </div>
-                  
+
                 </div>
               </div>
               {this.renderReactions()}
             </div>
           </Col>
           <Col md={2} >{this.renderTags(dom)}</Col>
-          
         </Row>
       </div>
     );
