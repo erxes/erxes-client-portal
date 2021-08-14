@@ -117,6 +117,16 @@ class Detail extends React.Component {
     return;
   };
 
+  createDom = () =>{
+    const  articleDetail  = this.props.articleDetail;
+    if (!articleDetail) {
+      return null;
+    }
+    const content= articleDetail.content;
+    const dom = new DOMParser().parseFromString(content, 'text/html');
+    return dom;
+  }
+
   renderCategories = () => {
     const { kbTopic } = this.props;
     const categories = kbTopic.parentCategories;
@@ -214,7 +224,7 @@ class Detail extends React.Component {
      })
    }
 
-   const h2Array = document.getElementsByTagName("h2");
+    const  h2Array = document.getElementsByTagName("h2");
     addId([...nodes], true)
     addId([...h2Array], false)
 
@@ -237,16 +247,6 @@ class Detail extends React.Component {
     );
   };
 
-  createDom = () =>{
-    const  articleDetail  = this.props.articleDetail;
-    if (!articleDetail) {
-      return null;
-    }
-    const content= articleDetail.content;
-    const dom = new DOMParser().parseFromString(content, 'text/html');
-    return dom;
-  }
-
   showImageModal = (e) => {
     const img = e.target.closest("img");
     const modalImg = document.getElementById("modal-content");
@@ -254,7 +254,7 @@ class Detail extends React.Component {
 
     if (img && e.currentTarget.contains(img)) {
         modalImg.src = img.src;    
-        modal.style.display = "block";
+        modal.style.display = "flex";
     }
  }
 
@@ -262,7 +262,7 @@ class Detail extends React.Component {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
   }
-
+  
   render() {
     const { articleDetail, category, kbTopic } = this.props;
     const dom = this.createDom();
@@ -293,7 +293,7 @@ class Detail extends React.Component {
                     ></div>   
                     <div onClick={this.handleModal} id="modal" >
                       <span id = "close">&times;</span>
-                      <img id="modal-content"/>
+                      <img id="modal-content" alt="modal"/>
                     </div>
 
                 </div>
