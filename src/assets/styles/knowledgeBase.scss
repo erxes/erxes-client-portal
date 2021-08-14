@@ -512,12 +512,19 @@ span {
   }
 }
 .empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
   svg {
     fill-opacity: 10%;
     width: 100px;
   }
-
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
+  span {
+    margin-top: 10px;
+    margin-right: 0;
+    color: #ccc;
+    font-size: 14px;
+    width: auto;
+  }
 }
