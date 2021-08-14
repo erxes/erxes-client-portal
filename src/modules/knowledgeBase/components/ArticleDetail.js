@@ -254,7 +254,7 @@ class Detail extends React.Component {
 
     if (img && e.currentTarget.contains(img)) {
         modalImg.src = img.src;    
-        modal.style.display = "block";
+        modal.style.display = "flex";
     }
  }
 
@@ -294,7 +294,7 @@ class Detail extends React.Component {
                   </div>
                    <div onClick={this.handleModal} id="modal" >
                       <span id = "close">&times;</span>
-                      <img id="modal-content"/>
+                      <img id="modal-content" alt="modal" />
                     </div>
                 </div>
               </div>
