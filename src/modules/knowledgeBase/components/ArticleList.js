@@ -7,7 +7,7 @@ import { ReactComponent as Emptybox } from "../../../../src/assets/images/empty-
 
 const Appointment = ({name, pos, imgSrc, link}) =>(
       <div className="appointment">
-        <div className="avatar"><img src={imgSrc}/> </div>
+        <div className="avatar"><img src={imgSrc} alt="#"/> </div>
           <div className="">
             <p>{name}</p> 
             <p>{pos}</p>
