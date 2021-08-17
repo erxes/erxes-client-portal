@@ -17,7 +17,43 @@ class Detail extends React.Component {
       nextFirstId: '0',
     };
   }
-
+  componentDidMount(){
+    const { category} = this.props;
+    if( category.title === "Шинэ гишүүд бүрдүүлэх материал"){
+      console.log(this.props)
+      window.erxesSettings = {
+        forms: [{
+          brand_id: "ASJrzQ",
+          form_id: "oDKqhS"
+        }],
+      };
+      (() => {
+        const script = document.createElement('script');
+        script.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
+        script.async = true;
+  
+        const entry = document.getElementsByTagName('script')[0];
+        entry.parentNode.insertBefore(script, entry);
+      })();
+    }
+    if( category.title === "Хүсэлт гаргах"){
+      console.log(this.props)
+      window.erxesSettings = {
+        forms: [{
+          brand_id: "ASJrzQ",
+          form_id: "TvEwRy"
+        }],
+      };
+      (() => {
+        const script = document.createElement('script');
+        script.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
+        script.async = true;
+  
+        const entry = document.getElementsByTagName('script')[0];
+        entry.parentNode.insertBefore(script, entry);
+      })();
+    }
+  }
   onReactionClick = reactionChoice => {
     this.setState({ activeReaction: reactionChoice });
   };
@@ -228,7 +264,7 @@ class Detail extends React.Component {
     addId([...nodes], true)
     addId([...h2Array], false)
 
-    if( nodes.length === 0 ) {
+    if( h2Array.length === 0) {
       return null;
     }
     return (
@@ -262,9 +298,31 @@ class Detail extends React.Component {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
   }
+  renderContent = (articleDetail) =>{
+
+    return (
+    <div className="kbase-detail kbase-lists">
+      <h4>{articleDetail.title}</h4>
+      <div className="content mt-4" id="contentText">
+        <p>{articleDetail.summary}</p>
+
+        <div className="article" onClick={this.showImageModal}
+          dangerouslySetInnerHTML={{
+            __html: articleDetail.content
+          }}
+          ></div>   
+          <div onClick={this.handleModal} id="modal" >
+            <span id = "close">&times;</span>
+            <img id="modal-content" alt="modal"/>
+          </div>
+
+      </div>
+    </div>
+    )
+  }
   
   render() {
-    const { articleDetail, category, kbTopic } = this.props;
+    const { category, kbTopic, articleDetail } = this.props;
     const dom = this.createDom();
     return (
       <div className="knowledge-base">
@@ -280,26 +338,10 @@ class Detail extends React.Component {
             </div>
           </Col>
           <Col md={7}>
-            <div className="card article-detail">
-              <div className="kbase-detail kbase-lists">
-                <h4>{articleDetail.title}</h4>
-                <div className="content mt-4" id="contentText">
-                  <p>{articleDetail.summary}</p>
-
-                  <div className="article" onClick={this.showImageModal}
-                    dangerouslySetInnerHTML={{
-                      __html: articleDetail.content
-                    }}
-                    ></div>   
-                    <div onClick={this.handleModal} id="modal" >
-                      <span id = "close">&times;</span>
-                      <img id="modal-content" alt="modal"/>
-                    </div>
-
-                </div>
-              </div>
+             <div className="card article-detail">
+              {this.renderContent(articleDetail)}
               {this.renderReactions()}
-            </div>
+              </div>
           </Col>
           <Col md={2} >{this.renderTags(dom)}</Col>
         </Row>

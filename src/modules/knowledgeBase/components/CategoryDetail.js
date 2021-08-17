@@ -77,6 +77,7 @@ class CategoryDetail extends React.Component {
               articles={category.articles}
               history={history}
               catId={category._id}
+              catTitle={category.title}
             />
           </Col>
         </Row>
