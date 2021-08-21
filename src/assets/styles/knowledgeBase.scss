@@ -177,6 +177,7 @@ $yellow: #fac534;
       white-space: nowrap;
       background-color: $mainColor;
       margin-top: 10px;
+      transition: all 1s;
       span,
       i {
         font-size: 14px;
@@ -185,7 +186,7 @@ $yellow: #fac534;
         padding: 10px;
       }
       &:hover {
-        opacity: 80%;
+        background-color: $lightMain;
       }
     }
   }

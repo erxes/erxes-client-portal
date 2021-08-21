@@ -31,7 +31,7 @@ class Detail extends React.Component {
         const script = document.createElement('script');
         script.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
         script.async = true;
-  
+
         const entry = document.getElementsByTagName('script')[0];
         entry.parentNode.insertBefore(script, entry);
       })();
@@ -48,12 +48,13 @@ class Detail extends React.Component {
         const script = document.createElement('script');
         script.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
         script.async = true;
-  
+
         const entry = document.getElementsByTagName('script')[0];
         entry.parentNode.insertBefore(script, entry);
       })();
     }
   }
+
   onReactionClick = reactionChoice => {
     this.setState({ activeReaction: reactionChoice });
   };
