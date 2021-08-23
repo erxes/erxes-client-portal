@@ -5,6 +5,7 @@ import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import Lists from "../components/ArticleList";
 import { queries } from "../graphql/index";
+import { Spinner } from 'react-bootstrap';
 
 class ListContainer extends React.Component {
   render() {
@@ -16,7 +17,7 @@ class ListContainer extends React.Component {
     } = this.props;
 
     if (getKbTopicQuery.loading || getArticlesQuery.loading) {
-      return <div></div>;
+      return <Spinner animation="border" variant="secondary" />;
     }
 
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};

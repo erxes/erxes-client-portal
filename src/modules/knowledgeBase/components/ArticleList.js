@@ -49,9 +49,8 @@ class Lists extends React.Component {
           <Appointment name="Б.Бат-Амар" pos="Технологи хариуцсан захирал" link="" imgSrc="https://erxes.io/static/images/team/square/bat-amar.jpg"/>
           <Appointment name="Б.Наран" pos="Үйл ажиллагаа хариуцсан захирал" link="https://calendly.com/nauren/30min"imgSrc="https://erxes.io/static/images/team/square/naran.png"/>
           <Appointment name="Г.Индра" pos="Бүтээгдэхүүн хариуцсан захирал" link="https://calendly.com/indra_erxes" imgSrc="https://erxes.io/static/images/team/square/indra.png"/>
-          <Appointment name="Э.Түвшинтөгс" pos="Ахлах бизнес аналист" link="https://calendly.com/tuvshintugs_e/30min" />
+          <Appointment name="Э.Түвшинтөгс" pos="Ахлах бизнес аналист" link="https://calendly.com/tuvshintugs_e/30min"  imgSrc="https://erxes.io/static/images/team/square/tuvshintugs.jpg" />
           <Appointment name="Б.Ууганчимэг" pos="Ахлах төслийн менежер" link="https://calendly.com/gerege/60min" imgSrc="https://community.erxes.io/avatar/Uuganchimeg" />
-
           </div>
       )
     }
