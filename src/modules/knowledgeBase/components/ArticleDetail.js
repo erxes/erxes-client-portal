@@ -17,44 +17,6 @@ class Detail extends React.Component {
       nextFirstId: '0',
     };
   }
-  componentDidMount(){
-    const { category} = this.props;
-    if( category.title === "Шинэ гишүүд бүрдүүлэх материал"){
-      console.log(this.props)
-      window.erxesSettings = {
-        forms: [{
-          brand_id: "ASJrzQ",
-          form_id: "oDKqhS"
-        }],
-      };
-      (() => {
-        const script = document.createElement('script');
-        script.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
-        script.async = true;
-
-        const entry = document.getElementsByTagName('script')[0];
-        entry.parentNode.insertBefore(script, entry);
-      })();
-    }
-    if( category.title === "Хүсэлт гаргах"){
-      console.log(this.props)
-      window.erxesSettings = {
-        forms: [{
-          brand_id: "ASJrzQ",
-          form_id: "TvEwRy"
-        }],
-      };
-      (() => {
-        const script = document.createElement('script');
-        script.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
-        script.async = true;
-
-        const entry = document.getElementsByTagName('script')[0];
-        entry.parentNode.insertBefore(script, entry);
-      })();
-    }
-  }
-
   onReactionClick = reactionChoice => {
     this.setState({ activeReaction: reactionChoice });
   };
@@ -226,7 +188,7 @@ class Detail extends React.Component {
     if (!articles || !articles.length === 0 || category._id !== categoryId) {
       return null;
     }
-
+    
     return (
       <div className="submenu">
         <ul>
@@ -301,6 +263,14 @@ class Detail extends React.Component {
   }
   renderContent = (articleDetail) =>{
 
+    // if( category.title === "Шинэ гишүүд бүрдүүлэх материал"){
+    //   return <div  style="width:900px;height:300px">ffffffff</div>
+    // }
+
+    // if( category.title === "Хүсэлт гаргах"){
+    //   return <div style="width:900px;height:300px">fffffffff</div>
+    // }
+
     return (
     <div className="kbase-detail kbase-lists">
       <h4>{articleDetail.title}</h4>
@@ -324,9 +294,10 @@ class Detail extends React.Component {
   
   render() {
     const { category, kbTopic, articleDetail } = this.props;
+    console.log(articleDetail, category)
     const dom = this.createDom();
     return (
-      <div className="knowledge-base">
+      <div className="knowledge-base" style={'margin-top:100px'}>
         <Row>
           <div className="ml-30p">
           <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
