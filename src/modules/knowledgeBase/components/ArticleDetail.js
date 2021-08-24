@@ -17,6 +17,17 @@ class Detail extends React.Component {
       nextFirstId: '0',
     };
   }
+
+  componentDidMount(){
+    if( this.props.category.title === "Хүсэлт гаргах"){
+      window.erxesSettings.forms.push({  brand_id: "ASJrzQ", form_id: "TvEwRy"});
+    }
+
+    if( this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал"){
+      window.erxesSettings.forms.push({ brand_id: "ASJrzQ", form_id: "oDKqhS"});
+    }    
+  }
+
   onReactionClick = reactionChoice => {
     this.setState({ activeReaction: reactionChoice });
   };
@@ -206,31 +217,35 @@ class Detail extends React.Component {
     );
   };
 
-  renderTags = (dom) => {
+  renderTags = () => {
+    const dom = this.createDom();
     const nodes = dom.getElementsByTagName("h2");
+
+    if (nodes.length === 0 ) {
+      return null;
+    }
+  
     const tagged = [];
 
     const addId = (array, isTag) => {
       return array.forEach( el => {
-       let taggedItem;
-       if(el.lastChild.innerText ) {
-        el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
-        : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
- 
-          el.setAttribute("id", taggedItem)
-          isTag && tagged.push(taggedItem);
-       } 
-     })
-   }
-
-    const  h2Array = document.getElementsByTagName("h2");
-    addId([...nodes], true)
-    addId([...h2Array], false)
-
-    if( h2Array.length === 0) {
-      return null;
+        let taggedItem;
+        if(el.lastChild.innerText ) {
+         el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
+         : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
+  
+           el.setAttribute("id", taggedItem)
+           isTag && tagged.push(taggedItem);
+        } 
+      })
     }
-    return (
+ 
+     const  h2Array = document.getElementsByTagName("h2");
+     addId([...nodes], true)
+     addId([...h2Array], false)
+ 
+     
+     return (
         <div className="page-anchor" id="anchorTag">
           <h6>ХОЛБООС </h6>
           <Scrollspy items={tagged} currentClassName="active">
@@ -261,22 +276,24 @@ class Detail extends React.Component {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
   }
+
   renderContent = (articleDetail) =>{
-
-    // if( category.title === "Шинэ гишүүд бүрдүүлэх материал"){
-    //   return <div  style="width:900px;height:300px">ffffffff</div>
-    // }
-
-    // if( category.title === "Хүсэлт гаргах"){
-    //   return <div style="width:900px;height:300px">fffffffff</div>
-    // }
+    let formDiv;
+    
+    if( this.props.category.title === "Хүсэлт гаргах"){
+      formDiv = '<div data-erxes-embed="TvEwRy" style="width:100%;height:300px"></div>';
+    }
+    
+    if( this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал"){
+      formDiv = '<div data-erxes-embed="oDKqhS" style="width:100%;height:300px"></div>';
+    }
 
     return (
     <div className="kbase-detail kbase-lists">
       <h4>{articleDetail.title}</h4>
       <div className="content mt-4" id="contentText">
         <p>{articleDetail.summary}</p>
-
+        <p dangerouslySetInnerHTML= {{ __html: formDiv }}/>
         <div className="article" onClick={this.showImageModal}
           dangerouslySetInnerHTML={{
             __html: articleDetail.content
@@ -294,10 +311,9 @@ class Detail extends React.Component {
   
   render() {
     const { category, kbTopic, articleDetail } = this.props;
-    console.log(articleDetail, category)
-    const dom = this.createDom();
+
     return (
-      <div className="knowledge-base" style={'margin-top:100px'}>
+      <div className="knowledge-base">
         <Row>
           <div className="ml-30p">
           <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
@@ -315,7 +331,7 @@ class Detail extends React.Component {
               {this.renderReactions()}
               </div>
           </Col>
-          <Col md={2} >{this.renderTags(dom)}</Col>
+          <Col md={2} >{this.renderTags()}</Col>
         </Row>
       </div>
     );

@@ -47,13 +47,11 @@ const categories = ({ history, location }) => {
     );
   }
   return (
-    <Layout headingSpacing={true}>
       <Categories
         queryParams={queryParams}
         history={history}
         topicId={REACT_APP_TOPIC_ID}
       />
-    </Layout>
   );
 };
 
@@ -64,25 +62,21 @@ const categoryDetail = ({ location, history, match }) => {
 
   if (searchValue) {
     return (
-      <Layout headingSpacing={false}>
         <ArticleList
           topicId={REACT_APP_TOPIC_ID}
           history={history}
           searchValue={searchValue}
         />
-      </Layout>
     );
   }
 
   return (
-    <Layout headingSpacing={false}>
       <CategoryDetail
         queryParams={queryParams}
         history={history}
         categoryId={categoryId}
         topicId={REACT_APP_TOPIC_ID}
       />
-    </Layout>
   );
 };
 

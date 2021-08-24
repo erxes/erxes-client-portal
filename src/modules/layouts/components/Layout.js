@@ -17,25 +17,39 @@ class Layout extends React.Component {
     window.erxesSettings = {
       messenger: {
         brand_id: 'm7DmKt'
-      }
+      },
+      forms:[]
     };
 
     (() => {
       const script = document.createElement('script');
       script.src = 'https://w.office.erxes.io/build/messengerWidget.bundle.js';
       script.async = true;
-
+      script.key=Math.random().toString()
       const entry = document.getElementsByTagName('script')[0];
       entry.parentNode.insertBefore(script, entry);
+
+      const form = document.createElement('script');
+      form.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
+      form.async = true;
+      form.key=Math.random().toString()
+      const ent = document.getElementsByTagName('script')[0];
+      ent.parentNode.insertBefore(form, ent);
     })();
   }
 
   render() {
-    const { location, getKbTopicQuery, history, children, headingSpacing } = this.props;
+    const { location, getKbTopicQuery, history, children } = this.props;
     
     const queryParams = queryString.parse(location.search);
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
+    let headingSpacing = false;
+    let marginTop="main-body";
+    if(location.pathname ==="/knowledge-base"){
+       headingSpacing = true
+       marginTop="mt-100p"
+    }
 
     return (
       <div className="layout knowlegde-base">
@@ -45,8 +59,7 @@ class Layout extends React.Component {
           kbTopic={kbTopic}
           headingSpacing={headingSpacing}
         />
-
-        <Container className="main-body" fluid="lg">{children}</Container>
+        <Container className={marginTop } fluid="lg">{children}</Container>
         <Footer kbTopic={kbTopic} />
       </div>
     );
