@@ -223,7 +223,7 @@ class Detail extends React.Component {
     }
     return (
         <div className="page-anchor" id="anchorTag">
-          <h6>ХОЛБООС </h6>
+          <h6>ON THIS PAGE </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
               <li key={index} > 
@@ -266,6 +266,7 @@ class Detail extends React.Component {
   render() {
     const { articleDetail, category, kbTopic } = this.props;
     const dom = this.createDom();
+    delete articleDetail.summary;
 
     return (
       <div className="knowledge-base">
