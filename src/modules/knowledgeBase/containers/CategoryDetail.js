@@ -5,13 +5,14 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { queries } from '../graphql/index';
 import CategoryDetail from '../components/CategoryDetail';
+import { Spinner } from 'react-bootstrap';
 
 class CategoryDetailsContainer extends React.Component {
   render() {
     const { getKbTopicQuery, getKbCategoryQuery, history } = this.props;    
 
     if (getKbCategoryQuery.loading || getKbTopicQuery.loading) {
-      return <div></div>;
+      return <Spinner animation="border" variant="secondary" />;
     }    
 
     const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};

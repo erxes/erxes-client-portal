@@ -31,10 +31,18 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { location, getKbTopicQuery, history, children,headingSpacing } = this.props;
-
+    const { location, getKbTopicQuery, history, children } = this.props;
+    
     const queryParams = queryString.parse(location.search);
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
+
+    let headingSpacing = false;
+    let marginTop="main-body";
+
+    if(location.pathname === "/knowledge-base" && location.search ===""){
+       headingSpacing = true
+       marginTop="mt-100p"
+    }
 
     return (
       <div className="layout knowlegde-base">
@@ -44,7 +52,7 @@ class Layout extends React.Component {
           kbTopic={kbTopic}
           headingSpacing={headingSpacing}
         />
-        <Container className="main-body" fluid="lg">{children}</Container>
+        <Container className={marginTop } fluid="lg">{children}</Container>
         <Footer kbTopic={kbTopic} />
       </div>
     );

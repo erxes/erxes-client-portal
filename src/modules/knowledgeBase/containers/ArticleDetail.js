@@ -6,6 +6,7 @@ import gql from 'graphql-tag';
 import Details from '../components/ArticleDetail';
 import { queries } from '../graphql/index';
 import { getEnv } from '../../../apolloClient';
+import { Spinner } from 'react-bootstrap';
 
 const { REACT_APP_TOPIC_ID } = getEnv();
 
@@ -24,7 +25,7 @@ class DetailContainer extends React.Component {
       (getArticleDetailQuery && getArticleDetailQuery.loading) ||
       getKbTopicQuery.loading
     ) {
-      return <div>loading</div>;
+      return <Spinner animation="border" variant="secondary" />;
     }
 
     const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};

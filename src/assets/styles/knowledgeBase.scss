@@ -80,6 +80,7 @@ $yellow: #fac534;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
+  overflow: scroll;
   span {
     position: fixed;
     top: 10px;
@@ -95,10 +96,9 @@ $yellow: #fac534;
     }
   }
   img {
-    width: 80%;
-    height: auto;
-    max-height: 90%;
-    max-width: 90%;
+    margin: auto;
+    display: block;
+    width: 75%;
     animation-name: zoom;
     animation-duration: 0.6s;
   }
@@ -147,6 +147,14 @@ $yellow: #fac534;
   .content {
     img {
       max-width: 100%;
+    }
+    .article {
+      a {
+        color: $mainColor;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }
@@ -322,7 +330,6 @@ span {
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
-      border-radius: 3px;
       box-shadow: 0 1px 5px #6e6c6e4b;
       border-radius: $radius;
       .card {
@@ -467,8 +474,8 @@ span {
             content: "";
             position: absolute;
             display: inline-block;
-            width: 160px;
-            height: 160px;
+            width: 170px;
+            height: 170px;
             top: 0;
             right: -40px;
             background-color: transparent;
@@ -512,19 +519,12 @@ span {
   }
 }
 .empty-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
   svg {
     fill-opacity: 10%;
     width: 100px;
   }
-  span {
-    margin-top: 10px;
-    margin-right: 0;
-    color: #ccc;
-    font-size: 14px;
-    width: auto;
-  }
+
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
