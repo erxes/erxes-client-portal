@@ -268,7 +268,8 @@ class Detail extends React.Component {
 
     if (img && e.currentTarget.contains(img)) {
         modalImg.src = img.src;    
-        modal.style.display = "flex";
+        modalImg.alt = img.alt;  
+        modal.style.display = "block";
     }
  }
 
