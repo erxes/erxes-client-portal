@@ -6,7 +6,6 @@ import Categories from './containers/CategoryList';
 import Details from './containers/ArticleDetail';
 import ArticleList from './containers/ArticleList';
 import CategoryDetail from './containers/CategoryDetail';
-import Layout from '../layouts/components/Layout';
 
 const { REACT_APP_TOPIC_ID } = getEnv();
 
