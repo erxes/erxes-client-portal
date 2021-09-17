@@ -58,6 +58,7 @@ class Lists extends React.Component {
     if (!articles) {
       return null;
     }
+
     if( articles.length === 0){
       return(
          <div className="empty-box">
@@ -66,6 +67,8 @@ class Lists extends React.Component {
          </div>
       )
     }
+    
+    const avatar = "../../../assets/images/avatar.svg"
 
     return (
      articles.map( article => (
@@ -77,7 +80,7 @@ class Lists extends React.Component {
         <h5>{article.title}</h5>
         <p>{article.summary}</p>
         <div className="article-desc ">
-          <img src={article.createdUser.details.avatar} alt="#" />
+        <img src={article.createdUser.details.avatar || avatar} alt="#" />
           <div>
             <p>
               Нийтлэсэн:{" "}

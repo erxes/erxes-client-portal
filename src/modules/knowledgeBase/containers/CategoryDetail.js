@@ -12,7 +12,7 @@ class CategoryDetailsContainer extends React.Component {
     const { getKbTopicQuery, getKbCategoryQuery, history } = this.props;
 
     if (getKbCategoryQuery.loading || getKbTopicQuery.loading) {
-      return <Spinner animation="border" variant="secondary" />;
+      return <Spinner animation="border" variant="secondary"  className="centered" />;
     }
 
     const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};

@@ -25,7 +25,7 @@ class DetailContainer extends React.Component {
       (getArticleDetailQuery && getArticleDetailQuery.loading) ||
       getKbTopicQuery.loading
     ) {
-      return <Spinner animation="border" variant="secondary" />;
+      return <Spinner animation="border" variant="secondary"  className="centered"/>;
     }
 
     const category = getKbCategoryQuery.knowledgeBaseCategoryDetail || {};
