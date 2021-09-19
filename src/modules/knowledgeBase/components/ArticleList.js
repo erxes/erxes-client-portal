@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReactComponent as Emptybox } from "../../../../src/assets/images/empty-box.svg";
-
+import { ReactComponent as Avatar } from "../../../../src/assets/images/avatar.svg";
 
 const Appointment = ({name, pos, imgSrc, link}) =>(
       <div className="appointment">
@@ -67,8 +67,6 @@ class Lists extends React.Component {
          </div>
       )
     }
-    
-    const avatar = "../../../assets/images/avatar.svg"
 
     return (
      articles.map( article => (
@@ -80,7 +78,7 @@ class Lists extends React.Component {
         <h5>{article.title}</h5>
         <p>{article.summary}</p>
         <div className="article-desc ">
-        <img src={article.createdUser.details.avatar || avatar} alt="#" />
+          {article.createdUser.details.avatar ? <img src={article.createdUser.details.avatar} alt="#" /> : <Avatar /> }
           <div>
             <p>
               Нийтлэсэн:{" "}

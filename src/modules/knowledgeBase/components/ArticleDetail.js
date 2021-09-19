@@ -14,7 +14,7 @@ class Detail extends React.Component {
     this.state = {
       activeReaction: '',
       toggle: false,
-      nextFirstId: '0',
+      nextFirstId: '0'
     };
   }
 
@@ -280,13 +280,17 @@ class Detail extends React.Component {
 
   renderContent = (articleDetail) =>{
     let formDiv;
-    
     if( this.props.category.title === "Хүсэлт гаргах"){
       formDiv = '<div data-erxes-embed="TvEwRy" style="width:100%;height:300px"></div>';
+      return(
+        <Form form={formDiv} />
+      )
     }
-    
     if( this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал"){
       formDiv = '<div data-erxes-embed="oDKqhS" style="width:100%;height:300px"></div>';
+      return(
+        <Form form={formDiv} />
+      )
     }
 
     return (
@@ -294,7 +298,6 @@ class Detail extends React.Component {
       <h4>{articleDetail.title}</h4>
       <div className="content mt-4" id="contentText">
         <p>{articleDetail.summary}</p>
-        <p dangerouslySetInnerHTML= {{ __html: formDiv }}/>
         <div className="article" onClick={this.showImageModal}
           dangerouslySetInnerHTML={{
             __html: articleDetail.content
@@ -339,8 +342,23 @@ class Detail extends React.Component {
   }
 }
 
+class Form extends React.Component{
+  constructor(props) {
+    super(props);
+  }
+  render(){
+    return(
+      <div className="article"
+      dangerouslySetInnerHTML={{
+        __html: this.props.form
+      }}
+      ></div> 
+    )
+  }  
+}
+
 Detail.propTypes = {
   kbTopic: PropTypes.object
-};
+}; 
 
 export default Detail;
