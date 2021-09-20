@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Avatar from "../../../../src/assets/images/avatar.svg";
 import { ReactComponent as Emptybox } from "../../../../src/assets/images/empty-box.svg";
-import { ReactComponent as Avatar } from "../../../../src/assets/images/avatar.svg";
+
 
 const Appointment = ({name, pos, imgSrc, link}) =>(
       <div className="appointment">
@@ -69,7 +70,7 @@ class Lists extends React.Component {
     }
 
     return (
-     articles.map( article => (
+     articles.reverse().map( article => (
       <Link
       to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
       key={article._id}
@@ -78,7 +79,15 @@ class Lists extends React.Component {
         <h5>{article.title}</h5>
         <p>{article.summary}</p>
         <div className="article-desc ">
-          {article.createdUser.details.avatar ? <img src={article.createdUser.details.avatar} alt="#" /> : <Avatar /> }
+          <img
+            className="round-img"
+            alt="#"
+            src={
+              (article.createdUser.details.avatar || []).length === 0
+                ? Avatar
+                : article.createdUser.details.avatar
+            }
+          />
           <div>
             <p>
               Нийтлэсэн:{" "}

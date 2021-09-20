@@ -415,10 +415,14 @@
         li {
           .sidebar-item {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
             padding-left: 12px;
             margin: 5px 0;
-
+            font-size: 14px;
+            font-weight: 500;
+            i {
+              margin-right: 7px;
+            }
             span {
               color: #888;
             }
@@ -427,22 +431,9 @@
           &.active,
           &:hover {
             background: none;
-
-            h6,
             .icon-wrapper {
               color: #5629b6;
             }
-          }
-
-          .icon-wrapper {
-            margin-right: 10px;
-          }
-
-          h6 {
-            text-transform: initial;
-            margin-top: 0;
-            font-size: 14px;
-            font-weight: 500;
           }
           span {
             color: #888;

@@ -24,10 +24,11 @@ class CategoryDetail extends React.Component {
               <li className={this.isActive(cat._id)}>
                 <div className="sidebar-item">
                   <div className="icon-wrapper">
-                    {cat.childrens && <i className={`icon-${cat.icon}`} />}
+                    {cat.childrens && <i className={`icon-${cat.icon}`} />}   
+                    {cat.title}             
                   </div>
-                  <h6>{cat.title}</h6>
-                  <span>{`(${cat.numOfArticles})`}</span>
+                 
+                  <div><span>{`(${cat.numOfArticles})`}</span></div>
                 </div>
               </li>
             </ul>
