@@ -139,57 +139,47 @@ class Detail extends React.Component {
 
   renderCategories = () => {
     const { kbTopic } = this.props;
-    const categories = kbTopic.parentCategories;
-
-    if (!categories || categories.length === 0) {
-      return null;
-    }
-
-    const renderCategory = category => {
-      const url = `/knowledge-base/category/details/${category._id}`;
-
+    const { parentCategories } = kbTopic;
+    const renderCategory = cat => {
       return (
-        <li key={category._id} className={this.isActiveCategory(category._id)}>
-          <Link
-            to={
-              category.articles && category.articles.length > 0
-                ? `${url}&_id=${category.articles[0]._id}`
-                : url
-            }
-          >
-            <div className="sidebar-item">
-              <div className="icon-wrapper">
-                {category.childrens &&  <i className={`icon-${category.icon}`}/>}
-              </div>
-              <h6>{category.title}</h6>
-              <span>{`(${category.numOfArticles})`}</span>
-            </div>
-          </Link>
-          {this.renderArticles(category._id)}
-        </li>
+        <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
+          <div className="tags sidebar-list">
+            <ul>
+              <li className={this.isActive(cat._id)}>
+                <div className="sidebar-item">
+                  <div className="icon-wrapper">
+                    {cat.childrens && <i className={`icon-${cat.icon}`} />}   
+                    {cat.title}             
+                  </div>
+                 
+                  <div><span>{`(${cat.numOfArticles})`}</span></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </Link>
       );
     };
 
-    return (
-      <>
-        <div className="tags sidebar-list">
-          <ul>
-            {categories.map(category => {
-              return (
-                <>
-                  {renderCategory(category)}
-                  {category.childrens && (
-                    <div className="sub-categories">
-                      {category.childrens.map(child => renderCategory(child))}
-                    </div>
-                  )}
-                </>
-              );
-            })}
-          </ul>
-        </div>
-      </>
-    );
+    if (parentCategories) {
+      return (
+        <>
+          {parentCategories.map(cat => {
+            return (
+              <>
+                {renderCategory(cat)}
+                {cat.childrens && (
+                  <div className="sub-categories">
+                    {cat.childrens.map(child => renderCategory(child))}
+                  </div>
+                )}
+              </>
+            );
+          })}
+        </>
+      );
+    }
+    return;
   };
 
   renderArticles = categoryId => {
