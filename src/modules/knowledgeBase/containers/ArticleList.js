@@ -17,7 +17,7 @@ class ListContainer extends React.Component {
     } = this.props;
 
     if (getKbTopicQuery.loading || getArticlesQuery.loading) {
-      return <Spinner animation="border" variant="secondary" />;
+      return <Spinner animation="border" variant="secondary" className="centered" />;
     }
 
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};

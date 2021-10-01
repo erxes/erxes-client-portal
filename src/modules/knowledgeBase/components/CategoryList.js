@@ -34,7 +34,7 @@ class Categories extends React.Component {
             className="round-img"
             alt={author.details.fullName}
             src={
-              author.details.avatar.length === 0
+              (author.details.avatar || []).length === 0
                 ? Avatar
                 : author.details.avatar
             }
@@ -45,7 +45,7 @@ class Categories extends React.Component {
         <div className="avatar-info">
           <div>
             <div className="darker">{cat.numOfArticles}</div> articles in this
-            category
+            category{" "}
           </div>
           <div>
             <div className="darker">Written by: </div>
@@ -87,7 +87,7 @@ class Categories extends React.Component {
     return (
       <>
         {specialCategory && (
-          <Container className="knowledge-base promoted mt-30" fluid="sm">
+          <Container className="knowledge-base promoted" fluid="sm">
             <div className="category-knowledge-list">
               <h2 className="list-category-title">
                 <Link to={`${categoryUrl}${specialCategory._id}`}>
@@ -96,14 +96,17 @@ class Categories extends React.Component {
               </h2>
               <div className="promoted-wrap">
                 {specialCategory.childrens &&
-                  specialCategory.childrens.map((cat , i)=> (
+                  specialCategory.childrens.map((cat, i) => (
                     <>
-                    <Card key={cat._id}>{detail(cat)} 
-                       <Link to={`${categoryUrl}${specialCategory._id}`} className="more">
+                      <Card key={cat._id}>
+                        {detail(cat)}
+                        <Link
+                          to={`${categoryUrl}${specialCategory._id}`}
+                          className="more"
+                        >
                           Read more
-                       </Link>
-                    </Card>
-                   
+                        </Link>
+                      </Card>
                     </>
                   ))}
               </div>
@@ -135,11 +138,7 @@ class Categories extends React.Component {
   };
 
   render() {
-    return (
-      <>
-      {this.renderCategories()}
-      </>
-    );
+    return <>{this.renderCategories()}</>;
   }
 }
 

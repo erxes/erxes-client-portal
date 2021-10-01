@@ -117,59 +117,61 @@ class Detail extends React.Component {
     return;
   };
 
-  renderCategories = () => {
-    const { kbTopic } = this.props;
-    const categories = kbTopic.parentCategories;
-
-    if (!categories || categories.length === 0) {
+  createDom = () =>{
+    const  articleDetail  = this.props.articleDetail;
+    if (!articleDetail) {
       return null;
     }
+    const content= articleDetail.content;
+    const dom = new DOMParser().parseFromString(content, 'text/html');
+    return dom;
+  }
 
-    const renderCategory = category => {
-      const url = `/knowledge-base/category/details/${category._id}`;
-
+  renderCategories = () => {
+    const { kbTopic } = this.props;
+    const { parentCategories } = kbTopic;
+    const renderCategory = cat => {
       return (
-        <li key={category._id} className={this.isActiveCategory(category._id)}>
-          <Link
-            to={
-              category.articles && category.articles.length > 0
-                ? `${url}&_id=${category.articles[0]._id}`
-                : url
-            }
-          >
-            <div className="sidebar-item">
-              <div className="icon-wrapper">
-                {category.childrens &&  <i className={`icon-${category.icon}`}/>}
-              </div>
-              <h6>{category.title} </h6>
-              <span>{`(${category.numOfArticles})`}</span>
-            </div>
-          </Link>
-          {this.renderArticles(category._id)}
-        </li>
+        <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
+          <div className="tags sidebar-list">
+            <ul>
+              <li className={this.isActive(cat._id)}>
+                <div className="sidebar-item">
+                  <div className="icon-wrapper">
+                    {cat.childrens && <i className={`icon-${cat.icon}`} />}   
+                    {cat.title}             
+                  </div>
+                 
+                  <div><span>{`(${cat.numOfArticles})`}</span></div>
+                </div>
+                {this.renderArticles(cat._id)}
+              </li>
+            </ul>
+          </div>
+        </Link>
+        
       );
     };
 
-    return (
-      <>
-        <div className="tags sidebar-list">
-          <ul>
-            {categories.map(category => {
-              return (
-                <>
-                  {renderCategory(category)}
-                  {category.childrens && (
-                    <div className="sub-categories">
-                      {category.childrens.map(child => renderCategory(child))}
-                    </div>
-                  )}
-                </>
-              );
-            })}
-          </ul>
-        </div>
-      </>
-    );
+    if (parentCategories) {
+      return (
+        <>
+          {parentCategories.map(cat => {
+            return (
+              <>
+                {renderCategory(cat)}
+                {cat.childrens && (
+                  <div className="sub-categories">
+                    {cat.childrens.map(child => renderCategory(child))}
+                  </div>
+                )}
+              </>
+            );
+          })}
+        </>
+      );
+    }
+    return;
   };
 
   renderArticles = categoryId => {
@@ -179,7 +181,7 @@ class Detail extends React.Component {
     if (!articles || !articles.length === 0 || category._id !== categoryId) {
       return null;
     }
-
+    
     return (
       <div className="submenu">
         <ul>
@@ -197,33 +199,37 @@ class Detail extends React.Component {
     );
   };
 
-  renderTags = (dom) => {
+  renderTags = () => {
+    const dom = this.createDom();
     const nodes = dom.getElementsByTagName("h2");
+
+    if (nodes.length === 0 ) {
+      return null;
+    }
+  
     const tagged = [];
 
     const addId = (array, isTag) => {
       return array.forEach( el => {
-       let taggedItem;
-       if(el.lastChild.innerText ) {
-        el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
-        : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
- 
-          el.setAttribute("id", taggedItem)
-          isTag && tagged.push(taggedItem);
-       } 
-     })
-   }
-
-   const h2Array = document.getElementsByTagName("h2");
-    addId([...nodes], true)
-    addId([...h2Array], false)
-
-    if( !nodes || nodes.length === 0 ) {
-      return null;
+        let taggedItem;
+        if(el.lastChild.innerText ) {
+         el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
+         : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
+  
+           el.setAttribute("id", taggedItem)
+           isTag && tagged.push(taggedItem);
+        } 
+      })
     }
-    return (
+ 
+     const  h2Array = document.getElementsByTagName("h2");
+     addId([...nodes], true)
+     addId([...h2Array], false)
+ 
+     
+     return (
         <div className="page-anchor" id="anchorTag">
-          <h6>ON THIS PAGE </h6>
+           <h6>ON THIS PAGE </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
               <li key={index} > 
@@ -237,16 +243,6 @@ class Detail extends React.Component {
     );
   };
 
-  createDom = () =>{
-    const  articleDetail  = this.props.articleDetail;
-    if (!articleDetail) {
-      return null;
-    }
-    const content= articleDetail.content;
-    const dom = new DOMParser().parseFromString(content, 'text/html');
-    return dom;
-  }
-
   showImageModal = (e) => {
     const img = e.target.closest("img");
     const modalImg = document.getElementById("modal-content");
@@ -254,6 +250,7 @@ class Detail extends React.Component {
 
     if (img && e.currentTarget.contains(img)) {
         modalImg.src = img.src;    
+        modalImg.alt = img.alt;  
         modal.style.display = "block";
     }
  }
@@ -262,11 +259,30 @@ class Detail extends React.Component {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
   }
+
+  renderContent = (articleDetail) =>{
+    return (
+    <div className="kbase-detail kbase-lists">
+      <h4>{articleDetail.title}</h4>
+      <div className="content mt-4" id="contentText">
+        <p>{articleDetail.summary}</p>
+        <div className="article" onClick={this.showImageModal}
+          dangerouslySetInnerHTML={{
+            __html: articleDetail.content
+          }}
+          ></div>   
+          <div onClick={this.handleModal} id="modal" >
+            <span id = "close">&times;</span>
+            <img id="modal-content" alt="modal"/>
+          </div>
+
+      </div>
+    </div>
+    )
+  }
   
   render() {
-    const { articleDetail, category, kbTopic } = this.props;
-    const dom = this.createDom();
-    delete articleDetail.summary;
+    const { category, kbTopic, articleDetail } = this.props;
 
     return (
       <div className="knowledge-base">
@@ -282,27 +298,12 @@ class Detail extends React.Component {
             </div>
           </Col>
           <Col md={7}>
-            <div className="article-detail">
-              <div className="kbase-detail kbase-lists">
-                <h4>{articleDetail.title}</h4>
-                <div className="content mt-4" id="contentText">
-                  <p>{articleDetail.summary}</p>
-                  <div className="article" onClick={this.showImageModal}
-                    dangerouslySetInnerHTML={{
-                      __html: articleDetail.content
-                    }}
-                  >
-                  </div>
-                   <div onClick={this.handleModal} id="modal" >
-                      <span id = "close">&times;</span>
-                      <img id="modal-content" alt="modal" />
-                    </div>
-                </div>
-              </div>
+             <div className="card article-detail">
+              {this.renderContent(articleDetail)}
               {this.renderReactions()}
-            </div>
+              </div>
           </Col>
-          <Col md={2} >{this.renderTags(dom)}</Col>
+          <Col md={2} >{this.renderTags()}</Col>
         </Row>
       </div>
     );
@@ -311,6 +312,6 @@ class Detail extends React.Component {
 
 Detail.propTypes = {
   kbTopic: PropTypes.object
-};
+}; 
 
 export default Detail;
