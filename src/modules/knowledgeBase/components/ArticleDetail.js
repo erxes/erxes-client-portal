@@ -333,6 +333,18 @@ class Detail extends React.Component {
 }
 
 class Form extends React.Component{
+  componentDidMount(){
+    (() => {
+      const form = document.createElement('script');
+      form.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
+      form.async = true;
+      form.key=Math.random().toString()
+      const ent = document.getElementsByTagName('script')[0];
+      ent.parentNode.insertBefore(form, ent);
+
+      console.log(window.erxesSettings)
+    })();
+  }
   render(){
     return(
       <div className="article"

@@ -28,13 +28,6 @@ class Layout extends React.Component {
       script.key=Math.random().toString()
       const entry = document.getElementsByTagName('script')[0];
       entry.parentNode.insertBefore(script, entry);
-
-      const form = document.createElement('script');
-      form.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
-      form.async = true;
-      form.key=Math.random().toString()
-      const ent = document.getElementsByTagName('script')[0];
-      ent.parentNode.insertBefore(form, ent);
     })();
   }
 
