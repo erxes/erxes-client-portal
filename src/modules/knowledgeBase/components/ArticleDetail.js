@@ -20,11 +20,11 @@ class Detail extends React.Component {
 
   componentDidMount(){
     if( this.props.category.title === "Хүсэлт гаргах"){
-      window.erxesSettings.forms.push({  brand_id: "ASJrzQ", form_id: "TvEwRy"});
+      window.erxesSettings.forms.form_id = "TvEwRy";
     }
 
     if( this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал"){
-      window.erxesSettings.forms.push({ brand_id: "ASJrzQ", form_id: "oDKqhS"});
+      window.erxesSettings.forms.form_id= "oDKqhS";
     }    
   }
 
@@ -341,8 +341,6 @@ class Form extends React.Component{
       form.key=Math.random().toString()
       const ent = document.getElementsByTagName('script')[0];
       ent.parentNode.insertBefore(form, ent);
-
-      console.log(window.erxesSettings)
     })();
   }
   render(){

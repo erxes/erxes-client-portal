@@ -18,7 +18,9 @@ class Layout extends React.Component {
       messenger: {
         brand_id: 'm7DmKt'
       },
-      forms:[]
+      forms:{
+        brand_id: "ASJrzQ", form_id:""
+      }
     };
 
     (() => {
