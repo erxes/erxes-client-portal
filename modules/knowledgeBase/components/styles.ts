@@ -501,6 +501,12 @@ const SidebarList = styled.div`
         font-weight: 600;
       }
     }
+
+    &:hover {
+      h6 {
+        font-weight: 600;
+      }
+    }
   }
 `;
 
