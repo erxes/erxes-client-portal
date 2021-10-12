@@ -64,6 +64,7 @@ export const categoryDetailQuery = `
         createdDate
         modifiedBy
         modifiedDate
+        categoryId
         createdUser {
           details {
             fullName
@@ -92,6 +93,7 @@ export const articleDetailQuery = `
           avatar
         }
       }
+      categoryId
       createdDate
       modifiedBy
       modifiedDate

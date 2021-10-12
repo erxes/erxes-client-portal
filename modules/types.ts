@@ -156,6 +156,7 @@ export interface IKbArticle extends ICommonFields {
   summary: string;
   content: string;
   status: string;
+  categoryId?: string;
   reactionChoices?: string[];
   createdUser: IUser;
 }

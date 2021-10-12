@@ -5,7 +5,7 @@ import { Avatars } from "../knowledgeBase/components/styles";
 
 type Props = {
   user: IUser;
-  date: string;
+  date: Date;
 };
 
 export default function Avatar({ user = {} as IUser, date }: Props) {
