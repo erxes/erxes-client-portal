@@ -6,15 +6,15 @@ import { SubCategories, SubMenu } from "./styles";
 type Props = {
   parentCategories: IKbParentCategory[];
   category: IKbCategory;
-  hasArticle?: boolean;
+  articleId?: string;
 };
 
 class SideBar extends React.Component<Props> {
   renderArticles = (isActive) => {
-    const { category, hasArticle } = this.props;
+    const { category, articleId } = this.props;
     const { articles } = category;
 
-    if (!hasArticle || !isActive || !articles || articles.length === 0) {
+    if (!articleId || !isActive || !articles || articles.length === 0) {
       return null;
     }
 
@@ -25,7 +25,7 @@ class SideBar extends React.Component<Props> {
             key={index}
             href={`/knowledge-base/article?id=${article._id}&catId=${article.categoryId}`}
           >
-            <li className={article._id === category._id ? "active" : "kkk"}>
+            <li className={article._id === articleId && "active"}>
               {article.title}
             </li>
           </Link>

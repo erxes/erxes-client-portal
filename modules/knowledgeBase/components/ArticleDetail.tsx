@@ -114,7 +114,7 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
             <SideBar
               parentCategories={topic.parentCategories}
               category={category}
-              hasArticle={true}
+              articleId={article._id}
             />
           </SidebarList>
         </Col>

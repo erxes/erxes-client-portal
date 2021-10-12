@@ -524,6 +524,10 @@ const SubMenu = styled.ul`
     font-size: 13px;
     margin-bottom: 8px;
     cursor: pointer;
+
+    &.active {
+      color: #6569df;
+    }
   }
 `;
 
