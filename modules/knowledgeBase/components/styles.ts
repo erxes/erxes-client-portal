@@ -70,6 +70,7 @@ const CategoryContent = styledTS<{ color?: string }>(styled.div)`
 
 const VideoTutorial = styled.div`
   text-align: center;
+  margin-top: 50px;
 
   h4 {
     font-size: ${typography.fontSizeHeading5}px;
@@ -256,6 +257,213 @@ const ArticleWrapper = styled.div`
 const CategoryListWrapper = styled.div`
   max-width: 900px;
   margin: 0 auto;
+
+  .categories-wrapper {
+    .list-category-title {
+      margin: 6rem 0 1.5rem 0;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 400;
+    }
+
+    .card {
+      border: 1px solid #e2e2e271;
+      animation: fadeInDown 0.8s ease-in-out;
+      margin-bottom: 10px;
+    }
+
+    .category-item {
+      height: 100%;
+
+      .icon-wrapper {
+        margin-bottom: 10px;
+
+        i {
+          font-size: 25px;
+          color: #6569df;
+        }
+      }
+    }
+
+    .tab-content {
+      text-align: center;
+
+      h5 {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 14px;
+        color: #6c718b;
+        font-weight: 400;
+      }
+    }
+
+    .avatars {
+      flex-flow: row wrap;
+      justify-content: center;
+
+      .avatar-info {
+        margin-left: 0;
+      }
+    }
+
+    .card {
+      width: 100%;
+      background: #fff;
+      border: 0;
+      box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.25);
+      position: relative;
+      min-height: 160px;
+      padding: 1rem;
+      margin-bottom: 10px;
+
+      &:hover {
+        box-shadow: 0 4px 30px -13px rgba(0, 0, 0, 0.25);
+        transition: 0.4s;
+      }
+
+      &:hover > * {
+        .icon-wrapper,
+        .tab-content > h5 {
+          color: #6569df !important;
+        }
+      }
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    .promoted {
+      margin-top: -15rem;
+
+      .promoted-wrap {
+        background-color: #fff;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        border-radius: 3px;
+        box-shadow: 0 1px 5px #6e6c6e4b;
+        border-radius: $radius;
+
+        .card {
+          width: 100%;
+          background: #fff;
+          border: 0;
+          box-shadow: none;
+          position: relative;
+          min-height: 160px;
+          padding: 1.8rem 2.2rem 1.8rem 3.2rem;
+          margin-bottom: 10px;
+
+          .icon-wrapper {
+            position: absolute;
+            left: 25px;
+            top: 25px;
+          }
+
+          .tab-content {
+            text-align: left;
+            width: 100%;
+
+            p {
+              margin-bottom: 0;
+            }
+
+            h5 {
+              font-size: 14px;
+              color: #000;
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+
+            .description {
+              display: flex;
+              align-items: center;
+            }
+          }
+
+          .more {
+            color: #6569df;
+            font-weight: 600;
+            position: absolute;
+            bottom: 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+          }
+
+          .description {
+            p {
+              font-weight: 400;
+            }
+          }
+        }
+      }
+
+      @media only screen and (min-width: 1080px) {
+        .category-knowledge-list {
+          .list-category-title {
+            color: #fff;
+            a {
+              color: inherit;
+            }
+          }
+        }
+        .promoted-wrap {
+          .card {
+            width: 33%;
+            border: none;
+            border-radius: 0;
+
+            &::after {
+              content: "";
+              position: absolute;
+              display: inline-block;
+              width: 160px;
+              height: 160px;
+              top: 0;
+              right: -40px;
+              background-color: transparent;
+              border-top-right-radius: 6px;
+              transform: scaleY(0.707) scaleX(0.4) rotate(45deg);
+              box-shadow: 1px -1px rgba(0, 0, 0, 0.178);
+              z-index: 1;
+            }
+
+            &:last-child:after {
+              content: none;
+            }
+          }
+        }
+      }
+
+      @media only screen and (max-width: 1080px) {
+        .card {
+          &::after {
+            content: "";
+            position: absolute;
+            display: inline-block;
+            width: 27vw;
+            height: 27vw;
+            top: 20%;
+            left: 30%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: transparent;
+            border-top-right-radius: 6px;
+            transform: rotate(135deg) skew(39deg, 39deg);
+            box-shadow: 1px -1px rgba(0, 0, 0, 0.25);
+            z-index: 1;
+          }
+
+          &:last-child:after {
+            content: none;
+          }
+        }
+      }
+    }
+  }
 `;
 
 export {

@@ -3,13 +3,14 @@ import { rgba } from "../styles/ecolor";
 import styled, { css } from "styled-components";
 import styledTS from "styled-components-ts";
 
-const Header = styledTS<{ color?: string; backgroundImage?: string }>(
-  styled.div
-)`
-  padding: 30px 0;
+const Header = styledTS<{
+  color?: string;
+  backgroundImage?: string;
+  headingSpacing?: boolean;
+}>(styled.div)`
+  padding: ${(props) => (props.headingSpacing ? "30px 30px 180px" : "30px 0")};
   color: ${colors.colorWhite};
   font-size: ${typography.fontSizeBody}px;
-
   background-color: ${(props) =>
     props.color ? props.color : colors.colorPrimary};
   background-image: ${(props) =>
@@ -148,7 +149,6 @@ const Container = styledTS<{ transparent?: boolean; shrink?: boolean }>(
   styled.div
 )`
   width: ${dimensions.wrapperWidth}%;
-
   margin: 0 auto;
 
   ${(props) =>

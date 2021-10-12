@@ -11,6 +11,7 @@ type Props = {
   children: any;
   currentUser: IUser;
   headerBottomComponent?: React.ReactNode;
+  headingSpacing?: boolean;
 };
 
 function Layout({
@@ -18,6 +19,7 @@ function Layout({
   topic,
   children,
   currentUser,
+  headingSpacing,
   headerBottomComponent,
 }: Props) {
   return (
@@ -25,6 +27,7 @@ function Layout({
       <Header
         config={config}
         currentUser={currentUser}
+        headingSpacing={headingSpacing}
         headerBottomComponent={headerBottomComponent}
       />
       <MainContent baseColor={getConfigColor(config, "baseColor")}>

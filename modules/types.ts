@@ -80,6 +80,10 @@ export interface IKbCategory extends ICommonFields {
   numOfArticles: number;
 }
 
+export interface IKbParentCategory extends IKbCategory {
+  childrens: IKbCategory[];
+}
+
 export interface IUserDetails {
   avatar: string;
   fullName: string;
@@ -167,6 +171,7 @@ export type Topic = {
   languageCode?: string;
 
   categories: IKbCategory[];
+  parentCategories: IKbParentCategory[];
   createdBy: string;
   createdDate: Date;
   modifiedBy: string;

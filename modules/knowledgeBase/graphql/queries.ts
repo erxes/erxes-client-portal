@@ -1,3 +1,17 @@
+const categoryFields = `
+  _id
+  title
+  description
+  icon
+  numOfArticles
+  authors {
+    details {
+      fullName
+      avatar
+    }
+  }
+`;
+
 export const getKbTopicQuery = `
   query knowledgeBaseTopicDetail($_id: String!) {
     knowledgeBaseTopicDetail(_id: $_id) {
@@ -7,17 +21,19 @@ export const getKbTopicQuery = `
       color
       backgroundImage
       languageCode
+
       categories {
-        _id
-        title
-        description
-        icon
-        numOfArticles
-        authors {
-          details {
-            fullName
-            avatar
-          }
+        ${categoryFields}
+      }
+      
+      parentCategories {
+        ${categoryFields}
+        childrens {
+          ${categoryFields}
+        }
+        articles{
+          _id
+          title        
         }
       }
     }

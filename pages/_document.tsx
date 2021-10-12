@@ -41,6 +41,12 @@ export default class MyDocument extends Document {
 
           <link href="/static/images/favicon.png" rel="shortcut icon" />
           <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossOrigin="anonymous"
+          />
+          <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&amp;display=swap"
             rel="stylesheet"
           />

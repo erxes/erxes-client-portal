@@ -7,6 +7,7 @@ import { Store } from "../../types";
 type Props = {
   children: (values: any) => JSX.Element;
   headerBottomComponent?: React.ReactNode;
+  headingSpacing?: boolean;
 };
 
 const Layout = (props: Props) => {

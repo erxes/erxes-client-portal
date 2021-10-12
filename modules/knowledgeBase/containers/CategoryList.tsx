@@ -6,7 +6,7 @@ import Search from "../../main/components/Search";
 
 function CategoriesContainer() {
   return (
-    <Layout headerBottomComponent={<Search />}>
+    <Layout headerBottomComponent={<Search />} headingSpacing={true}>
       {(props: Store) => {
         return <CategoryList {...props} />;
       }}

@@ -1,13 +1,7 @@
 import React from "react";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import Link from "next/link";
-import {
-  CategoryItem,
-  CategoryIcon,
-  CategoryContent,
-  VideoTutorial,
-  Avatars,
-  CategoryListWrapper,
-} from "./styles";
+import { VideoTutorial, Avatars, CategoryListWrapper } from "./styles";
 import Icon from "../../common/Icon";
 import { Topic } from "../../types";
 
@@ -46,7 +40,7 @@ class CategoryList extends React.Component<Props> {
       <Avatars>
         {cat.authors.map((author, index) => (
           <img
-            key={index}
+            key={`author-${index}`}
             alt={author.details.fullName}
             src={author.details.avatar}
           />
@@ -67,37 +61,85 @@ class CategoryList extends React.Component<Props> {
 
   renderCategories = () => {
     const { topic } = this.props;
-    const { categories } = topic;
+    const { parentCategories = [] } = topic;
 
-    if (categories) {
-      return categories.map((cat) => {
-        return (
-          <Link href={`knowledge-base/category?id=${cat._id}`} key={cat._id}>
-            <CategoryItem>
-              <CategoryIcon>
-                <Icon icon={cat.icon || "book"} />
-              </CategoryIcon>
-              <CategoryContent>
-                <h5 className="base-color">{cat.title} </h5>
+    const specialCategory = parentCategories[0];
+    const categories = parentCategories.slice(1);
+    const categoryUrl = `/knowledge-base/category/`;
+
+    const detail = (cat) => {
+      return (
+        <Link href={`${categoryUrl}${cat._id}`} passHref={true}>
+          <a className="d-flex flex-column align-items-center w-100">
+            <div className="icon-wrapper">
+              <i className={`icon-${cat.icon}`} />
+            </div>
+            <div className="tab-content">
+              <h5>{cat.title}</h5>
+              <div className="description">
                 <p>{cat.description}</p>
+              </div>
+            </div>
+          </a>
+        </Link>
+      );
+    };
 
-                {this.renderAuthors(cat)}
-              </CategoryContent>
-            </CategoryItem>
-          </Link>
-        );
-      });
-    }
-    return;
+    return (
+      <>
+        {specialCategory && (
+          <Container className="knowledge-base promoted mt-30" fluid="sm">
+            <div className="category-knowledge-list">
+              <h2 className="list-category-title">
+                <Link href={`${categoryUrl}${specialCategory._id}`}>
+                  {specialCategory.title}
+                </Link>
+              </h2>
+              <div className="promoted-wrap">
+                {specialCategory.childrens &&
+                  specialCategory.childrens.map((cat, i) => (
+                    <Card key={`child-${i}`}>
+                      {detail(cat)}
+                      <Link href={`${categoryUrl}${specialCategory._id}`}>
+                        <a className="more">Read more</a>
+                      </Link>
+                    </Card>
+                  ))}
+              </div>
+            </div>
+          </Container>
+        )}
+
+        {categories.map((parentCat, i) => (
+          <Container className="knowledge-base" fluid="sm" key={`key-${i}`}>
+            <div className="category-knowledge-list">
+              <h2 className="list-category-title">
+                <Link href={`${categoryUrl}${parentCat._id}`}>
+                  {parentCat.title}
+                </Link>
+              </h2>
+              <Row>
+                {parentCat.childrens &&
+                  parentCat.childrens.map((cat) => (
+                    <Col md={4} key={cat._id} className="category-col">
+                      <Card className="category-item">{detail(cat)}</Card>
+                    </Col>
+                  ))}
+              </Row>
+            </div>
+          </Container>
+        ))}
+      </>
+    );
   };
 
   render() {
     return (
       <CategoryListWrapper>
-        <div>{this.renderCategories()}</div>
+        <div className="categories-wrapper">{this.renderCategories()}</div>
 
         <VideoTutorial>
-          <h4>Video tutorials</h4>
+          <h5>Video tutorials</h5>
 
           <p>
             For those visual learners, we have a full playlist of video

@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import { withRouter } from 'next/router';
-import React, { useState } from 'react';
-import { USER_LOGIN_TYPES } from '../../../pages/api/db/utils';
-import Icon from '../../common/Icon';
-import Modal from '../../common/Modal';
-import { getConfigColor } from '../../common/utils';
+import Link from "next/link";
+import { withRouter } from "next/router";
+import React, { useState } from "react";
+import { USER_LOGIN_TYPES } from "../../../pages/api/db/utils";
+import Icon from "../../common/Icon";
+import Modal from "../../common/Modal";
+import { getConfigColor } from "../../common/utils";
 import {
   Container,
   Header as Head,
@@ -16,20 +16,21 @@ import {
   HeaderTop,
   LinkItem,
   SupportMenus,
-  WebLink
-} from '../../styles/main';
-import { Config, IUser } from '../../types';
-import Button from '../../common/Button';
-import LoginContainer from '../../../pages/user/login';
-import RegisterContainer from '../../../pages/user/register';
-import ResetPasswordContainer from '../../user/containers/ResetPassword';
-import { Alert } from '../../utils';
+  WebLink,
+} from "../../styles/main";
+import { Config, IUser } from "../../types";
+import Button from "../../common/Button";
+import LoginContainer from "../../../pages/user/login";
+import RegisterContainer from "../../../pages/user/register";
+import ResetPasswordContainer from "../../user/containers/ResetPassword";
+import { Alert } from "../../utils";
 
 type Props = {
   config: Config;
   currentUser: IUser;
   logout: () => void;
   router: any;
+  headingSpacing?: boolean;
   headerBottomComponent?: React.ReactNode;
 };
 
@@ -38,15 +39,16 @@ function Header({
   currentUser,
   logout,
   router,
-  headerBottomComponent
+  headingSpacing,
+  headerBottomComponent,
 }: Props) {
   const [showlogin, setLogin] = useState(false);
   const [showregister, setRegister] = useState(false);
   const [showResetPassword, setResetPassword] = useState(false);
 
-  const onClick = url => {
-    if (!currentUser && url.includes('tickets')) {
-      Alert.error('Log in first to create or manage ticket cards');
+  const onClick = (url) => {
+    if (!currentUser && url.includes("tickets")) {
+      Alert.error("Log in first to create or manage ticket cards");
 
       return setLogin(true);
     }
@@ -55,7 +57,7 @@ function Header({
   const renderMenu = (url: string, label: string) => {
     return (
       <LinkItem active={router.pathname === url} onClick={() => onClick(url)}>
-        <Link href={!currentUser && url.includes('tickets') ? '' : url}>
+        <Link href={!currentUser && url.includes("tickets") ? "" : url}>
           {label}
         </Link>
       </LinkItem>
@@ -63,7 +65,10 @@ function Header({
   };
 
   return (
-    <Head color={getConfigColor(config, 'headerColor')}>
+    <Head
+      color={getConfigColor(config, "headerColor")}
+      headingSpacing={headingSpacing}
+    >
       <Container transparent={true}>
         <HeaderTop>
           <HeaderLeft>
@@ -115,14 +120,14 @@ function Header({
         <HeaderTop>
           <HeaderLogo>
             <Link href="/">
-              <img src={config.logo || '/static/logos/erxes-logo-white.svg'} />
+              <img src={config.logo || "/static/logos/erxes-logo-white.svg"} />
             </Link>
             <HeaderTitle>{config.name}</HeaderTitle>
           </HeaderLogo>
           <HeaderLinks>
-            {renderMenu('/', config.knowledgeBaseLabel || 'Knowledge Base')}
-            {renderMenu('/tasks', config.taskLabel || 'Task')}
-            {renderMenu('/tickets', config.ticketLabel || 'Ticket')}
+            {renderMenu("/", config.knowledgeBaseLabel || "Knowledge Base")}
+            {renderMenu("/tasks", config.taskLabel || "Task")}
+            {renderMenu("/tickets", config.ticketLabel || "Ticket")}
           </HeaderLinks>
         </HeaderTop>
         <h3>{config.description}</h3>
