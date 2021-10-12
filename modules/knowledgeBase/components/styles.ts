@@ -466,6 +466,55 @@ const CategoryListWrapper = styled.div`
   }
 `;
 
+const SidebarList = styled.div`
+  height: 100%;
+  min-height: 60vh;
+  border-right: 1px solid #e1e1e1;
+
+  .item {
+    cursor: pointer;
+    font-size: 14px;
+    transition: all ease 0.3s;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    > h6 {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    > i {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    > span {
+      color: #888;
+      margin-left: 5px;
+    }
+
+    &.active {
+      color: #6569df;
+
+      h6,
+      i {
+        font-weight: 600;
+      }
+    }
+  }
+`;
+
+const SubCategories = styled.div`
+  padding: 0 0 5px 22px;
+
+  .item {
+    > i {
+      margin-right: 2px !important;
+    }
+  }
+`;
+
 export {
   Header,
   CategoryItem,
@@ -476,9 +525,11 @@ export {
   CategoryLeft,
   Sidebar,
   Container,
+  SidebarList,
   SidebarItem,
   SidebarIcon,
   SidebarContent,
   ArticleWrapper,
   CategoryListWrapper,
+  SubCategories,
 };

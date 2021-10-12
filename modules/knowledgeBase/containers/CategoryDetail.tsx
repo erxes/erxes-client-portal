@@ -1,9 +1,9 @@
-import { gql, useQuery } from '@apollo/client';
-import React, { useContext } from 'react';
-import { ApiApolloClientContext } from '../../ApiContext';
-import { Topic } from '../../types';
-import CategoryDetail from '../components/CategoryDetail';
-import { categoryDetailQuery } from '../graphql/queries';
+import { gql, useQuery } from "@apollo/client";
+import React, { useContext } from "react";
+import { ApiApolloClientContext } from "../../ApiContext";
+import { Topic } from "../../types";
+import CategoryDetail from "../components/CategoryDetail";
+import { categoryDetailQuery } from "../graphql/queries";
 
 type Props = {
   queryParams: any;
@@ -13,7 +13,7 @@ type Props = {
 function CategoryDetailContainer({ queryParams: { id }, ...props }: Props) {
   const apiClient = useContext(ApiApolloClientContext);
 
-  const { loading, data = {} } = useQuery(gql(categoryDetailQuery), {
+  const { loading, data = {} as any } = useQuery(gql(categoryDetailQuery), {
     variables: { _id: id },
     skip: !id,
     client: apiClient,

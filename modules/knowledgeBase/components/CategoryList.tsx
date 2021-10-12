@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import Link from "next/link";
 import { VideoTutorial, Avatars, CategoryListWrapper } from "./styles";
-import Icon from "../../common/Icon";
 import { Topic } from "../../types";
 
 type Props = {
@@ -65,11 +64,11 @@ class CategoryList extends React.Component<Props> {
 
     const specialCategory = parentCategories[0];
     const categories = parentCategories.slice(1);
-    const categoryUrl = `/knowledge-base/category/`;
+    const categoryUrl = `/knowledge-base/category`;
 
     const detail = (cat) => {
       return (
-        <Link href={`${categoryUrl}${cat._id}`} passHref={true}>
+        <Link href={`${categoryUrl}?id=${cat._id}`} passHref={true}>
           <a className="d-flex flex-column align-items-center w-100">
             <div className="icon-wrapper">
               <i className={`icon-${cat.icon}`} />
@@ -91,7 +90,7 @@ class CategoryList extends React.Component<Props> {
           <Container className="knowledge-base promoted mt-30" fluid="sm">
             <div className="category-knowledge-list">
               <h2 className="list-category-title">
-                <Link href={`${categoryUrl}${specialCategory._id}`}>
+                <Link href={`${categoryUrl}?id=${specialCategory._id}`}>
                   {specialCategory.title}
                 </Link>
               </h2>
@@ -100,7 +99,7 @@ class CategoryList extends React.Component<Props> {
                   specialCategory.childrens.map((cat, i) => (
                     <Card key={`child-${i}`}>
                       {detail(cat)}
-                      <Link href={`${categoryUrl}${specialCategory._id}`}>
+                      <Link href={`${categoryUrl}?id=${cat._id}`}>
                         <a className="more">Read more</a>
                       </Link>
                     </Card>
@@ -114,7 +113,7 @@ class CategoryList extends React.Component<Props> {
           <Container className="knowledge-base" fluid="sm" key={`key-${i}`}>
             <div className="category-knowledge-list">
               <h2 className="list-category-title">
-                <Link href={`${categoryUrl}${parentCat._id}`}>
+                <Link href={`${categoryUrl}?id=${parentCat._id}`}>
                   {parentCat.title}
                 </Link>
               </h2>

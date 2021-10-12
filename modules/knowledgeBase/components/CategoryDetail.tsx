@@ -1,18 +1,10 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { Topic } from "../../types";
-import Breadcrumb from "../../common/Breadcrumb";
-import Icon from "../../common/Icon";
-import {
-  Container,
-  CategoryLeft,
-  Sidebar,
-  SidebarItem,
-  SidebarIcon,
-  SidebarContent,
-} from "./styles";
+import { SidebarList, SubCategories } from "./styles";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Articles from "./ArticleList";
+import SectionHeader from "../../common/SectionHeader";
 
 type Props = {
   category: any;
@@ -21,45 +13,55 @@ type Props = {
 };
 
 function CategoryDetail({ loading, topic, category }: Props) {
+  const { parentCategories } = topic;
+
+  const renderCategory = (cat) => {
+    const icon = cat.childrens ? cat.icon : "angle-right";
+
+    return (
+      <Link key={cat._id} href={`/knowledge-base/category?id=${cat._id}`}>
+        <div className={`item ${cat._id === category._id && "active"}`}>
+          <i className={`icon-${icon}`} />
+          <h6>{cat.title}</h6>
+          <span>{`(${cat.numOfArticles})`}</span>
+        </div>
+      </Link>
+    );
+  };
+
   const renderCategories = () => {
-    const categories = topic && topic.categories;
+    if (!parentCategories) {
+      return null;
+    }
 
-    if (!categories) return;
-
-    const router = useRouter();
-    const { id } = router.query;
-
-    return categories.map((cat) => {
-      return (
-        <Link href={`/knowledge-base/category?id=${cat._id}`} key={cat._id}>
-          <SidebarItem active={id === cat._id}>
-            <SidebarIcon>
-              <Icon icon={cat.icon || "book"} />
-            </SidebarIcon>
-            <SidebarContent>
-              <h6>{cat.title}</h6>
-              <p>{cat.description}</p>
-            </SidebarContent>
-          </SidebarItem>
-        </Link>
-      );
-    });
+    return parentCategories.map((cat, i) => (
+      <React.Fragment key={i}>
+        {renderCategory(cat)}
+        {cat.childrens && (
+          <SubCategories>
+            {cat.childrens.map((child) => renderCategory(child))}
+          </SubCategories>
+        )}
+      </React.Fragment>
+    ));
   };
 
   return (
-    <>
-      <Breadcrumb title={category.title} />
-      <Container>
-        <CategoryLeft>
-          {loading ? " Loading ..." : <Articles articles={category.articles} />}
-        </CategoryLeft>
+    <Container className="knowledge-base">
+      <SectionHeader
+        categories={topic.parentCategories}
+        selectedCat={category}
+      />
 
-        <Sidebar>
-          <h6>Categories</h6>
-          {renderCategories()}
-        </Sidebar>
-      </Container>
-    </>
+      <Row className="category-detail">
+        <Col md={3}>
+          <SidebarList>{renderCategories()}</SidebarList>
+        </Col>
+        <Col md={9}>
+          <Articles articles={category.articles} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

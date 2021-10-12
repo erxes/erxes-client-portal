@@ -1,7 +1,8 @@
-import React from 'react';
-import { CategoryContent, CategoryItem } from './styles';
-import Link from 'next/link';
-import Avatar from '../../common/Avatar';
+import React from "react";
+import { CategoryContent, CategoryItem } from "./styles";
+import Link from "next/link";
+import Avatar from "../../common/Avatar";
+import EmptyContent from "../../common/EmptyContent";
 
 type Props = {
   articles: any[];
@@ -11,11 +12,12 @@ type Props = {
 class Lists extends React.Component<Props> {
   render() {
     const { articles } = this.props;
-    if (!articles) {
-      return <div>Empty</div>;
+
+    if (!articles || articles.length === 0) {
+      return <EmptyContent text="Thare are no articles in this category!" />;
     }
 
-    return articles.map(article => {
+    return articles.map((article) => {
       return (
         <Link
           href={`/knowledge-base/article?id=${article._id}`}

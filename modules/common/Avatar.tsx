@@ -1,7 +1,7 @@
-import React from 'react';
-import { IUser, IUserDetails } from '../types';
-import dayjs from 'dayjs';
-import { Avatars } from '../knowledgeBase/components/styles';
+import React from "react";
+import { IUser, IUserDetails } from "../types";
+import dayjs from "dayjs";
+import { Avatars } from "../knowledgeBase/components/styles";
 
 type Props = {
   user: IUser;
@@ -22,10 +22,10 @@ export default function Avatar({ user = {} as IUser, date }: Props) {
         height="42px"
       />
       <div className="detail avatar-info">
-        <div> Written by: {fullName}</div>
+        <div> Written by: &nbsp;{fullName}</div>
         <div>
-          Modified:
-          <span>{dayjs(date).format('MMM D YYYY')}</span>
+          Modified: &nbsp;
+          <span>{dayjs(date).format("MMM D YYYY")}</span>
         </div>
       </div>
     </Avatars>
