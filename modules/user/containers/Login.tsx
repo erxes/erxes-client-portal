@@ -33,7 +33,7 @@ function LoginContainer(props: Props) {
         btnStyle="warning"
         type="submit"
       >
-        Sign in
+        Нэвтрэх
       </ButtonMutate>
     );
   };

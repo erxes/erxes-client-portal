@@ -24,7 +24,7 @@ function RegisterContainer() {
         uppercase={true}
         icon={false}
       >
-        Register
+        Бүртгүүлэх
       </ButtonMutate>
     );
   };

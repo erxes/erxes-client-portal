@@ -1,23 +1,23 @@
-import { gql, useMutation } from '@apollo/client';
-import React from 'react';
-import ResetPassword from '../components/ResetPassword';
-import mutations from '../graphql/mutations';
-import { IButtonMutateProps } from '../../common/types';
-import ButtonMutate from '../../common/ButtonMutate';
+import { gql, useMutation } from "@apollo/client";
+import React from "react";
+import ResetPassword from "../components/ResetPassword";
+import mutations from "../graphql/mutations";
+import { IButtonMutateProps } from "../../common/types";
+import ButtonMutate from "../../common/ButtonMutate";
 
 function ResetPasswordContainer() {
   const [getVerificationCode] = useMutation(gql(mutations.getCode));
 
   const handleCode = (phone: string) => {
     getVerificationCode({
-      variables: { phone }
-    }).then(data => {
-      console.log('sent verification code');
+      variables: { phone },
+    }).then((data) => {
+      console.log("sent verification code");
     });
   };
 
   const renderButton = ({ values, isSubmitted }: IButtonMutateProps) => {
-    const callbackResponse = () => (window.location.href = '/');
+    const callbackResponse = () => (window.location.href = "/");
 
     return (
       <ButtonMutate
@@ -32,14 +32,14 @@ function ResetPasswordContainer() {
         uppercase={true}
         icon={false}
       >
-        Reset password
+        Хадгалах
       </ButtonMutate>
     );
   };
 
   const updatedProps = {
     handleCode,
-    renderButton
+    renderButton,
   };
 
   return <ResetPassword {...updatedProps} />;
