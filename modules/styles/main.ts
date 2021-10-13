@@ -285,8 +285,13 @@ const Footer = styledTS<{ color?: string; backgroundImage?: string }>(
     props.color ? props.color : colors.colorPrimary};
   padding: 40px 0;
   color: ${colors.colorWhite};
-
   text-align: center;
+
+  h4 {
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
 
   p {
     color: rgba(255,255,255,.7);
@@ -298,21 +303,23 @@ const Footer = styledTS<{ color?: string; backgroundImage?: string }>(
 `;
 
 const FooterLink = styled.a`
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
-  line-height: 32px;
+  width: 32px;
+  height: 32px;
   margin: 5px 5px 0px 5px;
-  vertical-align: middle;
-  transition: opacity 0.3s ease;
+  border-radius: 16px;
+  display: inline-block;
+  background: #fff;
+  transition: background 0.3s ease;
+  font-size: 14px;
+  padding: 6px;
 
   img {
-    width: 32px;
-    height: 32px;
+    width: 100%;
+    filter: contrast(0) sepia(100%) hue-rotate(0deg) brightness(0.4) saturate(0);
   }
 
   &:hover {
-    opacity: 0.8;
+    background: #eee;
   }
 `;
 

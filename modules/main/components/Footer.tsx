@@ -1,11 +1,11 @@
-import React from 'react';
-import { getConfigColor } from '../../common/utils';
+import React from "react";
+import { getConfigColor } from "../../common/utils";
 import {
   Container,
   Footer as StyledFooter,
   FooterLink,
-} from '../../styles/main';
-import { Config } from '../../types';
+} from "../../styles/main";
+import { Config } from "../../types";
 
 type Props = {
   config: Config;
@@ -21,7 +21,7 @@ function Footer(props: Props) {
   };
 
   return (
-    <StyledFooter color={getConfigColor(props.config, 'footerColor')}>
+    <StyledFooter color={getConfigColor(props.config, "footerColor")}>
       <Container transparent={true}>
         <h4>Community</h4>
         <p>
@@ -30,14 +30,9 @@ function Footer(props: Props) {
         </p>
 
         <div>
-          {renderLink(
-            'https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq',
-            'rocketchat.svg',
-            'rocketchat'
-          )}
-          {renderLink('https://fb.erxes.io', 'facebook.svg', 'facebook')}
-          {renderLink('https://github.com/erxes', 'github.svg', 'github')}
-          {renderLink('https://twitter.com/erxeshq', 'twitter.svg', 'twitter')}
+          {renderLink("https://fb.erxes.io", "fb-icon.png", "facebook")}
+          {renderLink("https://github.com/erxes", "github.svg", "github")}
+          {renderLink("https://twitter.com/erxeshq", "tw-icon.svg", "twitter")}
         </div>
       </Container>
     </StyledFooter>
