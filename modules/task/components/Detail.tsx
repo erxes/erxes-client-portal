@@ -30,7 +30,7 @@ export default class TaskDetail extends React.Component<Props> {
               />
               <b>Anu-ujin Bat-Ulzii</b>
             </span>
-            Posted on {renderDate(item.createdAt)}
+            Огноо {renderDate(item.createdAt)}
           </div>
           {item.priority && (
             <Priority>

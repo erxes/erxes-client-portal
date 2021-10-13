@@ -22,9 +22,9 @@ export default function Avatar({ user = {} as IUser, date }: Props) {
         height="42px"
       />
       <div className="detail avatar-info">
-        <div> Written by: &nbsp;{fullName}</div>
+        <div> Нийтлэсэн: &nbsp;{fullName}</div>
         <div>
-          Modified: &nbsp;
+          Огноо: &nbsp;
           <span>{dayjs(date).format("MMM D YYYY")}</span>
         </div>
       </div>

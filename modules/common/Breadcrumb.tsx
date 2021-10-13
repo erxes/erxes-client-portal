@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import Icon from './Icon';
-import styled from 'styled-components';
+import React from "react";
+import Link from "next/link";
+import Icon from "./Icon";
+import styled from "styled-components";
 
 type Props = {
   title: string;
@@ -35,7 +35,7 @@ const Breadcrumb = (props: Props) => {
   return (
     <Wrapper>
       <Link href="/">
-        <span className="link">All categories</span>
+        <span className="link">Бүх агуулга</span>
       </Link>
 
       {category && (

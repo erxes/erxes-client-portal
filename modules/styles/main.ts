@@ -274,8 +274,6 @@ const SearchContainer = styledTS<{ focused: boolean }>(styled.div)`
   i:nth-child(2) {
     right: 20px;
   }
-
-  
 `;
 
 const Footer = styledTS<{ color?: string; backgroundImage?: string }>(

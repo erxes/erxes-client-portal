@@ -19,7 +19,7 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
   const [reaction, setReaction] = useState("");
 
   if (loading) {
-    return <div>'loading ...'</div>;
+    return <div>'Уншиж байна ...'</div>;
   }
 
   const onReactionClick = (reactionChoice) => {
@@ -59,7 +59,7 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
     return (
       <Col md={2}>
         <PageAnchor id="anchorTag">
-          <h6>On this page </h6>
+          <h6>Энэ хуудсанд </h6>
           <Scrollspy items={tagged} currentClassName="active">
             {tagged.map((val, index) => (
               <li key={index}>

@@ -55,7 +55,7 @@ const SectionHeader = (props) => {
     <Wrapper>
       <Link href="/">
         <a>
-          <span className="link">All categories</span>
+          <span className="link">Бүх агуулга</span>
           {renderCat(subCats)}
           {renderCat(selectedCat) || ""}
         </a>

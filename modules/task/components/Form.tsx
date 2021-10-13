@@ -50,21 +50,21 @@ export default function TaskForm({ handleSubmit }: Props) {
 
   return (
     <FormWrapper>
-      <h4>Add a new task</h4>
+      <h4>Шинэ даалгавар нэмэх</h4>
       <div className="content">
         {renderControl({
           name: "subject",
-          label: "Name",
+          label: "Нэр",
           value: task.subject,
           isRequired: true,
-          placeholder: "Enter a name",
+          placeholder: "Нэрээ оруулна уу",
         })}
         {renderControl({
           name: "description",
-          label: "Description",
+          label: "Тайлбар",
           value: task.description,
           isRequired: false,
-          placeholder: "Enter a description",
+          placeholder: "Тайлбар оруулна уу",
         })}
         {/* <Select
         name="priority"
@@ -79,7 +79,7 @@ export default function TaskForm({ handleSubmit }: Props) {
             uppercase={false}
             icon="check-circle"
           >
-            Save
+            Хадгалах
           </Button>
         </div>
       </div>

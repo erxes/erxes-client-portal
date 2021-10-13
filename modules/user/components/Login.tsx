@@ -31,8 +31,8 @@ function Login({ renderButton, hasCompany, infoText }: Props) {
         {hasCompany && (
           <FormGroup>
             <FormControl componentClass="select" onChange={onChange}>
-              <option value={LOGIN_TYPES.CUSTOMER}>Customer</option>
-              <option value={LOGIN_TYPES.COMPANY}>Company</option>
+              <option value={LOGIN_TYPES.CUSTOMER}>Харилцагч</option>
+              <option value={LOGIN_TYPES.COMPANY}>Байгууллага</option>
             </FormControl>
           </FormGroup>
         )}
@@ -51,7 +51,7 @@ function Login({ renderButton, hasCompany, infoText }: Props) {
             {...formProps}
             name="password"
             type="password"
-            placeholder={"password"}
+            placeholder={"Нууц үг"}
             required={true}
           />
         </FormGroup>
@@ -68,7 +68,7 @@ function Login({ renderButton, hasCompany, infoText }: Props) {
 
   return (
     <LoginFormWrapper>
-      <h2>{"Sign in"}</h2>
+      <h2>{"Нэвтрэх"}</h2>
       {infoText && (
         <div className="info">
           <Icon icon="info-circle" size={18} /> &nbsp; {infoText}

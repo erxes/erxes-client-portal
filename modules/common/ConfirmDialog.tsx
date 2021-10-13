@@ -1,11 +1,11 @@
-import React from 'react';
-import Modal from 'react-bootstrap/Modal';
-import styled from 'styled-components';
-import { colors, dimensions } from '../styles';
-import { rgba } from '../styles/ecolor';
-import Button from './Button';
-import { ControlLabel, FormControl } from './form';
-import Icon from './Icon';
+import React from "react";
+import Modal from "react-bootstrap/Modal";
+import styled from "styled-components";
+import { colors, dimensions } from "../styles";
+import { rgba } from "../styles/ecolor";
+import Button from "./Button";
+import { ControlLabel, FormControl } from "./form";
+import Icon from "./Icon";
 
 const ModalBody = styled.div`
   text-align: center;
@@ -73,7 +73,7 @@ class ConfirmDialog extends React.Component<Props, State> {
 
     this.state = {
       show: true,
-      confirm: '',
+      confirm: "",
       errors: {},
     };
   }
@@ -95,7 +95,7 @@ class ConfirmDialog extends React.Component<Props, State> {
     const { hasDeleteConfirm, hasUpdateConfirm } = options;
 
     if (hasDeleteConfirm) {
-      if (this.state.confirm === 'delete') {
+      if (this.state.confirm === "delete") {
         return this.invokeProceed();
       }
 
@@ -103,7 +103,7 @@ class ConfirmDialog extends React.Component<Props, State> {
         errors: {
           confirm: (
             <Error>
-              Enter <strong>delete</strong> to confirm
+              Баталгаажуулахын тулд <strong>устгах</strong> гэж оруулна уу
             </Error>
           ),
         },
@@ -111,7 +111,7 @@ class ConfirmDialog extends React.Component<Props, State> {
     }
 
     if (hasUpdateConfirm) {
-      if (this.state.confirm === 'update') {
+      if (this.state.confirm === "update") {
         return this.invokeProceed();
       }
 
@@ -119,7 +119,7 @@ class ConfirmDialog extends React.Component<Props, State> {
         errors: {
           confirm: (
             <Error>
-              Enter <strong>update</strong> to confirm
+              Баталгаажуулахын тулд <strong>шинэчлэх</strong> гэж оруулна уу
             </Error>
           ),
         },
@@ -130,17 +130,17 @@ class ConfirmDialog extends React.Component<Props, State> {
   };
 
   handleKeydown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       this.proceed();
     }
   };
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeydown);
+    document.addEventListener("keydown", this.handleKeydown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeydown);
+    document.removeEventListener("keydown", this.handleKeydown);
   }
 
   handleChange = (e) => {
@@ -158,11 +158,13 @@ class ConfirmDialog extends React.Component<Props, State> {
 
     const label = hasDeleteConfirm ? (
       <>
-        Type <strong>delete</strong> in the filed below to confirm.
+        Баталгаажуулахын тулд доорх талбарт <strong>устгах</strong> гэж бичнэ
+        үү.
       </>
     ) : (
       <>
-        Type <strong>update</strong> in the filed below to confirm.
+        Баталгаажуулахын тулд доорх талбарт <strong>шинэчлэх</strong> гэж бичнэ
+        үү.
       </>
     );
 
@@ -184,12 +186,12 @@ class ConfirmDialog extends React.Component<Props, State> {
   }
 
   render() {
-    const { confirmation = 'Are you sure?', options = {} } = this.props;
+    const { confirmation = "Are you sure?", options = {} } = this.props;
     const { hasDeleteConfirm, hasUpdateConfirm } = options;
 
     const {
-      okLabel = 'Yes, I am',
-      cancelLabel = 'No, Cancel',
+      okLabel = "Тийм",
+      cancelLabel = "Үгүй",
       enableEscape = true,
     } = options;
 
@@ -197,7 +199,7 @@ class ConfirmDialog extends React.Component<Props, State> {
       <Modal
         show={this.state.show}
         onHide={this.dismiss}
-        backdrop={enableEscape ? true : 'static'}
+        backdrop={enableEscape ? true : "static"}
         keyboard={enableEscape}
         size="sm"
         centered={true}

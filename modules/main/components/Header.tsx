@@ -48,7 +48,7 @@ function Header({
 
   const onClick = (url) => {
     if (!currentUser && url.includes("tickets")) {
-      Alert.error("Log in first to create or manage ticket cards");
+      Alert.error("Үйлдэл хийхээсээ өмнө нэвтэрнэ үү");
 
       return setLogin(true);
     }
@@ -96,21 +96,21 @@ function Header({
                     uppercase={false}
                     onClick={() => setRegister(true)}
                   >
-                    Sign up
+                    Бүртгүүлэх
                   </Button>
                   <Button
                     btnStyle="primary"
                     uppercase={false}
                     onClick={() => setResetPassword(true)}
                   >
-                    Reset password
+                    Нууц үг сэргээх
                   </Button>
                   <Button
                     btnStyle="warning"
                     uppercase={false}
                     onClick={() => setLogin(true)}
                   >
-                    Login
+                    Нэвтрэх
                   </Button>
                 </>
               )}
@@ -125,9 +125,9 @@ function Header({
             <HeaderTitle>{config.name}</HeaderTitle>
           </HeaderLogo>
           <HeaderLinks>
-            {renderMenu("/", config.knowledgeBaseLabel || "Knowledge Base")}
-            {renderMenu("/tasks", config.taskLabel || "Task")}
-            {renderMenu("/tickets", config.ticketLabel || "Ticket")}
+            {renderMenu("/", config.knowledgeBaseLabel || "Мэдлэгийн сан")}
+            {renderMenu("/tasks", config.taskLabel || "Даалгавар")}
+            {renderMenu("/tickets", config.ticketLabel || "Тасалбар")}
           </HeaderLinks>
         </HeaderTop>
         <h3>{config.description}</h3>

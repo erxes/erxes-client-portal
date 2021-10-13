@@ -1,6 +1,6 @@
-import React from 'react';
-import { SearchContainer } from '../../styles/main';
-import Icon from '../../common/Icon';
+import React from "react";
+import { SearchContainer } from "../../styles/main";
+import Icon from "../../common/Icon";
 
 type Props = {};
 
@@ -16,8 +16,8 @@ export default class Search extends React.Component<Props, State> {
     const { searchValue } = props;
 
     this.state = {
-      searchValue: searchValue || '',
-      focused: false
+      searchValue: searchValue || "",
+      focused: false,
     };
   }
 
@@ -25,15 +25,15 @@ export default class Search extends React.Component<Props, State> {
     const { searchValue } = props;
 
     this.setState({
-      searchValue: searchValue || ''
+      searchValue: searchValue || "",
     });
   }
 
-  onChange = e => {
+  onChange = (e) => {
     const value = e.target.value;
 
     this.setState({
-      searchValue: value
+      searchValue: value,
     });
   };
 
@@ -41,12 +41,12 @@ export default class Search extends React.Component<Props, State> {
     return;
   };
 
-  onKeyDown = e => {
+  onKeyDown = (e) => {
     return;
   };
 
   clearSearch = () => {
-    this.setState({ searchValue: '' });
+    this.setState({ searchValue: "" });
   };
 
   onFocus = () => {
@@ -68,7 +68,7 @@ export default class Search extends React.Component<Props, State> {
 
         <input
           onChange={this.onChange}
-          placeholder="Search for articles..."
+          placeholder="Нийтлэл хайх..."
           value={searchValue}
           onKeyDown={this.onKeyDown}
           onBlur={this.onBlur}

@@ -82,7 +82,7 @@ export default class TaskHeader extends React.Component<Props, State> {
 
             <input
               onChange={this.onChange}
-              placeholder="Search for tasks..."
+              placeholder="Даалгавар хайх..."
               value={searchValue}
               onKeyDown={this.onKeyDown}
               onBlur={this.onBlur}
@@ -95,7 +95,7 @@ export default class TaskHeader extends React.Component<Props, State> {
               uppercase={false}
               onClick={this.showModal}
             >
-              <Icon icon="add" /> Submit New Task
+              <Icon icon="add" /> Шинэ даалгавар оруулах
             </Button>
           </div>
         </HeaderWrapper>

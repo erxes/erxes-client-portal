@@ -38,7 +38,7 @@ function ItemContainer({ tasks }: Props) {
             <p>{task.description}</p>
           </Content>
           <ItemFooter>
-            Last updated:
+            Огноо:
             <Right>{renderDate(task.modifiedAt)}</Right>
           </ItemFooter>
         </ItemWrapper>

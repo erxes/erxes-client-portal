@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { LoginFormWrapper } from '../../styles/form';
-import FormControl from '../../common/form/Control';
-import Form from '../../common/form/Form';
-import FormGroup from '../../common/form/Group';
-import { IButtonMutateProps } from '../../common/types';
-import Icon from '../../common/Icon';
+import React, { useState } from "react";
+import { LoginFormWrapper } from "../../styles/form";
+import FormControl from "../../common/form/Control";
+import Form from "../../common/form/Form";
+import FormGroup from "../../common/form/Group";
+import { IButtonMutateProps } from "../../common/types";
+import Icon from "../../common/Icon";
 
 type Props = {
   handleCode: (phone: string) => void;
@@ -12,19 +12,19 @@ type Props = {
 };
 
 function ResetPassword({ renderButton, handleCode }: Props) {
-  const [phone, changePhone] = useState('');
+  const [phone, changePhone] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     handleCode(phone);
     e.isDefaultPrevented();
   };
 
-  const onChange = e => {
+  const onChange = (e) => {
     changePhone(e.target.value);
     e.isDefaultPrevented();
   };
 
-  const renderContent = formProps => {
+  const renderContent = (formProps) => {
     const { values, isSubmitted } = formProps;
 
     return (
@@ -33,7 +33,7 @@ function ResetPassword({ renderButton, handleCode }: Props) {
           <FormControl
             {...formProps}
             name="phone"
-            placeholder={'Phone'}
+            placeholder={"Утас"}
             onChange={onChange}
           />
         </FormGroup>
@@ -43,7 +43,7 @@ function ResetPassword({ renderButton, handleCode }: Props) {
             {...formProps}
             name="code"
             type="code"
-            placeholder={'code'}
+            placeholder={"Код"}
             required={true}
           />
         </FormGroup>
@@ -53,7 +53,7 @@ function ResetPassword({ renderButton, handleCode }: Props) {
             {...formProps}
             name="password"
             type="password"
-            placeholder={'password'}
+            placeholder={"Нууц үг"}
             required={true}
           />
         </FormGroup>
@@ -61,7 +61,7 @@ function ResetPassword({ renderButton, handleCode }: Props) {
         <FormGroup>
           {renderButton({
             values,
-            isSubmitted
+            isSubmitted,
           })}
         </FormGroup>
       </>
@@ -71,7 +71,7 @@ function ResetPassword({ renderButton, handleCode }: Props) {
   return (
     <LoginFormWrapper>
       <h2>
-        {'Reset password'} &nbsp;
+        {"Нууц үг сэргээх"} &nbsp;
         <Icon icon="settings" onClick={handleSubmit} />
       </h2>
       <Form renderContent={renderContent} />

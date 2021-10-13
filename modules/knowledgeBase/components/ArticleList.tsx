@@ -15,7 +15,9 @@ class Lists extends React.Component<Props> {
     const { articles } = this.props;
 
     if (!articles || articles.length === 0) {
-      return <EmptyContent text="Thare are no articles in this category!" />;
+      return (
+        <EmptyContent text="Одоогоор энэ ангилалд нийтлэл байхгүй байна!" />
+      );
     }
 
     return articles.map((article) => (

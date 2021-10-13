@@ -230,7 +230,7 @@ class AttachmentWithPreview extends React.Component<Props, State> {
           <div>
             <h4>{galleryAttachment.name}</h4>
             <p>
-              Size -{" "}
+              Хэмжээ -{" "}
               {galleryAttachment.size &&
                 Math.round(galleryAttachment.size / 1000)}
               kB
@@ -243,13 +243,13 @@ class AttachmentWithPreview extends React.Component<Props, State> {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icon icon="external-link-alt" size={12} /> Open in new tab
+                <Icon icon="external-link-alt" size={12} /> Шинэ цонхонд нээх
               </a>
               <a
                 href={readFile(galleryAttachment.url || "")}
                 rel="noopener noreferrer"
               >
-                <Icon icon="download-1" size={12} /> Download
+                <Icon icon="download-1" size={12} /> Татах
               </a>
             </Actions>
           </div>

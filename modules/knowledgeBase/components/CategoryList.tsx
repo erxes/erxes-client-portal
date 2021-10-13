@@ -7,6 +7,7 @@ import { Topic } from "../../types";
 type Props = {
   topic: Topic;
 };
+
 class CategoryList extends React.Component<Props> {
   renderNames = (authors) => {
     if (authors.length > 3) {
@@ -15,7 +16,7 @@ class CategoryList extends React.Component<Props> {
           {authors.slice(0, 3).map((user, index) => (
             <span key={index}>{user.details.fullName},</span>
           ))}
-          <span> and {authors.length - 3} other </span>
+          <span> болон {authors.length - 3} бусад </span>
         </>
       );
     }
@@ -46,11 +47,11 @@ class CategoryList extends React.Component<Props> {
         ))}
         <div className="avatar-info">
           <div>
-            <div className="darker">{cat.numOfArticles}</div> articles in this
-            category
+            Энэ ангилалд <div className="darker">{cat.numOfArticles}</div>{" "}
+            нийтлэл байна
           </div>
           <div>
-            <div className="darker">Written by: </div>
+            <div className="darker">Нийтлэсэн: </div>
             {this.renderNames(cat.authors)}
           </div>
         </div>
@@ -100,7 +101,7 @@ class CategoryList extends React.Component<Props> {
                     <Card key={`child-${i}`}>
                       {detail(cat)}
                       <Link href={`${categoryUrl}?id=${cat._id}`}>
-                        <a className="more">Read more</a>
+                        <a className="more">Дэлгэрэнгүй</a>
                       </Link>
                     </Card>
                   ))}
@@ -136,34 +137,6 @@ class CategoryList extends React.Component<Props> {
     return (
       <CategoryListWrapper>
         <div className="categories-wrapper">{this.renderCategories()}</div>
-
-        <VideoTutorial>
-          <h5>Video tutorials</h5>
-
-          <p>
-            For those visual learners, we have a full playlist of video
-            tutorials to help you onboard. Make sure you check out the
-            <a
-              href="https://www.youtube.com/watch?v=sDzPEEBSp44&feature=youtu.be&list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz&ab_channel=erxesInc"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              &nbsp;full playlist&nbsp;
-            </a>
-            on our Youtube channel or click the button on the top left corner of
-            this video.
-          </p>
-
-          <iframe
-            width="80%"
-            height="450"
-            title="erxes-list"
-            src="https://www.youtube.com/embed/videoseries?list=PLwRYODuwm31sVRr8NjPZJIM-idMQETizz"
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen={true}
-          />
-        </VideoTutorial>
       </CategoryListWrapper>
     );
   }

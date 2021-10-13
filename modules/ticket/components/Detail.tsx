@@ -1,5 +1,5 @@
-import React from 'react';
-import { TextArea } from '../../common/form/styles';
+import React from "react";
+import { TextArea } from "../../common/form/styles";
 import {
   TicketRow,
   TicketLabel,
@@ -9,17 +9,17 @@ import {
   Description,
   CommentWrapper,
   CreatedUser,
-  CommentContent
-} from '../../styles/tickets';
-import { IUser } from '../../types';
-import Button from '../../common/Button';
-import Modal from '../../common/Modal';
-import dayjs from 'dayjs';
-import { FormWrapper } from '../../styles/main';
-import PriorityIndicator from '../../common/PriorityIndicator';
-import Icon from '../../common/Icon';
-import Uploader from '../../common/Uploader';
-import { IAttachment } from '../../common/types';
+  CommentContent,
+} from "../../styles/tickets";
+import { IUser } from "../../types";
+import Button from "../../common/Button";
+import Modal from "../../common/Modal";
+import dayjs from "dayjs";
+import { FormWrapper } from "../../styles/main";
+import PriorityIndicator from "../../common/PriorityIndicator";
+import Icon from "../../common/Icon";
+import Uploader from "../../common/Uploader";
+import { IAttachment } from "../../common/types";
 
 type Props = {
   item?: any;
@@ -27,7 +27,7 @@ type Props = {
   onClose: () => void;
   handleSubmit: ({
     content,
-    email
+    email,
   }: {
     content: string;
     email: string;
@@ -42,29 +42,29 @@ export default class TicketDetail extends React.Component<
     super(props);
 
     this.state = {
-      content: ''
+      content: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ content: e.target.value });
   };
 
   onChangeAttachment = (files: IAttachment[]) => console.log(files);
 
-  onEditComment = comment => {
+  onEditComment = (comment) => {
     this.setState({ content: comment.content });
   };
 
   createComment = (email: string) => {
     this.props.handleSubmit({ content: this.state.content, email });
 
-    this.setState({ content: '' });
+    this.setState({ content: "" });
   };
 
   renderContent(label, text) {
     switch (label) {
-      case 'Priority':
+      case "Priority":
         return (
           <>
             <PriorityIndicator value={text} /> {text}
@@ -90,9 +90,9 @@ export default class TicketDetail extends React.Component<
     return (
       <TicketRow>
         <TicketLabel>
-          {' '}
+          {" "}
           <Icon icon="paperclip" size={14} />
-          &nbsp; Attachments
+          &nbsp; Хавсралтууд
         </TicketLabel>
         <TicketContent>
           <Uploader defaultFileList={[]} onChange={this.onChangeAttachment} />
@@ -106,7 +106,7 @@ export default class TicketDetail extends React.Component<
 
     return (
       <CommentWrapper>
-        {comments.map(comment => (
+        {comments.map((comment) => (
           <TicketComment key={comment._id}>
             <CreatedUser>
               <img
@@ -122,12 +122,12 @@ export default class TicketDetail extends React.Component<
                   />
                 </CommentContent>
                 <span>
-                  Reported {dayjs(comment.createdAt).format('YYYY-MM-DD HH:mm')}
+                  Огноо {dayjs(comment.createdAt).format("YYYY-MM-DD HH:mm")}
                 </span>
               </div>
               <div className="actions">
                 <span onClick={() => this.onEditComment(comment)}>Edit</span>
-                <span>Delete</span>
+                <span>Устгах</span>
               </div>
             </CreatedUser>
           </TicketComment>
@@ -149,25 +149,21 @@ export default class TicketDetail extends React.Component<
       <FormWrapper>
         <h4>{item.name}</h4>
         <TicketDetailContent>
-          {this.renderRow('file-question-alt', 'Requestor', email)}
-          {this.renderRow('chart-growth', 'Priority', item.priority)}
-          {this.renderRow(
-            'align-left-justify',
-            'Description',
-            item.description
-          )}
+          {this.renderRow("file-question-alt", "Хүсэлт гаргагч", email)}
+          {this.renderRow("chart-growth", "Тэргүүлэх чиглэл", item.priority)}
+          {this.renderRow("align-left-justify", "Тайлбар", item.description)}
           {this.renderAttachments(item)}
 
           <TicketRow>
             <TicketLabel>
-              {' '}
+              {" "}
               <Icon icon="comment-1" size={14} />
-              &nbsp; Activity
+              &nbsp; Үйл ажиллагаа
             </TicketLabel>
             <TicketContent>
               <TextArea
                 onChange={this.handleChange}
-                placeholder="Write a comment..."
+                placeholder="Сэтгэгдэл бичих..."
                 value={this.state.content}
               />
               {this.state.content.length !== 0 && (
@@ -178,7 +174,7 @@ export default class TicketDetail extends React.Component<
                     icon="message"
                     onClick={this.createComment.bind(this, email)}
                   >
-                    Save
+                    Хадгалах
                   </Button>
                 </div>
               )}

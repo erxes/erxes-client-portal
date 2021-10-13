@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Select from "react-select-plus";
 import FormControl from "../../common/form/Control";
 import FormGroup from "../../common/form/Group";
@@ -14,15 +13,15 @@ type Props = {
 
 const PRIORITY_OPTIONS = [
   {
-    label: "Critical",
+    label: "Маш чухал",
     value: "critical",
   },
   {
-    label: "Normal",
+    label: "Ердийн",
     value: "normal",
   },
   {
-    label: "Low",
+    label: "Бага",
     value: "low",
   },
 ];
@@ -65,26 +64,26 @@ export default function TicketForm({ handleSubmit }: Props) {
 
   return (
     <FormWrapper>
-      <h4>Add a new ticket</h4>
+      <h4>Шинэ тасалбар нэмэх</h4>
       <div className="content">
         {renderControl({
           name: "subject",
-          label: "Subject",
+          label: "Сэдэв",
           value: ticket.subject,
-          placeholder: "Enter a subject",
+          placeholder: "Сэдэв оруулна уу",
         })}
         {renderControl({
           name: "description",
-          label: "Description",
+          label: "Тайлбар",
           value: ticket.description,
-          placeholder: "Enter a description",
+          placeholder: "Тайлбар оруулна уу",
         })}
-        {/* <Select
-        name="priority"
-        value={ticket.priority || ''}
-        options={PRIORITY_OPTIONS}
-        onChange={handleSelect}
-      /> */}
+        <Select
+          name="priority"
+          value={ticket.priority || ""}
+          options={PRIORITY_OPTIONS}
+          onChange={handleSelect}
+        />
         <div className="right">
           <Button
             btnStyle="success"
@@ -92,7 +91,7 @@ export default function TicketForm({ handleSubmit }: Props) {
             uppercase={false}
             icon="check-circle"
           >
-            Save
+            Хадгалах
           </Button>
         </div>
       </div>

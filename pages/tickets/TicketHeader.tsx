@@ -81,7 +81,7 @@ export default class TicketHeader extends React.Component<Props, State> {
 
             <input
               onChange={this.onChange}
-              placeholder="Search for tickets..."
+              placeholder="Тасалбар хайх..."
               value={searchValue}
               onKeyDown={this.onKeyDown}
               onBlur={this.onBlur}
@@ -94,7 +94,7 @@ export default class TicketHeader extends React.Component<Props, State> {
               uppercase={false}
               onClick={this.showModal}
             >
-              <Icon icon="add" /> Submit New Ticket
+              <Icon icon="add" /> Шинэ тасалбар оруулах
             </Button>
           </div>
         </HeaderWrapper>

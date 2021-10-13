@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import Icon from '../modules/common/Icon';
+import React from "react";
+import styled from "styled-components";
+import Icon from "../modules/common/Icon";
 
 const ErrorContainer = styled.div`
   position: relative;
@@ -27,13 +27,13 @@ function Error({ statusCode }) {
         <p>
           {statusCode
             ? `An error ${statusCode} occurred on server`
-            : 'An error occurred on client'}
+            : "An error occurred on client"}
         </p>
 
         <br />
 
         <a href="/">
-          <Icon icon="arrow-left" /> Home
+          <Icon icon="arrow-left" /> Нүүр хуудас
         </a>
       </Text>
     </ErrorContainer>

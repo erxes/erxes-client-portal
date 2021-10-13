@@ -21,10 +21,10 @@ export default function Ticket({ tickets, currentUser }: Props) {
   return (
     <>
       <ListHead className="head">
-        <div>Subject</div>
-        <div>Created date</div>
-        <div>Priority</div>
-        <div>Status</div>
+        <div>Сэдэв</div>
+        <div>Үүсгэсэн огноо</div>
+        <div>Тэргүүлэх чиглэл</div>
+        <div>Төлөв</div>
       </ListHead>
       <ListBody>
         {tickets.map((ticket) => (
