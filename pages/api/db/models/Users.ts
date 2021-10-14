@@ -111,6 +111,7 @@ export const loadClass = () => {
       this.checkPassword(password);
 
       const tEmail = (email || '').toLowerCase().trim();
+
       const user = await Users.create({
         ...doc,
         email: tEmail,

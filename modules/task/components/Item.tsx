@@ -29,7 +29,7 @@ function ItemContainer({ tasks }: Props) {
   return (
     <Wrapper>
       {tasks.map((task) => (
-        <ItemWrapper key={task._id} onClick={() => setId(task._id)}>
+        <ItemWrapper key={task._id}>
           <Content>
             <h5>
               {task.priority && <PriorityIndicator value={task.priority} />}{" "}

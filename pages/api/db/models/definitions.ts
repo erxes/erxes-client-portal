@@ -1,7 +1,6 @@
 import { Document, Schema } from 'mongoose';
 import { IUserModel } from './Users';
 import { ILogModel } from './Logs';
-import { field } from './utils';
 import { USER_LOGIN_TYPES } from '../utils';
 
 export interface IUser {
@@ -26,16 +25,16 @@ export interface IUserDocument extends IUser, Document {
 }
 
 export const userSchema = new Schema<IUserDocument, IUserModel>({
-  type: field({
+  type: {
     type: String,
     enum: USER_LOGIN_TYPES.ALL,
     default: USER_LOGIN_TYPES.CUSTOMER
-  }),
-  createdAt: field({
+  },
+  createdAt: {
     type: Date,
     default: Date.now
-  }),
-  email: field({
+  },
+  email: {
     type: String,
     unique: true,
     match: [
@@ -43,27 +42,27 @@ export const userSchema = new Schema<IUserDocument, IUserModel>({
       'Please fill a valid email address'
     ],
     label: 'Email'
-  }),
-  password: field({ type: String }),
+  },
+  password: { type: String },
 
-  firstName: field({ type: String, optional: true }),
-  phone: field({ type: String, optional: true }),
-  lastName: field({ type: String, optional: true }),
-  resetPasswordToken: field({ type: String, optional: true }),
-  registrationToken: field({ type: String, optional: true }),
-  registrationTokenExpires: field({ type: Date, optional: true }),
-  resetPasswordExpires: field({ type: Date, optional: true }),
-  companyName: field({ type: String, optional: true }),
-  companyRegistrationNumber: field({ type: Number, optional: true }),
-  erxesCustomerId: field({ type: String, optional: true }),
-  erxesCompanyId: field({ type: String, optional: true }),
-  verificationCode: field({ type: String, optional: true }),
-  verificationCodeExpires: field({ type: Date, optional: true }),
-  deviceTokens: field({
+  firstName: { type: String, optional: true },
+  phone: { type: String, optional: true },
+  lastName: { type: String, optional: true },
+  resetPasswordToken: { type: String, optional: true },
+  registrationToken: { type: String, optional: true },
+  registrationTokenExpires: { type: Date, optional: true },
+  resetPasswordExpires: { type: Date, optional: true },
+  companyName: { type: String, optional: true },
+  companyRegistrationNumber: { type: Number, optional: true },
+  erxesCustomerId: { type: String, optional: true },
+  erxesCompanyId: { type: String, optional: true },
+  verificationCode: { type: String, optional: true },
+  verificationCodeExpires: { type: Date, optional: true },
+  deviceTokens: {
     type: [String],
     default: [],
     label: 'Device tokens'
-  })
+  }
 });
 
 export interface ILog {
@@ -78,12 +77,12 @@ export interface ILogDocument extends ILog, Document {
 }
 
 export const logSchema = new Schema<ILogDocument, ILogModel>({
-  type: field({ type: String }),
-  typeId: field({ type: String }),
-  description: field({ type: String, optional: true }),
-  text: field({ type: String }),
-  createdAt: field({
+  type: { type: String },
+  typeId: { type: String },
+  description: { type: String, optional: true },
+  text: { type: String },
+  createdAt: {
     type: Date,
     default: Date.now
-  })
+  }
 });
