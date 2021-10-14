@@ -69,6 +69,10 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
     addId([...nodes], true);
     addId([...h2Array], false);
 
+    if (tagged.length === 0) {
+      return null;
+    }
+
     return (
       <Col md={2}>
         <PageAnchor id="anchorTag">
@@ -148,7 +152,7 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
             />
           </SidebarList>
         </Col>
-        <Col md={9}>
+        <Col md={9} style={{ display: "flex" }}>
           <ArticleWrapper>
             <h4> {article.title}</h4>
             <Avatar date={article.modifiedDate} user={article.createdUser} />
@@ -159,7 +163,6 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
               <p>{article.summary}</p>
               <p>
                 <div
-                  className="article"
                   onClick={showImageModal}
                   dangerouslySetInnerHTML={{
                     __html: article.content,

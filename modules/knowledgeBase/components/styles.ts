@@ -247,23 +247,19 @@ const ArticleWrapper = styled.div`
       max-width: 100%;
       height: auto !important;
       padding: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #eee;
+      padding: 5px;
+
+      &:hover {
+        cursor: zoom-in;
+        opacity: 0.7;
+      }
     }
 
-    .article {
-      a {
-        color: #6569df;
-        text-decoration: underline;
-      }
-
-      img {
-        border: 1px solid #ddd;
-        &:hover {
-          cursor: -moz-zoom-in;
-          cursor: -webkit-zoom-in;
-          cursor: zoom-in;
-          opacity: 0.7;
-        }
-      }
+    a {
+      color: #6569df;
+      text-decoration: underline;
     }
 
     h1 {
