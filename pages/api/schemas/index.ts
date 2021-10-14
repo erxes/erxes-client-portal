@@ -6,6 +6,10 @@ import {
 } from './user';
 import { queries as LogQueries, types as LogTypes } from './logs';
 import { queries as ErxesQueries, types as ErxesTypes } from './erxes';
+import {
+  queries as NotificationQueries,
+  types as NotificationTypes
+} from './notifications';
 
 const types = `
   scalar JSON
@@ -13,6 +17,7 @@ const types = `
   ${UserTypes}
   ${LogTypes}
   ${ErxesTypes}
+  ${NotificationTypes}
 `;
 
 const queries = `
@@ -20,6 +25,7 @@ const queries = `
     ${UserQueries}
     ${LogQueries}
     ${ErxesQueries}
+    ${NotificationQueries}
   }
 `;
 

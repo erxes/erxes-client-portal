@@ -1,5 +1,5 @@
 import mongoose, { Model, model } from 'mongoose';
-import { ILog, ILogDocument, logSchema } from './definitions';
+import { ILog, ILogDocument, logSchema } from './definitions/logs';
 
 export interface ILogModel extends Model<ILogDocument> {
   createLog(doc: ILog): Promise<ILogDocument>;

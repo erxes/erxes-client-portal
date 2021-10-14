@@ -1,8 +1,7 @@
 import { Document, Schema } from 'mongoose';
-import { IUserModel } from './Users';
-import { ILogModel } from './Logs';
+import { IUserModel } from '../Users';
 import { field } from './utils';
-import { USER_LOGIN_TYPES } from '../utils';
+import { USER_LOGIN_TYPES } from '../../utils';
 
 export interface IUser {
   createdAt?: Date;
@@ -62,28 +61,7 @@ export const userSchema = new Schema<IUserDocument, IUserModel>({
   deviceTokens: field({
     type: [String],
     default: [],
-    label: 'Device tokens'
-  })
-});
-
-export interface ILog {
-  type: string;
-  typeId: string;
-  text: string;
-  description?: string;
-}
-
-export interface ILogDocument extends ILog, Document {
-  _id: string;
-}
-
-export const logSchema = new Schema<ILogDocument, ILogModel>({
-  type: field({ type: String }),
-  typeId: field({ type: String }),
-  description: field({ type: String, optional: true }),
-  text: field({ type: String }),
-  createdAt: field({
-    type: Date,
-    default: Date.now
+    label: 'Device tokens',
+    optional: true
   })
 });

@@ -5,7 +5,7 @@ import mongoose, { Model, model } from 'mongoose';
 import * as sha256 from 'sha256';
 import { ILoginParams } from '../../types';
 import { USER_LOGIN_TYPES } from '../utils';
-import { IUser, IUserDocument, userSchema } from './definitions';
+import { IUser, IUserDocument, userSchema } from './definitions/users';
 import Logs from './Logs';
 import { sendGraphQLRequest } from '../../utils';
 import {

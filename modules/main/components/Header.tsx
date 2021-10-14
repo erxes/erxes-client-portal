@@ -78,12 +78,18 @@ function Header({
           <HeaderRight>
             <SupportMenus>
               {currentUser ? (
-                <span title="Log out" onClick={() => logout()}>
-                  <Icon icon="user" /> &nbsp;
-                  {currentUser.type === USER_LOGIN_TYPES.COMPANY
-                    ? currentUser.companyName
-                    : currentUser.firstName}
-                </span>
+                <>
+                  <Link href="/notifications">
+                    <Icon icon="bell" />
+                  </Link>
+                  &nbsp; | &nbsp;
+                  <span title="Log out" onClick={() => logout()}>
+                    <Icon icon="user" /> &nbsp;
+                    {currentUser.type === USER_LOGIN_TYPES.COMPANY
+                      ? currentUser.companyName
+                      : currentUser.firstName}
+                  </span>
+                </>
               ) : (
                 <>
                   <Button

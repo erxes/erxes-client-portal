@@ -109,13 +109,10 @@ export default class TicketDetail extends React.Component<
         {comments.map(comment => (
           <TicketComment key={comment._id}>
             <CreatedUser>
-              <img
-                src="https://erxes.io/static/images/team/square/mungunshagai.jpg"
-                alt="profile"
-              />
+              <img src={comment.profile.avatar} alt="profile" />
               <div>
                 <CommentContent>
-                  <h5>Anu-ujin Bat-Ulzii</h5>
+                  <h5>{comment.profile.name}</h5>
                   <div
                     className="comment"
                     dangerouslySetInnerHTML={{ __html: comment.content }}

@@ -1,8 +1,8 @@
-import { gql, useQuery, useMutation } from "@apollo/client";
-import React, { useContext } from "react";
-import { ApiApolloClientContext } from "../../ApiContext";
-import Detail from "../components/Detail";
-import { IUser } from "../../types";
+import { gql, useQuery, useMutation } from '@apollo/client';
+import React, { useContext } from 'react';
+import { ApiApolloClientContext } from '../../ApiContext';
+import Detail from '../components/Detail';
+import { IUser } from '../../types';
 
 type Props = {
   _id?: string;
@@ -28,6 +28,11 @@ const clientPortalGetTicket = `
         userId
         customerId
         createdAt
+
+        profile {
+          name
+          avatar
+        }
       }
     }
   }
@@ -55,12 +60,12 @@ function DetailContainer({ _id, ...props }: Props) {
   const { data = {} } = useQuery(gql(clientPortalGetTicket), {
     variables: { _id },
     client: apiClient,
-    skip: !_id,
+    skip: !_id
   });
 
   const [createComment] = useMutation(gql(createTicketComment), {
     client: apiClient,
-    refetchQueries: [{ query: gql(clientPortalGetTicket), variables: { _id } }],
+    refetchQueries: [{ query: gql(clientPortalGetTicket), variables: { _id } }]
   });
 
   const item = data.clientPortalTicket;
@@ -69,15 +74,15 @@ function DetailContainer({ _id, ...props }: Props) {
     createComment({
       variables: {
         ...values,
-        ticketId: item._id,
-      },
+        ticketId: item._id
+      }
     });
   };
 
   const updatedProps = {
     ...props,
     item,
-    handleSubmit,
+    handleSubmit
   };
 
   return <Detail {...updatedProps} />;
