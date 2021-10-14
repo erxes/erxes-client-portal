@@ -22,23 +22,6 @@ function MyApp({
   apiClient,
   router
 }: Props) {
-  useEffect(() => {
-    (window as any).erxesSettings = {
-      messenger: {
-        brand_id: '5fkS4v'
-      }
-    };
-
-    (() => {
-      const script = document.createElement('script');
-      script.src = 'https://w.office.erxes.io/build/messengerWidget.bundle.js';
-      script.async = true;
-
-      const entry = document.getElementsByTagName('script')[0];
-      entry.parentNode.insertBefore(script, entry);
-    })();
-  }, []);
-
   return (
     <ApiApolloClientContext.Provider value={apiClient}>
       <ApolloProvider client={apolloClient}>

@@ -32,12 +32,6 @@ export const clientPortalGetConfig = `
         primaryBtnColor
         secondaryBtnColor
       }
-
-      advanced {
-        authAllow
-        permission
-        viewTicket
-      }
     }
   }
 `;
