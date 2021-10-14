@@ -3,7 +3,13 @@ import classNames from "classnames";
 import { Container, Row, Col } from "react-bootstrap";
 import Scrollspy from "react-scrollspy";
 import Avatar from "../../common/Avatar";
-import { ArticleWrapper, SidebarList, Feedback, PageAnchor } from "./styles";
+import {
+  ArticleWrapper,
+  SidebarList,
+  Feedback,
+  PageAnchor,
+  Modal,
+} from "./styles";
 import { Topic, IKbCategory, IKbArticle } from "../../types";
 import SectionHeader from "../../common/SectionHeader";
 import SideBar from "./SideBar";
@@ -18,6 +24,15 @@ type Props = {
 function ArticleDetail({ loading, article, category, topic }: Props) {
   const [reaction, setReaction] = useState("");
 
+  const createDom = () => {
+    if (!article) {
+      return null;
+    }
+    const content = article.content;
+    const dom = new DOMParser().parseFromString(content, "text/html");
+    return dom;
+  };
+
   if (loading) {
     return <div>'loading ...'</div>;
   }
@@ -27,24 +42,22 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
   };
 
   const renderTags = () => {
-    if (!article) {
+    const nodes = createDom().getElementsByTagName("h2") as any;
+
+    if (nodes.length === 0) {
       return null;
     }
-
-    const content = article.content;
-    const dom = new DOMParser().parseFromString(content, "text/html");
-    const nodes = dom.getElementsByTagName("h2") as any;
 
     const tagged = [];
 
     const addId = (array, isTag) => {
       return array.forEach((el) => {
         let taggedItem;
-
         if (el.lastChild.innerText) {
           el.children.length > 0
             ? (taggedItem = el.lastChild.innerText.replace(/&nbsp;/gi, ""))
             : (taggedItem = el.innerText.replace(/&nbsp;/gi, ""));
+
           el.setAttribute("id", taggedItem);
           // tslint:disable-next-line:no-unused-expression
           isTag && tagged.push(taggedItem);
@@ -70,6 +83,23 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
         </PageAnchor>
       </Col>
     );
+  };
+
+  const showImageModal = (e) => {
+    const img = e.target.closest("img") as any;
+    const modalImg = document.getElementById("modal-content") as any;
+    const modal = document.getElementById("modal") as any;
+
+    if (img && e.currentTarget.contains(img)) {
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modal.style.visibility = "visible";
+    }
+  };
+
+  const handleModal = () => {
+    const modal = document.getElementById("modal");
+    modal.style.visibility = "hidden";
   };
 
   const renderReactions = () => {
@@ -118,26 +148,34 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
             />
           </SidebarList>
         </Col>
-        <Col md={7}>
+        <Col md={9}>
           <ArticleWrapper>
             <h4> {article.title}</h4>
             <Avatar date={article.modifiedDate} user={article.createdUser} />
 
             <hr />
 
-            <div className="content">
+            <div className="content" id="contentText">
               <p>{article.summary}</p>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: article.content,
-                }}
-              />
+              <p>
+                <div
+                  className="article"
+                  onClick={showImageModal}
+                  dangerouslySetInnerHTML={{
+                    __html: article.content,
+                  }}
+                />
+              </p>
+              <Modal onClick={handleModal} id="modal">
+                <span id="close">&times;</span>
+                <img id="modal-content" alt="modal" />
+              </Modal>
             </div>
             <hr />
             {renderReactions()}
           </ArticleWrapper>
+          {renderTags()}
         </Col>
-        {renderTags()}
       </Row>
     </Container>
   );

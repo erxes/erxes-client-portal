@@ -241,11 +241,29 @@ const ArticleWrapper = styled.div`
   .content {
     font-size: 14px;
     line-height: 1.8;
-    color: #6c718b;
+    color: #62667a;
 
     img {
       max-width: 100%;
       height: auto !important;
+      padding: 10px 0;
+    }
+
+    .article {
+      a {
+        color: #6569df;
+        text-decoration: underline;
+      }
+
+      img {
+        border: 1px solid #ddd;
+        &:hover {
+          cursor: -moz-zoom-in;
+          cursor: -webkit-zoom-in;
+          cursor: zoom-in;
+          opacity: 0.7;
+        }
+      }
     }
 
     h1 {
@@ -270,6 +288,15 @@ const ArticleWrapper = styled.div`
 
     h6 {
       font-size: 15px !important;
+    }
+
+    ol,
+    ul {
+      padding-left: 20px;
+
+      > li > p {
+        margin-bottom: 5px !important;
+      }
     }
   }
 `;
@@ -419,6 +446,7 @@ const CategoryListWrapper = styled.div`
             position: absolute;
             bottom: 15px;
             font-size: 12px;
+            height: auto;
             text-transform: uppercase;
           }
 
@@ -689,6 +717,42 @@ const PageAnchor = styled.div`
   }
 `;
 
+const Modal = styled.div`
+  visibility: hidden;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 40px;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(48, 67, 92, 0.8);
+  cursor: zoom-out;
+
+  span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    opacit: 0.8;
+  }
+
+  img {
+    width: auto;
+    max-width: 80%;
+    max-height: 80vh;
+    box-shadow: 0 2px 10px -3px rgba(0, 0, 0, 0.5);
+    transition: max-width 0.1s ease, max-height 0.1s ease;
+    animation: zoom 0.8s ease-in-out;
+  }
+`;
+
 export {
   Header,
   CategoryItem,
@@ -709,4 +773,5 @@ export {
   SubMenu,
   Feedback,
   PageAnchor,
+  Modal,
 };
