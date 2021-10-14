@@ -45,8 +45,10 @@ class SideBar extends React.Component<Props> {
               cat._id === this.props.category._id && "active"
             }`}
           >
-            <i className={`icon-${icon}`} />
-            <h6>{cat.title}</h6>
+            <div>
+              <i className={`icon-${icon}`} />
+              <h6>{cat.title}</h6>
+            </div>
             <span>{`(${cat.numOfArticles})`}</span>
           </div>
         </Link>

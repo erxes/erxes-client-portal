@@ -239,16 +239,37 @@ const ArticleWrapper = styled.div`
   }
 
   .content {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.8;
     color: #6c718b;
 
+    img {
+      max-width: 100%;
+      height: auto !important;
+    }
+
     h1 {
-      font-size: 25px;
+      font-size: 25px !important;
     }
 
     h2 {
-      font-size: 20px;
+      font-size: 22px !important;
+    }
+
+    h3 {
+      font-size: 20px !important;
+    }
+
+    h4 {
+      font-size: 18px !important;
+    }
+
+    h5 {
+      font-size: 16px !important;
+    }
+
+    h6 {
+      font-size: 15px !important;
     }
   }
 `;
@@ -282,7 +303,7 @@ const CategoryListWrapper = styled.div`
         margin-bottom: 10px;
 
         i {
-          font-size: 25px;
+          font-size: 30px;
           color: #6569df;
         }
       }
@@ -320,6 +341,10 @@ const CategoryListWrapper = styled.div`
       min-height: 160px;
       padding: 1rem;
       margin-bottom: 10px;
+
+      > a {
+        height: 100%;
+      }
 
       &:hover {
         box-shadow: 0 4px 30px -13px rgba(0, 0, 0, 0.25);
@@ -474,6 +499,7 @@ const CategoryListWrapper = styled.div`
 const SidebarList = styled.div`
   height: 100%;
   min-height: 60vh;
+  padding-right: 10px;
   border-right: 1px solid #e1e1e1;
 
   .item {
@@ -481,17 +507,23 @@ const SidebarList = styled.div`
     font-size: 14px;
     transition: all ease 0.3s;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
 
-    > h6 {
-      margin: 0;
-      font-size: 14px;
-    }
+    > div {
+      display: flex;
+      align-items: center;
 
-    > i {
-      margin-right: 10px;
-      font-size: 16px;
+      > h6 {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      > i {
+        margin-right: 10px;
+        font-size: 16px;
+      }
     }
 
     > span {
@@ -520,7 +552,7 @@ const SubCategories = styled.div`
   padding: 0 0 5px 22px;
 
   .item {
-    > i {
+    > div > i {
       margin-right: 2px !important;
     }
   }
