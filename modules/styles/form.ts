@@ -14,7 +14,7 @@ const LoginFormWrapper = styled.div`
   margin: 50px auto 0;
   background: ${colors.colorWhite};
   color: #666;
-  padding: ${dimensions.headerSpacing}px;
+  padding: 40px ${dimensions.headerSpacing}px;
   border-radius: ${dimensions.unitSpacing + 5}px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 

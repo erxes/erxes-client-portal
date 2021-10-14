@@ -4,10 +4,8 @@ import FormControl from "../../common/form/Control";
 import Form from "../../common/form/Form";
 import FormGroup from "../../common/form/Group";
 import { IButtonMutateProps } from "../../common/types";
-import Button from "../../common/Button";
 import { LOGIN_TYPES } from "../types";
 import Icon from "../../common/Icon";
-import Link from "next/link";
 
 type Props = {
   renderButton: (props: IButtonMutateProps) => JSX.Element;

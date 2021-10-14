@@ -265,6 +265,10 @@ const CategoryListWrapper = styled.div`
       font-weight: 400;
     }
 
+    .category-col {
+      margin-bottom: 30px;
+    }
+
     .card {
       border: 1px solid #e2e2e271;
       animation: fadeInDown 0.8s ease-in-out;
@@ -342,9 +346,10 @@ const CategoryListWrapper = styled.div`
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
+        justify-content: flex-start;
         border-radius: 3px;
         box-shadow: 0 1px 5px #6e6c6e4b;
-        border-radius: $radius;
+        border-radius: 5px;
 
         .card {
           width: 100%;
@@ -411,7 +416,7 @@ const CategoryListWrapper = styled.div`
         }
         .promoted-wrap {
           .card {
-            width: 33%;
+            width: 33.3%;
             border: none;
             border-radius: 0;
 
@@ -430,7 +435,8 @@ const CategoryListWrapper = styled.div`
               z-index: 1;
             }
 
-            &:last-child:after {
+            &:last-child:after,
+            &:nth-child(3n):after {
               content: none;
             }
           }
