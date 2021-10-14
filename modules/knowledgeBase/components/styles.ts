@@ -243,7 +243,7 @@ const ArticleWrapper = styled.div`
     line-height: 1.8;
     color: #62667a;
 
-    img {
+    p > img {
       max-width: 100%;
       height: auto !important;
       padding: 10px 0;

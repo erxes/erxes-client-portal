@@ -53,6 +53,7 @@ function ArticleDetail({ loading, article, category, topic }: Props) {
     const addId = (array, isTag) => {
       return array.forEach((el) => {
         let taggedItem;
+
         if (el.lastChild.innerText) {
           el.children.length > 0
             ? (taggedItem = el.lastChild.innerText.replace(/&nbsp;/gi, ""))
