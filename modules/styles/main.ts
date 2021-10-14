@@ -21,6 +21,11 @@ const Header = styledTS<{
     font-weight: ${typography.fontWeightLight};
     margin: 20px 0;
   }
+
+  .modal-content {
+    background: transparent;
+    border: 0;
+  }
 `;
 
 const HeaderTop = styled.div`
@@ -347,8 +352,8 @@ const ModalWrapper = styledTS<{ isFull?: boolean }>(styled.div)`
 
 const ModalClose = styled.div`
   position: absolute;
-  right: -40px;
-  top: 0;
+  right: 10px;
+  top: 20px;
   width: 30px;
   height: 30px;
   background: rgba(0, 0, 0, 0.3);

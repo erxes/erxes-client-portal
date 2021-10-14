@@ -21,6 +21,7 @@ const LoginFormWrapper = styled.div`
   h2 {
     text-align: center;
     font-weight: 500;
+    font-size: 22px;
   }
 
   input {
