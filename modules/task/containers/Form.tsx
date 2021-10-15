@@ -12,14 +12,16 @@ type Props = {
 };
 
 export const clientPortalCreateTask = `
-  mutation clientPortalCreateTask(
+  mutation clientPortalCreateCard(
+    $type: String!
     $stageId: String!
     $subject: String!
     $description: String
     $email: String!
     $priority: String
   ) {
-    clientPortalCreateTask(
+    clientPortalCreateCard(
+      type: $type
       stageId: $stageId
       subject: $subject
       description: $description
@@ -44,7 +46,7 @@ export const getPipelineLabels = `
 function FormContainer({ config = {}, currentUser, ...props }: Props) {
   const apiClient = useContext(ApiApolloClientContext);
 
-  const { data = {} } = useQuery(gql(getPipelineLabels), {
+  useQuery(gql(getPipelineLabels), {
     variables: { pipelineId: config.taskPublicPipelineId },
     client: apiClient,
     skip: !config.taskPublicPipelineId,
@@ -62,6 +64,7 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
     createTask({
       variables: {
         ...doc,
+        type: 'task',
         stageId: config.taskStageId,
         email: currentUser.email,
         priority: "Critical", // TODO: Add select in Form

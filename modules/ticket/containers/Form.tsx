@@ -11,14 +11,16 @@ type Props = {
 };
 
 export const clientPortalCreateTicket = `
-  mutation clientPortalCreateTicket(
+  mutation clientPortalCreateCard(
+    $type: String!
     $stageId: String!
     $subject: String!
     $description: String
     $email: String!
     $priority: String
   ) {
-    clientPortalCreateTicket(
+    clientPortalCreateCard(
+      type: $type
       stageId: $stageId
       subject: $subject
       description: $description
@@ -41,6 +43,7 @@ function FormContainer({ config = {}, currentUser, ...props }: Props) {
     createTicket({
       variables: {
         ...doc,
+        type: 'ticket',
         stageId: config.ticketStageId,
         email: currentUser.email,
         priority: "Critical", // TODO: Add select in Form
