@@ -17,8 +17,8 @@ window.envMaps = [
     processValue: '%REACT_APP_MAIN_API_DOMAIN%'
   },
   {
-    name: 'REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN',
-    processValue: '%REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN%'
+    name: 'REACT_APP_API_DOMAIN',
+    processValue: '%REACT_APP_API_DOMAIN%'
   },
   {
     name: 'REACT_APP_CLIENT_PORTAL_CONFIG_ID',
