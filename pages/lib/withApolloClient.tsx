@@ -5,12 +5,12 @@ import Head from 'next/head';
 import { getEnv } from '../../utils/configs';
 
 const {
-  REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN,
+  REACT_APP_API_DOMAIN,
   REACT_APP_MAIN_API_DOMAIN
 } = getEnv();
 
 const SERVER_LINK_OPTIONS = {
-  uri: `${REACT_APP_NEXT_PUBLIC_MAIN_API_DOMAIN}/graphql`
+  uri: `${REACT_APP_API_DOMAIN}/graphql`
 };
 
 const API_LINK_OPIONS = { uri: `${REACT_APP_MAIN_API_DOMAIN}/graphql` };
