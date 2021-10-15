@@ -112,6 +112,10 @@ export const loadClass = () => {
 
       const tEmail = (email || '').toLowerCase().trim();
 
+      if (await Users.findOne({ email: tEmail })) {
+        throw new Error('The user is already exists');
+      }
+
       const user = await Users.create({
         ...doc,
         email: tEmail,
