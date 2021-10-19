@@ -18,16 +18,15 @@ class Detail extends React.Component {
     };
   }
 
-  componentDidMount(){
-    if( this.props.category.title === "Хүсэлт гаргах"){
-      window.erxesSettings.forms.form_id = "TvEwRy";
+  componentDidMount() {
+    if (this.props.category.title === "Хүсэлт гаргах") {
+      window.erxesSettings.forms.push({ brand_id: "ASJrzQ", form_id: "TvEwRy" });
     }
 
-    if( this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал"){
-      window.erxesSettings.forms.form_id= "oDKqhS";
-    }    
+    if (this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал") {
+      window.erxesSettings.forms.push({ brand_id: "ASJrzQ", form_id: "oDKqhS" });
+    }
   }
-
   onReactionClick = reactionChoice => {
     this.setState({ activeReaction: reactionChoice });
   };
@@ -127,12 +126,12 @@ class Detail extends React.Component {
     return;
   };
 
-  createDom = () =>{
-    const  articleDetail  = this.props.articleDetail;
+  createDom = () => {
+    const articleDetail = this.props.articleDetail;
     if (!articleDetail) {
       return null;
     }
-    const content= articleDetail.content;
+    const content = articleDetail.content;
     const dom = new DOMParser().parseFromString(content, 'text/html');
     return dom;
   }
@@ -148,10 +147,10 @@ class Detail extends React.Component {
               <li className={this.isActive(cat._id)}>
                 <div className="sidebar-item">
                   <div className="icon-wrapper">
-                    {cat.childrens && <i className={`icon-${cat.icon}`} />}   
-                    {cat.title}             
+                    {cat.childrens && <i className={`icon-${cat.icon}`} />}
+                    {cat.title}
                   </div>
-                 
+
                   <div><span>{`(${cat.numOfArticles})`}</span></div>
                 </div>
               </li>
@@ -189,7 +188,7 @@ class Detail extends React.Component {
     if (!articles || !articles.length === 0 || category._id !== categoryId) {
       return null;
     }
-    
+
     return (
       <div className="submenu">
         <ul>
@@ -211,43 +210,43 @@ class Detail extends React.Component {
     const dom = this.createDom();
     const nodes = dom.getElementsByTagName("h2");
 
-    if (nodes.length === 0 ) {
+    if (nodes.length === 0) {
       return null;
     }
-  
+
     const tagged = [];
 
     const addId = (array, isTag) => {
-      return array.forEach( el => {
+      return array.forEach(el => {
         let taggedItem;
-        if(el.lastChild.innerText ) {
-         el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
-         : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
-  
-           el.setAttribute("id", taggedItem)
-           isTag && tagged.push(taggedItem);
-        } 
+        if (el.lastChild.innerText) {
+          el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
+            : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
+
+          el.setAttribute("id", taggedItem)
+          isTag && tagged.push(taggedItem);
+        }
       })
     }
- 
-     const  h2Array = document.getElementsByTagName("h2");
-     addId([...nodes], true)
-     addId([...h2Array], false)
- 
-     
-     return (
-        <div className="page-anchor" id="anchorTag">
-          <h6>ХОЛБООС </h6>
-          <Scrollspy items={tagged} currentClassName="active">
-            {tagged.map((val, index) => (
-              <li key={index} > 
-                 <a href={`#${val}`} >
-                 {val}
-                 </a>
-              </li>
-            ))}
-          </Scrollspy>
-        </div>
+
+    const h2Array = document.getElementsByTagName("h2");
+    addId([...nodes], true)
+    addId([...h2Array], false)
+
+
+    return (
+      <div className="page-anchor" id="anchorTag">
+        <h6>ХОЛБООС </h6>
+        <Scrollspy items={tagged} currentClassName="active">
+          {tagged.map((val, index) => (
+            <li key={index} >
+              <a href={`#${val}`} >
+                {val}
+              </a>
+            </li>
+          ))}
+        </Scrollspy>
+      </div>
     );
   };
 
@@ -257,52 +256,52 @@ class Detail extends React.Component {
     const modal = document.getElementById("modal");
 
     if (img && e.currentTarget.contains(img)) {
-        modalImg.src = img.src;    
-        modalImg.alt = img.alt;  
-        modal.style.display = "block";
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modal.style.display = "block";
     }
- }
+  }
 
   handleModal = () => {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
   }
 
-  renderContent = (articleDetail) =>{
+  renderContent = (articleDetail) => {
     let formDiv;
-    if( this.props.category.title === "Хүсэлт гаргах"){
+    if (this.props.category.title === "Хүсэлт гаргах") {
       formDiv = '<div data-erxes-embed="TvEwRy" style="width:100%;height:300px"></div>';
-      return(
+      return (
         <Form form={formDiv} />
       )
     }
-    if( this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал"){
+    if (this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал") {
       formDiv = '<div data-erxes-embed="oDKqhS" style="width:100%;height:300px"></div>';
-      return(
+      return (
         <Form form={formDiv} />
       )
     }
 
     return (
-    <div className="kbase-detail kbase-lists">
-      <h4>{articleDetail.title}</h4>
-      <div className="content mt-4" id="contentText">
-        <p>{articleDetail.summary}</p>
-        <div className="article" onClick={this.showImageModal}
-          dangerouslySetInnerHTML={{
-            __html: articleDetail.content
-          }}
-          ></div>   
+      <div className="kbase-detail kbase-lists">
+        <h4>{articleDetail.title}</h4>
+        <div className="content mt-4" id="contentText">
+          <p>{articleDetail.summary}</p>
+          <div className="article" onClick={this.showImageModal}
+            dangerouslySetInnerHTML={{
+              __html: articleDetail.content
+            }}
+          ></div>
           <div onClick={this.handleModal} id="modal" >
-            <span id = "close">&times;</span>
-            <img id="modal-content" alt="modal"/>
+            <span id="close">&times;</span>
+            <img id="modal-content" alt="modal" />
           </div>
 
+        </div>
       </div>
-    </div>
     )
   }
-  
+
   render() {
     const { category, kbTopic, articleDetail } = this.props;
 
@@ -310,7 +309,7 @@ class Detail extends React.Component {
       <div className="knowledge-base">
         <Row>
           <div className="ml-30p">
-          <SectionHeader categories={kbTopic.parentCategories} selectedCat ={category} />
+            <SectionHeader categories={kbTopic.parentCategories} selectedCat={category} />
           </div>
         </Row>
         <Row>
@@ -320,10 +319,10 @@ class Detail extends React.Component {
             </div>
           </Col>
           <Col md={7}>
-             <div className="card article-detail">
+            <div className="card article-detail">
               {this.renderContent(articleDetail)}
               {this.renderReactions()}
-              </div>
+            </div>
           </Col>
           <Col md={2} >{this.renderTags()}</Col>
         </Row>
@@ -332,30 +331,30 @@ class Detail extends React.Component {
   }
 }
 
-class Form extends React.Component{
-  componentDidMount(){
+class Form extends React.Component {
+  componentDidMount() {
     (() => {
       const form = document.createElement('script');
       form.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
       form.async = true;
-      form.key=Math.random().toString()
+      form.key = Math.random().toString()
       const ent = document.getElementsByTagName('script')[0];
       ent.parentNode.insertBefore(form, ent);
     })();
   }
-  render(){
-    return(
+  render() {
+    return (
       <div className="article"
-      dangerouslySetInnerHTML={{
-        __html: this.props.form
-      }}
-      ></div> 
+        dangerouslySetInnerHTML={{
+          __html: this.props.form
+        }}
+      ></div>
     )
-  }  
+  }
 }
 
 Detail.propTypes = {
   kbTopic: PropTypes.object
-}; 
+};
 
 export default Detail;

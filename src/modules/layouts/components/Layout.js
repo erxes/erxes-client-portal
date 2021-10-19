@@ -18,16 +18,14 @@ class Layout extends React.Component {
       messenger: {
         brand_id: 'm7DmKt'
       },
-      forms:{
-        brand_id: "ASJrzQ", form_id:""
-      }
+      forms: []
     };
 
     (() => {
       const script = document.createElement('script');
       script.src = 'https://w.office.erxes.io/build/messengerWidget.bundle.js';
       script.async = true;
-      script.key=Math.random().toString()
+      script.key = Math.random().toString()
       const entry = document.getElementsByTagName('script')[0];
       entry.parentNode.insertBefore(script, entry);
     })();
@@ -35,15 +33,15 @@ class Layout extends React.Component {
 
   render() {
     const { location, getKbTopicQuery, history, children } = this.props;
-    
+
     const queryParams = queryString.parse(location.search);
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
     let headingSpacing = false;
-    let marginTop="main-body";
-    if(location.pathname ==="/knowledge-base"){
-       headingSpacing = true
-       marginTop="mt-100p"
+    let marginTop = "main-body";
+    if (location.pathname === "/knowledge-base") {
+      headingSpacing = true
+      marginTop = "mt-100p"
     }
 
     return (
@@ -54,7 +52,7 @@ class Layout extends React.Component {
           kbTopic={kbTopic}
           headingSpacing={headingSpacing}
         />
-        <Container className={marginTop } fluid="lg">{children}</Container>
+        <Container className={marginTop} fluid="lg">{children}</Container>
         <Footer kbTopic={kbTopic} />
       </div>
     );
