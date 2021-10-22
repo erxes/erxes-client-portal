@@ -116,12 +116,14 @@ export const loadClass = () => {
         throw new Error('The user is already exists');
       }
 
-      const user = await Users.create({
-        ...doc,
-        email: tEmail,
-        // hash password
-        password: await this.generatePassword(password)
-      });
+      const performCreate = async () => {
+        return Users.create({
+          ...doc,
+          email: tEmail,
+          // hash password
+          password: await this.generatePassword(password)
+        });
+      }
 
       const { companyName, firstName, lastName, type } = doc;
 
@@ -137,32 +139,40 @@ export const loadClass = () => {
         });
 
         if (company && company._id) {
+          const user = await performCreate();
+
           await Users.updateOne(
             { _id: user._id },
             { $set: { erxesCompanyId: company._id } }
           );
-        }
-      } else {
-        const customer: { _id?: string } = await sendGraphQLRequest({
-          query: clientPortalCreateCustomer,
-          name: 'clientPortalCreateCustomer',
-          variables: {
-            configId,
-            email: tEmail,
-            firstName,
-            lastName
-          }
-        });
 
-        if (customer && customer._id) {
-          await Users.updateOne(
-            { _id: user._id },
-            { $set: { erxesCustomerId: customer._id } }
-          );
+          return user._id;
         }
+
+        return;
       }
 
-      return user._id;
+      const customer: { _id?: string } = await sendGraphQLRequest({
+        query: clientPortalCreateCustomer,
+        name: 'clientPortalCreateCustomer',
+        variables: {
+          configId,
+          email: tEmail,
+          firstName,
+          lastName
+        }
+      });
+
+      if (customer && customer._id) {
+        const user = await performCreate();
+
+        await Users.updateOne(
+          { _id: user._id },
+          { $set: { erxesCustomerId: customer._id } }
+        );
+
+        return user._id;
+      }
     }
 
     public static async editProfile(_id: string, { password, ...doc }: IUser) {

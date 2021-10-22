@@ -31,6 +31,10 @@ export const sendGraphQLRequest = ({ query, variables, name }: Params) => {
         const { errors, data = {} } = response || {};
 
         if (errors) {
+          if (errors.length > 0) {
+            return reject(errors[0].message);
+          }
+
           return reject(errors);
         }
 
