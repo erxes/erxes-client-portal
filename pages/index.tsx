@@ -1,6 +1,13 @@
 import React from "react";
-import CategoriesContainer from "../modules/knowledgeBase/containers/CategoryList";
+import Layout from "../modules/components/Layout";
 
-export default function Home() {
-  return <CategoriesContainer />;
+export default function Index() {
+  return (
+    <Layout>
+      <div className="relative">
+        <h2>erxes Experience Platform</h2>
+        Hello, erxes!
+      </div>
+    </Layout>
+  );
 }

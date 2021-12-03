@@ -33,13 +33,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta property="og:site_name" content="Erxes client portal" />
-          <meta
-            name="keywords"
-            content="Erxes client portal erxes.io erxes.org mongolia"
-          />
-
-          <link href="/static/images/favicon.png" rel="shortcut icon" />
+          <link href="/static/favicon.png" rel="shortcut icon" />
           <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
