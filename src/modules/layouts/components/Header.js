@@ -30,7 +30,7 @@ Community Help Center</div>
             </Col>
             <Col md="auto" className="header-links">
               <a
-                href="https://erxes.io/"
+                href="https://office.ubgroup.mn/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
