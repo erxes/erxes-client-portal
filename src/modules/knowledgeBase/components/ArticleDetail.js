@@ -1,33 +1,40 @@
-import React from 'react';
-import classNames from 'classnames';
-import * as dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
-import Scrollspy from 'react-scrollspy';
-import PropTypes from 'prop-types';
-import { Row, Col } from 'react-bootstrap';
-import SectionHeader from "../../common/components/SectionHeader"
+import React from "react";
+import classNames from "classnames";
+import * as dayjs from "dayjs";
+import { Link } from "react-router-dom";
+import Scrollspy from "react-scrollspy";
+import PropTypes from "prop-types";
+import { Row, Col } from "react-bootstrap";
+import SectionHeader from "../../common/components/SectionHeader";
 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeReaction: '',
+      activeReaction: "",
       toggle: false,
-      nextFirstId: '0'
+      nextFirstId: "0",
     };
   }
 
   componentDidMount() {
-    if (this.props.category.title === "Хүсэлт гаргах") {
-      window.erxesSettings.forms.push({ brand_id: "ASJrzQ", form_id: "TvEwRy" });
+    if (this.props.articleDetail._id === "ynFQwWehHC9nYFf7j") {
+      window.erxesSettings.forms.push({
+        brand_id: "ASJrzQ",
+        form_id: "TvEwRy",
+      });
     }
 
-    if (this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал") {
-      window.erxesSettings.forms.push({ brand_id: "ASJrzQ", form_id: "oDKqhS" });
+    if (this.props.articleDetail._id === "BfpsWbsWjMaARjc2g") {
+      window.erxesSettings.forms.push({
+        brand_id: "ASJrzQ",
+        form_id: "oDKqhS",
+      });
     }
   }
-  onReactionClick = reactionChoice => {
+
+  onReactionClick = (reactionChoice) => {
     this.setState({ activeReaction: reactionChoice });
   };
 
@@ -54,8 +61,8 @@ class Detail extends React.Component {
       return null;
     }
 
-    const reactionClassess = classNames('reactions', {
-      clicked: this.state.activeReaction
+    const reactionClassess = classNames("reactions", {
+      clicked: this.state.activeReaction,
     });
 
     return (
@@ -67,7 +74,7 @@ class Detail extends React.Component {
                 key={index}
                 className={
                   reactionChoice === this.state.activeReaction
-                    ? 'active'
+                    ? "active"
                     : undefined
                 }
                 onClick={this.onReactionClick.bind(this, reactionChoice)}
@@ -100,7 +107,7 @@ class Detail extends React.Component {
               Modified:
               <span>
                 {dayjs(this.props.articleDetail.modifiedDate).format(
-                  ' MMM D YYYY'
+                  " MMM D YYYY"
                 )}
               </span>
             </div>
@@ -110,18 +117,18 @@ class Detail extends React.Component {
     );
   };
 
-  isActive = articleId => {
+  isActive = (articleId) => {
     if (articleId === this.props.articleDetail._id) {
-      return 'active';
+      return "active";
     }
     return;
   };
 
-  isActiveCategory = categoryId => {
+  isActiveCategory = (categoryId) => {
     const { category } = this.props;
     const catId = category._id;
     if (categoryId === catId) {
-      return 'active';
+      return "active";
     }
     return;
   };
@@ -132,14 +139,14 @@ class Detail extends React.Component {
       return null;
     }
     const content = articleDetail.content;
-    const dom = new DOMParser().parseFromString(content, 'text/html');
+    const dom = new DOMParser().parseFromString(content, "text/html");
     return dom;
-  }
+  };
 
   renderCategories = () => {
     const { kbTopic } = this.props;
     const { parentCategories } = kbTopic;
-    const renderCategory = cat => {
+    const renderCategory = (cat) => {
       return (
         <Link key={cat._id} to={`/knowledge-base/category/details/${cat._id}`}>
           <div className="tags sidebar-list">
@@ -151,7 +158,9 @@ class Detail extends React.Component {
                     {cat.title}
                   </div>
 
-                  <div><span>{`(${cat.numOfArticles})`}</span></div>
+                  <div>
+                    <span>{`(${cat.numOfArticles})`}</span>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -163,13 +172,13 @@ class Detail extends React.Component {
     if (parentCategories) {
       return (
         <>
-          {parentCategories.map(cat => {
+          {parentCategories.map((cat) => {
             return (
               <>
                 {renderCategory(cat)}
                 {cat.childrens && (
                   <div className="sub-categories">
-                    {cat.childrens.map(child => renderCategory(child))}
+                    {cat.childrens.map((child) => renderCategory(child))}
                   </div>
                 )}
               </>
@@ -181,7 +190,7 @@ class Detail extends React.Component {
     return;
   };
 
-  renderArticles = categoryId => {
+  renderArticles = (categoryId) => {
     const { category } = this.props;
     const { articles } = category;
 
@@ -217,32 +226,30 @@ class Detail extends React.Component {
     const tagged = [];
 
     const addId = (array, isTag) => {
-      return array.forEach(el => {
+      return array.forEach((el) => {
         let taggedItem;
         if (el.lastChild.innerText) {
-          el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
-            : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
+          el.children.length > 0
+            ? (taggedItem = el.lastChild.innerText.replace(/&nbsp;/gi, ""))
+            : (taggedItem = el.innerText.replace(/&nbsp;/gi, ""));
 
-          el.setAttribute("id", taggedItem)
+          el.setAttribute("id", taggedItem);
           isTag && tagged.push(taggedItem);
         }
-      })
-    }
+      });
+    };
 
     const h2Array = document.getElementsByTagName("h2");
-    addId([...nodes], true)
-    addId([...h2Array], false)
-
+    addId([...nodes], true);
+    addId([...h2Array], false);
 
     return (
       <div className="page-anchor" id="anchorTag">
         <h6>ХОЛБООС </h6>
         <Scrollspy items={tagged} currentClassName="active">
           {tagged.map((val, index) => (
-            <li key={index} >
-              <a href={`#${val}`} >
-                {val}
-              </a>
+            <li key={index}>
+              <a href={`#${val}`}>{val}</a>
             </li>
           ))}
         </Scrollspy>
@@ -260,26 +267,24 @@ class Detail extends React.Component {
       modalImg.alt = img.alt;
       modal.style.display = "block";
     }
-  }
+  };
 
   handleModal = () => {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
-  }
+  };
 
   renderContent = (articleDetail) => {
     let formDiv;
-    if (this.props.category.title === "Хүсэлт гаргах") {
-      formDiv = '<div data-erxes-embed="TvEwRy" style="width:100%;height:300px"></div>';
-      return (
-        <Form form={formDiv} />
-      )
+    if (this.props.articleDetail._id === "ynFQwWehHC9nYFf7j") {
+      formDiv =
+        '<div data-erxes-embed="TvEwRy" style="width:100%;height:300px"></div>';
+      return <Form form={formDiv} />;
     }
-    if (this.props.category.title === "Шинэ гишүүд бүрдүүлэх материал") {
-      formDiv = '<div data-erxes-embed="oDKqhS" style="width:100%;height:300px"></div>';
-      return (
-        <Form form={formDiv} />
-      )
+    if (this.props.articleDetail._id === "BfpsWbsWjMaARjc2g") {
+      formDiv =
+        '<div data-erxes-embed="oDKqhS" style="width:100%;height:300px"></div>';
+      return <Form form={formDiv} />;
     }
 
     return (
@@ -287,20 +292,21 @@ class Detail extends React.Component {
         <h4>{articleDetail.title}</h4>
         <div className="content mt-4" id="contentText">
           <p>{articleDetail.summary}</p>
-          <div className="article" onClick={this.showImageModal}
+          <div
+            className="article"
+            onClick={this.showImageModal}
             dangerouslySetInnerHTML={{
-              __html: articleDetail.content
+              __html: articleDetail.content,
             }}
           ></div>
-          <div onClick={this.handleModal} id="modal" >
+          <div onClick={this.handleModal} id="modal">
             <span id="close">&times;</span>
             <img id="modal-content" alt="modal" />
           </div>
-
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   render() {
     const { category, kbTopic, articleDetail } = this.props;
@@ -309,14 +315,15 @@ class Detail extends React.Component {
       <div className="knowledge-base">
         <Row>
           <div className="ml-30p">
-            <SectionHeader categories={kbTopic.parentCategories} selectedCat={category} />
+            <SectionHeader
+              categories={kbTopic.parentCategories}
+              selectedCat={category}
+            />
           </div>
         </Row>
         <Row>
           <Col md={3}>
-            <div className="sidebar-wrap">
-              {this.renderCategories()}
-            </div>
+            <div className="sidebar-wrap">{this.renderCategories()}</div>
           </Col>
           <Col md={7}>
             <div className="card article-detail">
@@ -324,7 +331,7 @@ class Detail extends React.Component {
               {this.renderReactions()}
             </div>
           </Col>
-          <Col md={2} >{this.renderTags()}</Col>
+          <Col md={2}>{this.renderTags()}</Col>
         </Row>
       </div>
     );
@@ -334,27 +341,28 @@ class Detail extends React.Component {
 class Form extends React.Component {
   componentDidMount() {
     (() => {
-      const form = document.createElement('script');
-      form.src = 'https://w.office.erxes.io/build/formWidget.bundle.js';
+      const form = document.createElement("script");
+      form.src = "https://w.office.erxes.io/build/formWidget.bundle.js";
       form.async = true;
-      form.key = Math.random().toString()
-      const ent = document.getElementsByTagName('script')[0];
+      form.key = Math.random().toString();
+      const ent = document.getElementsByTagName("script")[0];
       ent.parentNode.insertBefore(form, ent);
     })();
   }
   render() {
     return (
-      <div className="article"
+      <div
+        className="article"
         dangerouslySetInnerHTML={{
-          __html: this.props.form
+          __html: this.props.form,
         }}
       ></div>
-    )
+    );
   }
 }
 
 Detail.propTypes = {
-  kbTopic: PropTypes.object
+  kbTopic: PropTypes.object,
 };
 
 export default Detail;
