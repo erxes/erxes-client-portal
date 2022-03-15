@@ -20,18 +20,19 @@ class Detail extends React.Component {
 
   componentDidMount() {
     if (this.props.articleDetail._id === "ygH5XgEbgGEj7tHaR") {
-      window.erxesSettings.forms.push({
+      window.erxesSettings.form = {
         brand_id: "ASJrzQ",
         form_id: "TvEwRy",
-      });
+      };
     }
 
     if (this.props.articleDetail._id === "bHWwCSu5oG5Xcvt9o") {
-      window.erxesSettings.forms.push({
+      window.erxesSettings.form = {
         brand_id: "ASJrzQ",
         form_id: "oDKqhS",
-      });
+      };
     }
+    console.log(window.erxesSettings);
   }
 
   onReactionClick = (reactionChoice) => {
@@ -275,16 +276,21 @@ class Detail extends React.Component {
   };
 
   renderContent = (articleDetail) => {
-    let formDiv;
-    if (this.props.articleDetail._id === "ygH5XgEbgGEj7tHaR") {
-      formDiv =
-        '<div data-erxes-embed="TvEwRy" style="width:100%;height:300px"></div>';
-      return <Form form={formDiv} />;
+    if (articleDetail._id === "ygH5XgEbgGEj7tHaR") {
+      return (
+        <div
+          data-erxes-embed="TvEwRy"
+          style={{ width: "100%", height: "300px" }}
+        ></div>
+      );
     }
-    if (this.props.articleDetail._id === "bHWwCSu5oG5Xcvt9o") {
-      formDiv =
-        '<div data-erxes-embed="oDKqhS" style="width:100%;height:300px"></div>';
-      return <Form form={formDiv} />;
+    if (articleDetail._id === "bHWwCSu5oG5Xcvt9o") {
+      return (
+        <div
+          data-erxes-embed="oDKqhS"
+          style={{ width: "100%", height: "300px" }}
+        ></div>
+      );
     }
 
     return (
@@ -349,6 +355,7 @@ class Form extends React.Component {
       ent.parentNode.insertBefore(form, ent);
     })();
   }
+
   render() {
     return (
       <div
