@@ -43,9 +43,7 @@ class DetailContainer extends React.Component {
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
     let forms;
-    // if (articleDetail._id === "EGXBhdpAuKfskrTem") {
-    //   forms = [{ brand_id: "GYNxPu", form_id: "w6zwsT" }];
-    // }
+
 
     if (articleDetail._id === "ynFQwWehHC9nYFf7j") {
       forms = [{ brand_id: "ASJrzQ", form_id: "TvEwRy" }];

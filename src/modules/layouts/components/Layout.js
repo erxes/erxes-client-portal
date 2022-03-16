@@ -22,7 +22,6 @@ const Layout = (props) => {
 
   const formWidgetSource =
     "https://w.office.erxes.io/build/formWidget.bundle.js";
-  // "http://localhost:3200/build/formWidget.bundle.js";
 
   for (const form of forms) {
     settings.forms.push({ brand_id: form.brand_id, form_id: form.form_id });
@@ -58,7 +57,7 @@ const Layout = (props) => {
         entry.parentNode.insertBefore(script, entry);
       })();
     }
-  }, [forms]);
+  }, [erxesSettings, forms, settings.forms.length]);
 
   const queryParams = queryString.parse(location.search);
   const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
