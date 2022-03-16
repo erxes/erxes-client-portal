@@ -18,22 +18,6 @@ class Detail extends React.Component {
     };
   }
 
-  componentDidMount() {
-    if (this.props.articleDetail._id === "ygH5XgEbgGEj7tHaR") {
-      window.erxesSettings.forms.push({
-        brand_id: "ASJrzQ",
-        form_id: "TvEwRy",
-      });
-    }
-
-    if (this.props.articleDetail._id === "bHWwCSu5oG5Xcvt9o") {
-      window.erxesSettings.forms.push({
-        brand_id: "ASJrzQ",
-        form_id: "oDKqhS",
-      });
-    }
-  }
-
   onReactionClick = (reactionChoice) => {
     this.setState({ activeReaction: reactionChoice });
   };
@@ -275,16 +259,21 @@ class Detail extends React.Component {
   };
 
   renderContent = (articleDetail) => {
-    let formDiv;
-    if (this.props.articleDetail._id === "ygH5XgEbgGEj7tHaR") {
-      formDiv =
-        '<div data-erxes-embed="TvEwRy" style="width:100%;height:300px"></div>';
-      return <Form form={formDiv} />;
+    if (this.props.articleDetail._id === "ynFQwWehHC9nYFf7j") {
+      return (
+        <div
+          data-erxes-embed="TvEwRy"
+          style={{ width: "100%", height: "300px" }}
+        ></div>
+      );
     }
     if (this.props.articleDetail._id === "bHWwCSu5oG5Xcvt9o") {
-      formDiv =
-        '<div data-erxes-embed="oDKqhS" style="width:100%;height:300px"></div>';
-      return <Form form={formDiv} />;
+      return (
+        <div
+          data-erxes-embed="oDKqhS"
+          style={{ width: "100%", height: "300px" }}
+        ></div>
+      );
     }
 
     return (
@@ -334,29 +323,6 @@ class Detail extends React.Component {
           <Col md={2}>{this.renderTags()}</Col>
         </Row>
       </div>
-    );
-  }
-}
-
-class Form extends React.Component {
-  componentDidMount() {
-    (() => {
-      const form = document.createElement("script");
-      form.src = "https://w.office.erxes.io/build/formWidget.bundle.js";
-      form.async = true;
-      form.key = Math.random().toString();
-      const ent = document.getElementsByTagName("script")[0];
-      ent.parentNode.insertBefore(form, ent);
-    })();
-  }
-  render() {
-    return (
-      <div
-        className="article"
-        dangerouslySetInnerHTML={{
-          __html: this.props.form,
-        }}
-      ></div>
     );
   }
 }

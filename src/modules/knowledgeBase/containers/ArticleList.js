@@ -5,19 +5,18 @@ import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import Lists from "../components/ArticleList";
 import { queries } from "../graphql/index";
-import { Spinner } from 'react-bootstrap';
+import { Spinner } from "react-bootstrap";
+import Layout from "../../layouts/components/Layout";
 
 class ListContainer extends React.Component {
   render() {
-    const {
-      getKbTopicQuery,
-      getArticlesQuery,
-      history,
-      searchValue,
-    } = this.props;
+    const { getKbTopicQuery, getArticlesQuery, history, searchValue } =
+      this.props;
 
     if (getKbTopicQuery.loading || getArticlesQuery.loading) {
-      return <Spinner animation="border" variant="secondary" className="centered" />;
+      return (
+        <Spinner animation="border" variant="secondary" className="centered" />
+      );
     }
 
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
@@ -25,12 +24,14 @@ class ListContainer extends React.Component {
     const categories = kbTopic.categories ? kbTopic.categories : [];
 
     return (
-      <Lists
-        articles={articles}
-        history={history}
-        categories={categories}
-        searchValue={searchValue}
-      />
+      <Layout>
+        <Lists
+          articles={articles}
+          history={history}
+          categories={categories}
+          searchValue={searchValue}
+        />
+      </Layout>
     );
   }
 }
