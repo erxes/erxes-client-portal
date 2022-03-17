@@ -22,6 +22,7 @@ const Layout = (props) => {
 
   const formWidgetSource =
     "https://w.office.erxes.io/build/formWidget.bundle.js";
+  //"http://localhost:3200/build/formWidget.bundle.js";
 
   for (const form of forms) {
     settings.forms.push({ brand_id: form.brand_id, form_id: form.form_id });
@@ -38,7 +39,9 @@ const Layout = (props) => {
       const entry = document.getElementsByTagName("script")[0];
       entry.parentNode.insertBefore(script, entry);
     })();
+  }, []);
 
+  useEffect(() => {
     (() => {
       const s = document.createElement("script");
       s.key = Math.random().toString();
@@ -57,7 +60,7 @@ const Layout = (props) => {
         entry.parentNode.insertBefore(script, entry);
       })();
     }
-  }, [erxesSettings, forms, settings.forms.length]);
+  }, [erxesSettings, settings.forms.length]);
 
   const queryParams = queryString.parse(location.search);
   const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};

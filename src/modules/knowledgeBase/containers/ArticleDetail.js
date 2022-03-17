@@ -44,7 +44,6 @@ class DetailContainer extends React.Component {
 
     let forms;
 
-
     if (articleDetail._id === "ynFQwWehHC9nYFf7j") {
       forms = [{ brand_id: "ASJrzQ", form_id: "TvEwRy" }];
     }
