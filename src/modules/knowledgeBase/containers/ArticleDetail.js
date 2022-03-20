@@ -43,12 +43,15 @@ class DetailContainer extends React.Component {
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
     let forms;
-
-    if (articleDetail._id === "ynFQwWehHC9nYFf7j") {
+    if (articleDetail._id === "EGXBhdpAuKfskrTem") {
+      forms = [{ brand_id: "GYNxPu", form_id: "w6zwsT" }];
+    }
+    
+    if (articleDetail._id === "ygH5XgEbgGEj7tHaR") {
       forms = [{ brand_id: "ASJrzQ", form_id: "TvEwRy" }];
     }
 
-    if (articleDetail._id === "BfpsWbsWjMaARjc2g") {
+    if (articleDetail._id === "bHWwCSu5oG5Xcvt9o") {
       forms = [{ brand_id: "ASJrzQ", form_id: "oDKqhS" }];
     }
 
