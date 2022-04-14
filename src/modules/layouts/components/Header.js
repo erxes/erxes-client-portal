@@ -3,17 +3,20 @@ import { Row, Col, Container } from 'react-bootstrap';
 import Search from '../../common/components/Search';
 import Logo from '../../../assets/images/logos/erxes-logo.svg';
 import { Link } from 'react-router-dom';
+import { readFile } from '../../../utils';
 
 function Header(props) {
   const { backgroundImage, color } = props.kbTopic || {};
   const backColor = color && color;
-  const background = backgroundImage ? `url(${backgroundImage})` : backColor;
-  
+  const backgroundImg = backgroundImage ? `url(${readFile(backgroundImage)})` : '';
 
   return (
     <div
       className={`head ${props.headingSpacing && 'bottom-spacing'}`}
-      style={{ background: background}}
+      style={{
+        backgroundColor: backColor,
+        backgroundImage: backgroundImg
+      }}
     >
       <div className="header">
         <Container fluid="sm">
