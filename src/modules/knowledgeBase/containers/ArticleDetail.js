@@ -51,7 +51,7 @@ class DetailContainer extends React.Component {
       forms = [{ brand_id: "ASJrzQ", form_id: "TvEwRy" }];
     }
 
-    if (articleDetail._id === "bHWwCSu5oG5Xcvt9o") {
+    if (articleDetail._id === "oqGSCT7rnFgbR485P") {
       forms = [{ brand_id: "ASJrzQ", form_id: "oDKqhS" }];
     }
 

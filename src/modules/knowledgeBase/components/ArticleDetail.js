@@ -267,7 +267,7 @@ class Detail extends React.Component {
         ></div>
       );
     }
-    if (this.props.articleDetail._id === "bHWwCSu5oG5Xcvt9o") {
+    if (this.props.articleDetail._id === "oqGSCT7rnFgbR485P") {
       return (
         <div
           data-erxes-embed="oDKqhS"
