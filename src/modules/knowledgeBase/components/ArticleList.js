@@ -69,6 +69,13 @@ class Lists extends React.Component {
       )
     }
 
+    const getAttachmentUrl = (value) => {
+      if (value && !value.includes('http')) {
+        return "office.erxes.io/gateway/read-file?key=" + value;
+      }
+      return value;
+    };
+
     return (
      articles.reverse().map( article => (
       <Link
@@ -85,7 +92,7 @@ class Lists extends React.Component {
             src={
               (article.createdUser.details.avatar || []).length === 0
                 ? Avatar
-                : article.createdUser.details.avatar
+                : getAttachmentUrl(article.createdUser.details.avatar)
             }
           />
           <div>
