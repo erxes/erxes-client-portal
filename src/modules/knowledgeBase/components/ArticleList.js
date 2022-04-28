@@ -71,7 +71,7 @@ class Lists extends React.Component {
 
     const getAttachmentUrl = (value) => {
       if (value && !value.includes('http')) {
-        return "office.erxes.io/gateway/read-file?key=" + value;
+        return "https://office.erxes.io/gateway/read-file?key=" + value;
       }
       return value;
     };
