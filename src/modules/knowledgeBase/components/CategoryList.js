@@ -26,6 +26,13 @@ class Categories extends React.Component {
   };
 
   renderAvatars = cat => {
+    const getAttachmentUrl = (value) => {
+      if (value && !value.includes('http')) {
+        return "https://office.erxes.io/gateway/read-file?key=" + value;
+      }
+      return value;
+    };
+
     return (
       <div className="avatars">
         {cat.authors.map((author, index) => (
@@ -36,7 +43,7 @@ class Categories extends React.Component {
             src={
               (author.details.avatar || []).length === 0
                 ? Avatar
-                : author.details.avatar
+                : getAttachmentUrl(author.details.avatar)
             }
             width="34"
             height="34"
