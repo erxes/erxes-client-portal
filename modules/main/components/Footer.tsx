@@ -30,9 +30,18 @@ function Footer(props: Props) {
         </p>
 
         <div>
-          {renderLink("https://fb.erxes.io", "fb-icon.png", "facebook")}
           {renderLink("https://github.com/erxes", "github.svg", "github")}
+          {renderLink("https://discord.com/invite/aaGzy3gQK5", "discord-logo-white.png", "discord")}
+          {renderLink("https://www.crunchbase.com/organization/erxes-inc#/entity", "cb.png", "cb")}
+          {renderLink("https://angel.co/erxes", "angelList.png", "angel")}
+          {renderLink("https://www.f6s.com/erxes", "f6s.png", "f6s")}
+          {renderLink("https://www.techinasia.com/companies/erxes-inc", "techinasia-white.png", "techinasia")}
+          {renderLink("mailto:info@erxes.io", "mail.png", "mail")}
+          {renderLink("https://fb.erxes.io", "fb-icon.png", "facebook")}
           {renderLink("https://twitter.com/erxeshq", "tw-icon.svg", "twitter")}
+          {renderLink("https://www.linkedin.com/company/erxes", "linkedin-icon.svg", "linkedin")}
+          {renderLink("https://www.youtube.com/channel/UCunYU3kJiiDsXGfB068BbDA", "yt-icon.svg", "youtube")}
+          {renderLink("https://medium.com/erxes", "medium.png", "medium")}
         </div>
       </Container>
     </StyledFooter>
