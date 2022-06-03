@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Avatar from '../../../assets/images/avatar-colored.svg';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { readFile } from '../../../utils';
 
 class Categories extends React.Component {
   renderAuthors = authors => {
@@ -26,13 +27,6 @@ class Categories extends React.Component {
   };
 
   renderAvatars = cat => {
-    const getAttachmentUrl = (value) => {
-      if (value && !value.includes('http')) {
-        return "https://office.erxes.io/gateway/read-file?key=" + value;
-      }
-      return value;
-    };
-
     return (
       <div className="avatars">
         {cat.authors.map((author, index) => (
@@ -43,7 +37,7 @@ class Categories extends React.Component {
             src={
               (author.details.avatar || []).length === 0
                 ? Avatar
-                : getAttachmentUrl(author.details.avatar)
+                : `url(${readFile(author.details.avatar)})`
             }
             width="34"
             height="34"
