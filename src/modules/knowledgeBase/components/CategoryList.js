@@ -37,7 +37,7 @@ class Categories extends React.Component {
             src={
               (author.details.avatar || []).length === 0
                 ? Avatar
-                : `url(${readFile(author.details.avatar)})`
+                : readFile(author.details.avatar)
             }
             width="34"
             height="34"
