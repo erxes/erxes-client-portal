@@ -27,7 +27,7 @@ function Header(props) {
                   <img src={Logo} alt="logo" />
                 </Link>
                 <div className="line">|</div>
-                <div className="text">Эрксис хотолын гишүүдэд туслах мэдлэгийн сан</div>
+                <div className="text">Эрксис хотолын гишүүдэд туслах мэдлэгийн сан!</div>
               </div>
             </Col>
             <Col md="auto" className="header-links">
