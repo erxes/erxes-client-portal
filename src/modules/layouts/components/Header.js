@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import Search from '../../common/components/Search';
-import Logo from '../../../assets/images/logos/erxes-logo.svg';
+import Logo from '../../../assets/images/logos/emart-logo.svg';
 import { Link } from 'react-router-dom';
 
 function Header(props) {
@@ -30,16 +30,16 @@ Community Help Center</div>
             </Col>
             <Col md="auto" className="header-links">
               <a
-                href="https://crm.e-mart.mn/"
+                href="https://e-mart.mn/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className=" icon-arrow-up-right"></i> Go to erxes
+                <i className=" icon-arrow-up-right"></i> Go to e-mart
               </a>
             </Col>
           </Row>
           <h3>
-          A knowledge-sharing help center designed specially for the erxes community
+          Имарт хэрэглэгчид туслах хэсэг
           </h3>
           <Search
             history={props.history}

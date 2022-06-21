@@ -16,19 +16,7 @@ function Footer(props) {
           <ul className="socials">
             <li>
               <a
-                href="https://community.erxes.io/register/Gw4WRJnk9fSbyAXTq"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://erxes.io/static/images/logo/rocketchat-icon.png"
-                  alt="rocketchat"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://fb.erxes.io/"
+                href="https://www.facebook.com/EmartMongolia"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -40,25 +28,13 @@ function Footer(props) {
             </li>
             <li>
               <a
-                href="https://github.com/erxes"
+                href="https://www.youtube.com/channel/UCLrq6TDLAjwcBMTHzZNa5PQ"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
-                  src="https://erxes.io/static/images/logo/github.png"
-                  alt="github"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://twitter.com/erxeshq"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://erxes.io/static/images/logo/tw-icon.svg"
-                  alt="twitter"
+                  src="https://erxes.io/static/images/logo/yt-icon.svg"
+                  alt="youtube"
                 />
               </a>
             </li>

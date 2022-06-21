@@ -16,16 +16,16 @@ class Layout extends React.Component {
   componentDidMount() {
     window.erxesSettings = {
       messenger: {
-        brand_id: '5fkS4v'
+        brand_id: '7EHHCK'
       }
     };
 
-    (() => {
-      const script = document.createElement('script');
-      script.src = 'https://w.office.erxes.io/build/messengerWidget.bundle.js';
+    (function () {
+      var script = document.createElement('script');
+      script.src =
+        'https://crm.e-mart.mn/widgets/build/messengerWidget.bundle.js';
       script.async = true;
-
-      const entry = document.getElementsByTagName('script')[0];
+      var entry = document.getElementsByTagName('script')[0];
       entry.parentNode.insertBefore(script, entry);
     })();
   }
