@@ -1,11 +1,13 @@
-import React from "react";
-import classNames from "classnames";
 import * as dayjs from "dayjs";
+
+import { Col, Row } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
-import Scrollspy from "react-scrollspy";
 import PropTypes from "prop-types";
-import { Row, Col } from "react-bootstrap";
+import React from "react";
+import Scrollspy from "react-scrollspy";
 import SectionHeader from "../../common/components/SectionHeader";
+import classNames from "classnames";
 
 class Detail extends React.Component {
   constructor(props) {
@@ -264,6 +266,14 @@ class Detail extends React.Component {
         <div
           data-erxes-embed="TvEwRy"
           style={{ width: "100%", height: "300px" }}
+        ></div>
+      );
+    }
+    if (this.props.articleDetail._id === "gfCJorJKG5np7GqEZ") {
+      return (
+        <div
+          data-erxes-embed="dGXfyi"
+          style={{ width: "100%" }}
         ></div>
       );
     }
