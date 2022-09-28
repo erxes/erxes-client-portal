@@ -15,6 +15,18 @@ function Footer(props) {
           <ul className="socials">
             <li>
               <a
+                href="https://www.instagram.com/erxes_mn/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="https://erxes.io/static/images/logo/instagram.png"
+                  alt="instagram"
+                />
+              </a>
+            </li>
+            <li>
+              <a
                 href="https://github.com/erxes"
                 target="_blank"
                 rel="noopener noreferrer"
