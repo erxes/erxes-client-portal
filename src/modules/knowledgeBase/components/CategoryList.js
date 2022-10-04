@@ -60,8 +60,9 @@ class Categories extends React.Component {
     const { kbTopic } = this.props;
     const { parentCategories = [] } = kbTopic;
 
-    const specialCategory = parentCategories[0];
-    const categories = parentCategories.slice(1);
+    const reversedCategory = parentCategories.reverse();
+    const specialCategory = reversedCategory[0];
+    const categories = reversedCategory.slice(1);
     const categoryUrl = `/knowledge-base/category/details/`;
 
     const detail = (cat) => {
@@ -95,25 +96,23 @@ class Categories extends React.Component {
               </h2>
               <div className="promoted-wrap">
                 {specialCategory.childrens &&
-                  specialCategory.childrens.map((cat, i) => (
-                    <>
-                      <Card key={cat._id}>
-                        {detail(cat)}
-                        <Link
-                          to={`${categoryUrl}${specialCategory._id}`}
-                          className="more"
-                        >
-                          Read more
-                        </Link>
-                      </Card>
-                    </>
+                  (specialCategory.childrens || []).map((cat, i) => (
+                    <Card key={cat._id}>
+                      {detail(cat)}
+                      <Link
+                        to={`${categoryUrl}${specialCategory._id}`}
+                        className="more"
+                      >
+                        Read more
+                      </Link>
+                    </Card>
                   ))}
               </div>
             </div>
           </Container>
         )}
 
-        {categories.map((parentCat) => (
+        {(categories || []).map((parentCat) => (
           <Container className="knowledge-base" fluid="sm" key={parentCat._id}>
             <div className="category-knowledge-list">
               <h2 className="list-category-title">
@@ -135,8 +134,9 @@ class Categories extends React.Component {
       </>
     );
   };
+
   render() {
-    return <>{this.renderCategories()}</>;
+    return this.renderCategories();
   }
 }
 

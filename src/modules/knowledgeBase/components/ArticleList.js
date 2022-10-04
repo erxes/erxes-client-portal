@@ -47,7 +47,7 @@ class Lists extends React.Component {
       );
     }
 
-    return articles.reverse().map((article) => (
+    return articles.map((article) => (
       <Link
         to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
         key={article._id}
