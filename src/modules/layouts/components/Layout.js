@@ -78,7 +78,7 @@ const Layout = (props) => {
         history={history}
         searchValue={queryParams.searchValue}
         kbTopic={kbTopic}
-        headingSpacing={headingSpacing}
+        headingSpacing={headSpacing}
       />
       <Container className={marginTop} fluid="lg">
         {children}
