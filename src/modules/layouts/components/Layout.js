@@ -16,7 +16,7 @@ class Layout extends React.Component {
   componentDidMount() {
     window.erxesSettings = {
       messenger: {
-        brand_id: "m7DmKt",
+        brand_id: "5fkS4v",
       },
     };
 

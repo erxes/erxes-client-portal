@@ -23,7 +23,7 @@ function Header(props) {
                   <img src={Logo} alt="logo" />
                 </Link>
                 <div className="line">|</div>
-                <div className="text">Community Help Center</div>
+                <div className="text">Company Handbook</div>
               </div>
             </Col>
             <Col md="auto" className="header-links">
