@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as compose from "lodash.flowright";
 import Header from "./Header";
 import Footer from "./Footer";
