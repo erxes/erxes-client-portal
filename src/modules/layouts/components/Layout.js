@@ -65,9 +65,10 @@ const Layout = (props) => {
   const queryParams = queryString.parse(location.search);
   const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
+  let headSpacing = headingSpacing;
   let marginTop = "main-body";
   if (location.pathname === "/knowledge-base") {
-    headingSpacing = true;
+    headSpacing = true;
     marginTop = "mt-100p";
   }
 
