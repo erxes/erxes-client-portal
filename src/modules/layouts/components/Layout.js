@@ -65,10 +65,10 @@ const Layout = (props) => {
   const queryParams = queryString.parse(location.search);
   const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
-  let headSpacing = headingSpacing;
+  let headerSpacing = headingSpacing;
   let marginTop = "main-body";
   if (location.pathname === "/knowledge-base") {
-    headSpacing = true;
+    headerSpacing = true;
     marginTop = "mt-100p";
   }
 
@@ -78,7 +78,7 @@ const Layout = (props) => {
         history={history}
         searchValue={queryParams.searchValue}
         kbTopic={kbTopic}
-        headingSpacing={headSpacing}
+        headingSpacing={headerSpacing}
       />
       <Container className={marginTop} fluid="lg">
         {children}
