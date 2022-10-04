@@ -4,7 +4,6 @@ import * as compose from "lodash.flowright";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import Details from "../components/ArticleDetail";
-import Layout from "../../layouts/components/Layout";
 import { queries } from "../graphql/index";
 import { getEnv } from "../../../apolloClient";
 
