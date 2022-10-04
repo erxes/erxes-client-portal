@@ -4,6 +4,7 @@ import * as compose from "lodash.flowright";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import Details from "../components/ArticleDetail";
+import Layout from '../../layouts/components/Layout';
 import { queries } from "../graphql/index";
 import { getEnv } from "../../../apolloClient";
 
@@ -38,13 +39,23 @@ class DetailContainer extends React.Component {
       : {};
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
+    let forms;
+    if (articleDetail._id === "9W9K59dx9CGnHobQi") {
+      forms = [{ brand_id: "mwNwqL", form_id: "SRsHPN" }];
+    }
+    if (articleDetail._id === "t6uZTbRkjMZaBhBiP") {
+      forms = [{ brand_id: "ASJrzQ", form_id: "vQyp4C" }];
+    }
+  
     return (
-      <Details
-        articleDetail={articleDetail}
-        category={category}
-        kbTopic={kbTopic}
-        history={history}
-      />
+      <Layout headingSpacing={false} forms={forms}>
+        <Details
+          articleDetail={articleDetail}
+          category={category}
+          kbTopic={kbTopic}
+          history={history}
+        />
+      </Layout>
     );
   }
 }

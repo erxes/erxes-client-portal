@@ -269,7 +269,7 @@ class Detail extends React.Component {
       return (
         <div
           data-erxes-embed="vQyp4C"
-          style={{ width: "100%", height: "300px" }}
+          style={{ width: "100%" }}
         ></div>
       );
     }
@@ -278,7 +278,7 @@ class Detail extends React.Component {
       return (
         <div
           data-erxes-embed="SRsHPN"
-          style={{ width: "100%", height: "300px" }}
+          style={{ width: "100%" }}
         ></div>
       );
     }
