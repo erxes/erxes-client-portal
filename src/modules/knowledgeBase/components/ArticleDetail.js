@@ -14,7 +14,7 @@ class Detail extends React.Component {
     this.state = {
       activeReaction: "",
       toggle: false,
-      nextFirstId: '0',
+      nextFirstId: "0",
     };
   }
 
@@ -117,15 +117,15 @@ class Detail extends React.Component {
     return;
   };
 
-  createDom = () =>{
-    const  articleDetail  = this.props.articleDetail;
+  createDom = () => {
+    const articleDetail = this.props.articleDetail;
     if (!articleDetail) {
       return null;
     }
-    const content= articleDetail.content;
-    const dom = new DOMParser().parseFromString(content, 'text/html');
+    const content = articleDetail.content;
+    const dom = new DOMParser().parseFromString(content, "text/html");
     return dom;
-  }
+  };
 
   renderCategories = () => {
     const { kbTopic } = this.props;
@@ -214,38 +214,37 @@ class Detail extends React.Component {
     const tagged = [];
 
     const addId = (array, isTag) => {
-      return array.forEach( el => {
-       let taggedItem;
-       if(el.lastChild.innerText ) {
-        el.children.length > 0 ? taggedItem = el.lastChild.innerText.replace(/&nbsp;/ig, '')
-        : taggedItem = el.innerText.replace(/&nbsp;/ig, '');
- 
-          el.setAttribute("id", taggedItem)
+      return array.forEach((el) => {
+        let taggedItem;
+        if (el.lastChild.innerText) {
+          el.children.length > 0
+            ? (taggedItem = el.lastChild.innerText.replace(/&nbsp;/gi, ""))
+            : (taggedItem = el.innerText.replace(/&nbsp;/gi, ""));
+
+          el.setAttribute("id", taggedItem);
           isTag && tagged.push(taggedItem);
-       } 
-     })
-   }
+        }
+      });
+    };
 
-    const  h2Array = document.getElementsByTagName("h2");
-    addId([...nodes], true)
-    addId([...h2Array], false)
+    const h2Array = document.getElementsByTagName("h2");
+    addId([...nodes], true);
+    addId([...h2Array], false);
 
-    if( nodes.length === 0 ) {
+    if (nodes.length === 0) {
       return null;
     }
     return (
-        <div className="page-anchor" id="anchorTag">
-          <h6>GO TO PAGE </h6>
-          <Scrollspy items={tagged} currentClassName="active">
-            {tagged.map((val, index) => (
-              <li key={index} > 
-                 <a href={`#${val}`} >
-                 {val}
-                 </a>
-              </li>
-            ))}
-          </Scrollspy>
-        </div>
+      <div className="page-anchor" id="anchorTag">
+        <h6>GO TO PAGE </h6>
+        <Scrollspy items={tagged} currentClassName="active">
+          {tagged.map((val, index) => (
+            <li key={index}>
+              <a href={`#${val}`}>{val}</a>
+            </li>
+          ))}
+        </Scrollspy>
+      </div>
     );
   };
 
@@ -255,16 +254,56 @@ class Detail extends React.Component {
     const modal = document.getElementById("modal");
 
     if (img && e.currentTarget.contains(img)) {
-        modalImg.src = img.src;    
-        modal.style.display = "flex";
+      modalImg.src = img.src;
+      modal.style.display = "flex";
     }
- }
+  };
 
   handleModal = () => {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
-  }
-  
+  };
+
+  renderContent = (articleDetail) => {
+    if (this.props.articleDetail._id === "t6uZTbRkjMZaBhBiP") {
+      return (
+        <div
+          data-erxes-embed="vQyp4C"
+          style={{ width: "100%", height: "300px" }}
+        ></div>
+      );
+    }
+
+    if (this.props.articleDetail._id === "9W9K59dx9CGnHobQi") {
+      return (
+        <div
+          data-erxes-embed="SRsHPN"
+          style={{ width: "100%", height: "300px" }}
+        ></div>
+      );
+    }
+
+    return (
+      <div className="kbase-detail kbase-lists">
+        <h4>{articleDetail.title}</h4>
+        <div className="content mt-4" id="contentText">
+          <p>{articleDetail.summary}</p>
+          <div
+            className="article"
+            onClick={this.showImageModal}
+            dangerouslySetInnerHTML={{
+              __html: articleDetail.content,
+            }}
+          ></div>
+          <div onClick={this.handleModal} id="modal">
+            <span id="close">&times;</span>
+            <img id="modal-content" alt="modal" />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     const { articleDetail, category, kbTopic } = this.props;
     const dom = this.createDom();
@@ -284,27 +323,11 @@ class Detail extends React.Component {
           </Col>
           <Col md={7}>
             <div className="card article-detail">
-              <div className="kbase-detail kbase-lists">
-                <h4>{articleDetail.title}</h4>
-                <div className="content mt-4" id="contentText">
-                  <p>{articleDetail.summary}</p>
-
-                  <div className="article" onClick={this.showImageModal}
-                    dangerouslySetInnerHTML={{
-                      __html: articleDetail.content,
-                    }}
-                    ></div>   
-                    <div onClick={this.handleModal} id="modal" >
-                      <span id = "close">&times;</span>
-                      <img id="modal-content" alt="modal"/>
-                    </div>
-
-                </div>
-              </div>
+              {this.renderContent(articleDetail)}
               {this.renderReactions()}
             </div>
           </Col>
-          <Col md={2} >{this.renderTags(dom)}</Col>
+          <Col md={2}>{this.renderTags(dom)}</Col>
         </Row>
       </div>
     );
