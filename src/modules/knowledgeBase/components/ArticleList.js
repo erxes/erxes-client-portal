@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { ReactComponent as Emptybox } from "../../../../src/assets/images/empty-box.svg";
 
 class Lists extends React.Component {
@@ -35,36 +35,44 @@ class Lists extends React.Component {
           <Col>
             {this.renderSearchResult()}
             {articles.length > 0 ? (
-              articles.map((article) => (
-                <Link
-                  to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
-                  key={article._id}
-                >
-                  <div className="kbase-lists card tab-content">
-                    <h5>{article.title}</h5>
-                    <p>{article.summary}</p>
-                    <div className="article-desc ">
-                      <img src={article.createdUser.details.avatar} alt="#" />
-                      <div>
-                        <p>
-                          Written by:{" "}
-                          <strong>
-                            {article.createdUser.details.fullName}
-                          </strong>
-                        </p>
-                        <p>
-                          Modified:{" "}
-                          <strong>{article.modifiedDate.slice(0, 10)}</strong>
-                        </p>
+              (articles.length = 1 ? (
+                <Redirect
+                  to={`/knowledge-base/article/detail?catId=${catId}&_id=${articles[0]._id}`}
+                />
+              ) : (
+                articles.map((article) => (
+                  <Link
+                    to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
+                    key={article._id}
+                  >
+                    <div className="kbase-lists card tab-content">
+                      <h5>{article.title}</h5>
+                      <p>{article.summary}</p>
+                      <div className="article-desc ">
+                        <img src={article.createdUser.details.avatar} alt="#" />
+                        <div>
+                          <p>
+                            Written by:{" "}
+                            <strong>
+                              {article.createdUser.details.fullName}
+                            </strong>
+                          </p>
+                          <p>
+                            Modified:{" "}
+                            <strong>{article.modifiedDate.slice(0, 10)}</strong>
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                
-              </Link>
-            )))
-            : <div className="empty-box"> 
-            <Emptybox/>
-            <span>Thare are no articles in this category</span></div>}
+                  </Link>
+                ))
+              ))
+            ) : (
+              <div className="empty-box">
+                <Emptybox />
+                <span>Thare are no articles in this category</span>
+              </div>
+            )}
           </Col>
         </Row>
       </Container>
