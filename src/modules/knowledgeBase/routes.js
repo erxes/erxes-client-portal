@@ -26,7 +26,16 @@ const articleDetails = ({ history, location }) => {
   }
 
   return (
-    <Layout headingSpacing={false}>
+    <Layout headingSpacing={false} forms={[
+      {
+        brand_id: "mwNwqL",
+        form_id: "SRsHPN",
+      },
+      {
+        brand_id: "ASJrzQ",
+        form_id: "vQyp4C",
+      },
+    ]}>
       <Details
         queryParams={queryParams}
         history={history}

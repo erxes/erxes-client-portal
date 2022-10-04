@@ -40,25 +40,12 @@ class DetailContainer extends React.Component {
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
     return (
-      <Layout
-        forms={[
-          {
-            brand_id: "mwNwqL",
-            form_id: "SRsHPN",
-          },
-          {
-            brand_id: "ASJrzQ",
-            form_id: "vQyp4C",
-          }
-        ]}
-      >
-        <Details
-          articleDetail={articleDetail}
-          category={category}
-          kbTopic={kbTopic}
-          history={history}
-        />
-      </Layout>
+      <Details
+        articleDetail={articleDetail}
+        category={category}
+        kbTopic={kbTopic}
+        history={history}
+      />
     );
   }
 }
