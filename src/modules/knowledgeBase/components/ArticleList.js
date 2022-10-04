@@ -6,7 +6,7 @@ import { ReactComponent as Emptybox } from "../../../../src/assets/images/empty-
 
 class Lists extends React.Component {
   renderSearchResult = () => {
-    const { searchValue, articles } = this.props;
+    const { searchValue, articles = [] } = this.props;
 
     if (!searchValue) {
       return null;
@@ -27,52 +27,58 @@ class Lists extends React.Component {
     );
   };
 
+  renderArticles = () => {
+    const { articles = [], catId } = this.props;
+
+    if (!articles || articles.length === 0) {
+      return (
+        <div className="empty-box">
+          <Emptybox />
+          <span>Thare are no articles in this category</span>
+        </div>
+      );
+    }
+
+    if (articles.length === 1) {
+      return (
+        <Redirect
+          to={`/knowledge-base/article/detail?catId=${catId}&_id=${articles[0]._id}`}
+        />
+      );
+    }
+
+    return articles.reverse().map((article) => (
+      <Link
+        to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
+        key={article._id}
+      >
+        <div className="kbase-lists card tab-content">
+          <h5>{article.title}</h5>
+          <p>{article.summary}</p>
+          <div className="article-desc ">
+            <img src={article.createdUser.details.avatar} alt="#" />
+            <div>
+              <p>
+                Written by:{" "}
+                <strong>{article.createdUser.details.fullName}</strong>
+              </p>
+              <p>
+                Modified: <strong>{article.modifiedDate.slice(0, 10)}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </Link>
+    ));
+  };
+
   render() {
-    const { articles, catId } = this.props;
     return (
       <Container className="knowledge-base">
         <Row>
           <Col>
             {this.renderSearchResult()}
-            {articles.length > 0 ? (
-              (articles.length = 1 ? (
-                <Redirect
-                  to={`/knowledge-base/article/detail?catId=${catId}&_id=${articles[0]._id}`}
-                />
-              ) : (
-                articles.map((article) => (
-                  <Link
-                    to={`/knowledge-base/article/detail?catId=${catId}&_id=${article._id}`}
-                    key={article._id}
-                  >
-                    <div className="kbase-lists card tab-content">
-                      <h5>{article.title}</h5>
-                      <p>{article.summary}</p>
-                      <div className="article-desc ">
-                        <img src={article.createdUser.details.avatar} alt="#" />
-                        <div>
-                          <p>
-                            Written by:{" "}
-                            <strong>
-                              {article.createdUser.details.fullName}
-                            </strong>
-                          </p>
-                          <p>
-                            Modified:{" "}
-                            <strong>{article.modifiedDate.slice(0, 10)}</strong>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))
-              ))
-            ) : (
-              <div className="empty-box">
-                <Emptybox />
-                <span>Thare are no articles in this category</span>
-              </div>
-            )}
+            {this.renderArticles()}
           </Col>
         </Row>
       </Container>
