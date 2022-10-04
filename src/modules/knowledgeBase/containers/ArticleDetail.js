@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import * as compose from 'lodash.flowright';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import Details from '../components/ArticleDetail';
-import { queries } from '../graphql/index';
-import { getEnv } from '../../../apolloClient';
+import React from "react";
+import PropTypes from "prop-types";
+import * as compose from "lodash.flowright";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
+import Details from "../components/ArticleDetail";
+import Layout from "../../layouts/components/Layout";
+import { queries } from "../graphql/index";
+import { getEnv } from "../../../apolloClient";
 
 const { REACT_APP_TOPIC_ID } = getEnv();
 
@@ -16,7 +17,7 @@ class DetailContainer extends React.Component {
       getArticleDetailQuery,
       getKbCategoryQuery,
       history,
-      location
+      location,
     } = this.props;
 
     if (
@@ -39,12 +40,25 @@ class DetailContainer extends React.Component {
     const kbTopic = getKbTopicQuery.widgetsKnowledgeBaseTopicDetail || {};
 
     return (
-      <Details
-        articleDetail={articleDetail}
-        category={category}
-        kbTopic={kbTopic}
-        history={history}
-      />
+      <Layout
+        forms={[
+          {
+            brand_id: "mwNwqL",
+            form_id: "SRsHPN",
+          },
+          {
+            brand_id: "ASJrzQ",
+            form_id: "vQyp4C",
+          }
+        ]}
+      >
+        <Details
+          articleDetail={articleDetail}
+          category={category}
+          kbTopic={kbTopic}
+          history={history}
+        />
+      </Layout>
     );
   }
 }
@@ -55,28 +69,28 @@ DetailContainer.propTypes = {
   getArticleDetailQuery: PropTypes.object,
   getKbCategoryQuery: PropTypes.object,
   queryParams: PropTypes.object,
-  topicId: PropTypes.string
+  topicId: PropTypes.string,
 };
 
 export default compose(
   graphql(gql(queries.getArticleDetailQuery), {
-    name: 'getArticleDetailQuery',
+    name: "getArticleDetailQuery",
     skip: ({ queryParams }) => !queryParams._id,
     options: ({ queryParams }) => ({
-      variables: { _id: queryParams._id }
-    })
+      variables: { _id: queryParams._id },
+    }),
   }),
   graphql(gql(queries.getKbTopicQuery), {
-    name: 'getKbTopicQuery',
+    name: "getKbTopicQuery",
     options: () => ({
-      variables: { _id: REACT_APP_TOPIC_ID }
-    })
+      variables: { _id: REACT_APP_TOPIC_ID },
+    }),
   }),
   graphql(gql(queries.getKbCategoryQuery), {
-    name: 'getKbCategoryQuery',
+    name: "getKbCategoryQuery",
     skip: ({ queryParams }) => !queryParams.catId,
     options: ({ queryParams }) => ({
-      variables: { _id: queryParams.catId }
-    })
+      variables: { _id: queryParams.catId },
+    }),
   })
 )(DetailContainer);
