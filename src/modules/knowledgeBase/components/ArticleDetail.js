@@ -166,7 +166,7 @@ class Detail extends React.Component {
       <>
         <div className="tags sidebar-list">
           <ul>
-            {categories.map((category) => {
+            {categories.reverse().map((category) => {
               return (
                 <>
                   {renderCategory(category)}
