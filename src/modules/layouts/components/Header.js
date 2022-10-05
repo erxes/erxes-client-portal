@@ -37,8 +37,7 @@ function Header(props) {
             </Col>
           </Row>
           <h3>
-            A knowledge-sharing help center designed specially for the erxes
-            community
+            Welcome to the company handbook! Here you'll find everything you need to know about the company. It is designed especially for the erxes team and community members.
           </h3>
           <Search
             history={props.history}

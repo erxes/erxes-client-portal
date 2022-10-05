@@ -39,7 +39,7 @@ class CategoryDetail extends React.Component {
     if (parentCategories) {
       return (
         <>
-          {parentCategories.map((cat) => {
+          {parentCategories.reverse().map((cat) => {
             return (
               <>
                 {renderCategory(cat)}

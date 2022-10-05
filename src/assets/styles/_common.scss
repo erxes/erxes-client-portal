@@ -420,7 +420,7 @@ h3 strong {
 .header-links {
   a {
     font-size: 14px;
-    color: $white;
+    color: $white ! important;
   }
 }
 
