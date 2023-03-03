@@ -1,12 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
 import * as compose from "lodash.flowright";
-import { graphql } from "react-apollo";
-import gql from "graphql-tag";
+
 import Details from "../components/ArticleDetail";
 import Layout from '../../layouts/components/Layout';
-import { queries } from "../graphql/index";
+import PropTypes from "prop-types";
+import React from "react";
 import { getEnv } from "../../../apolloClient";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import { queries } from "../graphql/index";
 
 const { REACT_APP_TOPIC_ID } = getEnv();
 
@@ -45,6 +46,9 @@ class DetailContainer extends React.Component {
     }
     if (articleDetail._id === "t6uZTbRkjMZaBhBiP") {
       forms = [{ brand_id: "ASJrzQ", form_id: "vQyp4C" }];
+    }
+    if (articleDetail._id === "gtmXduDJm7uPMBBS6") {
+      forms = [{ brand_id: "ASJrzQ", form_id: "Lsk4vq" }];
     }
   
     return (
